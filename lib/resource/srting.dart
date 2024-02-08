@@ -5,6 +5,8 @@ class LocaleString extends Translations{
   // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
     'en_US':{
+      'Dilshodjon Haydarov':'Dilshodjon Haydarov',
+
       'hello':'Hello World',
       'message':'Welcome to Proto Coders Point',
       'title':'Flutter Language - Localization',
@@ -40,8 +42,12 @@ class LocaleString extends Translations{
       'Do‘kon mahsulotlari':'Store products',
       'Sizni yuzlab jozibador hikoyalar kutmoqda':'Hundreds of exciting stories are waiting for you',
       'Sevimli janrlaringizni o\'rganing':'Learn your favorite genres',
+
+      //Sahifam page
+      'Profilni tahrirlash':'Edit profile',
     },
     'ru_RU':{
+      'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
       'hello': 'Привет, мир',
       'message':'Добро пожаловать в Proto Coders Point',
       'title':'Язык Flutter - Локализация',
@@ -77,8 +83,13 @@ class LocaleString extends Translations{
       'Do‘kon mahsulotlari':'Товары магазина',
       'Sizni yuzlab jozibador hikoyalar kutmoqda':'Сотни захватывающих историй ждут вас',
       'Sevimli janrlaringizni o\'rganing':'Sevimli janrlaringizni o\'rganing',
+
+      //Sahifam page
+      'Profilni tahrirlash':'Редактировать профиль',
     },
     'uz_UZ':{
+      'Dilshodjon Haydarov':'Dilshodjon Haydarov',
+
       'hello': 'Salom Dunyo',
       'message':'Proto Coders Pointga xush kelibsiz',
       'title':'Flutter Tili - Lokallashtirish',
@@ -114,6 +125,9 @@ class LocaleString extends Translations{
       'Do‘kon mahsulotlari':'Do‘kon mahsulotlari',
       'Sizni yuzlab jozibador hikoyalar kutmoqda':'Sizni yuzlab jozibador hikoyalar kutmoqda',
       'Sevimli janrlaringizni o\'rganing':'Sevimli janrlaringizni o\'rganing',
+
+      //Sahifam page
+      'Profilni tahrirlash':'Profilni tahrirlash',
     }
   };
 
