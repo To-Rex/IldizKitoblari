@@ -141,10 +141,10 @@ class LoginPage extends StatelessWidget {
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                                     child: Text('Ro\'yxatdan o\'tish'.tr,
                                         style: TextStyle(
-                                          fontSize: _getController.width.value * 0.035,
+                                          fontSize: _getController.width.value * 0.04,
                                           color: AppColors.white,
                                         )))),
-                            SizedBox(height: _getController.height.value * 0.02),
+                            SizedBox(height: _getController.height.value * 0.03),
                             Row(
                               children: [
                                 const Spacer(),
@@ -152,7 +152,7 @@ class LoginPage extends StatelessWidget {
                                   'Ro\'yxatdan o\'tganmisiz?'.tr,
                                   style: TextStyle(
                                     color: Theme.of(context).colorScheme.onSurface,
-                                    fontSize: _getController.width.value * 0.035
+                                    fontSize: _getController.width.value * 0.04
                                   )
                                 ),
                                 SizedBox(width: _getController.height.value * 0.01),
@@ -165,14 +165,14 @@ class LoginPage extends StatelessWidget {
                                     'Ro\'yxatdan o\'tish'.tr,
                                     style: TextStyle(
                                       color: AppColors.primaryColor,
-                                      fontSize: _getController.width.value * 0.035
+                                      fontSize: _getController.width.value * 0.04
                                     )
                                   ),
                                 ),
                                 const Spacer()
                               ],
                             ),
-                            SizedBox(height: _getController.height.value * 0.04),
+                            SizedBox(height: _getController.height.value * 0.075),
                           ],
                         )
                     )
