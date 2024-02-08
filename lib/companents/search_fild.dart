@@ -17,7 +17,7 @@ class SearchFields extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              height: _getController.height.value * 0.06,
+              height: _getController.height.value * 0.055,
               padding: EdgeInsets.only(right: _getController.width.value * 0.01),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.background,
@@ -27,10 +27,10 @@ class SearchFields extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Search',
                   prefixIcon: Padding(
-                    padding: EdgeInsets.all(_getController.height.value * 0.015),
+                    padding: EdgeInsets.all(_getController.height.value * 0.013),
                     child: SvgPicture.asset(
                       'assets/icon/search.svg',
-                      colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface.withOpacity(0.6), BlendMode.srcIn),
                     ),
                   ),
                   border: InputBorder.none,
@@ -40,20 +40,20 @@ class SearchFields extends StatelessWidget {
           ),
           SizedBox(width: _getController.width.value * 0.02),
           Container(
-            height: _getController.height.value * 0.06,
-            width: _getController.height.value * 0.06,
+            height: _getController.height.value * 0.055,
+            width: _getController.height.value * 0.055,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface.withOpacity(0.2),
+              color: Theme.of(context).colorScheme.background.withOpacity(0.2),
               borderRadius: BorderRadius.circular(13),
               border: Border.all(
-                color: Theme.of(context).colorScheme.background.withOpacity(0.5),
+                color: Theme.of(context).colorScheme.background.withOpacity(0.2),
               ),
             ),
             child: Center(
               child: SvgPicture.asset(
                 'assets/icon/bell.svg',
-                height: _getController.height.value * 0.03,
-                width: _getController.height.value * 0.03,
+                height: _getController.height.value * 0.026,
+                width: _getController.height.value * 0.026,
                 colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.surface, BlendMode.srcIn),
               ),
             )

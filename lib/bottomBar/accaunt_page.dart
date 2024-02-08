@@ -1,6 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/resource/colors.dart';
 
@@ -73,19 +74,19 @@ class AccountPage extends StatelessWidget {
                         )),
                     Positioned(
                         height: _getController.height.value * 0.2,
-                        top: _getController.height.value * 0.04,
+                        top: _getController.height.value * 0.06,
                         left: _getController.width.value * 0.03,
                         child: Text('Sahifam'.tr,
                             style: TextStyle(
                                 color: Theme.of(context).colorScheme.surface,
-                                fontSize: _getController.width.value * 0.07,
+                                fontSize: _getController.width.value * 0.06,
                                 fontWeight: FontWeight.bold
                             )
                         )
                     ),
                     Positioned(
                         width: _getController.width.value,
-                        top: _getController.height.value * 0.11,
+                        top: _getController.height.value * 0.12,
                         child: Container(
                             width: _getController.width.value,
                             decoration: BoxDecoration(
@@ -99,28 +100,29 @@ class AccountPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Padding(
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.05),
+                                    Container(
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                         child: CircleAvatar(
-                                            radius: _getController.width.value * 0.07,
+                                            radius: _getController.width.value * 0.08,
                                             backgroundImage: const AssetImage('assets/images/oo4.png')
                                         )
                                     ),
                                     Padding(
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.05),
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Dilshodjon Haydarov'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
-                                            Text('ID 644a520d1d9b3384ec163d1b'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04))
+                                            Text('Dilshodjon Haydarov'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600)),
+                                            SizedBox(height: _getController.height.value * 0.004),
+                                            Text('ID 644a520d1d9b3384ec163d1b'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: _getController.width.value * 0.04))
                                           ]
                                         )
                                     )
                                   ],
                                 ),
-                                SizedBox(height: _getController.width.value * 0.04),
                                 SizedBox(
-                                    width: _getController.width.value * 0.91,
+                                    width: _getController.width.value * 0.92,
+                                    height: _getController.height.value * 0.06,
                                     child: ElevatedButton(
                                         onPressed: () {
                                           Get.toNamed('/myInfo');
@@ -134,21 +136,26 @@ class AccountPage extends StatelessWidget {
                                         child: Text('Profilni tahrirlash'.tr,
                                             style: TextStyle(
                                                 color: AppColors.white,
-                                                fontSize: _getController.width.value * 0.04
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: _getController.width.value * 0.045
                                             )
                                         )
                                     )
                                 ),
+                                SizedBox(height: _getController.width.value * 0.02),
                                 AccItem(
                                     title: 'Mualliflar'.tr,
-                                    icon: Icons.person,
+                                    //icon: TablerIcons.copyright,
+                                    icon: 'assets/icon/copyRight.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/myInfo');
                                     }
                                 ),
                                 AccItem(
                                     title: 'Mening kitoblarim'.tr,
-                                    icon: Icons.book,
+                                    icon: 'assets/icon/diary.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/myBooks');
                                     }
@@ -156,7 +163,8 @@ class AccountPage extends StatelessWidget {
                                 //Buyurtmalar
                                 AccItem(
                                     title: 'Buyurtmalar'.tr,
-                                    icon: Icons.shopping_cart,
+                                    icon: 'assets/icon/shopping-cart.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/myOrders');
                                     }
@@ -164,7 +172,8 @@ class AccountPage extends StatelessWidget {
                                 //chegirmalar
                                 AccItem(
                                     title: 'Chegirmalar'.tr,
-                                    icon: Icons.local_offer,
+                                    icon: 'assets/icon/ticket.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/myDiscounts');
                                     }
@@ -172,7 +181,8 @@ class AccountPage extends StatelessWidget {
                                 //promokod
                                 AccItem(
                                     title: 'Promokod'.tr,
-                                    icon: Icons.qr_code,
+                                    icon: 'assets/icon/badge.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/myPromoCode');
                                     }
@@ -180,7 +190,9 @@ class AccountPage extends StatelessWidget {
                                 //tilni o'zgartirish
                                 AccItem(
                                     title: 'Tilni o\'zgartirish'.tr,
-                                    icon: Icons.language,
+                                    icon: 'assets/icon/globe.svg',
+                                    //get locale
+                                    subTitle: Get.locale!.languageCode == 'en' ? 'English' : Get.locale!.languageCode == 'ru' ? 'Russian' : 'O\'zbekcha',
                                     onTap: () {
                                       buildLanguageDialog(context);
                                     }
@@ -188,15 +200,16 @@ class AccountPage extends StatelessWidget {
                                 //O\'qish turi
                                 AccItem(
                                     title: 'O\'qish turi'.tr,
-                                    icon: Icons.read_more,
+                                    icon: 'assets/icon/overview.svg',
+                                    subTitle: '',
                                     onTap: () {
-                                      Get.toNamed('/readingMode');
                                     }
                                 ),
-                                //Tungi rejim
                                 AccItem(
                                     title: 'Tungi rejim'.tr,
-                                    icon: Icons.nightlight_round,
+                                    icon: 'assets/icon/night.svg',
+                                    subTitle: '',
+                                    switchValue: true,
                                     onTap: () {
                                       AdaptiveTheme.of(context).toggleThemeMode();
                                     }
@@ -204,7 +217,8 @@ class AccountPage extends StatelessWidget {
                                 //Dastur haqida
                                 AccItem(
                                     title: 'Dastur haqida'.tr,
-                                    icon: Icons.info,
+                                    icon: 'assets/icon/info.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/aboutApp');
                                     }
@@ -212,7 +226,8 @@ class AccountPage extends StatelessWidget {
                                 //Biz bilan bog'lanish
                                 AccItem(
                                     title: 'Biz bilan bog\'lanish'.tr,
-                                    icon: Icons.phone,
+                                    icon: 'assets/icon/contact.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/contactUs');
                                     }
@@ -220,7 +235,8 @@ class AccountPage extends StatelessWidget {
                                 //Ilovadan chiqish
                                 AccItem(
                                     title: 'Ilovadan chiqish'.tr,
-                                    icon: Icons.exit_to_app,
+                                    icon: 'assets/icon/exit.svg',
+                                    subTitle: '',
                                     onTap: () {
                                       Get.toNamed('/exitApp');
                                     }

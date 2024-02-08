@@ -20,8 +20,8 @@ class AppColors{
   static const secondaryColor = Color(0xFFD71E06);
   static const grey = Color(0xFFB4B9BD);
   static const black70 = Colors.black;
-  //2797A7
   static const primaryColor2 = Color(0xFF2797A7);
+  static const green = Color(0xFF34C759);
 
   //transparent
   static const blackTransparent = Colors.transparent;

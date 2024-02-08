@@ -31,12 +31,12 @@ class BasketPage extends StatelessWidget {
                         )),
                     Positioned(
                         height: _getController.height.value * 0.2,
-                        top: _getController.height.value * 0.04,
+                        top: _getController.height.value * 0.06,
                         left: _getController.width.value * 0.03,
                         child: Text('Savatcha'.tr,
                             style: TextStyle(
                                 color: Theme.of(context).colorScheme.surface,
-                                fontSize: _getController.width.value * 0.07,
+                                fontSize: _getController.width.value * 0.06,
                                 fontWeight: FontWeight.bold
                             )
                         )
