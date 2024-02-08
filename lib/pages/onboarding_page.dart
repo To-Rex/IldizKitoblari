@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/pages/auth/login_page.dart';
 import 'package:ildiz/pages/auth/register_page.dart';
+import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  final GetController _getController = Get.put(GetController());
 
   @override
   void initState() {
@@ -116,17 +118,15 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               )
           ),
 
-          //two circles in the middle
-          //Text
           Positioned(
-            bottom: h * 0.35,
+              bottom: _getController.height.value * 0.296,
               right: w * 0.3,
               left: w * 0.3,
               child: Center(
                 child: Text('Sizni yuzlab jozibador hikoyalar kutmoqda'.tr,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: w * 0.31,
+                      fontSize: _getController.width.value * 0.07,
                       fontWeight: FontWeight.bold,
                       color: AppColors.white,
                     )
@@ -134,45 +134,73 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               )
           ),
           Positioned(
-            bottom: h * 0.31,
+            bottom: h * 0.25,
               right: w * 0.3,
               left: w * 0.3,
             child: Text('Sevimli janrlaringizni o\'rganing'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: w * 0.17,
+                  fontSize: _getController.width.value * 0.045,
                   color: AppColors.white.withOpacity(0.7),
                 )
             ),
           ),
+          Positioned(
+            bottom: h * 0.22,
+            right: w * 0.3,
+            left: w * 0.3,
+            child: Row(
+              children: [
+                const Spacer(),
+                Container(
+                  height: 10,
+                  width: 10,
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                SizedBox(width: _getController.width.value * 0.01),
+                Container(
+                  height: 10,
+                  width: 10,
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                const Spacer(),
+              ],
+            ),
+          ),
           //button
           Positioned(
-            bottom: h * 0.15,
-              right: w * 0.3,
-              left: w * 0.3,
+              bottom: _getController.height.value * 0.12,
+              height: _getController.height.value * 0.06,
+              right: w * 0.15,
+              left: w * 0.15,
               child: ElevatedButton(
                 onPressed: () {
-                  //Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => RegisterPage()),);
                   Get.to(RegisterPage());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryColor,
-                  padding: EdgeInsets.symmetric(vertical: h * 0.02),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   )
                 ),
                 child: Text('Ro\'yxatdan o\'tish'.tr,
                     style: TextStyle(
-                      fontSize: w * 0.17,
+                      fontSize: _getController.width.value * 0.04,
                       color: AppColors.white,
+                      fontWeight: FontWeight.bold,
                     )
                 )
               )
           ),
           //row in Ro‘yxatdan o‘tganmisiz? Kirish
           Positioned(
-              bottom: h * 0.08,
+              bottom: h * 0.055,
               right: w * 0.3,
               left: w * 0.3,
               child: Row(
@@ -184,12 +212,6 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                         color: AppColors.white,
                       )
                   ),
-                  /*Text('Kirish'.tr,
-                      style: TextStyle(
-                        fontSize: w * 0.16,
-                        color: AppColors.primaryColor,
-                      )
-                  ),*/
                   TextButton(
                     onPressed: () {
                       //Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => RegisterPage()),);
@@ -199,6 +221,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                         style: TextStyle(
                           fontSize: w * 0.17,
                           color: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold,
                         )
                     ),
                   ),
