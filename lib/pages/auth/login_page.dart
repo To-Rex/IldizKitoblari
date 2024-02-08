@@ -139,10 +139,11 @@ class LoginPage extends StatelessWidget {
                                         backgroundColor: AppColors.primaryColor,
                                         padding: EdgeInsets.symmetric(vertical: _getController.height.value * 0.02),
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                                    child: Text('Ro\'yxatdan o\'tish'.tr,
+                                    child: Text('Kirish'.tr,
                                         style: TextStyle(
                                           fontSize: _getController.width.value * 0.04,
                                           color: AppColors.white,
+                                          fontWeight: FontWeight.w600,
                                         )))),
                             SizedBox(height: _getController.height.value * 0.03),
                             Row(
