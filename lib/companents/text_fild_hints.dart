@@ -11,7 +11,7 @@ class TextFildHints extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: _getController.width.value * 0.9,
+      width: _getController.width.value * 0.93,
       height: _getController.height.value * 0.03,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

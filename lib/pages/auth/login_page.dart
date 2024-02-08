@@ -40,9 +40,9 @@ class LoginPage extends StatelessWidget {
                           height: _getController.height.value * 0.2),
                     )),
                 Positioned(
-                    height: _getController.height.value * 0.2,
+                    height: _getController.height.value * 0.06,
                     width: _getController.width.value * 0.45,
-                    top: _getController.height.value * 0.03,
+                    top: _getController.height.value * 0.07,
                     left: _getController.width.value * 0.03,
                     child: SizedBox(
                       child: SvgPicture.asset('assets/svgImages/keps.svg',
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                     )),
                 Positioned(
                     width: _getController.width.value,
-                    top: _getController.height.value * 0.18,
+                    top: _getController.height.value * 0.14,
                     bottom: 0,
                     child: Container(
                         width: _getController.width.value,
@@ -68,8 +68,7 @@ class LoginPage extends StatelessWidget {
                             AppBarSheets(
                               title: 'Kirish'.tr,
                             ),
-                            SizedBox(
-                                height: _getController.height.value * 0.02),
+                            SizedBox(height: _getController.height.value * 0.02),
                             TextFildHints(
                               hintText: '${'Telefon raqam'.tr}:',
                             ),
@@ -78,8 +77,7 @@ class LoginPage extends StatelessWidget {
                               next: TextInputAction.next,
                               inputType: TextInputType.phone,
                             ),
-                            SizedBox(
-                                height: _getController.height.value * 0.02),
+                            SizedBox(height: _getController.height.value * 0.02),
                             TextFildHints(
                               hintText: '${'Parolni kiriting'.tr}:',
                             ),

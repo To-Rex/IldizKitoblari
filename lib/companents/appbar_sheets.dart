@@ -25,7 +25,7 @@ class AppBarSheets extends StatelessWidget {
               size: _getController.width.value * 0.06,
             ),
           ),
-          SizedBox(width: _getController.width.value * 0.05),
+          SizedBox(width: _getController.width.value * 0.02),
           Text(
             title,
             style: TextStyle(
