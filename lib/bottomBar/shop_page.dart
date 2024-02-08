@@ -34,6 +34,18 @@ class ShopPage extends StatelessWidget {
                         )),
                     Positioned(
                         height: _getController.height.value * 0.2,
+                        top: _getController.height.value * 0.04,
+                        left: _getController.width.value * 0.03,
+                        child: Text('Do\'kon'.tr,
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.surface,
+                                fontSize: _getController.width.value * 0.07,
+                                fontWeight: FontWeight.bold
+                            )
+                        )
+                    ),
+                    Positioned(
+                        height: _getController.height.value * 0.2,
                         top: 0,
                         left: 0,
                         right: 0,
