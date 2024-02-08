@@ -28,15 +28,20 @@ class BottomBarIcons extends StatelessWidget {
                 icon,
                 colorFilter: isSelected ? const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn) : null,
               ),
-              SizedBox(height: _getController.height * 0.01),
-              Text(
-                  title,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: isSelected ? AppColors.primaryColor : AppColors.grey,
-                    fontSize: _getController.width * 0.03,
-                  )
+              SizedBox(height: _getController.height * 0.005),
+              SizedBox(
+                width: _getController.width * 0.2,
+                child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: isSelected ? AppColors.primaryColor : AppColors.grey,
+                      fontSize: _getController.width * 0.03,
+                    )
+                )
               )
+
 
             ]
         )
