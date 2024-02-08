@@ -122,23 +122,25 @@ class RegisterPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: _getController.width.value * 0.01),
-                        Text(
-                            'Ommaviy oferta'.tr,
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: _getController.width.value * 0.04,
-                            )
-                        ),
-                        TextButton(
-                            onPressed: () {},
+                        InkWell(
+                            onTap: () {
+                              _getController.check.value = !_getController.check.value;
+                            },
                             child: Text(
-                                '${'shartlariga roziman'.tr}!',
+                                'Ommaviy oferta'.tr,
                                 style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: _getController.width.value * 0.04,
+                                  color: AppColors.primaryColor,
+                                  fontSize: _getController.width.value * 0.035,
                                 )
                             )
                         ),
+                        Text(
+                            ' ${'shartlariga roziman'.tr}!',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontSize: _getController.width.value * 0.035,
+                            )
+                        )
                       ],
                     ),
                     const Spacer(),
@@ -162,7 +164,7 @@ class RegisterPage extends StatelessWidget {
                             )
                         )
                     ),
-                    SizedBox(height: _getController.height.value * 0.02),
+                    SizedBox(height: _getController.height.value * 0.03),
                     Row(
                       children: [
                         const Spacer(),
@@ -192,7 +194,7 @@ class RegisterPage extends StatelessWidget {
                         const Spacer(),
                       ],
                     ),
-                    SizedBox(height: _getController.height.value * 0.09),
+                    SizedBox(height: _getController.height.value * 0.08),
                   ],
                 )
             )

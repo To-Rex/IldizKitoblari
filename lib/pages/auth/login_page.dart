@@ -143,7 +143,7 @@ class LoginPage extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: _getController.width.value * 0.04,
                                           color: AppColors.white,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.bold,
                                         )))),
                             SizedBox(height: _getController.height.value * 0.03),
                             Row(
@@ -166,7 +166,8 @@ class LoginPage extends StatelessWidget {
                                     'Ro\'yxatdan o\'tish'.tr,
                                     style: TextStyle(
                                       color: AppColors.primaryColor,
-                                      fontSize: _getController.width.value * 0.04
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.bold,
                                     )
                                   ),
                                 ),
