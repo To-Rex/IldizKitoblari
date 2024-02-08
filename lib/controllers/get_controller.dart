@@ -26,7 +26,7 @@ class GetController extends GetxController {
     widgetOptions.add(ShopPage());
     widgetOptions.add(LibraryPage());
     widgetOptions.add(BasketPage());
-    widgetOptions.add(AccauntPage());
+    widgetOptions.add(AccountPage());
   }
 
   void changeIndex(int index) {

@@ -8,18 +8,23 @@ import '../controllers/get_controller.dart';
 
 class AccItem extends StatelessWidget {
   final String title;
-  final String subTitle;
   final IconData icon;
   var onTap;
 
-  AccItem({super.key, required this.title, required this.subTitle, required this.icon, required this.onTap});
+  AccItem({super.key, required this.title, required this.icon, required this.onTap});
   final GetController _getController = Get.put(GetController());
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
-      subtitle: Text(subTitle),
+      title: Text(title,
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: _getController.width.value * 0.04,
+              fontWeight: FontWeight.w500
+          )
+      ),
+      //subtitle: Text(subTitle),
       leading: Container(
         padding: EdgeInsets.all(_getController.width.value * 0.018),
         decoration: BoxDecoration(

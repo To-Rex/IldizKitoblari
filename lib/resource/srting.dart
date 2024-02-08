@@ -45,6 +45,17 @@ class LocaleString extends Translations{
 
       //Sahifam page
       'Profilni tahrirlash':'Edit profile',
+      'Mening kitoblarim':'My books',
+      'Buyurtmalar':'Orders',
+      'Chegirmalar':'Discounts',
+      'Promokod':'Promocode',
+      'Tilni o\'zgartirish':'Change language',
+      'O\'qish turi' : 'Reading mode',
+      'Tungi rejim':'Night mode',
+      'Dastur haqida':'About the program',
+      'Biz bilan bog\'lanish':'Contact us',
+      'Ilovadan chiqish':'Exit the application',
+
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -86,6 +97,17 @@ class LocaleString extends Translations{
 
       //Sahifam page
       'Profilni tahrirlash':'Редактировать профиль',
+      'Mening kitoblarim':'Мои книги',
+      'Buyurtmalar':'Заказы',
+      'Chegirmalar':'Скидки',
+      'Promokod':'Промокод',
+      'Tilni o\'zgartirish':'Изменить язык',
+      'O\'qish turi' : 'Тип чтения',
+      'Tungi rejim':'Ночной режим',
+      'Dastur haqida':'О программе',
+      'Biz bilan bog\'lanish':'Связаться с нами',
+      'Ilovadan chiqish':'Выйти из приложения',
+
     },
     'uz_UZ':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -128,6 +150,16 @@ class LocaleString extends Translations{
 
       //Sahifam page
       'Profilni tahrirlash':'Profilni tahrirlash',
+      'Mening kitoblarim':'Mening kitoblarim',
+      'Buyurtmalar':'Buyurtmalar',
+      'Chegirmalar':'Chegirmalar',
+      'Promokod':'Promokod',
+      'Tilni o\'zgartirish':'Tilni o\'zgartirish',
+      'O\'qish turi' : 'O\'qish turi',
+      'Tungi rejim':'Tungi rejim',
+      'Dastur haqida':'Dastur haqida',
+      'Biz bilan bog\'lanish':'Biz bilan bog\'lanish',
+      'Ilovadan chiqish':'Ilovadan chiqish',
     }
   };
 

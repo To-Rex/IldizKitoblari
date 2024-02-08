@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -6,16 +7,56 @@ import 'package:ildiz/resource/colors.dart';
 import '../companents/acc_item.dart';
 import '../controllers/get_controller.dart';
 
-class AccauntPage extends StatelessWidget {
-  AccauntPage({super.key});
+class AccountPage extends StatelessWidget {
+  AccountPage({super.key});
   final GetController _getController = Get.put(GetController());
+
+  final List locale =[
+    {'name':'English','locale':Locale('en','US')},
+    {'name':'Russian','locale':Locale('ru','RU')},
+    {'name':'Uzbek','locale':Locale('uz','UZ')}
+  ];
+
+  updateLanguage(Locale locale){
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  buildLanguageDialog(BuildContext context){
+    showDialog(context: context,
+        builder: (builder){
+          return AlertDialog(
+            title: Text('Choose Your Language'),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context,index){
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
+                        print(locale[index]['name']);
+                        updateLanguage(locale[index]['locale']);
+                      },),
+                    );
+                  }, separatorBuilder: (context,index){
+                return Divider(
+                  color: Colors.blue,
+                );
+              }, itemCount: locale.length
+              ),
+            ),
+          );
+        }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
-              height: _getController.height.value,
+              height: _getController.height.value * 1.1,
               width: _getController.width.value,
               child: Obx(() => Stack(
                   fit: StackFit.loose,
@@ -45,7 +86,6 @@ class AccauntPage extends StatelessWidget {
                     Positioned(
                         width: _getController.width.value,
                         top: _getController.height.value * 0.11,
-                        bottom: 0,
                         child: Container(
                             width: _getController.width.value,
                             decoration: BoxDecoration(
@@ -59,46 +99,26 @@ class AccauntPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    //circle avatar and name
                                     Padding(
-                                        padding: EdgeInsets.only(
-                                            left: _getController.width.value * 0.05,
-                                            top: _getController.width.value * 0.05
-                                        ),
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.05),
                                         child: CircleAvatar(
                                             radius: _getController.width.value * 0.07,
                                             backgroundImage: const AssetImage('assets/images/oo4.png')
                                         )
                                     ),
                                     Padding(
-                                        padding: EdgeInsets.only(
-                                            left: _getController.width.value * 0.05,
-                                            top: _getController.width.value * 0.05
-                                        ),
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.05),
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Dilshodjon Haydarov'.tr,
-                                                style: TextStyle(
-                                                    color: Theme.of(context).colorScheme.onSurface,
-                                                    fontSize: _getController.width.value * 0.05
-                                                )
-                                            ),
-                                            Text('ID 644a520d1d9b3384ec163d1b'.tr,
-                                                style: TextStyle(
-                                                    color: Theme.of(context).colorScheme.onSurface,
-                                                    fontSize: _getController.width.value * 0.04
-                                                )
-                                            )
-                                        ]
+                                            Text('Dilshodjon Haydarov'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.05)),
+                                            Text('ID 644a520d1d9b3384ec163d1b'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04))
+                                          ]
                                         )
                                     )
                                   ],
                                 ),
-                                SizedBox(
-                                    height: _getController.width.value * 0.04
-                                ),
-                                //button profile edit
+                                SizedBox(height: _getController.width.value * 0.04),
                                 SizedBox(
                                     width: _getController.width.value * 0.91,
                                     child: ElevatedButton(
@@ -119,15 +139,93 @@ class AccauntPage extends StatelessWidget {
                                         )
                                     )
                                 ),
-
                                 AccItem(
-                                    title: 'Mening ma\'lumotlarim'.tr,
-                                    subTitle: 'Ma\'lumotlaringizni o\'zgartiring'.tr,
+                                    title: 'Mualliflar'.tr,
                                     icon: Icons.person,
                                     onTap: () {
                                       Get.toNamed('/myInfo');
                                     }
                                 ),
+                                AccItem(
+                                    title: 'Mening kitoblarim'.tr,
+                                    icon: Icons.book,
+                                    onTap: () {
+                                      Get.toNamed('/myBooks');
+                                    }
+                                ),
+                                //Buyurtmalar
+                                AccItem(
+                                    title: 'Buyurtmalar'.tr,
+                                    icon: Icons.shopping_cart,
+                                    onTap: () {
+                                      Get.toNamed('/myOrders');
+                                    }
+                                ),
+                                //chegirmalar
+                                AccItem(
+                                    title: 'Chegirmalar'.tr,
+                                    icon: Icons.local_offer,
+                                    onTap: () {
+                                      Get.toNamed('/myDiscounts');
+                                    }
+                                ),
+                                //promokod
+                                AccItem(
+                                    title: 'Promokod'.tr,
+                                    icon: Icons.qr_code,
+                                    onTap: () {
+                                      Get.toNamed('/myPromoCode');
+                                    }
+                                ),
+                                //tilni o'zgartirish
+                                AccItem(
+                                    title: 'Tilni o\'zgartirish'.tr,
+                                    icon: Icons.language,
+                                    onTap: () {
+                                      buildLanguageDialog(context);
+                                    }
+                                ),
+                                //O\'qish turi
+                                AccItem(
+                                    title: 'O\'qish turi'.tr,
+                                    icon: Icons.read_more,
+                                    onTap: () {
+                                      Get.toNamed('/readingMode');
+                                    }
+                                ),
+                                //Tungi rejim
+                                AccItem(
+                                    title: 'Tungi rejim'.tr,
+                                    icon: Icons.nightlight_round,
+                                    onTap: () {
+                                      AdaptiveTheme.of(context).toggleThemeMode();
+                                    }
+                                ),
+                                //Dastur haqida
+                                AccItem(
+                                    title: 'Dastur haqida'.tr,
+                                    icon: Icons.info,
+                                    onTap: () {
+                                      Get.toNamed('/aboutApp');
+                                    }
+                                ),
+                                //Biz bilan bog'lanish
+                                AccItem(
+                                    title: 'Biz bilan bog\'lanish'.tr,
+                                    icon: Icons.phone,
+                                    onTap: () {
+                                      Get.toNamed('/contactUs');
+                                    }
+                                ),
+                                //Ilovadan chiqish
+                                AccItem(
+                                    title: 'Ilovadan chiqish'.tr,
+                                    icon: Icons.exit_to_app,
+                                    onTap: () {
+                                      Get.toNamed('/exitApp');
+                                    }
+                                ),
+                                //SizedBox(height: _getController.width.value * 0.1),
                               ],
                             )
                         )
