@@ -104,7 +104,7 @@ class AccountPage extends StatelessWidget {
                                         padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                         child: CircleAvatar(
                                             radius: _getController.width.value * 0.08,
-                                            backgroundImage: const AssetImage('assets/images/oo4.png')
+                                            backgroundImage: const AssetImage('assets/images/men.png')
                                         )
                                     ),
                                     Padding(
