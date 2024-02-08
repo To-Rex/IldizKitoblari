@@ -11,7 +11,7 @@ class AppBarSheets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: _getController.height.value * 0.08,
+      height: _getController.height.value * 0.085,
       width: _getController.width.value * 0.95,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

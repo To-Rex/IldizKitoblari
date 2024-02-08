@@ -68,7 +68,6 @@ class LoginPage extends StatelessWidget {
                             AppBarSheets(
                               title: 'Kirish'.tr,
                             ),
-                            SizedBox(height: _getController.height.value * 0.02),
                             TextFildHints(
                               hintText: '${'Telefon raqam'.tr}:',
                             ),

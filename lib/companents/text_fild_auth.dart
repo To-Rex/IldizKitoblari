@@ -16,8 +16,8 @@ class TextFildsAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: _getController.width.value * 0.95,
-      height: _getController.height.value * 0.07,
+      width: _getController.width.value * 0.92,
+      height: _getController.height.value * 0.056,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
