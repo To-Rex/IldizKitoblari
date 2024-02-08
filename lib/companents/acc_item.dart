@@ -29,6 +29,10 @@ class AccItem extends StatelessWidget {
         ),
         child: Icon(icon),
       ),
+      trailing: Icon(Icons.arrow_forward,
+          color: Theme.of(context).colorScheme.onSurface,
+          size: _getController.width.value * 0.055,
+      ),
       onTap: onTap,
     );
   }
