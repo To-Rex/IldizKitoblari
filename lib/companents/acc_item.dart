@@ -32,7 +32,8 @@ class _AccItemState extends State<AccItem> {
         children: [
           Text(widget.title,
               style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
+                  //color: Theme.of(context).colorScheme.onSurface,
+                  color: widget.color ?? Theme.of(context).colorScheme.onSurface,
                   fontSize: _getController.width.value * 0.043,
                   fontWeight: FontWeight.w600
               )
@@ -40,7 +41,8 @@ class _AccItemState extends State<AccItem> {
           const Spacer(),
           Text(widget.subTitle,
               style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  //color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  color: widget.color ?? Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                   fontSize: _getController.width.value * 0.04,
                   fontWeight: FontWeight.w500
               )
@@ -56,7 +58,8 @@ class _AccItemState extends State<AccItem> {
         ),
         //child: Icon(widget.icon),
         child: SvgPicture.asset(widget.icon,
-          colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn),
+          //colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(widget.color ?? Theme.of(context).colorScheme.onSurface, BlendMode.srcIn),
           height: _getController.width.value * 0.05,
         ),
       ),
@@ -74,7 +77,8 @@ class _AccItemState extends State<AccItem> {
         thumbColor: Theme.of(context).colorScheme.surface,
         applyTheme: true,
       ) : Icon(Icons.arrow_forward,
-        color: Theme.of(context).colorScheme.onSurface,
+        //color: Theme.of(context).colorScheme.onSurface,
+        color: widget.color ?? Theme.of(context).colorScheme.onSurface,
         size: _getController.width.value * 0.055,
       ),
       onTap: widget.onTap,
