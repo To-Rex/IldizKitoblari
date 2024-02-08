@@ -29,9 +29,9 @@ class AppBarSheets extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              fontSize: _getController.width.value * 0.045,
+              fontSize: _getController.width.value * 0.05,
               color: Theme.of(context).colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],
