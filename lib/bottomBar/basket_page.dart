@@ -43,7 +43,7 @@ class BasketPage extends StatelessWidget {
                     ),
                     Positioned(
                         width: _getController.width.value,
-                        top: _getController.height.value * 0.11,
+                        top: _getController.height.value * 0.12,
                         bottom: 0,
                         child: Container(
                             width: _getController.width.value,

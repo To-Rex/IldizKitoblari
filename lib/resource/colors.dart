@@ -22,6 +22,7 @@ class AppColors{
   static const black70 = Colors.black;
   static const primaryColor2 = Color(0xFF2797A7);
   static const green = Color(0xFF34C759);
+  static const red = Color(0xFFD71E06);
 
   //transparent
   static const blackTransparent = Colors.transparent;

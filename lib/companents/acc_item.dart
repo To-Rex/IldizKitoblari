@@ -12,8 +12,10 @@ class AccItem extends StatefulWidget {
   final String icon;
   var onTap;
   bool? switchValue;
+  //color
+  Color? color;
 
-  AccItem({super.key, required this.title, required this.subTitle, required this.icon, required this.onTap, this.switchValue});
+  AccItem({super.key, required this.title, required this.subTitle, required this.icon, required this.onTap, this.switchValue, this.color});
 
   @override
   State<AccItem> createState() => _AccItemState();
@@ -25,7 +27,7 @@ class _AccItemState extends State<AccItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      minVerticalPadding: _getController.height.value * 0.0176,
+      minVerticalPadding: _getController.height.value * 0.0179,
       title: Row(
         children: [
           Text(widget.title,

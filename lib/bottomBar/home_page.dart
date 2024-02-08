@@ -31,15 +31,15 @@ class HomePage extends StatelessWidget {
                               height: _getController.height.value * 0.2),
                         )),
                     Positioned(
-                        height: _getController.height.value * 0.2,
-                        top: 0,
+                        height: _getController.height.value * 0.12,
+                        top: _getController.height.value * 0.01,
                         left: 0,
                         right: 0,
                         child: SearchFields()
                     ),
                     Positioned(
                         width: _getController.width.value,
-                        top: _getController.height.value * 0.18,
+                        top: _getController.height.value * 0.14,
                         bottom: 0,
                         child: Container(
                             width: _getController.width.value,

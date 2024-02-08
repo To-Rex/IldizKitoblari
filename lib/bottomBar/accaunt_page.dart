@@ -142,7 +142,7 @@ class AccountPage extends StatelessWidget {
                                         )
                                     )
                                 ),
-                                SizedBox(height: _getController.width.value * 0.02),
+                                SizedBox(height: _getController.width.value * 0.03),
                                 AccItem(
                                     title: 'Mualliflar'.tr,
                                     //icon: TablerIcons.copyright,
@@ -237,6 +237,7 @@ class AccountPage extends StatelessWidget {
                                     title: 'Ilovadan chiqish'.tr,
                                     icon: 'assets/icon/exit.svg',
                                     subTitle: '',
+                                    color: AppColors.red,
                                     onTap: () {
                                       Get.toNamed('/exitApp');
                                     }

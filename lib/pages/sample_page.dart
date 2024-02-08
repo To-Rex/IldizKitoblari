@@ -60,10 +60,10 @@ class SamplePage extends StatelessWidget {
     return Scaffold(
       body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
       bottomNavigationBar: BottomAppBar(
-        height: _getController.height.value * 0.1,
+        height: _getController.height.value * 0.09,
         surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
-        elevation: 10,
-        shadowColor: Theme.of(context).colorScheme.onSecondary,
+        elevation: 20,
+        shadowColor: Theme.of(context).colorScheme.secondary,
         color: Theme.of(context).colorScheme.background,
         child: Obx(() => Container(
           margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
