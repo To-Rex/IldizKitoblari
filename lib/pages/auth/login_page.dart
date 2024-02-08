@@ -85,19 +85,22 @@ class LoginPage extends StatelessWidget {
                               next: TextInputAction.next,
                               inputType: TextInputType.visiblePassword,
                             ),
-                            SizedBox(
-                                height: _getController.height.value * 0.01),
+                            SizedBox(height: _getController.height.value * 0.006),
                             Row(
                               children: [
-                                Checkbox(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(_getController.width.value * 0.015)),
-                                  activeColor: AppColors.primaryColor,
-                                  value: _getController.check.value,
-                                  onChanged: (bool? value) {
-                                    _getController.check.value = value!;
-                                  },
+                                SizedBox(width: _getController.width.value * 0.035),
+                                SizedBox(
+                                  width: _getController.width.value * 0.06,
+                                  child: Checkbox(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_getController.width.value * 0.015)),
+                                    activeColor: AppColors.primaryColor,
+                                    value: _getController.check.value,
+                                    onChanged: (bool? value) {
+                                      _getController.check.value = value!;
+                                    },
+                                  ),
                                 ),
+                                SizedBox(width: _getController.width.value * 0.01),
                                 InkWell(
                                   onTap: () {
                                     _getController.check.value =
@@ -106,10 +109,24 @@ class LoginPage extends StatelessWidget {
                                   child: Text('Eslab qolish'.tr,
                                     style: TextStyle(
                                       color: Theme.of(context).colorScheme.onSurface,
-                                      fontSize: _getController.width.value * 0.035,
+                                      fontSize: _getController.width.value * 0.04,
                                     ),
                                   ),
-                                )
+                                ),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () {
+                                    //Get.off(RegisterPage());
+                                    Get.off(SamplePage());
+                                  },
+                                  child: Text('Parolni unutdingizmi?'.tr,
+                                    style: TextStyle(
+                                      color: AppColors.red,
+                                      fontSize: _getController.width.value * 0.04,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: _getController.width.value * 0.035),
                               ],
                             ),
                             const Spacer(),

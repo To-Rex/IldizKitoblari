@@ -11,17 +11,16 @@ class TextFildHints extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: _getController.width.value * 0.93,
-      height: _getController.height.value * 0.02,
-      margin: EdgeInsets.only(bottom: _getController.height.value * 0.012),
+      margin: EdgeInsets.only(bottom: _getController.height.value * 0.005),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(width: _getController.width.value * 0.04),
           Text(hintText,
             style: TextStyle(
-              fontSize: _getController.width.value * 0.035,
+              fontSize: _getController.width.value * 0.04,
               color: Theme.of(context).colorScheme.onSurface,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600
             ),
           ),
         ],
