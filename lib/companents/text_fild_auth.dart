@@ -24,24 +24,44 @@ class TextFildsAuth extends StatelessWidget {
           color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
         ),
       ),
-      child: TextFormField(
-        controller: nameController,
+      child: Obx(() => TextField(
+        keyboardType: inputType,
+        obscureText: inputType == TextInputType.visiblePassword ? _getController.obscureText.value : false,
+        focusNode: FocusNode(),
         style: TextStyle(
-          fontSize: _getController.width.value * 0.035,
+          fontSize: _getController.width.value * 0.04,
           color: Theme.of(context).colorScheme.onSurface,
         ),
-        textInputAction: next,
-        keyboardType: inputType,
         decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.never,
           hintText: 'Kiriting'.tr,
+          filled: true,
+          isDense: true,
+          fillColor: Theme.of(context).colorScheme.surface,
           hintStyle: TextStyle(
-            fontSize: _getController.width.value * 0.035,
+            fontSize: _getController.width.value * 0.04,
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
           ),
-          contentPadding: EdgeInsets.only(left: _getController.width.value * 0.05),
-          border: InputBorder.none,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,              // No border
+            borderRadius: BorderRadius.circular(12),
+          ),
+          suffixIcon: inputType == TextInputType.visiblePassword ? Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
+            child: GestureDetector(
+              onTap: () {
+                _getController.obscureText.value = !_getController.obscureText.value;
+              },
+              child: Icon(
+                _getController.obscureText.value
+                    ? Icons.visibility_off
+                    : Icons.visibility,
+                size: 24,
+              ),
+            ),
+          ) : null,
         ),
-      ),
+      )),
     );
   }
 }
