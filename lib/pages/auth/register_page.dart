@@ -30,20 +30,20 @@ class RegisterPage extends StatelessWidget {
           child:  Obx(() => Stack(
       children: [
         Positioned(
-            height: _getController.height.value * 0.2,
+            height: _getController.height.value * 0.15,
             top: 0,
             left: 0,
             right: 0,
             child:  SizedBox(
               child: SvgPicture.asset('assets/svgImages/shap.svg',
                   fit: BoxFit.fitWidth,
-                  height: _getController.height.value * 0.2),
+                  height: _getController.height.value * 0.15),
             )
         ),
         Positioned(
-            height: _getController.height.value * 0.2,
+            height: _getController.height.value * 0.1,
             width: _getController.width.value * 0.45,
-            top: _getController.height.value * 0.03,
+            top: _getController.height.value * 0.038,
             left: _getController.width.value * 0.03,
             child:  SizedBox(
               child: SvgPicture.asset(
@@ -55,7 +55,7 @@ class RegisterPage extends StatelessWidget {
 
         Positioned(
             width: _getController.width.value,
-            top: _getController.height.value * 0.18,
+            top: _getController.height.value * 0.13,
             bottom: 0,
             child:  Container(
                 width: _getController.width.value,
@@ -71,7 +71,6 @@ class RegisterPage extends StatelessWidget {
                     AppBarSheets(
                       title: 'Ro\'yxatdan o\'tish'.tr,
                     ),
-                    SizedBox(height: _getController.height.value * 0.02),
                     TextFildHints(
                       hintText: 'f.i.sh'.tr,
                     ),
@@ -107,31 +106,27 @@ class RegisterPage extends StatelessWidget {
                       next: TextInputAction.done,
                       inputType: TextInputType.visiblePassword,
                     ),
-                    SizedBox(height: _getController.height.value * 0.02),
+                    SizedBox(height: _getController.height.value * 0.005),
                     Row(
                       children: [
-                        Checkbox(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(_getController.width.value * 0.015),
-                          ),
-                          checkColor: AppColors.white,
-                          activeColor: AppColors.primaryColor,
-                          value: _getController.check.value,
-                          onChanged: (bool? value) {
-                            _getController.check.value = value!;
-                          },
-                        ),
-                        InkWell(
-                            onTap: () {
-                              _getController.check.value = !_getController.check.value;
+                        SizedBox(width: _getController.width.value * 0.035),
+                        SizedBox(
+                          width: _getController.width.value * 0.06,
+                          child: Checkbox(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_getController.width.value * 0.015)),
+                            activeColor: AppColors.primaryColor,
+                            value: _getController.check.value,
+                            onChanged: (bool? value) {
+                              _getController.check.value = value!;
                             },
-                            child: Text(
-                                'Ommaviy oferta'.tr,
-                                style: TextStyle(
-                                  //color: Theme.of(context).colorScheme.brightness == Brightness.dark ? AppColors.primaryColor : AppColors.secondaryColor,
-                                  color: AppColors.primaryColor,
-                                  fontSize: _getController.width.value * 0.035,
-                                )
+                          ),
+                        ),
+                        SizedBox(width: _getController.width.value * 0.01),
+                        Text(
+                            'Ommaviy oferta'.tr,
+                            style: TextStyle(
+                              color: AppColors.primaryColor,
+                              fontSize: _getController.width.value * 0.04,
                             )
                         ),
                         TextButton(
@@ -140,7 +135,7 @@ class RegisterPage extends StatelessWidget {
                                 '${'shartlariga roziman'.tr}!',
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: _getController.width.value * 0.035,
+                                  fontSize: _getController.width.value * 0.04,
                                 )
                             )
                         ),
@@ -148,21 +143,21 @@ class RegisterPage extends StatelessWidget {
                     ),
                     const Spacer(),
                     SizedBox(
-                        width: _getController.width.value * 0.95,
-                        height: _getController.height.value * 0.06,
+                        width: _getController.width.value * 0.91,
+                        height: _getController.height.value * 0.061,
                         child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,
-                                padding: EdgeInsets.symmetric(vertical: _getController.height.value * 0.02),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 )
                             ),
                             child: Text('Ro\'yxatdan o\'tish'.tr,
                                 style: TextStyle(
-                                  fontSize: _getController.width.value * 0.035,
+                                  fontSize: _getController.width.value * 0.04,
                                   color: AppColors.white,
+                                  fontWeight: FontWeight.bold,
                                 )
                             )
                         )
@@ -175,7 +170,7 @@ class RegisterPage extends StatelessWidget {
                           'Ro\'yxatdan o\'tganmisiz?'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,
-                            fontSize: _getController.width.value * 0.035,
+                            fontSize: _getController.width.value * 0.04,
                           ),
                         ),
                         SizedBox(
@@ -189,14 +184,15 @@ class RegisterPage extends StatelessWidget {
                             'Kirish'.tr,
                             style: TextStyle(
                               color: AppColors.primaryColor,
-                              fontSize: _getController.width.value * 0.035,
+                              fontSize: _getController.width.value * 0.04,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         const Spacer(),
                       ],
                     ),
-                    SizedBox(height: _getController.height.value * 0.04),
+                    SizedBox(height: _getController.height.value * 0.09),
                   ],
                 )
             )
