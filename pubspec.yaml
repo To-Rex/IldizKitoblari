@@ -42,6 +42,7 @@ dependencies:
   adaptive_theme: ^3.6.0
   flaticon: ^0.0.1
   flutter_tabler_icons: ^1.21.0
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:

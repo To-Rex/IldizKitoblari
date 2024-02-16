@@ -1,5 +1,4 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:ildiz/pages/splash_screen.dart';
@@ -7,7 +6,7 @@ import 'package:ildiz/resource/colors.dart';
 import 'package:ildiz/resource/srting.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -42,8 +41,6 @@ class MyApp extends StatelessWidget {
             theme: theme,
             translations: LocaleString(),
             locale: const Locale('uz', 'UZ'),
-            //locale: const Locale('en', 'US'),
-            //locale: const Locale('ru', 'RU'),
             darkTheme: darkTheme,
             //home: SplashScreen()
             routes: {
