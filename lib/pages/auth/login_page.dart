@@ -4,12 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/pages/auth/register_page.dart';
 import 'package:ildiz/pages/sample_page.dart';
-
 import '../../companents/appbar_sheets.dart';
 import '../../companents/text_fild_auth.dart';
 import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
+
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -30,25 +30,14 @@ class LoginPage extends StatelessWidget {
               fit: StackFit.loose,
               children: [
                 Positioned(
-                    height: _getController.height.value * 0.2,
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: SizedBox(
-                      child: SvgPicture.asset('assets/svgImages/shap.svg',
-                          fit: BoxFit.fitWidth,
-                          height: _getController.height.value * 0.2),
-                    )),
+                    height: _getController.height.value * 0.2, top: 0, left: 0, right: 0,
+                    child: SizedBox(child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2),)),
                 Positioned(
                     height: _getController.height.value * 0.06,
                     width: _getController.width.value * 0.45,
                     top: _getController.height.value * 0.07,
                     left: _getController.width.value * 0.03,
-                    child: SizedBox(
-                      child: SvgPicture.asset('assets/svgImages/keps.svg',
-                          fit: BoxFit.fitWidth,
-                          height: _getController.height.value * 0.2),
-                    )),
+                    child: SizedBox(child: SvgPicture.asset('assets/svgImages/keps.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2),)),
                 Positioned(
                     width: _getController.width.value,
                     top: _getController.height.value * 0.14,
