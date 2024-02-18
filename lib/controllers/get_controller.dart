@@ -34,4 +34,6 @@ class GetController extends GetxController {
   void changeIndex(int index) {
     this.index.value = index;
   }
+
+  var nameController;
 }

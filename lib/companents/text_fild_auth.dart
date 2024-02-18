@@ -25,6 +25,7 @@ class TextFildsAuth extends StatelessWidget {
         ),
       ),
       child: Obx(() => TextField(
+        controller: nameController,
         keyboardType: inputType,
         obscureText: inputType == TextInputType.visiblePassword ? _getController.obscureText.value : false,
         focusNode: FocusNode(),

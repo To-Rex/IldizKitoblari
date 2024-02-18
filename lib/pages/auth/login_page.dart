@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/auth/register_page.dart';
 import 'package:ildiz/pages/sample_page.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../companents/appbar_sheets.dart';
 import '../../companents/text_fild_auth.dart';
 import '../../companents/text_fild_hints.dart';
@@ -18,9 +21,15 @@ class LoginPage extends StatelessWidget {
 
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final mackFormater = MaskTextInputFormatter(
+      mask: '+998 (##) ###-##-##',
+      filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy
+  );
 
   @override
   Widget build(BuildContext context) {
+    _phoneController.text = '+998 ';
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -60,11 +69,49 @@ class LoginPage extends StatelessWidget {
                             TextFildHints(
                               hintText: '${'Telefon raqam'.tr}:',
                             ),
-                            TextFildsAuth(
+
+                            /*TextFildsAuth(
                               nameController: _phoneController,
                               next: TextInputAction.next,
                               inputType: TextInputType.phone,
+                            ),*/
+                            Container(
+                          width: _getController.width.value * 0.92,
+                          height: _getController.height.value * 0.056,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
                             ),
+                          ),
+                          child: Obx(() => TextField(
+                            controller: _phoneController,
+                            keyboardType: TextInputType.phone,
+                            focusNode: FocusNode(),
+                            style: TextStyle(
+                              fontSize: _getController.width.value * 0.04,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                            maxLength: 19,
+                            buildCounter: (BuildContext context, {required int currentLength, required int? maxLength, required bool isFocused}) => null,
+                            inputFormatters: [mackFormater],
+                            decoration: InputDecoration(
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              hintText: 'Kiriting'.tr,
+                              filled: true,
+                              isDense: true,
+                              fillColor: Theme.of(context).colorScheme.surface,
+                              hintStyle: TextStyle(
+                                fontSize: _getController.width.value * 0.04,
+                                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,              // No border
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          )),
+                        ),
                             SizedBox(height: _getController.height.value * 0.02),
                             TextFildHints(
                               hintText: '${'Parolni kiriting'.tr}:',
@@ -123,16 +170,17 @@ class LoginPage extends StatelessWidget {
                                 width: _getController.width.value * 0.95,
                                 height: _getController.height.value * 0.06,
                                 child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      ApiController.login(_phoneController.text, _passwordController.text);
+                                    },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColors.primaryColor,
-                                        padding: EdgeInsets.symmetric(vertical: _getController.height.value * 0.02),
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                                     child: Text('Kirish'.tr,
                                         style: TextStyle(
                                           fontSize: _getController.width.value * 0.04,
                                           color: AppColors.white,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.bold
                                         )))),
                             SizedBox(height: _getController.height.value * 0.03),
                             Row(
