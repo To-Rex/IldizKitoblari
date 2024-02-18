@@ -6,6 +6,8 @@ import 'package:ildiz/bottomBar/home_page.dart';
 import 'package:ildiz/bottomBar/library_page.dart';
 import 'package:ildiz/bottomBar/shop_page.dart';
 
+import '../models/login_model.dart';
+
 class GetController extends GetxController {
   var height = 0.0.obs;
   var width = 0.0.obs;
@@ -36,4 +38,14 @@ class GetController extends GetxController {
   }
 
   var nameController;
+
+
+  //models
+  var loginModel = LoginModel().obs;
+
+
+  //methods
+  void changeLoginModel(LoginModel loginModel) {
+    this.loginModel.value = loginModel;
+  }
 }

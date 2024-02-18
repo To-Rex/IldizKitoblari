@@ -171,7 +171,7 @@ class LoginPage extends StatelessWidget {
                                 height: _getController.height.value * 0.06,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      ApiController.login(_phoneController.text, _passwordController.text);
+                                      ApiController().login(_phoneController.text, _passwordController.text);
                                     },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColors.primaryColor,
