@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/resource/colors.dart';
-
+import 'package:get_storage/get_storage.dart';
 import '../companents/acc_item.dart';
 import '../controllers/get_controller.dart';
+import '../pages/onboarding_page.dart';
 
 class AccountPage extends StatelessWidget {
   AccountPage({super.key});
@@ -238,7 +239,8 @@ class AccountPage extends StatelessWidget {
                                     subTitle: '',
                                     color: AppColors.red,
                                     onTap: () {
-                                      Get.toNamed('/exitApp');
+                                      GetStorage().remove('token');
+                                      Get.offAll(const OnboardingPage());
                                     }
                                 ),
                                 //SizedBox(height: _getController.width.value * 0.1),
