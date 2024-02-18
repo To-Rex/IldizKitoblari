@@ -1,10 +1,10 @@
-class Login {
+class LoginModel {
   Data? data;
   bool? status;
 
-  Login({this.data, this.status});
+  LoginModel({this.data, this.status});
 
-  Login.fromJson(Map<String, dynamic> json) {
+  LoginModel.fromJson(Map<String, dynamic> json) {
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
     status = json['status'];
   }
