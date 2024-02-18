@@ -1,11 +1,19 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ildiz/pages/splash_screen.dart';
 import 'package:ildiz/resource/colors.dart';
 import 'package:ildiz/resource/srting.dart';
 
+/*
 void main() {
+  runApp(const MyApp());
+}
+*/
+
+main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
