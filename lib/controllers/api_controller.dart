@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:ildiz/models/login_model.dart';
+import '../pages/sample_page.dart';
 import 'get_controller.dart';
 
 class ApiController extends GetxController{
@@ -25,6 +26,9 @@ class ApiController extends GetxController{
       print(_getController.loginModel.value.data!.token);
       //save token getstorage
       GetStorage().write('token', _getController.loginModel.value.data!.token);
+      if (GetStorage().read('token') != null) {
+        Get.offAll(SamplePage());
+      }
     } else {
       print('Error: ${response.statusCode}');
     }
