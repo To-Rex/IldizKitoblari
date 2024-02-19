@@ -180,7 +180,18 @@ class VerifyPage extends StatelessWidget {
                         width: _getController.width.value * 0.91,
                         height: _getController.height.value * 0.061,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (_getController.codeController.text.isEmpty) {
+                                ApiController().showToast(context, 'Xatolik', 'SMS kodni kiriting!', true, 3);
+                              }
+                              else {
+                                ApiController().create(
+                                    _getController.fullNameController.text,
+                                    _getController.codeController.text,
+                                    _getController.passwordController.text,
+                                    _getController.phoneController.text);
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,
                                 shape: RoundedRectangleBorder(

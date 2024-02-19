@@ -40,6 +40,7 @@ class LocaleString extends Translations{
       'Parolni takrorlang!':'Repeat the password!',
       'Parollar mos kelmadi!':'Passwords did not match!',
       'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!': 'You must agree to the terms of the public offer!',
+      'SMS kodni kiriting!':'Enter the SMS code!',
 
       //Sample page
       'Kitoblarni izlash':'Search for books',
@@ -109,6 +110,7 @@ class LocaleString extends Translations{
       'Parolni takrorlang!':'Повторите пароль!',
       'Parollar mos kelmadi!':'Пароли не совпали!',
       'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!': 'Вы должны согласиться с условиями публичной оферты!',
+      'SMS kodni kiriting!':'Введите SMS код!',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -179,6 +181,7 @@ class LocaleString extends Translations{
       'Parolni takrorlang!':'Parolni takrorlang!',
       'Parollar mos kelmadi!':'Parollar mos kelmadi!',
       'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!': 'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!',
+      'SMS kodni kiriting!':'SMS kodni kiriting!',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
