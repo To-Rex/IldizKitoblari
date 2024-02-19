@@ -67,16 +67,16 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> check(phone) async {
-    print('phone: $phone');
+  Future<void> check(type) async {
     var response = await post(Uri.parse(_check), body: {
-      'phone': phone,
-      'type': '1',
+      'phone': _getController.phoneController.text.toString(),
+      'type': type.toString(),
     });
     if (response.statusCode == 200) {
       print('check: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
-        Get.to(VerifyPage());
+        print(_getController.phoneController.text);
+        otp(_getController.phoneController.text, type);
       }else{
         showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud!', true, 3);
       }
@@ -86,15 +86,19 @@ class ApiController extends GetxController {
   }
 
   Future<void> otp(phone, type) async {
-    print('phone: $phone');
     var response = await post(Uri.parse(_otp), body: {
       'phone': phone,
-      'type': type,
+      'type': type.toString(),
     });
     if (response.statusCode == 200) {
       print('otp: ${response.body}');
+      if (jsonDecode(response.body)['status'] == true) {
+        Get.to(VerifyPage());
+      }else{
+        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      }
     } else {
-      print('Error: ${response.statusCode}');
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
 

@@ -182,10 +182,7 @@ class VerifyPage extends StatelessWidget {
                         width: _getController.width.value * 0.91,
                         height: _getController.height.value * 0.061,
                         child: ElevatedButton(
-                            onPressed: () {
-                              //ApiController().check(_phoneController.text);
-                              ApiController().check(_getController.phoneController.text);
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,
                                 shape: RoundedRectangleBorder(

@@ -175,7 +175,7 @@ class RegisterPage extends StatelessWidget {
                                 ApiController().showToast(context, 'Xatolik'.tr, 'Telefon raqamni kiriting!'.tr, true,2);
                                 return;
                               }
-                              ApiController().check(_getController.phoneController.text);
+                              ApiController().check(1);
 
                               //ApiController().check(_phoneController.text);
                             },
