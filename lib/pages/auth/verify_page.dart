@@ -149,6 +149,7 @@ class VerifyPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: _getController.height.value * 0.02),
+                    if (_getController.countdownDuration.value.inSeconds == 0)
                     Row(
                       children: [
                         SizedBox(
@@ -164,7 +165,8 @@ class VerifyPage extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            ApiController().otp(_phoneController.text, '1');
+                            _getController.resetTimer();
+                            //ApiController().otp(_phoneController.text, '1');
                           },
                           child: Text(
                             'Qayta yuborish'.tr,

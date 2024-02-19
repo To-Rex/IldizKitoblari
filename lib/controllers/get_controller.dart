@@ -49,11 +49,8 @@ class GetController extends GetxController {
   }
 
   //companents
-//timer send sms code to phone count down
-  //final Duration _initialCountdownDuration = Duration(minutes: 1, seconds: 59);
   final countdownDuration = const Duration(minutes: 1, seconds: 59).obs;
   Timer? _timer;
-
   void startTimer() {const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec,
@@ -66,13 +63,12 @@ class GetController extends GetxController {
       },
     );
   }
-
   void stopTimer() {
     _timer!.cancel();
   }
-
   void resetTimer() {
     countdownDuration.value = const Duration(minutes: 1, seconds: 59);
+    startTimer();
   }
 
 
