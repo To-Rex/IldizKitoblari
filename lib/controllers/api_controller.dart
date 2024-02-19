@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:ildiz/models/login_model.dart';
+import '../models/me_models.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/sample_page.dart';
 import 'get_controller.dart';
@@ -14,12 +15,9 @@ class ApiController extends GetxController {
   static const String _baseUrl = 'https://ildizkitoblari.uz';
   static const String _login = '$_baseUrl/api/v1/auth/login';
   static const String _check = '$_baseUrl/api/v1/user/check';
-
-  //https://ildizkitoblari.uz/api/v1/otp
   static const String _otp = '$_baseUrl/api/v1/otp';
-
-  //https://ildizkitoblari.uz/api/v1/user/create
   static const String _create = '$_baseUrl/api/v1/user/create';
+  static const String _me = '$_baseUrl/api/v1/user/me';
 
   //show toast message
   void showToast(context,String title,String message, error,sec) {
@@ -120,5 +118,15 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> me() async {
+    var response = await get(Uri.parse(_me), headers: {
+      'Authorization': 'Bearer ${GetStorage().read('token')}',
+    });
+    if (response.statusCode == 200) {
+      _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
 
 }
