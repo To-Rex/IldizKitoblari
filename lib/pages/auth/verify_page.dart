@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/auth/login_page.dart';
-import 'package:ildiz/pages/auth/verify_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import '../../companents/appbar_sheets.dart';
 import '../../companents/text_fild_auth.dart';
@@ -12,8 +11,8 @@ import '../../companents/text_fild_auth_phone.dart';
 import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
 
-class RegisterPage extends StatelessWidget {
-  RegisterPage({Key? key}) : super(key: key);
+class VerifyPage extends StatelessWidget {
+  VerifyPage({Key? key}) : super(key: key);
 
   final GetController _getController = Get.put(GetController());
   //name controller
@@ -71,79 +70,111 @@ class RegisterPage extends StatelessWidget {
                       title: 'Ro\'yxatdan o\'tish'.tr,
                     ),
                     TextFildHints(
-                      hintText: 'f.i.sh'.tr,
-                    ),
-                    TextFildsAuth(
-                      nameController: _nameController,
-                      next: TextInputAction.next,
-                      inputType: TextInputType.name,
-                    ),
-                    SizedBox(height: _getController.height.value * 0.02),
-                    TextFildHints(
                       hintText: '${'Telefon raqam'.tr}:',
                     ),
                     TextFieldPhoneAuth(
                       nameController: _phoneController,
                       next: TextInputAction.next,
                     ),
-                    /*TextFildsAuth(
-                      nameController: _phoneController,
-                      next: TextInputAction.next,
-                      inputType: TextInputType.phone,
-                    ),*/
                     SizedBox(height: _getController.height.value * 0.02),
+                    //SMS kod
                     TextFildHints(
-                      hintText: '${'Parolni kiriting'.tr}:',
+                      hintText: 'SMS kod'.tr,
                     ),
-                    TextFildsAuth(
-                      nameController: _passwordController,
-                      next: TextInputAction.next,
-                      inputType: TextInputType.visiblePassword,
-                    ),
-                    SizedBox(height: _getController.height.value * 0.02),
-                    TextFildHints(
-                      hintText: '${'Parolni takrorlang'.tr}:',
-                    ),
-                    TextFildsAuth(
-                      nameController: _repeatPasswordController,
-                      next: TextInputAction.done,
-                      inputType: TextInputType.visiblePassword,
-                    ),
-                    SizedBox(height: _getController.height.value * 0.005),
                     Row(
                       children: [
-                        SizedBox(width: _getController.width.value * 0.035),
+                        const Spacer(),
+                        Container(
+                          width: _getController.width.value * 0.655,
+                          height: _getController.height.value * 0.056,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+                            ),
+                          ),
+                          child: Obx(() => TextField(
+                            controller: _nameController,
+                            keyboardType: TextInputType.number,
+                            //next or done
+                            textInputAction: TextInputAction.done,
+                            obscureText: false,
+                            focusNode: FocusNode(),
+                            style: TextStyle(
+                              fontSize: _getController.width.value * 0.04,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                            decoration: InputDecoration(
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              hintText: 'Kiriting'.tr,
+                              filled: true,
+                              isDense: true,
+                              fillColor: Theme.of(context).colorScheme.surface,
+                              hintStyle: TextStyle(
+                                fontSize: _getController.width.value * 0.04,
+                                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none, // No border
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          )),
+                        ),
                         SizedBox(
-                          width: _getController.width.value * 0.06,
-                          child: Checkbox(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_getController.width.value * 0.015)),
-                            activeColor: AppColors.primaryColor,
-                            value: _getController.check.value,
-                            onChanged: (bool? value) {
-                              _getController.check.value = value!;
-                            },
+                          width: _getController.width.value * 0.03,
+                        ),
+                        Container(
+                          width: _getController.width.value * 0.235,
+                          height: _getController.height.value * 0.056,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '01:59'.tr,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                fontSize: _getController.width.value * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(width: _getController.width.value * 0.01),
-                        InkWell(
-                            onTap: () {
-                              _getController.check.value = !_getController.check.value;
-                            },
-                            child: Text(
-                                'Ommaviy oferta'.tr,
-                                style: TextStyle(
-                                  color: AppColors.primaryColor,
-                                  fontSize: _getController.width.value * 0.035,
-                                )
-                            )
+                        const Spacer(),
+                      ],
+                    ),
+                    SizedBox(height: _getController.height.value * 0.02),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: _getController.width.value * 0.05,
                         ),
                         Text(
-                            ' ${'shartlariga roziman'.tr}!',
+                          '${'SMS xabar kelmadimi?'.tr}: ',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontSize: _getController.width.value * 0.04,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            ApiController().otp(_phoneController.text, '1');
+                          },
+                          child: Text(
+                            'Qayta yuborish'.tr,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: _getController.width.value * 0.035,
-                            )
-                        )
+                              color: AppColors.primaryColor,
+                              fontSize: _getController.width.value * 0.04,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
                       ],
                     ),
                     const Spacer(),
@@ -152,8 +183,7 @@ class RegisterPage extends StatelessWidget {
                         height: _getController.height.value * 0.061,
                         child: ElevatedButton(
                             onPressed: () {
-                              Get.to(VerifyPage());
-                              //ApiController().check(_phoneController.text);
+                              ApiController().check(_phoneController.text);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,
@@ -161,7 +191,7 @@ class RegisterPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(12),
                                 )
                             ),
-                            child: Text('Ro\'yxatdan o\'tish'.tr,
+                            child: Text('Tasdiqlash'.tr,
                                 style: TextStyle(
                                   fontSize: _getController.width.value * 0.04,
                                   color: AppColors.white,

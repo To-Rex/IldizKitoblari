@@ -25,6 +25,12 @@ class LocaleString extends Translations{
       'Parol':'Password',
       'Eslab qolish':'Remember me',
       'Parolni unutdingizmi?':'Forgot your password?',
+      'SMS kod' : 'SMS code',
+      'SMS xabar kelmadimi?':'Didn\'t receive an SMS message?',
+      'Qayta yuborish' : 'Resend',
+      'Tasdiqlash' : 'Confirm',
+
+      //Sample page
       'Kitoblarni izlash':'Search for books',
       'Kategoriya':'Category',
       'Barchasi':'All',
@@ -77,6 +83,12 @@ class LocaleString extends Translations{
       'Parol':'Пароль',
       'Eslab qolish':'Запомнить меня',
       'Parolni unutdingizmi?':'Забыли пароль?',
+      'SMS kod' : 'SMS код',
+      'SMS xabar kelmadimi?':'Не пришло SMS сообщение?',
+      'Qayta yuborish' : 'Отправить повторно',
+      'Tasdiqlash' : 'Подтвердить',
+
+      //Sample page
       'Kitoblarni izlash':'Поиск книг',
       'Kategoriya':'Категория',
       'Barchasi':'Все',
@@ -130,6 +142,12 @@ class LocaleString extends Translations{
       'Parol':'Parol',
       'Eslab qolish':'Eslab qolish',
       'Parolni unutdingizmi?':'Parolni unutdingizmi?',
+      'SMS kod' : 'SMS kod',
+      'SMS xabar kelmadimi?':'SMS xabar kelmadimi?',
+      'Qayta yuborish' : 'Qayta yuborish',
+      'Tasdiqlash' : 'Tasdiqlash',
+
+      //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
       'Kategoriya':'Kategoriya',
       'Barchasi':'Barchasi',
