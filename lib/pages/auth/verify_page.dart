@@ -18,8 +18,6 @@ class VerifyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _getController.startTimer();
-
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -163,7 +161,7 @@ class VerifyPage extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             _getController.resetTimer();
-                            //ApiController().otp(_phoneController.text, '1');
+                            ApiController().otp(_getController.phoneController.text, 1, true);
                           },
                           child: Text(
                             'Qayta yuborish'.tr,

@@ -76,7 +76,7 @@ class ApiController extends GetxController {
       print('check: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         print(_getController.phoneController.text);
-        otp(_getController.phoneController.text, type);
+        otp(_getController.phoneController.text, type, false);
       }else{
         showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud!', true, 3);
       }
@@ -85,7 +85,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> otp(phone, type) async {
+  Future<void> otp(phone, type, resend) async {
     var response = await post(Uri.parse(_otp), body: {
       'phone': phone,
       'type': type.toString(),
@@ -93,7 +93,10 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       print('otp: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
-        Get.to(VerifyPage());
+        _getController.resetTimer();
+        if (!resend) {
+          Get.to(VerifyPage());
+        }
       }else{
         showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
       }
