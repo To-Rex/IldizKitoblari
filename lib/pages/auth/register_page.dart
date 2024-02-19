@@ -152,7 +152,7 @@ class RegisterPage extends StatelessWidget {
                         height: _getController.height.value * 0.061,
                         child: ElevatedButton(
                             onPressed: () {
-                              Get.to(VerifyPage());
+                              Get.to(VerifyPage(phone: _phoneController.text));
                               //ApiController().check(_phoneController.text);
                             },
                             style: ElevatedButton.styleFrom(

@@ -12,18 +12,18 @@ import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
 
 class VerifyPage extends StatelessWidget {
-  VerifyPage({Key? key}) : super(key: key);
+  var phone;
+  VerifyPage({Key? key, required this.phone}) : super(key: key);
 
   final GetController _getController = Get.put(GetController());
   //name controller
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _repeatPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     _getController.startTimer();
+    _phoneController.text = phone;
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -76,6 +76,7 @@ class VerifyPage extends StatelessWidget {
                     TextFieldPhoneAuth(
                       nameController: _phoneController,
                       next: TextInputAction.next,
+                      enabled: false,
                     ),
                     SizedBox(height: _getController.height.value * 0.02),
                     //SMS kod

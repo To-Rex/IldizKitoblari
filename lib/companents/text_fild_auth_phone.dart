@@ -7,9 +7,10 @@ import '../controllers/get_controller.dart';
 
 class TextFieldPhoneAuth extends StatelessWidget {
   var next;
+  var enabled;
   TextEditingController nameController;
 
-  TextFieldPhoneAuth({Key? key, required this.nameController, this.next}) : super(key: key);
+  TextFieldPhoneAuth({Key? key, required this.nameController, this.next, this.enabled}) : super(key: key);
 
   final GetController _getController = Get.put(GetController());
 
@@ -80,6 +81,7 @@ class TextFieldPhoneAuth extends StatelessWidget {
         ),
       ),
       child: Obx(() => TextField(
+        enabled: enabled,
         controller: nameController,
         keyboardType: TextInputType.phone,
         textInputAction: next,
