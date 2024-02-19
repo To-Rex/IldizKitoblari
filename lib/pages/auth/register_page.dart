@@ -16,11 +16,6 @@ class RegisterPage extends StatelessWidget {
   RegisterPage({Key? key}) : super(key: key);
 
   final GetController _getController = Get.put(GetController());
-  //name controller
-  /*final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _repeatPasswordController = TextEditingController();*/
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +69,6 @@ class RegisterPage extends StatelessWidget {
                       hintText: 'f.i.sh'.tr,
                     ),
                     TextFildsAuth(
-                      //nameController: _nameController,
                       nameController: _getController.fullNameController,
                       next: TextInputAction.next,
                       inputType: TextInputType.name,
@@ -88,11 +82,6 @@ class RegisterPage extends StatelessWidget {
                       nameController: _getController.phoneController,
                       next: TextInputAction.next,
                     ),
-                    /*TextFildsAuth(
-                      nameController: _phoneController,
-                      next: TextInputAction.next,
-                      inputType: TextInputType.phone,
-                    ),*/
                     SizedBox(height: _getController.height.value * 0.02),
                     TextFildHints(
                       hintText: '${'Parolni kiriting'.tr}:',
@@ -157,7 +146,7 @@ class RegisterPage extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {
                               //Get.to(VerifyPage(phone: _phoneController.text));
-                              Get.to(VerifyPage(phone: _getController.phoneController.text));
+                              Get.to(VerifyPage());
                               //ApiController().check(_phoneController.text);
                             },
                             style: ElevatedButton.styleFrom(

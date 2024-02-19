@@ -12,9 +12,8 @@ import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
 
 class VerifyPage extends StatelessWidget {
-  var phone;
-  VerifyPage({Key? key, required this.phone}) : super(key: key);
 
+  VerifyPage({Key? key}) : super(key: key);
   final GetController _getController = Get.put(GetController());
 
   @override
