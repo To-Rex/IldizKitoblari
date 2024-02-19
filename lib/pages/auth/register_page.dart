@@ -176,8 +176,6 @@ class RegisterPage extends StatelessWidget {
                                 return;
                               }
                               ApiController().check(1);
-
-                              //ApiController().check(_phoneController.text);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,
