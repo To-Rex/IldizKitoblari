@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:ildiz/models/login_model.dart';
+import '../pages/auth/verify_page.dart';
 import '../pages/sample_page.dart';
 import 'get_controller.dart';
 
@@ -18,6 +20,29 @@ class ApiController extends GetxController {
 
   //https://ildizkitoblari.uz/api/v1/user/create
   static const String _create = '$_baseUrl/api/v1/user/create';
+
+  //show toast message
+  void showToast(context,String title,String message, error,sec) {
+    Get.snackbar(
+      title.tr,
+      message.tr,
+      backgroundColor: error ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onBackground,
+      colorText: error ? Theme.of(context).colorScheme.onError : Theme.of(context).colorScheme.surface,
+      snackPosition: SnackPosition.BOTTOM,
+      margin: EdgeInsets.only(
+          bottom: _getController.height.value * 0.03,
+          left: _getController.width.value * 0.04,
+          right: _getController.width.value * 0.04
+      ),
+      borderRadius: 12,
+      duration: Duration(seconds: sec),
+      icon: error ? Icon(
+        Icons.error,
+        color: Theme.of(context).colorScheme.onError,
+      ) : null,
+    );
+  }
+
 
   Future<void> login(String phone, String password) async {
     print('phone: $phone, password: $password');
@@ -50,8 +75,13 @@ class ApiController extends GetxController {
     });
     if (response.statusCode == 200) {
       print('check: ${response.body}');
+      if (jsonDecode(response.body)['status'] == true) {
+        Get.to(VerifyPage());
+      }else{
+        showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud!', true, 3);
+      }
     } else {
-      print('Error: ${response.statusCode}');
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
 

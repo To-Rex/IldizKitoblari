@@ -30,6 +30,17 @@ class LocaleString extends Translations{
       'Qayta yuborish' : 'Resend',
       'Tasdiqlash' : 'Confirm',
 
+      //validation
+      'Bunday foydalanuvchi mavjud!':'User already exists!',
+      'Server bilan bog\'lanishda xatolik!':'Error connecting to the server!',
+      'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!':'Password must be at least 6 characters long!',
+      'Parolni takrorlangan qismi mos kelmadi!':'The repeated part of the password did not match!',
+      'Telefon raqamni kiriting!':'Enter your phone number!',
+      'Parolni kiriting!':'Enter your password!',
+      'Parolni takrorlang!':'Repeat the password!',
+      'Parollar mos kelmadi!':'Passwords did not match!',
+      'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!': 'You must agree to the terms of the public offer!',
+
       //Sample page
       'Kitoblarni izlash':'Search for books',
       'Kategoriya':'Category',
@@ -87,6 +98,17 @@ class LocaleString extends Translations{
       'SMS xabar kelmadimi?':'Не пришло SMS сообщение?',
       'Qayta yuborish' : 'Отправить повторно',
       'Tasdiqlash' : 'Подтвердить',
+
+      //validation
+      'Bunday foydalanuvchi mavjud!':'Пользователь уже существует!',
+      'Server bilan bog\'lanishda xatolik!':'Ошибка подключения к серверу!',
+      'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!':'Пароль должен содержать не менее 6 символов!',
+      'Parolni takrorlangan qismi mos kelmadi!':'Повторная часть пароля не совпала!',
+      'Telefon raqamni kiriting!':'Введите номер телефона!',
+      'Parolni kiriting!':'Введите пароль!',
+      'Parolni takrorlang!':'Повторите пароль!',
+      'Parollar mos kelmadi!':'Пароли не совпали!',
+      'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!': 'Вы должны согласиться с условиями публичной оферты!',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -146,6 +168,17 @@ class LocaleString extends Translations{
       'SMS xabar kelmadimi?':'SMS xabar kelmadimi?',
       'Qayta yuborish' : 'Qayta yuborish',
       'Tasdiqlash' : 'Tasdiqlash',
+
+      //validation
+      'Bunday foydalanuvchi mavjud!':'Bunday foydalanuvchi mavjud!',
+      'Server bilan bog\'lanishda xatolik!':'Server bilan bog\'lanishda xatolik!',
+      'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!':'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!',
+      'Parolni takrorlangan qismi mos kelmadi!':'Parolni takrorlangan qismi mos kelmadi!',
+      'Telefon raqamni kiriting!':'Telefon raqamni kiriting!',
+      'Parolni kiriting!':'Parolni kiriting!',
+      'Parolni takrorlang!':'Parolni takrorlang!',
+      'Parollar mos kelmadi!':'Parollar mos kelmadi!',
+      'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!': 'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',

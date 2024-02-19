@@ -78,7 +78,6 @@ class RegisterPage extends StatelessWidget {
                       hintText: '${'Telefon raqam'.tr}:',
                     ),
                     TextFieldPhoneAuth(
-                      //nameController: _phoneController,
                       nameController: _getController.phoneController,
                       next: TextInputAction.next,
                     ),
@@ -87,7 +86,6 @@ class RegisterPage extends StatelessWidget {
                       hintText: '${'Parolni kiriting'.tr}:',
                     ),
                     TextFildsAuth(
-                      //nameController: _passwordController,
                       nameController: _getController.passwordController,
                       next: TextInputAction.next,
                       inputType: TextInputType.visiblePassword,
@@ -97,7 +95,6 @@ class RegisterPage extends StatelessWidget {
                       hintText: '${'Parolni takrorlang'.tr}:',
                     ),
                     TextFildsAuth(
-                      //nameController: _repeatPasswordController,
                       nameController: _getController.repeatPasswordController,
                       next: TextInputAction.done,
                       inputType: TextInputType.visiblePassword,
@@ -145,8 +142,41 @@ class RegisterPage extends StatelessWidget {
                         height: _getController.height.value * 0.061,
                         child: ElevatedButton(
                             onPressed: () {
-                              //Get.to(VerifyPage(phone: _phoneController.text));
-                              Get.to(VerifyPage());
+                              if (_getController.fullNameController.text.isEmpty) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'f.i.sh kiriting!'.tr, true,2);
+                                return;
+                              }
+                              if (_getController.phoneController.text.isEmpty) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'Telefon raqamni kiriting!'.tr, true,2);
+                                return;
+                              }
+                              if (_getController.passwordController.text.isEmpty) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'Parolni kiriting!'.tr, true,2);
+                                return;
+                              }
+                              if (_getController.repeatPasswordController.text.isEmpty) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'Parolni takrorlang!'.tr, true,2);
+                                return;
+                              }
+                              if (_getController.passwordController.text != _getController.repeatPasswordController.text) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'Parollar mos kelmadi!'.tr, true,2);
+                                return;
+                              }
+                              if (_getController.passwordController.text.length < 6) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!'.tr, true,2);
+                                return;
+                              }
+                              if (!_getController.check.value) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!'.tr, true,2);
+                                return;
+                              }
+                              print(_getController.phoneController.text.length);
+                              if (_getController.phoneController.text.length < 19) {
+                                ApiController().showToast(context, 'Xatolik'.tr, 'Telefon raqamni kiriting!'.tr, true,2);
+                                return;
+                              }
+                              ApiController().check(_getController.phoneController.text);
+
                               //ApiController().check(_phoneController.text);
                             },
                             style: ElevatedButton.styleFrom(
