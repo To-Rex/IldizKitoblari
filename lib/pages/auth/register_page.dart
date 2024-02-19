@@ -170,7 +170,6 @@ class RegisterPage extends StatelessWidget {
                                 ApiController().showToast(context, 'Xatolik', 'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!', true,2);
                                 return;
                               }
-                              print(_getController.phoneController.text.length);
                               if (_getController.phoneController.text.length < 19) {
                                 ApiController().showToast(context, 'Xatolik', 'Telefon raqamni kiriting!', true,2);
                                 return;
@@ -179,9 +178,7 @@ class RegisterPage extends StatelessWidget {
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                )
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                             ),
                             child: Text('Ro\'yxatdan o\'tish'.tr,
                                 style: TextStyle(
