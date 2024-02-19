@@ -64,9 +64,7 @@ class AccountPage extends StatelessWidget {
                   children: [
                     Positioned(
                         height: _getController.height.value * 0.2,
-                        top: 0,
-                        left: 0,
-                        right: 0,
+                        top: 0, left: 0, right: 0,
                         child: SizedBox(
                           child: SvgPicture.asset('assets/svgImages/shap.svg',
                               fit: BoxFit.fitWidth,
@@ -85,8 +83,7 @@ class AccountPage extends StatelessWidget {
                         )
                     ),
                     Positioned(
-                        width: _getController.width.value,
-                        top: _getController.height.value * 0.12,
+                        width: _getController.width.value, top: _getController.height.value * 0.12,
                         child: Container(
                             width: _getController.width.value,
                             decoration: BoxDecoration(

@@ -31,9 +31,11 @@ class LocaleString extends Translations{
       'Tasdiqlash' : 'Confirm',
 
       //validation
+      'Xatolik':'Error',
       'Bunday foydalanuvchi mavjud!':'User already exists!',
       'Server bilan bog\'lanishda xatolik!':'Error connecting to the server!',
       'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!':'Password must be at least 6 characters long!',
+      'f.i.sh kiriting!':'Enter F.I.SH!',
       'Parolni takrorlangan qismi mos kelmadi!':'The repeated part of the password did not match!',
       'Telefon raqamni kiriting!':'Enter your phone number!',
       'Parolni kiriting!':'Enter your password!',
@@ -101,9 +103,11 @@ class LocaleString extends Translations{
       'Tasdiqlash' : 'Подтвердить',
 
       //validation
+      'Xatolik':'Ошибка',
       'Bunday foydalanuvchi mavjud!':'Пользователь уже существует!',
       'Server bilan bog\'lanishda xatolik!':'Ошибка подключения к серверу!',
       'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!':'Пароль должен содержать не менее 6 символов!',
+      'f.i.sh kiriting!':'Введите Ф.И.О!',
       'Parolni takrorlangan qismi mos kelmadi!':'Повторная часть пароля не совпала!',
       'Telefon raqamni kiriting!':'Введите номер телефона!',
       'Parolni kiriting!':'Введите пароль!',
@@ -172,9 +176,11 @@ class LocaleString extends Translations{
       'Tasdiqlash' : 'Tasdiqlash',
 
       //validation
+      'Xatolik':'Xatolik',
       'Bunday foydalanuvchi mavjud!':'Bunday foydalanuvchi mavjud!',
       'Server bilan bog\'lanishda xatolik!':'Server bilan bog\'lanishda xatolik!',
       'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!':'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!',
+      'f.i.sh kiriting!':'f.i.sh kiriting!',
       'Parolni takrorlangan qismi mos kelmadi!':'Parolni takrorlangan qismi mos kelmadi!',
       'Telefon raqamni kiriting!':'Telefon raqamni kiriting!',
       'Parolni kiriting!':'Parolni kiriting!',

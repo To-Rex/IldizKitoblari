@@ -143,36 +143,36 @@ class RegisterPage extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {
                               if (_getController.fullNameController.text.isEmpty) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'f.i.sh kiriting!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'f.i.sh kiriting!', true,2);
                                 return;
                               }
                               if (_getController.phoneController.text.isEmpty) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'Telefon raqamni kiriting!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Telefon raqamni kiriting!', true,2);
                                 return;
                               }
                               if (_getController.passwordController.text.isEmpty) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'Parolni kiriting!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Parolni kiriting!', true,2);
                                 return;
                               }
                               if (_getController.repeatPasswordController.text.isEmpty) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'Parolni takrorlang!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Parolni takrorlang!', true,2);
                                 return;
                               }
                               if (_getController.passwordController.text != _getController.repeatPasswordController.text) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'Parollar mos kelmadi!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Parollar mos kelmadi!', true,2);
                                 return;
                               }
                               if (_getController.passwordController.text.length < 6) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!', true,2);
                                 return;
                               }
                               if (!_getController.check.value) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!', true,2);
                                 return;
                               }
                               print(_getController.phoneController.text.length);
                               if (_getController.phoneController.text.length < 19) {
-                                ApiController().showToast(context, 'Xatolik'.tr, 'Telefon raqamni kiriting!'.tr, true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Telefon raqamni kiriting!', true,2);
                                 return;
                               }
                               ApiController().check(1);
