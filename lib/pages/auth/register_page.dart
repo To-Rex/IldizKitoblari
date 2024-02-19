@@ -6,6 +6,7 @@ import 'package:ildiz/pages/auth/login_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import '../../companents/appbar_sheets.dart';
 import '../../companents/text_fild_auth.dart';
+import '../../companents/text_fild_auth_phone.dart';
 import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -83,11 +84,15 @@ class RegisterPage extends StatelessWidget {
                     TextFildHints(
                       hintText: '${'Telefon raqam'.tr}:',
                     ),
-                    TextFildsAuth(
+                    TextFieldPhoneAuth(
+                      nameController: _phoneController,
+                      next: TextInputAction.next,
+                    ),
+                    /*TextFildsAuth(
                       nameController: _phoneController,
                       next: TextInputAction.next,
                       inputType: TextInputType.phone,
-                    ),
+                    ),*/
                     SizedBox(height: _getController.height.value * 0.02),
                     TextFildHints(
                       hintText: '${'Parolni kiriting'.tr}:',

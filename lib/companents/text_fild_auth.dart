@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../controllers/get_controller.dart';
 
 class TextFildsAuth extends StatelessWidget {
+  TextFildsAuth({Key? key, required this.nameController, this.next, this.inputType}) : super(key: key);
   TextEditingController nameController;
   var next;
   var inputType;
-
   final GetController _getController = Get.put(GetController());
-
-  TextFildsAuth({Key? key, required this.nameController, this.next, this.inputType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +26,8 @@ class TextFildsAuth extends StatelessWidget {
       child: Obx(() => TextField(
         controller: nameController,
         keyboardType: inputType,
+        //next or done
+        textInputAction: next,
         obscureText: inputType == TextInputType.visiblePassword ? _getController.obscureText.value : false,
         focusNode: FocusNode(),
         style: TextStyle(
@@ -44,7 +45,7 @@ class TextFildsAuth extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
           ),
           border: OutlineInputBorder(
-            borderSide: BorderSide.none,              // No border
+            borderSide: BorderSide.none, // No border
             borderRadius: BorderRadius.circular(12),
           ),
           suffixIcon: inputType == TextInputType.visiblePassword ? Padding(
@@ -54,9 +55,7 @@ class TextFildsAuth extends StatelessWidget {
                 _getController.obscureText.value = !_getController.obscureText.value;
               },
               child: Icon(
-                _getController.obscureText.value
-                    ? Icons.visibility_off
-                    : Icons.visibility,
+                _getController.obscureText.value ? Icons.visibility_off : Icons.visibility,
                 size: 24,
               ),
             ),
