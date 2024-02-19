@@ -23,6 +23,7 @@ class VerifyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getController.startTimer();
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -135,7 +136,7 @@ class VerifyPage extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              '01:59'.tr,
+                              '${_getController.countdownDuration.value.inMinutes.toString().padLeft(2, '0')}:${(_getController.countdownDuration.value.inSeconds % 60).toString().padLeft(2, '0')}',
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: _getController.width.value * 0.04,

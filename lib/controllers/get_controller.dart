@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/bottomBar/accaunt_page.dart';
@@ -16,7 +18,6 @@ class GetController extends GetxController {
   var widgetOptions = <Widget>[];
   var index = 0.obs;
   var bottomBarHeight = 0.0.obs;
-
   var obscureText = true.obs;
 
   void setHeightWidth(BuildContext context) {
@@ -39,13 +40,40 @@ class GetController extends GetxController {
 
   var nameController;
 
-
   //models
   var loginModel = LoginModel().obs;
-
 
   //methods
   void changeLoginModel(LoginModel loginModel) {
     this.loginModel.value = loginModel;
   }
+
+  //companents
+//timer send sms code to phone count down
+  //final Duration _initialCountdownDuration = Duration(minutes: 1, seconds: 59);
+  final countdownDuration = const Duration(minutes: 1, seconds: 59).obs;
+  Timer? _timer;
+
+  void startTimer() {const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (timer) {
+        if (countdownDuration.value.inSeconds == 0) {
+          timer.cancel();
+        } else {
+          countdownDuration.value = countdownDuration.value - oneSec;
+        }
+      },
+    );
+  }
+
+  void stopTimer() {
+    _timer!.cancel();
+  }
+
+  void resetTimer() {
+    countdownDuration.value = const Duration(minutes: 1, seconds: 59);
+  }
+
+
 }
