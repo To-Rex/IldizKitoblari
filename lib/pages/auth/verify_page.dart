@@ -16,14 +16,11 @@ class VerifyPage extends StatelessWidget {
   VerifyPage({Key? key, required this.phone}) : super(key: key);
 
   final GetController _getController = Get.put(GetController());
-  //name controller
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     _getController.startTimer();
-    _phoneController.text = phone;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -74,7 +71,7 @@ class VerifyPage extends StatelessWidget {
                       hintText: '${'Telefon raqam'.tr}:',
                     ),
                     TextFieldPhoneAuth(
-                      nameController: _phoneController,
+                      nameController: _getController.phoneController,
                       next: TextInputAction.next,
                       enabled: false,
                     ),
@@ -96,7 +93,7 @@ class VerifyPage extends StatelessWidget {
                             ),
                           ),
                           child: Obx(() => TextField(
-                            controller: _nameController,
+                            controller: _getController.codeController,
                             keyboardType: TextInputType.number,
                             //next or done
                             textInputAction: TextInputAction.done,
@@ -187,7 +184,8 @@ class VerifyPage extends StatelessWidget {
                         height: _getController.height.value * 0.061,
                         child: ElevatedButton(
                             onPressed: () {
-                              ApiController().check(_phoneController.text);
+                              //ApiController().check(_phoneController.text);
+                              ApiController().check(_getController.phoneController.text);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,

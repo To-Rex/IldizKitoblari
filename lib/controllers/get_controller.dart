@@ -73,5 +73,11 @@ class GetController extends GetxController {
     startTimer();
   }
 
+  //text filds controllers
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repeatPasswordController = TextEditingController();
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController codeController = TextEditingController();
 
 }

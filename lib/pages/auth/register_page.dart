@@ -17,10 +17,10 @@ class RegisterPage extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
   //name controller
-  final TextEditingController _nameController = TextEditingController();
+  /*final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _repeatPasswordController = TextEditingController();
+  final TextEditingController _repeatPasswordController = TextEditingController();*/
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,8 @@ class RegisterPage extends StatelessWidget {
                       hintText: 'f.i.sh'.tr,
                     ),
                     TextFildsAuth(
-                      nameController: _nameController,
+                      //nameController: _nameController,
+                      nameController: _getController.fullNameController,
                       next: TextInputAction.next,
                       inputType: TextInputType.name,
                     ),
@@ -83,7 +84,8 @@ class RegisterPage extends StatelessWidget {
                       hintText: '${'Telefon raqam'.tr}:',
                     ),
                     TextFieldPhoneAuth(
-                      nameController: _phoneController,
+                      //nameController: _phoneController,
+                      nameController: _getController.phoneController,
                       next: TextInputAction.next,
                     ),
                     /*TextFildsAuth(
@@ -96,7 +98,8 @@ class RegisterPage extends StatelessWidget {
                       hintText: '${'Parolni kiriting'.tr}:',
                     ),
                     TextFildsAuth(
-                      nameController: _passwordController,
+                      //nameController: _passwordController,
+                      nameController: _getController.passwordController,
                       next: TextInputAction.next,
                       inputType: TextInputType.visiblePassword,
                     ),
@@ -105,7 +108,8 @@ class RegisterPage extends StatelessWidget {
                       hintText: '${'Parolni takrorlang'.tr}:',
                     ),
                     TextFildsAuth(
-                      nameController: _repeatPasswordController,
+                      //nameController: _repeatPasswordController,
+                      nameController: _getController.repeatPasswordController,
                       next: TextInputAction.done,
                       inputType: TextInputType.visiblePassword,
                     ),
@@ -152,7 +156,8 @@ class RegisterPage extends StatelessWidget {
                         height: _getController.height.value * 0.061,
                         child: ElevatedButton(
                             onPressed: () {
-                              Get.to(VerifyPage(phone: _phoneController.text));
+                              //Get.to(VerifyPage(phone: _phoneController.text));
+                              Get.to(VerifyPage(phone: _getController.phoneController.text));
                               //ApiController().check(_phoneController.text);
                             },
                             style: ElevatedButton.styleFrom(
