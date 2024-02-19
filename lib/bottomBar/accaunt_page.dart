@@ -100,11 +100,26 @@ class AccountPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Container(
+                                    /*Container(
                                         padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                         child: CircleAvatar(
                                             radius: _getController.width.value * 0.08,
                                             backgroundImage: const AssetImage('assets/images/men.png')
+                                        )
+                                    ),*/
+                                    //network image _getController.meModel.value.data!.image
+                                    Container(
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
+                                        child: _getController.meModel.value.data!.result!.avatar == null
+                                            //Circle avatar in full name first letter
+                                            ? CircleAvatar(
+                                                radius: _getController.width.value * 0.08,
+                                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                                child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.06))
+                                            )
+                                            : CircleAvatar(
+                                            radius: _getController.width.value * 0.08,
+                                            backgroundImage: NetworkImage(_getController.meModel.value.data!.result!.avatar.toString())
                                         )
                                     ),
                                     Padding(
@@ -112,9 +127,9 @@ class AccountPage extends StatelessWidget {
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Dilshodjon Haydarov'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600)),
+                                            Text(_getController.meModel.value.data!.result!.fullName.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600)),
                                             SizedBox(height: _getController.height.value * 0.004),
-                                            Text('ID 644a520d1d9b3384ec163d1b'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: _getController.width.value * 0.04))
+                                            Text('ID ${_getController.meModel.value.data!.result!.sId.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: _getController.width.value * 0.04))
                                           ]
                                         )
                                     )
