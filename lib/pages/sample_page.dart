@@ -1,62 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../companents/bottombar_icons.dart';
+import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
-import '../resource/colors.dart';
 
 class SamplePage extends StatelessWidget {
   SamplePage({super.key});
 
   final GetController _getController = Get.put(GetController());
 
-  final List locale =[
-    {'name':'English','locale':Locale('en','US')},
-    {'name':'Russian','locale':Locale('ru','RU')},
-    {'name':'Uzbek','locale':Locale('uz','UZ')}
-  ];
-
-  updateLanguage(Locale locale){
-    Get.back();
-    Get.updateLocale(locale);
-  }
-
   void _onItemTapped(int index) {
     _getController.changeIndex(index);
     _getController.changeWidgetOptions();
   }
 
-  buildLanguageDialog(BuildContext context){
-    showDialog(context: context,
-        builder: (builder){
-          return AlertDialog(
-            title: Text('Choose Your Language'),
-            content: Container(
-              width: double.maxFinite,
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context,index){
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
-                        print(locale[index]['name']);
-                        updateLanguage(locale[index]['locale']);
-                      },),
-                    );
-                  }, separatorBuilder: (context,index){
-                return Divider(
-                  color: Colors.blue,
-                );
-              }, itemCount: locale.length
-              ),
-            ),
-          );
-        }
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     _getController.changeWidgetOptions();
+    ApiController().me();
     return Scaffold(
       body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
       bottomNavigationBar: BottomAppBar(

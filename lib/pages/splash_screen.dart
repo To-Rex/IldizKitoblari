@@ -21,7 +21,6 @@ class SplashScreen extends StatelessWidget {
       //Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => SamplePage()),);
       //Get.off(const OnboardingPage());
       if (GetStorage().read('token') != null) {
-        ApiController().me();
         Get.off(SamplePage());
       } else {
         Get.off(const OnboardingPage());
