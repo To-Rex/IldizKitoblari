@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/sample_page.dart';
 import 'package:get_storage/get_storage.dart';
 import '../controllers/get_controller.dart';
@@ -20,7 +21,9 @@ class SplashScreen extends StatelessWidget {
       //Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => SamplePage()),);
       //Get.off(const OnboardingPage());
       if (GetStorage().read('token') != null) {
-        Get.off(SamplePage());
+        ApiController().me().then((value) {
+          Get.off(SamplePage());
+        });
       } else {
         Get.off(const OnboardingPage());
       }

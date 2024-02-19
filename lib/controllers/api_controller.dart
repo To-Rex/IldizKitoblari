@@ -122,6 +122,7 @@ class ApiController extends GetxController {
     var response = await get(Uri.parse(_me), headers: {
       'Authorization': 'Bearer ${GetStorage().read('token')}',
     });
+    print('me: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
     } else {
