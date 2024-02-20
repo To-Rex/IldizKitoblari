@@ -41,7 +41,6 @@ class ApiController extends GetxController {
     );
   }
 
-
   Future<void> login(String phone, String password) async {
     print('phone: $phone, password: $password');
     //return await post(Uri.parse(_login), body: {'phone': phone, 'password': password});
