@@ -105,16 +105,48 @@ class ApiController extends GetxController {
 
   Future<void> create(String fullName, String otp, String password, String phone) async {
     print('fullName: $fullName, otp: $otp, password: $password, phone: $phone');
-    var response = await post(Uri.parse(_create), body: {
-      'full_name': fullName,
-      'otp': otp,
-      'password': password,
-      'phone': phone,
-    });
+    var response = await post(Uri.parse(_create),
+        body: {
+          'full_name': fullName,
+          'otp': otp.toString(),
+          'password': password,
+          'phone': phone,
+        }
+    );
     if (response.statusCode == 200) {
       print('create: ${response.body}');
+      //{
+      //     "data": {
+      //         "message": "Ok!",
+      //         "result": {
+      //             "full_name": "Dilshodjon Haydarov",
+      //             "password": "$2b$10$ostKRhXvBg0ZbQAlBL5VYe3jnLhTMJPL0U.Kj/1j4Hms4LTlEIbbG",
+      //             "phone": "+998 (99) 992-92-69",
+      //             "status": true,
+      //             "avatar": null,
+      //             "_id": "65d46f02cbf6aacbca8c0a9a",
+      //             "createdAt": "2024-02-20T09:21:06.912Z",
+      //             "updatedAt": "2024-02-20T09:21:06.912Z",
+      //             "__v": 0
+      //         }
+      //     },
+      //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZDQ2ZjAyY2JmNmFhY2JjYThjMGE5YSIsInBob25lIjoiKzk5OCAoOTkpIDk5Mi05Mi02OSIsImlhdCI6MTcwODQyMDg2NiwiZXhwIjoxNzA4NTA3MjY2fQ.-m9O6Ketn7XW3WOUDRLo3LQ_mdn2iI0TIGHFxfyKSCs",
+      //     "status": true
+      // }
+      if (jsonDecode(response.body)['status'] == true) {
+        _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
+        print(_getController.loginModel.value.data!.token);
+        GetStorage().write('token', _getController.loginModel.value.data!.token);
+        Get.offAll(SamplePage());
+      }else{
+        if (jsonDecode(response.body)['data']['message'] == 'OTP is wrong!') {
+          showToast(Get.context, 'Xatolik', 'Kod noto\'g\'ri!', true, 3);
+        }else{
+          showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+        }
+      }
     } else {
-      print('Error: ${response.statusCode}');
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
 
