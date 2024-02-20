@@ -136,7 +136,8 @@ class RegisterPage extends StatelessWidget {
                         )
                       ],
                     ),
-                    const Spacer(),
+                    //const Spacer(),
+                    const Expanded(child: SizedBox()),
                     SizedBox(
                         width: _getController.width.value * 0.91,
                         height: _getController.height.value * 0.061,

@@ -24,6 +24,7 @@ class VerifyPage extends StatelessWidget {
         height: _getController.height.value,
         width: _getController.width.value,
           child:  Obx(() => Stack(
+            alignment: Alignment.center,
       children: [
         Positioned(
             height: _getController.height.value * 0.15,
@@ -176,6 +177,7 @@ class VerifyPage extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
+                    //const Expanded(child: SizedBox()),
                     SizedBox(
                         width: _getController.width.value * 0.91,
                         height: _getController.height.value * 0.061,
@@ -244,8 +246,7 @@ class VerifyPage extends StatelessWidget {
         ),
       ],
     ),
-        ),
-      )
+        ))
       )
     );
   }
