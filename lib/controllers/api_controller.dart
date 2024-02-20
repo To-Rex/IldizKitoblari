@@ -113,7 +113,7 @@ class ApiController extends GetxController {
           'phone': phone,
         }
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200|| response.statusCode == 201) {
       print('create: ${response.body}');
       //{
       //     "data": {
