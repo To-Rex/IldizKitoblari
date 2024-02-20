@@ -18,7 +18,10 @@ class SamplePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _getController.changeWidgetOptions();
-    ApiController().me();
+    if (_getController.meModel.value.data == null) {
+      ApiController().me();
+    }
+
     return Scaffold(
       body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
       bottomNavigationBar: BottomAppBar(
