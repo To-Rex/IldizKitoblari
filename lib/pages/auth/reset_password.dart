@@ -76,11 +76,11 @@ class ResetPasswordPage extends StatelessWidget {
                                 ),
                                 SizedBox(height: _getController.height.value * 0.02),
                                 //SMS kod
-                                if (_getController.fullCheck.value == false)
+                                if (_getController.fullCheck.value == false && _getController.passwordCheck.value == true)
                                 TextFildHints(
                                   hintText: 'SMS kod'.tr,
                                 ),
-                                if (_getController.fullCheck.value == false)
+                                if (_getController.fullCheck.value == false && _getController.passwordCheck.value == true)
                                   Row(
                                   children: [
                                     const Spacer(),
@@ -147,22 +147,22 @@ class ResetPasswordPage extends StatelessWidget {
                                     const Spacer(),
                                   ],
                                 ),
-                                if (_getController.fullCheck.value == true)
+                                if (_getController.fullCheck.value == true && _getController.passwordCheck.value == false)
                                 TextFildHints(
                                   hintText: '${'Parolni kiriting'.tr}:',
                                 ),
-                                if (_getController.fullCheck.value == true)
+                                if (_getController.fullCheck.value == true && _getController.passwordCheck.value == false)
                                 TextFildsAuth(
                                   nameController: _getController.passwordController,
                                   next: TextInputAction.next,
                                   inputType: TextInputType.visiblePassword,
                                 ),
                                 SizedBox(height: _getController.height.value * 0.02),
-                                if (_getController.fullCheck.value == true)
+                                if (_getController.fullCheck.value == true && _getController.passwordCheck.value == false)
                                 TextFildHints(
                                   hintText: '${'Parolni takrorlang'.tr}:',
                                 ),
-                                if (_getController.fullCheck.value == true)
+                                if (_getController.fullCheck.value == true && _getController.passwordCheck.value == false)
                                 TextFildsAuth(
                                   nameController: _getController.repeatPasswordController,
                                   next: TextInputAction.done,

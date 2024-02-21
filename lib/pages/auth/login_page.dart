@@ -121,6 +121,7 @@ class LoginPage extends StatelessWidget {
                                 const Spacer(),
                                 InkWell(
                                   onTap: () {
+                                    _getController.fullCheck.value = false;
                                     Get.to(ResetPasswordPage());
                                   },
                                   child: Text('Parolni unutdingizmi?'.tr,
