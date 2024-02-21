@@ -169,7 +169,7 @@ class ResetPasswordPage extends StatelessWidget {
                                   inputType: TextInputType.visiblePassword,
                                 ),
                                 SizedBox(height: _getController.height.value * 0.02),
-                                if (_getController.countdownDuration.value.inSeconds == 0 && _getController.fullCheck.value == true && _getController.passwordCheck.value == false)
+                                if (_getController.countdownDuration.value.inSeconds == 0 && _getController.fullCheck.value == false && _getController.passwordCheck.value == true)
                                   Row(
                                     children: [
                                       SizedBox(
