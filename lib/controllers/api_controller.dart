@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 import 'package:ildiz/models/login_model.dart';
 import '../models/me_models.dart';
 import '../pages/auth/verify_page.dart';
-import '../pages/auth/login_page.dart';
+import '../pages/onboarding_page.dart';
 import '../pages/sample_page.dart';
 import 'get_controller.dart';
 
@@ -44,26 +44,29 @@ class ApiController extends GetxController {
     );
   }
 
-  Future<void> login(String phone, String password) async {
-    print('phone: $phone, password: $password');
-    //return await post(Uri.parse(_login), body: {'phone': phone, 'password': password});
+  Future<void> login() async {
     var response = await post(Uri.parse(_login), body: {
-      'phone': phone,
-      'password': password,
+      'phone': _getController.phoneController.text.toString(),
+      'password': _getController.passwordController.text.toString(),
       'remember': 'false',
     });
-    print(response.body);
     if (response.statusCode == 200) {
-      _getController
-          .changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
-      print(_getController.loginModel.value.data!.token);
-      //save token getstorage
-      GetStorage().write('token', _getController.loginModel.value.data!.token);
-      if (GetStorage().read('token') != null) {
-        Get.offAll(SamplePage());
+      if (jsonDecode(response.body)['status'] == true) {
+        _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
+        print(_getController.loginModel.value.data!.token);
+        GetStorage().write('token', _getController.loginModel.value.data!.token);
+        if (GetStorage().read('token') != null) {
+          Get.offAll(SamplePage());
+        }
+      } else {
+        if (jsonDecode(response.body)['data']['message'] == 'User not found!') {
+          showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud emas!', true, 3);
+        }else{
+          showToast(Get.context, 'Xatolik', 'Noto\'g\'ri parol kiritdingiz!', true, 3);
+        }
       }
     } else {
-      print('Error: ${response.statusCode}');
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
 
@@ -182,7 +185,7 @@ class ApiController extends GetxController {
       print('passwordUpdate: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         showToast(Get.context, 'Muvaffaqiyatli', 'Parolni muvaffaqiyatli o\'zgartirdingiz!', false, 3);
-        Get.off(LoginPage());
+        Get.offAll(const OnboardingPage());
         _getController.phoneController.clear();
         _getController.passwordController.clear();
         _getController.codeController.clear();

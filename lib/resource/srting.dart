@@ -47,6 +47,8 @@ class LocaleString extends Translations{
       'SMS kodni kiriting!':'Enter the SMS code!',
       'Muvaffaqiyatli' : 'Success',
       'Parolni muvaffaqiyatli o\'zgartirdingiz!':'You have successfully changed your password!',
+      'Bunday foydalanuvchi mavjud emas!':'User not found!',
+      'Noto\'g\'ri parol kiritdingiz!':'You entered the wrong password!',
 
       //Sample page
       'Kitoblarni izlash':'Search for books',

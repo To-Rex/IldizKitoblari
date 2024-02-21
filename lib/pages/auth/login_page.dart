@@ -21,8 +21,7 @@ class LoginPage extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
 
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+
   final mackFormater = MaskTextInputFormatter(
       mask: '+998 (##) ###-##-##',
       filter: {"#": RegExp(r'[0-9]')},
@@ -31,7 +30,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _phoneController.text = '+998 ';
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -71,14 +69,8 @@ class LoginPage extends StatelessWidget {
                             TextFildHints(
                               hintText: '${'Telefon raqam'.tr}:',
                             ),
-
-                            /*TextFildsAuth(
-                              nameController: _phoneController,
-                              next: TextInputAction.next,
-                              inputType: TextInputType.phone,
-                            ),*/
                             TextFieldPhoneAuth(
-                              nameController: _phoneController,
+                              nameController: _getController.phoneController,
                               next: TextInputAction.next,
                             ),
                             SizedBox(height: _getController.height.value * 0.02),
@@ -86,7 +78,7 @@ class LoginPage extends StatelessWidget {
                               hintText: '${'Parolni kiriting'.tr}:',
                             ),
                             TextFildsAuth(
-                              nameController: _passwordController,
+                              nameController: _getController.passwordController,
                               next: TextInputAction.next,
                               inputType: TextInputType.visiblePassword,
                             ),
@@ -141,7 +133,19 @@ class LoginPage extends StatelessWidget {
                                 height: _getController.height.value * 0.06,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      ApiController().login(_phoneController.text, _passwordController.text);
+                                      if (_getController.phoneController.text.isEmpty) {
+                                        ApiController().showToast(context, 'Xatolik', 'Telefon raqamni kiriting!', true,2);
+                                        return;
+                                      }
+                                      if (_getController.passwordController.text.isEmpty) {
+                                        ApiController().showToast(context, 'Xatolik', 'Parolni kiriting!', true,2);
+                                        return;
+                                      }
+                                      if (_getController.passwordController.text.length < 6) {
+                                        ApiController().showToast(context, 'Xatolik', 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!', true,2);
+                                        return;
+                                      }
+                                      ApiController().login();
                                     },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColors.primaryColor,
@@ -166,8 +170,7 @@ class LoginPage extends StatelessWidget {
                                 SizedBox(width: _getController.height.value * 0.01),
                                 InkWell(
                                   onTap: () {
-                                    //Get.off(RegisterPage());
-                                    Get.off(SamplePage());
+                                    Get.off(RegisterPage());
                                   },
                                   child: Text(
                                     'Ro\'yxatdan o\'tish'.tr,
