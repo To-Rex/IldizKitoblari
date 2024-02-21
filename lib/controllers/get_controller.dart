@@ -20,6 +20,7 @@ class GetController extends GetxController {
   var index = 0.obs;
   var bottomBarHeight = 0.0.obs;
   var obscureText = true.obs;
+  var fullCheck = false.obs;
 
   void setHeightWidth(BuildContext context) {
     height.value = MediaQuery.of(context).size.height;
