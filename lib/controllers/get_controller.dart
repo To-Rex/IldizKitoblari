@@ -77,6 +77,9 @@ class GetController extends GetxController {
   }
 
   void resetTimer() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
     countdownDuration.value = const Duration(minutes: 1, seconds: 59);
     startTimer();
   }

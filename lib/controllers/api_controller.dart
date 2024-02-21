@@ -66,18 +66,24 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> check(type) async {
+  Future<void> check(type, resend) async {
     var response = await post(Uri.parse(_check), body: {
       'phone': _getController.phoneController.text.toString(),
       'type': type.toString(),
     });
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print('check: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         print(_getController.phoneController.text);
-        otp(_getController.phoneController.text, type, false);
+        otp(_getController.phoneController.text, type, resend);
       }else{
-        showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud!', true, 3);
+        if (resend == true && jsonDecode(response.body)['data']['message'] == 'User already exists!'){
+          _getController.fullCheck.value = false;
+          _getController.passwordCheck.value = true;
+          _getController.resetTimer();
+        }else{
+          showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud!', true, 3);
+        }
       }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
@@ -95,6 +101,10 @@ class ApiController extends GetxController {
         _getController.resetTimer();
         if (!resend) {
           Get.to(VerifyPage());
+        }else{
+          _getController.resetTimer();
+          _getController.fullCheck.value = false;
+          _getController.passwordCheck.value = false;
         }
       }else{
         showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);

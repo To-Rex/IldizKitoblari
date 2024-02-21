@@ -72,7 +72,7 @@ class ResetPasswordPage extends StatelessWidget {
                                 TextFieldPhoneAuth(
                                   nameController: _getController.phoneController,
                                   next: TextInputAction.next,
-                                  enabled: false,
+                                  enabled: true,
                                 ),
                                 SizedBox(height: _getController.height.value * 0.02),
                                 //SMS kod
@@ -207,15 +207,43 @@ class ResetPasswordPage extends StatelessWidget {
                                     height: _getController.height.value * 0.061,
                                     child: ElevatedButton(
                                         onPressed: () {
-                                          if (_getController.codeController.text.isEmpty) {
-                                            ApiController().showToast(context, 'Xatolik', 'SMS kodni kiriting!', true, 3);
+                                          //agar telefon raqam kiritilmagan bo'lsa
+                                          if (_getController.phoneController.text.isEmpty) {
+                                            ApiController().showToast(context, 'Xatolik', 'Telefon raqamni kiriting!', true,2);
+                                            return;
                                           }
-                                          else {
-                                            ApiController().create(
-                                                _getController.fullNameController.text,
-                                                _getController.codeController.text,
-                                                _getController.passwordController.text,
-                                                _getController.phoneController.text);
+                                          //agar sms kod kiritilmagan bo'lsa
+                                          if (_getController.codeController.text.isEmpty && _getController.fullCheck.value == false && _getController.passwordCheck.value == true) {
+                                            ApiController().showToast(context, 'Xatolik', 'SMS kodni kiriting!', true,2);
+                                            return;
+                                          }
+                                          //agar parol kiritilmagan bo'lsa
+                                          if (_getController.passwordController.text.isEmpty && _getController.fullCheck.value == true && _getController.passwordCheck.value == false) {
+                                            ApiController().showToast(context, 'Xatolik', 'Parolni kiriting!', true,2);
+                                            return;
+                                          }
+                                          //agar parol takrorlanmagan bo'lsa
+                                          if (_getController.repeatPasswordController.text.isEmpty && _getController.fullCheck.value == true && _getController.passwordCheck.value == false) {
+                                            ApiController().showToast(context, 'Xatolik', 'Parolni takrorlang!', true,2);
+                                            return;
+                                          }
+                                          //agar parol kamida 6 ta belgidan kam bo'lsa
+                                          if (_getController.passwordController.text != _getController.repeatPasswordController.text && _getController.fullCheck.value == true && _getController.passwordCheck.value == false) {
+                                            ApiController().showToast(context, 'Xatolik', 'Parollar mos kelmadi!', true,2);
+                                            return;
+                                          }
+                                          print('fullCheck: ${_getController.fullCheck.value}, passwordCheck: ${_getController.passwordCheck.value}');
+
+                                          //check phone number
+                                          if (_getController.fullCheck.value == false && _getController.passwordCheck.value == false) {
+                                            ApiController().check(1, true);
+                                            return;
+                                          }
+
+                                          //check sms code
+                                          if (_getController.fullCheck.value == false && _getController.passwordCheck.value == true) {
+                                            //check sms code
+                                            return;
                                           }
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -224,7 +252,9 @@ class ResetPasswordPage extends StatelessWidget {
                                               borderRadius: BorderRadius.circular(12),
                                             )
                                         ),
-                                        child: Text('Tasdiqlash'.tr,
+                                        child: Text(
+                                            //'Tasdiqlash'.tr,
+                                            _getController.fullCheck.value == false && _getController.passwordCheck.value == false ? 'SMS kodni yuborish'.tr : _getController.fullCheck.value == false && _getController.passwordCheck.value == true ? 'Tasdiqlash'.tr : 'Kirish'.tr,
                                             style: TextStyle(
                                               fontSize: _getController.width.value * 0.04,
                                               color: AppColors.white,

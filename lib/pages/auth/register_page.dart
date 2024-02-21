@@ -175,7 +175,7 @@ class RegisterPage extends StatelessWidget {
                                 ApiController().showToast(context, 'Xatolik', 'Telefon raqamni kiriting!', true,2);
                                 return;
                               }
-                              ApiController().check(1);
+                              ApiController().check(1, false);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primaryColor,

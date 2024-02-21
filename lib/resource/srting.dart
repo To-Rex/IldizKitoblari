@@ -30,6 +30,7 @@ class LocaleString extends Translations{
       'Qayta yuborish' : 'Resend',
       'Tasdiqlash' : 'Confirm',
       'Parolni tiklash':'Reset password',
+      'SMS kodni yuborish':'Send SMS code',
 
       //validation
       'Xatolik':'Error',
@@ -104,6 +105,7 @@ class LocaleString extends Translations{
       'Qayta yuborish' : 'Отправить повторно',
       'Tasdiqlash' : 'Подтвердить',
       'Parolni tiklash':'Сбросить пароль',
+      'SMS kodni yuborish':'Отправить SMS код',
 
       //validation
       'Xatolik':'Ошибка',
@@ -178,6 +180,7 @@ class LocaleString extends Translations{
       'Qayta yuborish' : 'Qayta yuborish',
       'Tasdiqlash' : 'Tasdiqlash',
       'Parolni tiklash':'Parolni tiklash',
+      'SMS kodni yuborish':'SMS kodni yuborish',
 
       //validation
       'Xatolik':'Xatolik',
