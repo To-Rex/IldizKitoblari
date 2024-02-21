@@ -154,6 +154,8 @@ class ApiController extends GetxController {
     print('me: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
+    } else if (response.statusCode == 401) {
+      Get.offAll(const OnboardingPage());
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
