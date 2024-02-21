@@ -178,6 +178,4 @@ class ApiController extends GetxController {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
-
-
 }
