@@ -53,6 +53,7 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['status'] == true) {
         _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
+        _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
         print(_getController.loginModel.value.data!.token);
         GetStorage().write('token', _getController.loginModel.value.data!.token);
         if (GetStorage().read('token') != null) {
@@ -130,6 +131,7 @@ class ApiController extends GetxController {
       print('create: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
+        _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
         print(_getController.loginModel.value.data!.token);
         GetStorage().write('token', _getController.loginModel.value.data!.token);
         Get.offAll(SamplePage());
@@ -196,5 +198,6 @@ class ApiController extends GetxController {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
+
 
 }
