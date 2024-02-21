@@ -18,6 +18,7 @@ class ResetPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getController.codeController.clear();
     return Scaffold(
         body: SingleChildScrollView(
             child: SizedBox(

@@ -18,6 +18,8 @@ class ApiController extends GetxController {
   static const String _otp = '$_baseUrl/api/v1/otp';
   static const String _create = '$_baseUrl/api/v1/user/create';
   static const String _me = '$_baseUrl/api/v1/user/me';
+  static const String _checkOtp = '$_baseUrl/api/v1/otp/check';
+  static const String _passwordUpdate = '$_baseUrl/api/v1/user/password-update';
 
   //show toast message
   void showToast(context,String title,String message, error,sec) {
@@ -142,5 +144,40 @@ class ApiController extends GetxController {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
+
+  Future<void> checkOtp(String phone, String otp) async {
+    var response = await post(Uri.parse(_checkOtp), body: {
+      'phone': phone,
+      'otp': otp,
+    });
+    if (response.statusCode == 200) {
+      print('checkOtp: ${response.body}');
+      if (jsonDecode(response.body)['status'] == true) {
+        Get.offAll(SamplePage());
+      }else{
+        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      }
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> passwordUpdate(String phone, String password) async {
+    var response = await post(Uri.parse(_passwordUpdate), body: {
+      'phone': phone,
+      'password': password,
+    });
+    if (response.statusCode == 200) {
+      print('passwordUpdate: ${response.body}');
+      if (jsonDecode(response.body)['status'] == true) {
+        Get.offAll(SamplePage());
+      }else{
+        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      }
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
 
 }
