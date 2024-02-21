@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/auth/register_page.dart';
+import 'package:ildiz/pages/auth/reset_password.dart';
 import 'package:ildiz/pages/sample_page.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../companents/appbar_sheets.dart';
@@ -120,8 +121,7 @@ class LoginPage extends StatelessWidget {
                                 const Spacer(),
                                 InkWell(
                                   onTap: () {
-                                    //Get.off(RegisterPage());
-                                    Get.off(SamplePage());
+                                    Get.to(ResetPasswordPage());
                                   },
                                   child: Text('Parolni unutdingizmi?'.tr,
                                     style: TextStyle(
