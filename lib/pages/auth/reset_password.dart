@@ -185,7 +185,6 @@ class ResetPasswordPage extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          _getController.resetTimer();
                                           ApiController().otp(_getController.phoneController.text, 1, true);
                                         },
                                         child: Text(
@@ -239,10 +238,14 @@ class ResetPasswordPage extends StatelessWidget {
                                             ApiController().check(1, true);
                                             return;
                                           }
-
                                           //check sms code
                                           if (_getController.fullCheck.value == false && _getController.passwordCheck.value == true) {
-                                            //check sms code
+                                            ApiController().checkOtp();
+                                            return;
+                                          }
+                                          //update password
+                                          if (_getController.fullCheck.value == true && _getController.passwordCheck.value == false) {
+                                            ApiController().passwordUpdate();
                                             return;
                                           }
                                         },

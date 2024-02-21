@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:ildiz/models/login_model.dart';
 import '../models/me_models.dart';
 import '../pages/auth/verify_page.dart';
+import '../pages/auth/login_page.dart';
 import '../pages/sample_page.dart';
 import 'get_controller.dart';
 
@@ -78,9 +79,7 @@ class ApiController extends GetxController {
         otp(_getController.phoneController.text, type, resend);
       }else{
         if (resend == true && jsonDecode(response.body)['data']['message'] == 'User already exists!'){
-          _getController.fullCheck.value = false;
-          _getController.passwordCheck.value = true;
-          _getController.resetTimer();
+          otp(_getController.phoneController.text, type, resend);
         }else{
           showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud!', true, 3);
         }
@@ -102,9 +101,9 @@ class ApiController extends GetxController {
         if (!resend) {
           Get.to(VerifyPage());
         }else{
-          _getController.resetTimer();
           _getController.fullCheck.value = false;
-          _getController.passwordCheck.value = false;
+          _getController.passwordCheck.value = true;
+          _getController.resetTimer();
         }
       }else{
         showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
@@ -155,15 +154,16 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> checkOtp(String phone, String otp) async {
+  Future<void> checkOtp() async {
     var response = await post(Uri.parse(_checkOtp), body: {
-      'phone': phone,
-      'otp': otp,
+      'phone': _getController.phoneController.text.toString(),
+      'otp': _getController.codeController.text.toString(),
     });
     if (response.statusCode == 200) {
       print('checkOtp: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
-        Get.offAll(SamplePage());
+        _getController.fullCheck.value = true;
+        _getController.passwordCheck.value = false;
       }else{
         showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
       }
@@ -172,15 +172,20 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> passwordUpdate(String phone, String password) async {
-    var response = await post(Uri.parse(_passwordUpdate), body: {
-      'phone': phone,
-      'password': password,
+  Future<void> passwordUpdate() async {
+    var response = await put(Uri.parse(_passwordUpdate), body: {
+      'phone': _getController.phoneController.text.toString(),
+      'password': _getController.passwordController.text.toString(),
     });
+    print(response.body);
     if (response.statusCode == 200) {
       print('passwordUpdate: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
-        Get.offAll(SamplePage());
+        showToast(Get.context, 'Muvaffaqiyatli', 'Parolni muvaffaqiyatli o\'zgartirdingiz!', false, 3);
+        Get.off(LoginPage());
+        _getController.phoneController.clear();
+        _getController.passwordController.clear();
+        _getController.codeController.clear();
       }else{
         showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
       }
