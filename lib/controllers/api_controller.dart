@@ -114,24 +114,6 @@ class ApiController extends GetxController {
     );
     if (response.statusCode == 200|| response.statusCode == 201) {
       print('create: ${response.body}');
-      //{
-      //     "data": {
-      //         "message": "Ok!",
-      //         "result": {
-      //             "full_name": "Dilshodjon Haydarov",
-      //             "password": "$2b$10$ostKRhXvBg0ZbQAlBL5VYe3jnLhTMJPL0U.Kj/1j4Hms4LTlEIbbG",
-      //             "phone": "+998 (99) 992-92-69",
-      //             "status": true,
-      //             "avatar": null,
-      //             "_id": "65d46f02cbf6aacbca8c0a9a",
-      //             "createdAt": "2024-02-20T09:21:06.912Z",
-      //             "updatedAt": "2024-02-20T09:21:06.912Z",
-      //             "__v": 0
-      //         }
-      //     },
-      //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZDQ2ZjAyY2JmNmFhY2JjYThjMGE5YSIsInBob25lIjoiKzk5OCAoOTkpIDk5Mi05Mi02OSIsImlhdCI6MTcwODQyMDg2NiwiZXhwIjoxNzA4NTA3MjY2fQ.-m9O6Ketn7XW3WOUDRLo3LQ_mdn2iI0TIGHFxfyKSCs",
-      //     "status": true
-      // }
       if (jsonDecode(response.body)['status'] == true) {
         _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
         print(_getController.loginModel.value.data!.token);

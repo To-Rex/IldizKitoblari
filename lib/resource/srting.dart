@@ -29,6 +29,7 @@ class LocaleString extends Translations{
       'SMS xabar kelmadimi?':'Didn\'t receive an SMS message?',
       'Qayta yuborish' : 'Resend',
       'Tasdiqlash' : 'Confirm',
+      'Parolni tiklash':'Reset password',
 
       //validation
       'Xatolik':'Error',
@@ -76,6 +77,7 @@ class LocaleString extends Translations{
       'Biz bilan bog\'lanish':'Contact us',
       'Ilovadan chiqish':'Exit the application',
 
+
     },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -101,6 +103,7 @@ class LocaleString extends Translations{
       'SMS xabar kelmadimi?':'Не пришло SMS сообщение?',
       'Qayta yuborish' : 'Отправить повторно',
       'Tasdiqlash' : 'Подтвердить',
+      'Parolni tiklash':'Сбросить пароль',
 
       //validation
       'Xatolik':'Ошибка',
@@ -174,6 +177,7 @@ class LocaleString extends Translations{
       'SMS xabar kelmadimi?':'SMS xabar kelmadimi?',
       'Qayta yuborish' : 'Qayta yuborish',
       'Tasdiqlash' : 'Tasdiqlash',
+      'Parolni tiklash':'Parolni tiklash',
 
       //validation
       'Xatolik':'Xatolik',

@@ -63,7 +63,7 @@ class ResetPasswordPage extends StatelessWidget {
                             child: Column(
                               children: [
                                 AppBarSheets(
-                                  title: 'Ro\'yxatdan o\'tish'.tr,
+                                  title: 'Parolni tiklash'.tr,
                                 ),
                                 TextFildHints(
                                   hintText: '${'Telefon raqam'.tr}:',
