@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 
 import '../companents/appbar_sheets.dart';
 import '../companents/search_fild.dart';
@@ -12,6 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ApiController().getMenu();
     return Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
@@ -52,6 +54,7 @@ class HomePage extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
+
                               ],
                             )
                         )

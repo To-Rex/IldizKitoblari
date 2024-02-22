@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:ildiz/models/login_model.dart';
 import '../models/me_models.dart';
+import '../models/menu_model.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/sample_page.dart';
@@ -14,6 +15,8 @@ import 'get_controller.dart';
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
   static const String _baseUrl = 'https://ildizkitoblari.uz';
+
+  //auth
   static const String _login = '$_baseUrl/api/v1/auth/login';
   static const String _check = '$_baseUrl/api/v1/user/check';
   static const String _otp = '$_baseUrl/api/v1/otp';
@@ -21,6 +24,10 @@ class ApiController extends GetxController {
   static const String _me = '$_baseUrl/api/v1/user/me';
   static const String _checkOtp = '$_baseUrl/api/v1/otp/check';
   static const String _passwordUpdate = '$_baseUrl/api/v1/user/password-update';
+
+  //home
+  static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
+
 
   //show toast message
   void showToast(context,String title,String message, error,sec) {
@@ -44,6 +51,8 @@ class ApiController extends GetxController {
     );
   }
 
+  //auth
+  //------------------------------------------------------------------------------------------------
   Future<void> login() async {
     var response = await post(Uri.parse(_login), body: {
       'phone': _getController.phoneController.text.toString(),
@@ -201,5 +210,20 @@ class ApiController extends GetxController {
     }
   }
 
+  //home
+  //------------------------------------------------------------------------------------------------
+  Future<void> getMenu() async {
+    var response = await get(Uri.parse(_menu),
+      headers: {
+        'Accept-Language': 'uz',
+      },
+    );
+    print('menu: ${response.body}');
+    if (response.statusCode == 200) {
+      _getController.changeMenuModel(MenuModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
 
 }

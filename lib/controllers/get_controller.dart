@@ -10,6 +10,7 @@ import 'package:ildiz/bottomBar/shop_page.dart';
 import 'package:ildiz/models/me_models.dart';
 
 import '../models/login_model.dart';
+import '../models/menu_model.dart';
 
 class GetController extends GetxController {
   var height = 0.0.obs;
@@ -46,6 +47,7 @@ class GetController extends GetxController {
   //models
   var loginModel = LoginModel().obs;
   var meModel = MeModel().obs;
+  var menuModel = MenuModel().obs;
 
   //methods
   void changeLoginModel(LoginModel loginModel) {
@@ -54,6 +56,10 @@ class GetController extends GetxController {
 
   void changeMeModel(MeModel meModel) {
     this.meModel.value = meModel;
+  }
+
+  void changeMenuModel(MenuModel menuModel) {
+    this.menuModel.value = menuModel;
   }
 
   //companents
