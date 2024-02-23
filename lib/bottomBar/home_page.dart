@@ -63,10 +63,11 @@ class HomePage extends StatelessWidget {
                                     for (var i in _getController.menuModel.value.data!.result!)
                                       Chip(
                                         label: Text(i.title!.uz!),
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),
-                                        padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.015, vertical: _getController.height.value * 0.003),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                        padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                        labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                         backgroundColor: Theme.of(context).colorScheme.onBackground,
-                                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.035,),
+                                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.03),
                                       ),
                                   ],
                                 )
