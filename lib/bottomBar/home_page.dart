@@ -122,7 +122,7 @@ class HomePage extends StatelessWidget {
                                               ),
                                             )
                                           )
-                                      else
+                                      else if (_getController.fullCheck.isTrue && _getController.menuModel.value.data!.result![_getController.fullIndex.value].children == null)
                                         SizedBox(
                                           width: _getController.width.value * 0.93,
                                           height: _getController.height.value * 0.1,
