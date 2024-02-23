@@ -54,6 +54,20 @@ class HomePage extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
+                                //image
+                                Container(
+                                  margin: EdgeInsets.only(top: _getController.height.value * 0.023),
+                                  height: _getController.height.value * 0.2,
+                                  width: _getController.width.value * 0.93,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: Theme.of(context).colorScheme.onBackground,
+                                    image: const DecorationImage(
+                                      image: NetworkImage('https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
                                 ChildItem(title: 'Kategoriya', function: (){
                                   print('Barchasi');
                                 }),
@@ -63,6 +77,7 @@ class HomePage extends StatelessWidget {
                                     for (var i in _getController.menuModel.value.data!.result!)
                                       Chip(
                                         label: Text(i.title!.uz!),
+                                        visualDensity: VisualDensity.compact,
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                         padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                         labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
