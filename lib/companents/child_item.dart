@@ -21,12 +21,7 @@ class ChildItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(
-                title,
-                style: TextStyle(
-              fontSize: _getController.width.value * 0.045,
-              fontWeight: FontWeight.bold,
-            )),
+            Text(title, style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.bold,)),
             const Spacer(),
             TextButton(
               onPressed: () {
