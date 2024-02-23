@@ -49,6 +49,7 @@ class LocaleString extends Translations{
       'Parolni muvaffaqiyatli o\'zgartirdingiz!':'You have successfully changed your password!',
       'Bunday foydalanuvchi mavjud emas!':'User not found!',
       'Noto\'g\'ri parol kiritdingiz!':'You entered the wrong password!',
+      'Ma\'lumotlar yo\'q!':'No data!',
 
       //Sample page
       'Kitoblarni izlash':'Search for books',
@@ -126,6 +127,9 @@ class LocaleString extends Translations{
       'SMS kodni kiriting!':'Введите SMS код!',
       'Muvaffaqiyatli' : 'Успешно',
       'Parolni muvaffaqiyatli o\'zgartirdingiz!':'Вы успешно изменили пароль!',
+      'Bunday foydalanuvchi mavjud emas!':'Пользователь не найден!',
+      'Noto\'g\'ri parol kiritdingiz!':'Вы ввели неправильный пароль!',
+      'Ma\'lumotlar yo\'q!':'Нет данных!',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -203,6 +207,9 @@ class LocaleString extends Translations{
       'SMS kodni kiriting!':'SMS kodni kiriting!',
       'Muvaffaqiyatli' : 'Muvaffaqiyatli',
       'Parolni muvaffaqiyatli o\'zgartirdingiz!':'Parolni muvaffaqiyatli o\'zgartirdingiz!',
+      'Bunday foydalanuvchi mavjud emas!':'Bunday foydalanuvchi mavjud emas!',
+      'Noto\'g\'ri parol kiritdingiz!':'Noto\'g\'ri parol kiritdingiz!',
+      'Ma\'lumotlar yo\'q!':'Ma\'lumotlar yo\'q!',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',

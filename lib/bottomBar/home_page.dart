@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                                   child: Wrap(
                                     spacing: _getController.width.value * 0.02,
                                     children: [
-                                      if (_getController.fullCheck.isFalse)
+                                      if (_getController.fullCheck.isFalse && _getController.menuModel.value.data!.result != null)
                                         for (var i in _getController.menuModel.value.data!.result!)
                                           InkWell(
                                           onTap: () {
@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                                             labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03),
                                           ),
                                         ),
-                                      if (_getController.fullCheck.isTrue)
+                                      if (_getController.fullCheck.isTrue && _getController.menuModel.value.data!.result![_getController.fullIndex.value].children != null && _getController.menuModel.value.data!.result![_getController.fullIndex.value].children!.isNotEmpty)
                                         for (var i in _getController.menuModel.value.data!.result![_getController.fullCheck.value ? _getController.fullIndex.value : _getController.index.value].children!)
                                           InkWell(
                                             onTap: () {
@@ -122,6 +122,20 @@ class HomePage extends StatelessWidget {
                                               ),
                                             )
                                           )
+                                      else
+                                        SizedBox(
+                                          width: _getController.width.value * 0.93,
+                                          height: _getController.height.value * 0.1,
+                                          child: Center(
+                                            child: Text(
+                                              'Ma\'lumotlar yo\'q!'.tr,
+                                              style: TextStyle(
+                                                fontSize: _getController.width.value * 0.035,
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                     ],
                                   )
                                 ),
