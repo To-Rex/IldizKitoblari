@@ -14,11 +14,14 @@ class ChildItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.02, top: _getController.height.value * 0.02),
+        width: _getController.width.value,
+        margin: EdgeInsets.only(
+            left: _getController.width.value * 0.04,
+            right: _getController.width.value * 0.01),
         child: Row(
           children: [
             Text(title, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold,)),
-            const Spacer(),
+            const Expanded(child: SizedBox()),
             TextButton(
               onPressed: () {
                 function();

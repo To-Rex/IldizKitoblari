@@ -78,11 +78,14 @@ class HomePage extends StatelessWidget {
                                       Chip(
                                         label: Text(i.title!.uz!),
                                         visualDensity: VisualDensity.compact,
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                         padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                         labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
-                                        backgroundColor: Theme.of(context).colorScheme.onBackground,
-                                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.03),
+                                        side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
+                                        backgroundColor: Theme.of(context).brightness == Brightness.dark
+                                            ? AppColors.grey.withOpacity(0.5)
+                                            : AppColors.grey.withOpacity(0.2),
+                                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground,
+                                            fontSize: _getController.width.value * 0.03),
                                       ),
                                   ],
                                 )
