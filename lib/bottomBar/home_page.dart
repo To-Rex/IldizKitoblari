@@ -69,7 +69,9 @@ class HomePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                ChildItem(title: 'Kategoriya', function: (){
+                                ChildItem(
+                                    title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya',
+                                    function: (){
                                   print('Barchasi');
                                 }),
                                 SizedBox(
@@ -77,29 +79,53 @@ class HomePage extends StatelessWidget {
                                   child: Wrap(
                                     spacing: _getController.width.value * 0.02,
                                     children: [
-                                      for (var i in _getController.menuModel.value.data!.result!)
-                                        Chip(
-                                          //label: Text(i.title!.uz!),
-                                          label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,),
-                                          visualDensity: VisualDensity.compact,
-                                          padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
-                                          labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
-                                          side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
-                                          backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                          labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03),
-                                          onDeleted: null,
-                                          deleteButtonTooltipMessage: 'Belgilash',
-                                          deleteIcon: Icon(
-                                            TablerIcons.check,
-                                            size: _getController.width.value * 0.05,
-                                            color: Theme.of(context).colorScheme.onBackground,
+                                      if (_getController.fullCheck.isFalse)
+                                        for (var i in _getController.menuModel.value.data!.result!)
+                                          InkWell(
+                                          onTap: () {
+                                            _getController.fullCheck.value = true;
+                                            _getController.fullIndex.value = _getController.menuModel.value.data!.result!.indexOf(i);
+                                          },
+                                          child: Chip(
+                                            //label: Text(i.title!.uz!),
+                                            label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,),
+                                            visualDensity: VisualDensity.compact,
+                                            padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                            labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                            side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
+                                            backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03),
                                           ),
                                         ),
+                                      if (_getController.fullCheck.isTrue)
+                                        for (var i in _getController.menuModel.value.data!.result![_getController.fullCheck.value ? _getController.fullIndex.value : _getController.index.value].children!)
+                                          InkWell(
+                                            onTap: () {
+                                               _getController.indexSub.value = _getController.menuModel.value.data!.result![_getController.fullCheck.value ? _getController.fullIndex.value : _getController.index.value].children!.indexOf(i);
+                                            },
+                                            child: Chip(
+                                              label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,),
+                                              visualDensity: VisualDensity.compact,
+                                              padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                              labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                              side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
+                                              backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                                              labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03),
+                                              onDeleted: _getController.indexSub.value == _getController.menuModel.value.data!.result![_getController.fullCheck.value ? _getController.fullIndex.value : _getController.index.value].children!.indexOf(i) ? () {
+                                                _getController.indexSub.value = 0;
+                                              } : null,
+                                              deleteButtonTooltipMessage: 'Belgilash',
+                                              deleteIcon: Icon(
+                                                TablerIcons.check,
+                                                size: _getController.width.value * 0.05,
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                              ),
+                                            )
+                                          )
                                     ],
                                   )
                                 ),
-                                ChildItem(title: 'Elektron kitoblar',
-                                    function: (){
+                                ChildItem(title: 'Elektron kitoblar', function: (){
                                   print('Barchasi');
                                 }),
                               ],

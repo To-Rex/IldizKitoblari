@@ -61,8 +61,6 @@ class Result {
   Title? shortContent;
   List<Children>? children;
   Banner? banner;
-  bool? isSelect = false;
-
   Result(
       {this.sId,
         this.title,
@@ -75,8 +73,7 @@ class Result {
         this.isHeader,
         this.shortContent,
         this.children,
-        this.banner,
-        this.isSelect
+        this.banner
       });
 
   Result.fromJson(Map<String, dynamic> json) {
@@ -89,9 +86,7 @@ class Result {
     order = json['order'];
     isFooter = json['is_footer'];
     isHeader = json['is_header'];
-    shortContent = json['short_content'] != null
-        ? Title.fromJson(json['short_content'])
-        : null;
+    shortContent = json['short_content'] != null ? Title.fromJson(json['short_content']) : null;
     if (json['children'] != null) {
       children = <Children>[];
       json['children'].forEach((v) {
@@ -99,7 +94,6 @@ class Result {
       });
     }
     banner = json['banner'] != null ? Banner.fromJson(json['banner']) : null;
-    isSelect = json['isSelect'];
   }
 
   Map<String, dynamic> toJson() {
@@ -124,7 +118,6 @@ class Result {
     if (banner != null) {
       data['banner'] = banner!.toJson();
     }
-    data['isSelect'] = isSelect;
     return data;
   }
 }

@@ -22,6 +22,8 @@ class GetController extends GetxController {
   var bottomBarHeight = 0.0.obs;
   var obscureText = true.obs;
   var fullCheck = false.obs;
+  var fullIndex = 0.obs;
+  var indexSub = 0.obs;
   var passwordCheck = false.obs;
 
   void setHeightWidth(BuildContext context) {
