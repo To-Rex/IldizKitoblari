@@ -3,8 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/resource/colors.dart';
-
-import '../companents/appbar_sheets.dart';
+import '../companents/child_item.dart';
 import '../companents/search_fild.dart';
 import '../controllers/get_controller.dart';
 
@@ -55,49 +54,19 @@ class HomePage extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
-                                SizedBox(
-                                  height: _getController.height.value * 0.1,
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: _getController.width.value * 0.05,
-                                    ),
-                                    Text('Kategoriya', style: TextStyle(
-                                      fontSize: _getController.width.value * 0.045,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                    Spacer(),
-                                    Text('Barchasi', style: TextStyle(
-                                      fontSize: _getController.width.value * 0.045,
-                                      color: AppColors.primaryColor,
-                                    )),
-                                    SizedBox(
-                                      width: _getController.width.value * 0.05,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: _getController.height.value * 0.02,
-                                ),
+                                ChildItem(title: 'Kategoriya', function: (){
+                                  print('Barchasi');
+                                }),
                                 Wrap(
                                   spacing: _getController.width.value * 0.02,
                                   children: [
                                     for (var i in _getController.menuModel.value.data!.result!)
                                       Chip(
                                         label: Text(i.title!.uz!),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(12),
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: _getController.width.value * 0.015,
-                                            vertical: _getController.height.value * 0.003
-                                        ),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),
+                                        padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.015, vertical: _getController.height.value * 0.003),
                                         backgroundColor: Theme.of(context).colorScheme.onBackground,
-                                        labelStyle: TextStyle(
-                                          color: Theme.of(context).colorScheme.background,
-                                          fontSize: _getController.width.value * 0.035,
-                                        ),
+                                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: _getController.width.value * 0.035,),
                                       ),
                                   ],
                                 )
