@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/resource/colors.dart';
@@ -78,13 +79,21 @@ class HomePage extends StatelessWidget {
                                     children: [
                                       for (var i in _getController.menuModel.value.data!.result!)
                                         Chip(
-                                          label: Text(i.title!.uz!),
+                                          //label: Text(i.title!.uz!),
+                                          label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,),
                                           visualDensity: VisualDensity.compact,
                                           padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                           labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                           side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                                           backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                           labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03),
+                                          onDeleted: null,
+                                          deleteButtonTooltipMessage: 'Belgilash',
+                                          deleteIcon: Icon(
+                                            TablerIcons.check,
+                                            size: _getController.width.value * 0.05,
+                                            color: Theme.of(context).colorScheme.onBackground,
+                                          ),
                                         ),
                                     ],
                                   )
