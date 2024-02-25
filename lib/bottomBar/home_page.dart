@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -55,7 +56,6 @@ class HomePage extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
-                                //image
                                 Container(
                                   margin: EdgeInsets.only(top: _getController.height.value * 0.023),
                                   height: _getController.height.value * 0.2,
@@ -63,10 +63,40 @@ class HomePage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
                                     color: Theme.of(context).colorScheme.onBackground,
-                                    image: const DecorationImage(
-                                      image: NetworkImage('https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg'),
-                                      fit: BoxFit.cover,
+                                  ),
+                                  child: CarouselSlider(
+                                    options: CarouselOptions(
+                                      height: _getController.height.value * 0.2,
+                                      viewportFraction: 1,
+                                      autoPlay: true,
+                                      autoPlayInterval: const Duration(seconds: 5),
+                                      autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                                      autoPlayCurve: Curves.fastOutSlowIn,
+                                      enlargeCenterPage: true,
+                                      scrollDirection: Axis.horizontal,
                                     ),
+                                    items: [
+                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
+                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
+                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
+                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
+                                    ].map((i) {
+                                      return Builder(
+                                        builder: (BuildContext context) {
+                                          return Container(
+                                            width: _getController.width.value * 0.93,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(16),
+                                              color: Theme.of(context).colorScheme.onBackground,
+                                              image: DecorationImage(
+                                                image: NetworkImage(i),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }).toList(),
                                   ),
                                 ),
                                 ChildItem(
@@ -142,6 +172,7 @@ class HomePage extends StatelessWidget {
                                 ChildItem(title: 'Elektron kitoblar', function: (){
                                   print('Barchasi');
                                 }),
+
                               ],
                             )
                         )

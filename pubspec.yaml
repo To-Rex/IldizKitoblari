@@ -45,6 +45,7 @@ dependencies:
   http: ^1.2.0
   mask_text_input_formatter: ^2.9.0
   get_storage: ^2.1.1
+  carousel_slider: ^4.2.1
 
 
 dev_dependencies:
