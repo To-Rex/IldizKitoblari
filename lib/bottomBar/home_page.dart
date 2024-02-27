@@ -58,9 +58,7 @@ class HomePage extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(
-                                      top: _getController.height.value * 0.018,
-                                      bottom: _getController.height.value * 0.02
+                                  margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.02
                                   ),
                                   height: _getController.height.value * 0.173,
                                   width: _getController.width.value * 0.93,
@@ -78,9 +76,14 @@ class HomePage extends StatelessWidget {
                                       enlargeCenterPage: true,
                                       scrollDirection: Axis.horizontal,
                                     ),
-                                    items: _getController.bannerModel.value.data!.result!.map((i) {
+                                    /*items: _getController.bannerModel.value.data!.result!.map((i) {
                                       return Builder(
                                         builder: (BuildContext context) {
+                                          //'uz_UZ' == Get.locale.toString() && i.imageUz != ''
+                                          // ? i.imageUz! : 'oz_UZ' == Get.locale.toString() && i.imageOz != ''
+                                          // ? i.imageOz! : 'ru_RU' == Get.locale.toString() && i.imageRu != ''
+                                          // ? i.imageRu! : null)
+
                                           return Container(
                                             width: _getController.width.value * 0.93,
                                             decoration: BoxDecoration(
@@ -98,7 +101,46 @@ class HomePage extends StatelessWidget {
                                           );
                                         },
                                       );
-                                    }).toList(),
+                                    }).toList(),*/
+                                      items: [
+                                        for (var i in _getController.bannerModel.value.data!.result!)
+                                          if ('uz_UZ' == Get.locale.toString() && i.imageUz != '')
+                                            Container(
+                                              width: _getController.width.value * 0.93,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(16),
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(i.imageUz!),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            )
+                                          else if ('oz_UZ' == Get.locale.toString() && i.imageOz != '')
+                                            Container(
+                                              width: _getController.width.value * 0.93,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(16),
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(i.imageOz!),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            )
+                                          else if ('ru_RU' == Get.locale.toString() && i.imageRu != '')
+                                            Container(
+                                              width: _getController.width.value * 0.93,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(16),
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(i.imageRu!),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            )
+                                      ],
                                   ),
                                 ),
                                 ChildItem(
@@ -178,7 +220,6 @@ class HomePage extends StatelessWidget {
                                 ChildItem(title: 'Elektron kitoblar', function: (){
                                   print('Barchasi');
                                 }),
-
                               ],
                             )
                         )
