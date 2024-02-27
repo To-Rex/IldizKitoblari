@@ -25,7 +25,11 @@ class SearchFields extends StatelessWidget {
               ),
               child: TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search',
+                  hintText: 'Kitoblarni izlash'.tr,
+                  hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                    fontSize: _getController.width.value * 0.04,
+                  ),
                   prefixIcon: Padding(
                     padding: EdgeInsets.all(_getController.height.value * 0.013),
                     child: SvgPicture.asset(
