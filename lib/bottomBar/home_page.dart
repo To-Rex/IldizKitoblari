@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //ApiController().getMenu();
     ApiController().getBanner();
     return Scaffold(
         body: SingleChildScrollView(
