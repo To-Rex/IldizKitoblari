@@ -58,7 +58,10 @@ class HomePage extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(top: _getController.height.value * 0.018),
+                                  margin: EdgeInsets.only(
+                                      top: _getController.height.value * 0.018,
+                                      bottom: _getController.height.value * 0.02
+                                  ),
                                   height: _getController.height.value * 0.173,
                                   width: _getController.width.value * 0.93,
                                   decoration: BoxDecoration(
@@ -116,14 +119,18 @@ class HomePage extends StatelessWidget {
                                             _getController.fullIndex.value = _getController.menuModel.value.data!.result!.indexOf(i);
                                           },
                                           child: Chip(
-                                            //label: Text(i.title!.uz!),
-                                            label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,),
                                             visualDensity: VisualDensity.compact,
-                                            padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                            label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
+                                            padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01,
+                                                vertical: _getController.height.value * 0.007),
                                             labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                             side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                                             backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03),
+                                            labelStyle: TextStyle(
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                                fontSize: _getController.width.value * 0.04,
+                                                fontWeight: FontWeight.w400
+                                            ),
                                           ),
                                         ),
                                       if (_getController.fullCheck.isTrue && _getController.menuModel.value.data!.result![_getController.fullIndex.value].children != null && _getController.menuModel.value.data!.result![_getController.fullIndex.value].children!.isNotEmpty)
@@ -139,8 +146,8 @@ class HomePage extends StatelessWidget {
                                               labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                               side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                                               backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                              labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.03),
-                                              onDeleted: _getController.indexSub.value == _getController.menuModel.value.data!.result![_getController.fullCheck.value ? _getController.fullIndex.value : _getController.index.value].children!.indexOf(i) ? () {
+                                              labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
+                                              /*onDeleted: _getController.indexSub.value == _getController.menuModel.value.data!.result![_getController.fullCheck.value ? _getController.fullIndex.value : _getController.index.value].children!.indexOf(i) ? () {
                                                 _getController.indexSub.value = 0;
                                               } : null,
                                               deleteButtonTooltipMessage: 'Belgilash',
@@ -148,7 +155,7 @@ class HomePage extends StatelessWidget {
                                                 TablerIcons.check,
                                                 size: _getController.width.value * 0.05,
                                                 color: Theme.of(context).colorScheme.onBackground,
-                                              ),
+                                              ),*/
                                             )
                                           )
                                       else if (_getController.fullCheck.isTrue && _getController.menuModel.value.data!.result![_getController.fullIndex.value].children == null)

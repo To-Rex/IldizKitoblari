@@ -26,14 +26,13 @@ class ChildItem extends StatelessWidget {
             child:Row(
               children: [
                 if (_getController.fullCheck.value == true)
-                //back button
                   Icon(TablerIcons.arrow_left,
                     color: Theme.of(context).colorScheme.onSurface,
                     size: _getController.width.value * 0.06,
                   ),
                 if (_getController.fullCheck.value == true)
                   SizedBox(width: _getController.width.value * 0.02),
-                Text(title, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold,)),
+                Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w600,)),
                 const Expanded(child: SizedBox()),
                 TextButton(
                   onPressed: () {
