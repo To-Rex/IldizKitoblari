@@ -15,7 +15,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getMenu();
+    //ApiController().getMenu();
+    ApiController().getBanner();
     return Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
@@ -57,8 +58,8 @@ class HomePage extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(top: _getController.height.value * 0.023),
-                                  height: _getController.height.value * 0.2,
+                                  margin: EdgeInsets.only(top: _getController.height.value * 0.018),
+                                  height: _getController.height.value * 0.173,
                                   width: _getController.width.value * 0.93,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
@@ -66,7 +67,6 @@ class HomePage extends StatelessWidget {
                                   ),
                                   child: CarouselSlider(
                                     options: CarouselOptions(
-                                      height: _getController.height.value * 0.2,
                                       viewportFraction: 1,
                                       autoPlay: true,
                                       autoPlayInterval: const Duration(seconds: 5),
@@ -75,12 +75,7 @@ class HomePage extends StatelessWidget {
                                       enlargeCenterPage: true,
                                       scrollDirection: Axis.horizontal,
                                     ),
-                                    items: [
-                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
-                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
-                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
-                                      'https://ildizkitoblari.uz/public/files/2024-01-29T17-52-27.321Z_photo_2024-01-29_22-51-35.jpg',
-                                    ].map((i) {
+                                    items: _getController.bannerModel.value.data!.result!.map((i) {
                                       return Builder(
                                         builder: (BuildContext context) {
                                           return Container(
@@ -89,8 +84,12 @@ class HomePage extends StatelessWidget {
                                               borderRadius: BorderRadius.circular(16),
                                               color: Theme.of(context).colorScheme.onBackground,
                                               image: DecorationImage(
-                                                image: NetworkImage(i),
-                                                fit: BoxFit.cover,
+                                                image: NetworkImage(
+                                                    'uz_UZ' == Get.locale.toString() && i.imageUz != ''
+                                                        ? i.imageUz! : 'oz_UZ' == Get.locale.toString() && i.imageOz != ''
+                                                        ? i.imageOz! : 'ru_RU' == Get.locale.toString() && i.imageRu != ''
+                                                        ? i.imageRu! : i.image!),
+                                                fit: BoxFit.fill,
                                               ),
                                             ),
                                           );

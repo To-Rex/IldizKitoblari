@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:ildiz/models/login_model.dart';
+import '../models/banner_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_model.dart';
 import '../pages/auth/verify_page.dart';
@@ -27,6 +28,8 @@ class ApiController extends GetxController {
 
   //home
   static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
+  //https://ildizkitoblari.uz/api/v1/banner/list?limit=6&page=1&type=1
+  static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6&page=1&type=1';
 
 
   //show toast message
@@ -222,6 +225,21 @@ class ApiController extends GetxController {
     print('menu: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeMenuModel(MenuModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getBanner() async {
+    var response = await get(Uri.parse(_banner),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    print('banner: ${response.body}');
+    getMenu();
+    if (response.statusCode == 200) {
+      _getController.changeBannerModel(BannerModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
