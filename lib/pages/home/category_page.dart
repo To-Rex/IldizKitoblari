@@ -472,23 +472,18 @@ class CategoryPage extends StatelessWidget {
             "count": 67
           }
         }*/
-      body: Obx(
-        () => _getController.menuModel.value.data!.result![menuIndex].children == null
+      body: Obx(() => _getController.menuModel.value.data!.result![menuIndex].children == null
                 ? Center(child: Text('Ma\'lumotlar yo\'q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)))
                 : Expanded(
                     child: ListView.builder(
                       itemCount: _getController.menuModel.value.data!.result?[menuIndex].children!.length,
                       itemBuilder: (context, index) {
-                        /*return ListTile(
-                          title: Text('uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!),
-                          onTap: () {
-                            _getController.indexSub.value = index;
-                            Get.toNamed('/product');
-                          },
-                        );*/
                         return CategoryItem(
                           _getController.menuModel.value.data!.result![menuIndex].children![index].sId!,
                           'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!,
+                          () {
+                            print('CategoryItem: ${_getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz!}');
+                          },
                         );
                       },
                     ),

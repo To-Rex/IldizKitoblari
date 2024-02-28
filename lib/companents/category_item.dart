@@ -7,8 +7,9 @@ import '../resource/colors.dart';
 class CategoryItem extends StatelessWidget {
   final String id;
   final String title;
+  Function function;
 
-  CategoryItem(this.id, this.title, {super.key});
+  CategoryItem(this.id, this.title, this.function, {super.key});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -16,7 +17,7 @@ class CategoryItem extends StatelessWidget {
     return InkWell(
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       onTap: () {
-
+        function();
       },
       child: Container(
         width: _getController.width.value,
