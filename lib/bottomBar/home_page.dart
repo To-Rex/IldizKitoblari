@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ApiController().getBanner();
+    ApiController().getProduct(1, 'badiiy-kitoblar');
     return Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
@@ -56,6 +57,7 @@ class HomePage extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
+                                if (_getController.bannerModel.value.data != null)
                                 Container(
                                   margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.02),
                                   height: _getController.height.value * 0.173,
@@ -120,6 +122,7 @@ class HomePage extends StatelessWidget {
                                     function: (){
                                   print('Barchasi');
                                 }),
+                                if (_getController.menuModel.value.data != null)
                                 SizedBox(
                                   width: _getController.width.value * 0.93,
                                   child: Wrap(
@@ -192,7 +195,27 @@ class HomePage extends StatelessWidget {
                                 ChildItem(title: 'Elektron kitoblar', function: (){
                                   print('Barchasi');
                                 }),
-
+                                //horizontal list
+                                if (_getController.productModel.value.data != null)
+                                  SizedBox(
+                                    height: _getController.height.value * 0.35,
+                                    width: _getController.width.value,
+                                    child: ListView.builder(
+                                      itemCount: _getController.productModel.value.data!.result!.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
+                                          height: _getController.height.value * 0.3,
+                                          width: _getController.width.value * 0.46,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(16),
+                                            color: Theme.of(context).colorScheme.onBackground,
+                                          ),
+                                        );
+                                      }
+                                    ),
+                                  )
                               ],
                             )
                         )
