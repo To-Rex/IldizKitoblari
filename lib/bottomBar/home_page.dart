@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                                   width: _getController.width.value * 0.93,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
-                                    color: Theme.of(context).colorScheme.onBackground,
+                                    color: Theme.of(context).colorScheme.background,
                                   ),
                                   child: CarouselSlider(
                                     options: CarouselOptions(
@@ -75,32 +75,6 @@ class HomePage extends StatelessWidget {
                                       enlargeCenterPage: true,
                                       scrollDirection: Axis.horizontal,
                                     ),
-                                    /*items: _getController.bannerModel.value.data!.result!.map((i) {
-                                      return Builder(
-                                        builder: (BuildContext context) {
-                                          //'uz_UZ' == Get.locale.toString() && i.imageUz != ''
-                                          // ? i.imageUz! : 'oz_UZ' == Get.locale.toString() && i.imageOz != ''
-                                          // ? i.imageOz! : 'ru_RU' == Get.locale.toString() && i.imageRu != ''
-                                          // ? i.imageRu! : null)
-
-                                          return Container(
-                                            width: _getController.width.value * 0.93,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(16),
-                                              color: Theme.of(context).colorScheme.onBackground,
-                                              image: DecorationImage(
-                                                image: NetworkImage(
-                                                    'uz_UZ' == Get.locale.toString() && i.imageUz != ''
-                                                        ? i.imageUz! : 'oz_UZ' == Get.locale.toString() && i.imageOz != ''
-                                                        ? i.imageOz! : 'ru_RU' == Get.locale.toString() && i.imageRu != ''
-                                                        ? i.imageRu! : i.image!),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    }).toList(),*/
                                       items: [
                                         for (var i in _getController.bannerModel.value.data!.result!)
                                           if ('uz_UZ' == Get.locale.toString() && i.imageUz != '')
