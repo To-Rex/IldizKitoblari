@@ -57,10 +57,9 @@ class HomePage extends StatelessWidget {
                             child: Column(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.02
-                                  ),
+                                  margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.02),
                                   height: _getController.height.value * 0.173,
-                                  width: _getController.width.value * 0.93,
+                                  width: _getController.width.value,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
                                     color: Theme.of(context).colorScheme.background,
