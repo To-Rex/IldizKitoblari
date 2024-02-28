@@ -201,16 +201,82 @@ class HomePage extends StatelessWidget {
                                     height: _getController.height.value * 0.35,
                                     width: _getController.width.value,
                                     child: ListView.builder(
+                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03),
                                       itemCount: _getController.productModel.value.data!.result!.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return Container(
-                                          margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
-                                          height: _getController.height.value * 0.3,
-                                          width: _getController.width.value * 0.46,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(16),
-                                            color: Theme.of(context).colorScheme.onBackground,
+                                          margin: EdgeInsets.only(
+                                              top: _getController.height.value * 0.007,
+                                              left: _getController.width.value * 0.013,
+                                              right: _getController.width.value * 0.013),
+                                          width: _getController.width.value * 0.44,
+                                          //height: _getController.height.value * 0.25,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: _getController.width.value * 0.44,
+                                                height: _getController.height.value * 0.205,
+                                                margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(5),
+                                                  color: Theme.of(context).colorScheme.background,
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(_getController.productModel.value.data!.result![index].image!),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                child: Text(
+                                                  _getController.productModel.value.data!.result![index].slug!.toString(),
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                    fontSize: _getController.width.value * 0.045,
+                                                    color: Theme.of(context).colorScheme.onBackground,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: _getController.height.value * 0.006),
+                                              SizedBox(
+                                                child: Text(
+                                                  _getController.productModel.value.data!.result![index].menuSlug!.toString(),
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                    fontSize: _getController.width.value * 0.04,
+                                                    color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: _getController.height.value * 0.01),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    '${_getController.productModel.value.data!.result![index].price!} so\'m',
+                                                    style: TextStyle(
+                                                      fontSize: _getController.width.value * 0.04,
+                                                      color: Theme.of(context).colorScheme.error,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  const Spacer(),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      print('Korzinka');
+                                                    },
+                                                    child: Icon(
+                                                      //Icons.add_shopping_cart,
+                                                      TablerIcons.shopping_cart_plus,
+                                                      size: _getController.width.value * 0.06,
+                                                      color: Theme.of(context).colorScheme.onBackground,
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            ],
                                           ),
                                         );
                                       }
