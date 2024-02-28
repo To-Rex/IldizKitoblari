@@ -12,6 +12,7 @@ import 'package:ildiz/models/me_models.dart';
 import '../models/banner_model.dart';
 import '../models/login_model.dart';
 import '../models/menu_model.dart';
+import '../models/product_model.dart';
 
 class GetController extends GetxController {
   var height = 0.0.obs;
@@ -52,6 +53,7 @@ class GetController extends GetxController {
   var meModel = MeModel().obs;
   var menuModel = MenuModel().obs;
   var bannerModel = BannerModel().obs;
+  var productModel = ProductModel().obs;
 
   //methods
   void changeLoginModel(LoginModel loginModel) {
@@ -68,6 +70,10 @@ class GetController extends GetxController {
 
   void changeBannerModel(BannerModel bannerModel) {
     this.bannerModel.value = bannerModel;
+  }
+
+  void changeProductModel(ProductModel productModel) {
+    this.productModel.value = productModel;
   }
 
   //companents

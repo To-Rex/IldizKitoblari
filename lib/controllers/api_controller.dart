@@ -8,6 +8,7 @@ import 'package:ildiz/models/login_model.dart';
 import '../models/banner_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_model.dart';
+import '../models/product_model.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/sample_page.dart';
@@ -30,6 +31,8 @@ class ApiController extends GetxController {
   static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
   //https://ildizkitoblari.uz/api/v1/banner/list?limit=6&page=1&type=1
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6&page=1&type=1';
+  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&menu_slug=badiiy-kitoblar
+  static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
 
 
   //show toast message
@@ -240,6 +243,20 @@ class ApiController extends GetxController {
     getMenu();
     if (response.statusCode == 200) {
       _getController.changeBannerModel(BannerModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getProduct() async {
+    var response = await get(Uri.parse(_product),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    print('product: ${response.body}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
