@@ -195,7 +195,9 @@ class HomePage extends StatelessWidget {
                                           for (var i in _getController.menuModel.value.data!.result!)
                                             InkWell(
                                               onTap: () {
-                                                Get.to(() => CategoryPage());
+                                                Get.to(() => CategoryPage(
+                                                  menuIndex: _getController.menuModel.value.data!.result!.indexOf(i),
+                                                ));
                                               },
                                               child: Chip(
                                                 visualDensity: VisualDensity.compact,
