@@ -258,7 +258,7 @@ class HomePage extends StatelessWidget {
                                                     '${_getController.productModel.value.data!.result![index].price!} so\'m',
                                                     style: TextStyle(
                                                       fontSize: _getController.width.value * 0.04,
-                                                      color: Theme.of(context).colorScheme.error,
+                                                      color: AppColors.primaryColor2,
                                                       fontWeight: FontWeight.w600,
                                                     ),
                                                   ),
@@ -268,7 +268,6 @@ class HomePage extends StatelessWidget {
                                                       print('Korzinka');
                                                     },
                                                     child: Icon(
-                                                      //Icons.add_shopping_cart,
                                                       TablerIcons.shopping_cart_plus,
                                                       size: _getController.width.value * 0.06,
                                                       color: Theme.of(context).colorScheme.onBackground,
