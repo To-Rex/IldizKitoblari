@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
+import 'package:ildiz/pages/home/category_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import '../companents/child_item.dart';
 import '../companents/search_fild.dart';
@@ -124,7 +125,7 @@ class HomePage extends StatelessWidget {
                                     function: (){
                                   print('Barchasi');
                                 }),
-                                if (_getController.menuModel.value.data != null)
+                                /*if (_getController.menuModel.value.data != null)
                                 SizedBox(
                                   width: _getController.width.value * 0.93,
                                   child: Wrap(
@@ -166,15 +167,6 @@ class HomePage extends StatelessWidget {
                                               side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                                               backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                               labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04),
-                                              /*onDeleted: _getController.indexSub.value == _getController.menuModel.value.data!.result![_getController.fullCheck.value ? _getController.fullIndex.value : _getController.index.value].children!.indexOf(i) ? () {
-                                                _getController.indexSub.value = 0;
-                                              } : null,
-                                              deleteButtonTooltipMessage: 'Belgilash',
-                                              deleteIcon: Icon(
-                                                TablerIcons.check,
-                                                size: _getController.width.value * 0.05,
-                                                color: Theme.of(context).colorScheme.onBackground,
-                                              ),*/
                                             )
                                           )
                                       else if (_getController.fullCheck.isTrue && _getController.menuModel.value.data!.result![_getController.fullIndex.value].children == null)
@@ -193,7 +185,36 @@ class HomePage extends StatelessWidget {
                                         ),
                                     ],
                                   )
-                                ),
+                                ),*/
+                                if (_getController.menuModel.value.data != null)
+                                  SizedBox(
+                                      width: _getController.width.value * 0.93,
+                                      child: Wrap(
+                                        spacing: _getController.width.value * 0.02,
+                                        children: [
+                                          for (var i in _getController.menuModel.value.data!.result!)
+                                            InkWell(
+                                              onTap: () {
+                                                Get.to(() => CategoryPage());
+                                              },
+                                              child: Chip(
+                                                visualDensity: VisualDensity.compact,
+                                                label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
+                                                padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01,
+                                                    vertical: _getController.height.value * 0.007),
+                                                labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                                side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
+                                                backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                                                labelStyle: TextStyle(
+                                                    color: Theme.of(context).colorScheme.onBackground,
+                                                    fontSize: _getController.width.value * 0.04,
+                                                    fontWeight: FontWeight.w400
+                                                ),
+                                              ),
+                                            ),
+                                        ],
+                                      )
+                                  ),
                                 ChildItem(title: 'Elektron kitoblar', function: (){
                                   print('Barchasi');
                                 }),

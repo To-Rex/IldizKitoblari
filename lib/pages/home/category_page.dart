@@ -11,7 +11,25 @@ class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Category'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        toolbarHeight: _getController.height.value * 0.04,
+        toolbarTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onBackground,
+          fontSize: _getController.width.value * 0.05,
+          fontWeight: FontWeight.w600,
+        ),
+        title: Text('Kategoriya'.tr),
+        centerTitle: false,
+        leading: IconButton(
+          icon: Icon(
+              Icons.arrow_back,
+              color: Theme.of(context).colorScheme.onBackground,
+              size: _getController.width.value * 0.06,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
       ),
       body: Center(
         child: Text('Category Page'),
