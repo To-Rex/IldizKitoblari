@@ -193,6 +193,7 @@ class HomePage extends StatelessWidget {
                                 ChildItem(title: 'Elektron kitoblar', function: (){
                                   print('Barchasi');
                                 }),
+
                               ],
                             )
                         )
