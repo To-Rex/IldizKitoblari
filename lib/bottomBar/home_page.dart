@@ -13,6 +13,8 @@ class HomePage extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
 
+  HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     ApiController().getBanner();
