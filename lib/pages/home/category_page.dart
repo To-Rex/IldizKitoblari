@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../companents/app_bar.dart';
+import '../../companents/category_item.dart';
 import '../../controllers/get_controller.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -478,12 +479,16 @@ class CategoryPage extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: _getController.menuModel.value.data!.result?[menuIndex].children!.length,
                       itemBuilder: (context, index) {
-                        return ListTile(
+                        /*return ListTile(
                           title: Text('uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!),
                           onTap: () {
                             _getController.indexSub.value = index;
                             Get.toNamed('/product');
                           },
+                        );*/
+                        return CategoryItem(
+                          _getController.menuModel.value.data!.result![menuIndex].children![index].sId!,
+                          'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!,
                         );
                       },
                     ),
