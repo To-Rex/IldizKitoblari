@@ -219,7 +219,6 @@ class ApiController extends GetxController {
   //home
   //------------------------------------------------------------------------------------------------
   Future<void> getMenu() async {
-    //'Accept-Language': 'uz',
     var response = await get(Uri.parse(_menu),
       headers: {
         'Accept-Language': Get.locale!.languageCode,

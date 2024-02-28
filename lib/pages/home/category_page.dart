@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import '../../companents/app_bar.dart';
 import '../../controllers/get_controller.dart';
 
+
 class CategoryPage extends StatelessWidget {
-  CategoryPage({super.key});
+  var menuIndex;
+  CategoryPage({super.key, this.menuIndex});
 
   final GetController _getController = Get.put(GetController());
 

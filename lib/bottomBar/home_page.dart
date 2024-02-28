@@ -200,16 +200,11 @@ class HomePage extends StatelessWidget {
                                               child: Chip(
                                                 visualDensity: VisualDensity.compact,
                                                 label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
-                                                padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01,
-                                                    vertical: _getController.height.value * 0.007),
+                                                padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.007),
                                                 labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                                 side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                                                 backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                                labelStyle: TextStyle(
-                                                    color: Theme.of(context).colorScheme.onBackground,
-                                                    fontSize: _getController.width.value * 0.04,
-                                                    fontWeight: FontWeight.w400
-                                                ),
+                                                labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400),
                                               ),
                                             ),
                                         ],
