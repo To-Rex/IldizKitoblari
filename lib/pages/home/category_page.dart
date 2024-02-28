@@ -15,7 +15,6 @@ class CategoryPage extends StatelessWidget {
         preferredSize: Size.fromHeight(_getController.height.value * 0.06),
         child: MyAppBar(title: 'Kategoriya'),
       ),
-
       body: Center(
         child: Text('Category Page'),
       ),
