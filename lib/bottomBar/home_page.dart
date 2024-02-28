@@ -230,7 +230,7 @@ class HomePage extends StatelessWidget {
                                               ),
                                               SizedBox(
                                                 child: Text(
-                                                  _getController.productModel.value.data!.result![index].slug!.toString(),
+                                                  _getController.productModel.value.data!.result![index].name!.toString(),
                                                   maxLines: 1,
                                                   style: TextStyle(
                                                     fontSize: _getController.width.value * 0.045,

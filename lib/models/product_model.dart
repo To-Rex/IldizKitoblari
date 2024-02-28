@@ -50,6 +50,7 @@ class Data {
 
 class Result {
   String? sId;
+  String? name;
   String? slug;
   int? price;
   int? sale;
@@ -63,6 +64,7 @@ class Result {
 
   Result(
       {this.sId,
+        this.name,
         this.slug,
         this.price,
         this.sale,
@@ -76,6 +78,7 @@ class Result {
 
   Result.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    name = json['name'];
     slug = json['slug'];
     price = json['price'];
     sale = json['sale'];
@@ -91,6 +94,7 @@ class Result {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
+    data['name'] = name;
     data['slug'] = slug;
     data['price'] = price;
     data['sale'] = sale;
