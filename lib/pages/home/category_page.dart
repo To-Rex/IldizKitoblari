@@ -27,14 +27,7 @@ class CategoryPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CategoryItem(
                   _getController.menuModel.value.data!.result![menuIndex].children![index].sId!,
-                  'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!,
-                      () {
-                    print('CategoryItem: ${_getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz!}');
-                    Get.to(() => DetailPage(
-                        title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!,
-                        menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!)
-                    );
-                  },
+                  'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, () {Get.to(() => DetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!));},
                 );
               },
             ),
