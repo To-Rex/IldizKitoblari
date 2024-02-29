@@ -25,9 +25,7 @@ class HomePage extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Container(
               width: _getController.width.value,
-              decoration: const BoxDecoration(
-                color: AppColors.backgroundApp,
-              ),
+              decoration: const BoxDecoration(color: AppColors.backgroundApp),
               child: Obx(() => Column(
                 children: [
                   SizedBox(
@@ -53,13 +51,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Container(
                     width: _getController.width.value,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(18),
-                        topRight: Radius.circular(18),
-                      ),
-                    ),
+                    decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
                     child:Column(
                       children: [
                         if (_getController.bannerModel.value.data != null)
