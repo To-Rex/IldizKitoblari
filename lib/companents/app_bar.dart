@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../controllers/get_controller.dart';
 
 class MyAppBar extends StatefulWidget {
-
   String title;
+
   MyAppBar({Key? key, required this.title}) : super(key: key);
 
   @override

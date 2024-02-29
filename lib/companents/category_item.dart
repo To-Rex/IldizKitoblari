@@ -22,7 +22,10 @@ class CategoryItem extends StatelessWidget {
       child: Container(
         width: _getController.width.value,
         height: _getController.width.value * 0.15,
-        margin: EdgeInsets.symmetric(vertical: _getController.width.value * 0.01, horizontal: _getController.width.value * 0.03),
+        margin: EdgeInsets.symmetric(
+            vertical: _getController.width.value * 0.01,
+            horizontal: _getController.width.value * 0.03
+        ),
         padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.04),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -42,8 +45,10 @@ class CategoryItem extends StatelessWidget {
                 child: Icon(Icons.category, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground),
               ),
             ),
-            Text(title, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400)),
-            const Spacer(),
+            Expanded(child: Text(
+                title,
+                maxLines: 2,
+                style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400))),
             Icon(Icons.arrow_forward, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground),
           ],
         ),
