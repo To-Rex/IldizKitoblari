@@ -19,7 +19,7 @@ class DetailPage extends StatelessWidget {
         preferredSize: Size.fromHeight(_getController.height.value * 0.06),
         child: MyAppBar(title: title),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Detail Page'),
       ),
     );
