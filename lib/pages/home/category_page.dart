@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/pages/home/detail_page.dart';
 import '../../companents/app_bar.dart';
 import '../../companents/category_item.dart';
 import '../../controllers/get_controller.dart';
@@ -483,6 +484,7 @@ class CategoryPage extends StatelessWidget {
                           'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!,
                           () {
                             print('CategoryItem: ${_getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz!}');
+                            Get.to(() => DetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!));
                           },
                         );
                       },
