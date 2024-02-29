@@ -3,16 +3,11 @@ import 'package:get/get.dart';
 
 import '../controllers/get_controller.dart';
 
-class MyAppBar extends StatefulWidget {
+class MyAppBar extends StatelessWidget {
   String title;
 
   MyAppBar({Key? key, required this.title}) : super(key: key);
 
-  @override
-  State<MyAppBar> createState() => _MyAppBarState();
-}
-
-class _MyAppBarState extends State<MyAppBar> {
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -37,7 +32,7 @@ class _MyAppBarState extends State<MyAppBar> {
                   Get.back();
                 },
               ),
-              Text(widget.title.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.048, fontWeight: FontWeight.w600)),
+              Text(title.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.048, fontWeight: FontWeight.w600)),
             ],
           )
         ],

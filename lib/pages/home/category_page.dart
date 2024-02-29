@@ -15,11 +15,6 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: PreferredSize(
-        preferredSize: Size.fromHeight(_getController.height.value * 0.06),
-        child: MyAppBar(title: 'Kategoriya'),
-      ),*/
-
       body: Obx(() => _getController.menuModel.value.data!.result![menuIndex].children == null
                 ? Center(child: Text('Ma\'lumotlar yo\'q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)))
                 : Column(
@@ -27,6 +22,7 @@ class CategoryPage extends StatelessWidget {
           MyAppBar(title: 'Kategoriya'),
           Expanded(
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: _getController.menuModel.value.data!.result?[menuIndex].children!.length,
               itemBuilder: (context, index) {
                 return CategoryItem(
