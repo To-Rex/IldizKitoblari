@@ -83,7 +83,6 @@ class DetailPage extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
                 child: GridView.builder(
-
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.7,
