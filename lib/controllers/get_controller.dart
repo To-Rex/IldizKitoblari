@@ -28,6 +28,7 @@ class GetController extends GetxController {
   var fullIndex = 0.obs;
   var indexSub = 0.obs;
   var page = 0.obs;
+  var productModelLength = 0.obs;
   var passwordCheck = false.obs;
 
   void setHeightWidth(BuildContext context) {
@@ -80,11 +81,21 @@ class GetController extends GetxController {
 
   void changeProductModel(ProductModel productModel) {
     this.productModel.value = productModel;
+    productModelLength.value = productModel.data!.result!.length;
   }
 
   //add productModel to productModel
   void addProductModel(ProductModel productModel) {
     this.productModel.value.data!.result!.addAll(productModel.data!.result!);
+    productModelLength.value = productModel.data!.result!.length;
+  }
+
+  //clear productModel
+  void clearProductModel() {
+    if (productModel.value.data != null) {
+      productModel.value.data!.result!.clear();
+      productModelLength.value = 0;
+    }
   }
 
   //companents

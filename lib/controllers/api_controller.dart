@@ -253,12 +253,16 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    print('product: ${response.body}');
+    //print('product: ${response.body}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-      if (!add) {
+      print('added: $add');
+      if (add==false) {
+        _getController.clearProductModel();
         _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        print(_getController.productModel.value.data!.result!.length);
       }else{
         _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        print(_getController.productModel.value.data!.result!.length);
       }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);

@@ -18,6 +18,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getController.page.value = 1;
     ApiController().getProduct(1, menuSlug, false);
     return Scaffold(
         appBar: AppBar(
@@ -57,33 +58,9 @@ class DetailPage extends StatelessWidget {
                     ),
                   ],
                 )),
-            /*Expanded(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.7,
-                      crossAxisSpacing: _getController.width.value * 0.03,
-                      mainAxisExtent: _getController.height.value * 0.33,
-                      mainAxisSpacing: _getController.height.value * 0.01,
-                    ),
-                    itemCount: _getController.productModel.value.data!.result!.length,
-                    itemBuilder: (context, index) {
-                      return ProductItem(
-                        id: _getController.productModel.value.data!.result![index].sId!,
-                        title: _getController.productModel.value.data!.result![index].name,
-                        deck: _getController.productModel.value.data!.result![index].slug,
-                        imageUrl: _getController.productModel.value.data!.result![index].image,
-                        price: _getController.productModel.value.data!.result![index].price.toString(),
-                      );
-                    },
-                  ),
-                )
-            ),*/
-            Expanded(
-                child: SmartRefresher(
+            Obx(() => _getController.productModel.value.data!.result!.isEmpty
+                ? Expanded(child: Center(child: Text('Ma`lumotlar yo`q!', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600))))
+                : Expanded(child: SmartRefresher(
                     enablePullDown: true,
                     enablePullUp: true,
                     header: const ClassicHeader(),
@@ -94,7 +71,7 @@ class DetailPage extends StatelessWidget {
                           body = const SizedBox();
                         } else if (mode == LoadStatus.loading) {
                           body = const CircularProgressIndicator(
-                            color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                              color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
                         } else if (mode == LoadStatus.failed) {
                           body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
                         } else if (mode == LoadStatus.canLoading) {
@@ -116,8 +93,10 @@ class DetailPage extends StatelessWidget {
                       //_getController.refreshController.loadComplete();
                     },
                     onRefresh: () async {
-                      await Future.delayed(const Duration(milliseconds: 1000));
-                      _getController.refreshController.refreshCompleted();
+                      _getController.page.value = 1;
+                      ApiController().getProduct(1, menuSlug, false).then((value) =>
+                          _getController.refreshController.refreshCompleted()
+                      );
                     },
                     physics: const BouncingScrollPhysics(),
                     controller: _getController.refreshController,
@@ -130,11 +109,10 @@ class DetailPage extends StatelessWidget {
                         mainAxisExtent: _getController.height.value * 0.33,
                         mainAxisSpacing: _getController.height.value * 0.01,
                       ),
-                      itemCount: _getController
-                          .productModel.value.data!.result!.length,
+                      itemCount: _getController.productModelLength.value,
                       itemBuilder: (context, index) {
                         return ProductItem(
-                          id: _getController.productModel.value.data!.result![index].sId!,
+                          id: _getController.productModel.value.data!.result![index].sId.toString(),
                           title: _getController.productModel.value.data!.result![index].name,
                           deck: _getController.productModel.value.data!.result![index].slug,
                           imageUrl: _getController.productModel.value.data!.result![index].image,
@@ -142,6 +120,8 @@ class DetailPage extends StatelessWidget {
                         );
                       },
                     )))
+            ),
+
           ],
         ));
   }
