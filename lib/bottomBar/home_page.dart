@@ -17,7 +17,6 @@ class HomePage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
 
   HomePage({super.key});
-  RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {
@@ -398,13 +397,13 @@ class HomePage extends StatelessWidget {
             ),
             onLoading: () async {
               await Future.delayed(const Duration(milliseconds: 1000));
-              _refreshController.loadComplete();
+              _getController.refreshController.loadComplete();
             },
             onRefresh: () async {
               await Future.delayed(const Duration(milliseconds: 1000));
-              _refreshController.refreshCompleted();
+              _getController.refreshController.loadComplete();
             },
-            controller: _refreshController,
+            controller: _getController.refreshController,
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Container(
