@@ -62,6 +62,11 @@ class DetailPage extends StatelessWidget {
                       ),
                     ],
                   )),
+              if (_getController.productModelLength.value == 0)
+                Expanded(child:
+                Center(child: Text('Ma`lumotlar yo`q!', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600))),
+                ),
+              if (_getController.productModelLength.value != 0)
               Expanded(child: SmartRefresher(
                   enablePullDown: true,
                   enablePullUp: true,
