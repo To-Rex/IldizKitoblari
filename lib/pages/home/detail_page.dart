@@ -108,11 +108,12 @@ class DetailPage extends StatelessWidget {
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.7,
-                      crossAxisSpacing: _getController.width.value * 0.03,
+                      childAspectRatio: 0.07,
                       mainAxisExtent: _getController.height.value * 0.33,
-                      mainAxisSpacing: _getController.height.value * 0.01,
+                      mainAxisSpacing: _getController.height.value * 0.015,
+                      crossAxisSpacing: _getController.width.value * 0.03,
                     ),
+                    padding: EdgeInsets.only(left: _getController.width.value * 0.025, right: _getController.width.value * 0.025, bottom: _getController.height.value * 0.02),
                     itemCount: _getController.productModelLength.value,
                     itemBuilder: (context, index) {
                       return ProductItem(
