@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import '../../companents/app_bar.dart';
@@ -34,45 +36,36 @@ class DetailPage extends StatelessWidget {
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.04, vertical: _getController.width.value * 0.02),
+              padding: EdgeInsets.only(
+                left: _getController.width.value * 0.04,
+                right: _getController.width.value * 0.01,
+              ),
               child: Row(
                 children: [
-                  Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),
-                  const Spacer(),
+                  Expanded(child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      width: _getController.width.value * 0.1,
-                      height: _getController.width.value * 0.1,
+                      width: _getController.width.value * 0.05,
+                      height: _getController.width.value * 0.05,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
+                        //borderRadius: BorderRadius.circular(100),
+                        shape: BoxShape.circle,
                         color: Theme.of(context).colorScheme.background,
                       ),
-                      child: Center(
-                        child: Icon(
-                          Icons.filter_alt,
-                          size: _getController.width.value * 0.06,
-                          color: Theme.of(context).colorScheme.onBackground,
-                        ),
-                      ),
-                    ),
+                      child: SvgPicture.asset(
+                        'assets/icon/sort.svg',
+                        colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn),
+                      )
+                    )
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: _getController.width.value * 0.1,
-                      height: _getController.width.value * 0.1,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Theme.of(context).colorScheme.background,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.settings,
-                          size: _getController.width.value * 0.06,
-                          color: Theme.of(context).colorScheme.onBackground,
-                        ),
-                      ),
+
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      TablerIcons.adjustments_horizontal,
+                      size: _getController.width.value * 0.06,
+                      color: Theme.of(context).colorScheme.onBackground,
                     ),
                   ),
                 ],
