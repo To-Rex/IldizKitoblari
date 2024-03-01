@@ -31,98 +31,104 @@ class DetailPage extends StatelessWidget {
                 Get.back();
               },
             )),
-        body: Column(
-          children: [
-            Padding(
-                padding: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
-                child: Row(
-                  children: [
-                    Expanded(child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05,fontWeight: FontWeight.w500))),
-                    InkWell(
-                        onTap: () {},
-                        child: Container(
-                            width: _getController.width.value * 0.05,
-                            height: _getController.width.value * 0.05,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.background,
-                            ),
-                            child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        TablerIcons.adjustments_horizontal,
-                        size: _getController.width.value * 0.06,
-                        color: Theme.of(context).colorScheme.onBackground,
+        body: Obx(() => Column(
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
+                  child: Row(
+                    children: [
+                      Expanded(child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05,fontWeight: FontWeight.w500))),
+                      InkWell(
+                          onTap: () {},
+                          child: Container(
+                              width: _getController.width.value * 0.05,
+                              height: _getController.width.value * 0.05,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.background,
+                              ),
+                              child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
+                      IconButton(
+                        onPressed: () {
+                          _getController.addPage();
+                          ApiController().getProduct(
+                              _getController.page.value,
+                              menuSlug, true);
+                        },
+                        icon: Icon(
+                          TablerIcons.adjustments_horizontal,
+                          size: _getController.width.value * 0.06,
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
                       ),
-                    ),
-                  ],
-                )),
-            Obx(() => _getController.productModel.value.data!.result!.isEmpty
-                ? Expanded(child: Center(child: Text('Ma`lumotlar yo`q!', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600))))
-                : Expanded(child: SmartRefresher(
-                    enablePullDown: true,
-                    enablePullUp: true,
-                    header: const ClassicHeader(),
-                    footer: CustomFooter(
-                      builder: (BuildContext context, LoadStatus? mode) {
-                        Widget body;
-                        if (mode == LoadStatus.idle) {
-                          body = const SizedBox();
-                        } else if (mode == LoadStatus.loading) {
-                          body = const CircularProgressIndicator(
-                              color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
-                        } else if (mode == LoadStatus.failed) {
-                          body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-                        } else if (mode == LoadStatus.canLoading) {
-                          body = const SizedBox();
-                        } else {
-                          body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));
-                        }
-                        return SizedBox(
-                          height: _getController.height.value * 0.1,
-                          child: Center(child: body),
-                        );
-                      },
-                    ),
-                    onLoading: () async {
-                      print('onLoading');
-                      ApiController().getProduct(_getController.page.value + 1, menuSlug,true).then((value) =>
-                          _getController.refreshController.loadComplete()
-                      );
-                      //_getController.refreshController.loadComplete();
-                    },
-                    onRefresh: () async {
-                      _getController.page.value = 1;
-                      ApiController().getProduct(1, menuSlug, false).then((value) =>
-                          _getController.refreshController.refreshCompleted()
+                    ],
+                  )),
+              Expanded(child: SmartRefresher(
+                  enablePullDown: true,
+                  enablePullUp: true,
+                  header: const ClassicHeader(),
+                  footer: CustomFooter(
+                    builder: (BuildContext context, LoadStatus? mode) {
+                      Widget body;
+                      if (mode == LoadStatus.idle) {
+                        body = const SizedBox();
+                      } else if (mode == LoadStatus.loading) {
+                        body = const CircularProgressIndicator(
+                            color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                      } else if (mode == LoadStatus.failed) {
+                        body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
+                      } else if (mode == LoadStatus.canLoading) {
+                        body = const SizedBox();
+                      } else {
+                        body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));
+                      }
+                      return SizedBox(
+                        height: _getController.height.value * 0.1,
+                        child: Center(child: body),
                       );
                     },
-                    physics: const BouncingScrollPhysics(),
-                    controller: _getController.refreshController,
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.7,
-                        crossAxisSpacing: _getController.width.value * 0.03,
-                        mainAxisExtent: _getController.height.value * 0.33,
-                        mainAxisSpacing: _getController.height.value * 0.01,
-                      ),
-                      itemCount: _getController.productModelLength.value,
-                      itemBuilder: (context, index) {
-                        return ProductItem(
-                          id: _getController.productModel.value.data!.result![index].sId.toString(),
-                          title: _getController.productModel.value.data!.result![index].name,
-                          deck: _getController.productModel.value.data!.result![index].slug,
-                          imageUrl: _getController.productModel.value.data!.result![index].image,
-                          price: _getController.productModel.value.data!.result![index].price.toString(),
-                        );
-                      },
-                    )))
-            ),
+                  ),
+                  onLoading: () async {
+                    print('onLoading');
+                    ApiController().getProduct(_getController.page.value + 1, menuSlug,true).then((value) =>
+                        _getController.refreshController.loadComplete()
+                    );
+                    //_getController.refreshController.loadComplete();
+                    print(_getController.productModelLength.value);
+                  },
+                  onRefresh: () async {
+                    _getController.page.value = 1;
+                    ApiController().getProduct(1, menuSlug, false).then((value) =>
+                        _getController.refreshController.refreshCompleted()
+                    );
+                    print(_getController.productModelLength.value);
+                  },
+                  physics: const BouncingScrollPhysics(),
+                  controller: _getController.refreshController,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.7,
+                      crossAxisSpacing: _getController.width.value * 0.03,
+                      mainAxisExtent: _getController.height.value * 0.33,
+                      mainAxisSpacing: _getController.height.value * 0.01,
+                    ),
+                    itemCount: _getController.productModelLength.value,
+                    itemBuilder: (context, index) {
+                      return ProductItem(
+                        id: _getController.productModel.value.data!.result![index].sId!,
+                        title: _getController.productModel.value.data!.result![index].name!,
+                        deck: _getController.productModel.value.data!.result![index].slug!,
+                        price: _getController.productModel.value.data!.result![index].price!.toString(),
+                        imageUrl: _getController.productModel.value.data!.result![index].image!,
+                      );
+                    },
+                  )
+              ))
 
-          ],
-        ));
+            ],
+          ),
+        )
+    );
   }
 }

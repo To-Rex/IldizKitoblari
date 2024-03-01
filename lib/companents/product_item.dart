@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
    String? id;
    String? title;
    String? deck;
@@ -14,6 +14,11 @@ class ProductItem extends StatelessWidget {
 
   ProductItem({Key? key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl}) : super(key: key);
 
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -32,16 +37,16 @@ class ProductItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               color: Theme.of(context).colorScheme.background,
-              image: DecorationImage(image: NetworkImage(imageUrl!), fit: BoxFit.cover),
+              image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
             ),
           ),
           SizedBox(child: Text(
-            title!,
+            widget.title!,
             maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
           SizedBox(height: _getController.height.value * 0.006),
           SizedBox(
             child: Text(
-              deck!,
+              widget.deck!,
               maxLines: 1,
               style: TextStyle(
                 fontSize: _getController.width.value * 0.04,
@@ -54,7 +59,7 @@ class ProductItem extends StatelessWidget {
           Row(
             children: [
               Expanded(child: Text(
-                '$price so`m',
+                '${widget.price} so`m',
                 style: TextStyle(
                   fontSize: _getController.width.value * 0.04,
                   color: AppColors.primaryColor2,

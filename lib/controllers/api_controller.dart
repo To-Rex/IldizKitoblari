@@ -32,7 +32,7 @@ class ApiController extends GetxController {
   //https://ildizkitoblari.uz/api/v1/banner/list?limit=6&page=1&type=1
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6&page=1&type=1';
   //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&menu_slug=badiiy-kitoblar
-  static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
+  static const String _product = '$_baseUrl/api/v1/product/list?limit=1';
 
 
   //show toast message
@@ -253,15 +253,17 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    //print('product: ${response.body}');
+    print('product: ${response.body}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       print('added: $add');
       if (add==false) {
         _getController.clearProductModel();
         _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
         print(_getController.productModel.value.data!.result!.length);
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       }else{
         _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
         print(_getController.productModel.value.data!.result!.length);
       }
     } else {

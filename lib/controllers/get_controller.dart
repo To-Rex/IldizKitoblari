@@ -81,21 +81,27 @@ class GetController extends GetxController {
 
   void changeProductModel(ProductModel productModel) {
     this.productModel.value = productModel;
-    productModelLength.value = productModel.data!.result!.length;
   }
 
-  //add productModel to productModel
+  //add productModel to productModel list
   void addProductModel(ProductModel productModel) {
     this.productModel.value.data!.result!.addAll(productModel.data!.result!);
-    productModelLength.value = productModel.data!.result!.length;
   }
 
   //clear productModel
   void clearProductModel() {
     if (productModel.value.data != null) {
-      productModel.value.data!.result!.clear();
       productModelLength.value = 0;
+      productModel.value.data!.result!.clear();
     }
+  }
+
+  void addPage() {
+    page.value++;
+  }
+  //productModel length
+  void changeProductModelLength(int length) {
+    productModelLength.value = length;
   }
 
   //companents
