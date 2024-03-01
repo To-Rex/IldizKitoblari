@@ -18,7 +18,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getProduct(1, menuSlug);
+    ApiController().getProduct(1, menuSlug, false);
     return Scaffold(
         appBar: AppBar(
             title: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),
@@ -109,9 +109,11 @@ class DetailPage extends StatelessWidget {
                       },
                     ),
                     onLoading: () async {
-                      await Future.delayed(const Duration(milliseconds: 1000));
                       print('onLoading');
-                      _getController.refreshController.loadComplete();
+                      ApiController().getProduct(_getController.page.value + 1, menuSlug,true).then((value) =>
+                          _getController.refreshController.loadComplete()
+                      );
+                      //_getController.refreshController.loadComplete();
                     },
                     onRefresh: () async {
                       await Future.delayed(const Duration(milliseconds: 1000));

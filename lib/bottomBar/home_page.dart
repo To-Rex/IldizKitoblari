@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ApiController().getBanner();
-    ApiController().getProduct(1, 'badiiy-kitoblar');
+    ApiController().getProduct(1, 'badiiy-kitoblar',false);
     /*return Scaffold(
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),

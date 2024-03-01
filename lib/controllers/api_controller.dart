@@ -247,7 +247,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getProduct(page, menuSlug) async {
+  Future<void> getProduct(page, menuSlug,bool add) async {
     var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
@@ -255,7 +255,11 @@ class ApiController extends GetxController {
     );
     print('product: ${response.body}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-      _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+      if (!add) {
+        _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+      }else{
+        _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+      }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
