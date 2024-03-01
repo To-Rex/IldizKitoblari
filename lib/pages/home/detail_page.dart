@@ -127,7 +127,7 @@ class DetailPage extends StatelessWidget {
                         price: _getController.productModel.value.data!.result![index].price!.toString(),
                         imageUrl: _getController.productModel.value.data!.result![index].image!,
                       );
-                    },
+                    }
                   )
               ))
 
