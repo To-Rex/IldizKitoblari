@@ -53,15 +53,14 @@ class ProductItem extends StatelessWidget {
           SizedBox(height: _getController.height.value * 0.01),
           Row(
             children: [
-              Text(
+              Expanded(child: Text(
                 '$price so`m',
                 style: TextStyle(
                   fontSize: _getController.width.value * 0.04,
                   color: AppColors.primaryColor2,
                   fontWeight: FontWeight.w600,
                 ),
-              ),
-              const Spacer(),
+              )),
               InkWell(
                 onTap: () {
                   print('Korzinka');
