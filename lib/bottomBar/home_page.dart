@@ -371,15 +371,7 @@ class HomePage extends StatelessWidget {
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
-            header:  CustomHeader(
-              builder: (BuildContext context, RefreshStatus? mode) {
-                return Container(
-                  height: 80.0,
-                  child: Center(
-                    child: Image.asset('assets/images/men.png', width: 100.0, height: 100.0),
-                  ),
-                );
-              },),
+            header: const ClassicHeader(),
             footer: CustomFooter(
               builder: (BuildContext context, LoadStatus? mode) {
                 Widget body;
