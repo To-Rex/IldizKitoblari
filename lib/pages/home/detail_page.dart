@@ -18,7 +18,6 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _getController.page.value = 1;
     ApiController().getProduct(1, menuSlug, false);
     return Scaffold(
         appBar: AppBar(
