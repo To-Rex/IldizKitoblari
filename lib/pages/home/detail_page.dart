@@ -110,12 +110,14 @@ class DetailPage extends StatelessWidget {
                     ),
                     onLoading: () async {
                       await Future.delayed(const Duration(milliseconds: 1000));
+                      print('onLoading');
                       _getController.refreshController.loadComplete();
                     },
                     onRefresh: () async {
                       await Future.delayed(const Duration(milliseconds: 1000));
                       _getController.refreshController.refreshCompleted();
                     },
+                    physics: const BouncingScrollPhysics(),
                     controller: _getController.refreshController,
                     child: GridView.builder(
                       shrinkWrap: true,
