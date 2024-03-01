@@ -32,7 +32,7 @@ class ApiController extends GetxController {
   //https://ildizkitoblari.uz/api/v1/banner/list?limit=6&page=1&type=1
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6&page=1&type=1';
   //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&menu_slug=badiiy-kitoblar
-  static const String _product = '$_baseUrl/api/v1/product/list?limit=1';
+  static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
 
 
   //show toast message
