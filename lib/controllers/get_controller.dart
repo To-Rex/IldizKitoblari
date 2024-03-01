@@ -8,6 +8,7 @@ import 'package:ildiz/bottomBar/home_page.dart';
 import 'package:ildiz/bottomBar/library_page.dart';
 import 'package:ildiz/bottomBar/shop_page.dart';
 import 'package:ildiz/models/me_models.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../models/banner_model.dart';
 import '../models/login_model.dart';
@@ -111,4 +112,5 @@ class GetController extends GetxController {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
 
+  final RefreshController refreshController = RefreshController(initialRefresh: false);
 }
