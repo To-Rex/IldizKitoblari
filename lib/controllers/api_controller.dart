@@ -9,6 +9,7 @@ import '../models/banner_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_model.dart';
 import '../models/product_model.dart';
+import '../models/quotos_model.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/sample_page.dart';
@@ -240,7 +241,11 @@ class ApiController extends GetxController {
     print('banner: ${response.body}');
     getMenu();
     if (response.statusCode == 200) {
-      _getController.changeBannerModel(BannerModel.fromJson(jsonDecode(response.body)));
+      if(type == 1){
+        _getController.changeBannerModel(BannerModel.fromJson(jsonDecode(response.body)));
+      }else{
+        _getController.changeQuotesModel(QuotesModel.fromJson(jsonDecode(response.body)));
+      }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

@@ -8,6 +8,7 @@ import 'package:ildiz/bottomBar/home_page.dart';
 import 'package:ildiz/bottomBar/library_page.dart';
 import 'package:ildiz/bottomBar/shop_page.dart';
 import 'package:ildiz/models/me_models.dart';
+import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../models/banner_model.dart';
@@ -61,6 +62,7 @@ class GetController extends GetxController {
   var menuModel = MenuModel().obs;
   var bannerModel = BannerModel().obs;
   var productModel = ProductModel().obs;
+  var quotesModel = QuotesModel().obs;
 
   //methods
   void changeLoginModel(LoginModel loginModel) {
@@ -87,6 +89,11 @@ class GetController extends GetxController {
   void addProductModel(ProductModel productModel) {
     this.productModel.value.data!.result!.addAll(productModel.data!.result!);
   }
+
+  void changeQuotesModel(QuotesModel quotesModel) {
+    this.quotesModel.value = quotesModel;
+  }
+
 
   //clear productModel
   void clearProductModel() {
