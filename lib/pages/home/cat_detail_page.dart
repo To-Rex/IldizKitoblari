@@ -7,6 +7,7 @@ import 'package:ildiz/pages/home/quotes_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
+import 'detail_page.dart';
 
 class CatDetailPage extends StatelessWidget {
   var title;
@@ -125,7 +126,8 @@ class CatDetailPage extends StatelessWidget {
                         price: _getController.productModel.value.data!.result![index].price!.toString(),
                         imageUrl: _getController.productModel.value.data!.result![index].image!,
                         function: () {
-                          Get.to(() => QuotesPage());
+                         // Get.to(() => QuotesPage());
+                          Get.to(() => DetailPage());
                         }
                       );
                     }
