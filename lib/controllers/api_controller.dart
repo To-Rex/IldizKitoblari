@@ -30,8 +30,7 @@ class ApiController extends GetxController {
   //home
   static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
   //https://ildizkitoblari.uz/api/v1/banner/list?limit=6&page=1&type=1
-  static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6&page=1&type=1';
-  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&menu_slug=badiiy-kitoblar
+  static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6';
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
 
 
@@ -232,8 +231,8 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getBanner() async {
-    var response = await get(Uri.parse(_banner),
+  Future<void> getBanner(page, type) async {
+    var response = await get(Uri.parse('$_banner&page=$page&type=$type'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },

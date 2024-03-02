@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getBanner();
+    ApiController().getBanner(1,1);
     ApiController().getProduct(1, 'badiiy-kitoblar',false);
     return Scaffold(
         body: SmartRefresher(
