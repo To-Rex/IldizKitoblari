@@ -10,11 +10,13 @@ class DetailPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
+  DetailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Detail Page',
+          title: const Text('Detail Page',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
           centerTitle: false,
           surfaceTintColor: Colors.transparent,
@@ -24,7 +26,7 @@ class DetailPage extends StatelessWidget {
               Navigator.pop(context);
             },
           )),
-      body: Expanded(
+      body: const Expanded(
           child: Column(
             children: [
               Text('Detail Page'),
