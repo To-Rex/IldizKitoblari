@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
+import 'package:ildiz/pages/home/quotes_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
@@ -123,6 +124,9 @@ class CatDetailPage extends StatelessWidget {
                         deck: _getController.productModel.value.data!.result![index].slug!,
                         price: _getController.productModel.value.data!.result![index].price!.toString(),
                         imageUrl: _getController.productModel.value.data!.result![index].image!,
+                        function: () {
+                          Get.to(() => QuotesPage());
+                        }
                       );
                     }
                   )

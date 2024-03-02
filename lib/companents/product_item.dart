@@ -11,8 +11,9 @@ class ProductItem extends StatefulWidget {
    String? deck;
    String? price;
    String? imageUrl;
+   Function function;
 
-  ProductItem({Key? key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl}) : super(key: key);
+  ProductItem({Key? key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl, required this.function}) : super(key: key);
 
   @override
   State<ProductItem> createState() => _ProductItemState();
@@ -23,63 +24,67 @@ class _ProductItemState extends State<ProductItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: _getController.height.value * 0.007, left: _getController.width.value * 0.013, right: _getController.width.value * 0.013),
-      width: _getController.width.value * 0.44,
-      //height: _getController.height.value * 0.25,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: _getController.width.value * 0.44,
-            height: _getController.height.value * 0.205,
-            margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Theme.of(context).colorScheme.background,
-              image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
-            ),
-          ),
-          SizedBox(child: Text(
-            widget.title!,
-            maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
-          SizedBox(height: _getController.height.value * 0.006),
-          SizedBox(
-            child: Text(
-              widget.deck!,
-              maxLines: 1,
-              style: TextStyle(
-                fontSize: _getController.width.value * 0.04,
-                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                fontWeight: FontWeight.w500,
+    return InkWell(
+      onTap: () {
+        widget.function();
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: _getController.height.value * 0.007, left: _getController.width.value * 0.013, right: _getController.width.value * 0.013),
+        width: _getController.width.value * 0.44,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: _getController.width.value * 0.44,
+              height: _getController.height.value * 0.205,
+              margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Theme.of(context).colorScheme.background,
+                image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
               ),
             ),
-          ),
-          SizedBox(height: _getController.height.value * 0.01),
-          Row(
-            children: [
-              Expanded(child: Text(
-                '${widget.price} so`m',
+            SizedBox(child: Text(
+              widget.title!,
+              maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
+            SizedBox(height: _getController.height.value * 0.006),
+            SizedBox(
+              child: Text(
+                widget.deck!,
+                maxLines: 1,
                 style: TextStyle(
                   fontSize: _getController.width.value * 0.04,
-                  color: AppColors.primaryColor2,
-                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                  fontWeight: FontWeight.w500,
                 ),
-              )),
-              InkWell(
-                onTap: () {
-                  print('Korzinka');
-                },
-                child: Icon(
-                  TablerIcons.shopping_cart_plus,
-                  size: _getController.width.value * 0.06,
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
-              )
-            ],
-          )
-        ],
-      ),
+              ),
+            ),
+            SizedBox(height: _getController.height.value * 0.01),
+            Row(
+              children: [
+                Expanded(child: Text(
+                  '${widget.price} so`m',
+                  style: TextStyle(
+                    fontSize: _getController.width.value * 0.04,
+                    color: AppColors.primaryColor2,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )),
+                InkWell(
+                  onTap: () {
+                    print('Korzinka');
+                  },
+                  child: Icon(
+                    TablerIcons.shopping_cart_plus,
+                    size: _getController.width.value * 0.06,
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      )
     );
   }
 }
