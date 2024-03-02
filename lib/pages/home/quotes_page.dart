@@ -37,9 +37,9 @@ class QuotesPage extends StatelessWidget {
                   builder: (BuildContext context, LoadStatus? mode) {
                     Widget body;
                     if (mode == LoadStatus.idle) {
-                      body = const SizedBox();
+                      body = const CircularProgressIndicator();
                     } else if (mode == LoadStatus.loading) {
-                      body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                      body = const CircularProgressIndicator();
                     } else if (mode == LoadStatus.failed) {
                       body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
                     } else if (mode == LoadStatus.canLoading) {
