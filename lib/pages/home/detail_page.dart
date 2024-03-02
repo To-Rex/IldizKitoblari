@@ -4,7 +4,6 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../companents/app_bar.dart';
 import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
 
@@ -15,6 +14,7 @@ class DetailPage extends StatelessWidget {
   DetailPage({super.key, required this.title, required this.menuSlug});
 
   final GetController _getController = Get.put(GetController());
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,8 @@ class DetailPage extends StatelessWidget {
                 Center(child: Text('Ma`lumotlar yo`q!', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600))),
                 ),
               if (_getController.productModelLength.value != 0)
-              Expanded(child: SmartRefresher(
+              Expanded(
+                  child: SmartRefresher(
                   enablePullDown: true,
                   enablePullUp: true,
                   header: const ClassicHeader(),
@@ -93,22 +94,18 @@ class DetailPage extends StatelessWidget {
                     },
                   ),
                   onLoading: () async {
-                    print('onLoading');
                     ApiController().getProduct(_getController.page.value + 1, menuSlug,true).then((value) =>
-                        _getController.refreshController.loadComplete()
+                        _refreshController.loadComplete()
                     );
-                    //_getController.refreshController.loadComplete();
-                    print(_getController.productModelLength.value);
                   },
                   onRefresh: () async {
                     _getController.page.value = 1;
                     ApiController().getProduct(1, menuSlug, false).then((value) =>
-                        _getController.refreshController.refreshCompleted()
+                        _refreshController.refreshCompleted()
                     );
-                    print(_getController.productModelLength.value);
                   },
                   physics: const BouncingScrollPhysics(),
-                  controller: _getController.refreshController,
+                  controller: _refreshController,
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,

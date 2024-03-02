@@ -15,6 +15,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class HomePage extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   HomePage({super.key});
 
@@ -48,14 +49,12 @@ class HomePage extends StatelessWidget {
               },
             ),
             onLoading: () async {
-              await Future.delayed(const Duration(milliseconds: 1000));
-              _getController.refreshController.loadComplete();
+              _refreshController.loadComplete();
             },
             onRefresh: () async {
-              await Future.delayed(const Duration(milliseconds: 1000));
-              _getController.refreshController.loadComplete();
+              _refreshController.refreshCompleted();
             },
-            controller: _getController.refreshController,
+            controller: _refreshController,
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Container(
