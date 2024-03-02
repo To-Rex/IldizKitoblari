@@ -7,11 +7,11 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
 
-class DetailPage extends StatelessWidget {
+class CatDetailPage extends StatelessWidget {
   var title;
   var menuSlug;
 
-  DetailPage({super.key, required this.title, required this.menuSlug});
+  CatDetailPage({super.key, required this.title, required this.menuSlug});
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);

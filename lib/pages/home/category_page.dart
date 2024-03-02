@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ildiz/pages/home/detail_page.dart';
 import '../../companents/app_bar.dart';
 import '../../companents/category_item.dart';
 import '../../controllers/get_controller.dart';
+import 'cat_detail_page.dart';
 
 class CategoryPage extends StatelessWidget {
   var menuIndex;
@@ -46,7 +46,7 @@ class CategoryPage extends StatelessWidget {
                         _getController.page.value = 1;
                         _getController.productModelLength.value = 0;
                         _getController.clearProductModel();
-                        Get.to(() => DetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!));}
+                        Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!));}
                   );
                 }
             )
