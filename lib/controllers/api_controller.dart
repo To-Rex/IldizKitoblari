@@ -30,9 +30,10 @@ class ApiController extends GetxController {
 
   //home
   static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
-  //https://ildizkitoblari.uz/api/v1/banner/list?limit=6&page=1&type=1
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6';
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
+  //https://ildizkitoblari.uz/api/v1/product/aldanganlar
+  static const String _productDetail = '$_baseUrl/api/v1/product/';
 
 
   //show toast message
@@ -270,6 +271,20 @@ class ApiController extends GetxController {
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
         print(_getController.productModel.value.data!.result!.length);
       }
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getProductDetail(id) async {
+    var response = await get(Uri.parse('$_productDetail$id'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    print('productDetail: ${response.body}');
+    if (response.statusCode == 200) {
+      _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
