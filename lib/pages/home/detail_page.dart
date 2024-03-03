@@ -15,7 +15,9 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getProductDetail('aldanganlar');
+    ApiController().getProductDetail('aldanganlar').then((value) => {
+      print('counts: ${_getController.productDetailModel.value.data?.name?.uz}')
+    });
     return Scaffold(
       appBar: AppBar(
           title: const Text('Detail Page',
