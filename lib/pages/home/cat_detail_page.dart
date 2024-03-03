@@ -52,9 +52,7 @@ class CatDetailPage extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           _getController.addPage();
-                          ApiController().getProduct(
-                              _getController.page.value,
-                              menuSlug, true);
+                          ApiController().getProduct(_getController.page.value, menuSlug, true);
                         },
                         icon: Icon(
                           TablerIcons.adjustments_horizontal,

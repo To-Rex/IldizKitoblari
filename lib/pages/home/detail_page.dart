@@ -776,13 +776,16 @@ class DetailPage extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: _getController.height.value * 0.01),
-                        Text('Tavsif',
+
+                        if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
+                          Text('Tavsif',
                           style: TextStyle(
                             fontSize: _getController.width.value * 0.05,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Html(
+                        if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
+                          Html(
                           style: {
                             'p': Style(
                               fontSize: FontSize(_getController.width.value * 0.04),
@@ -790,7 +793,8 @@ class DetailPage extends StatelessWidget {
                               color: Theme.of(context).colorScheme.onBackground,
                             ),
                           },
-                          data: _getController.productDetailModel.value.data?.content?.uz ?? '',
+                          //data: _getController.productDetailModel.value.data?.content?.uz ?? '',
+                          data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.oz ?? '' : '',
                         ),
                         Text('Mualif haqida',
                           style: TextStyle(
@@ -800,7 +804,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         Container(
                           width: _getController.width.value,
-                          height: _getController.height.value * 0.1,
+                          height: _getController.height.value * 0.09,
                           margin: EdgeInsets.only(
                             top: _getController.height.value * 0.02,
                             bottom: _getController.height.value * 0.02,
@@ -819,7 +823,6 @@ class DetailPage extends StatelessWidget {
                           ),
                           child: Row(
                             children: [
-                              //image and name
                               Container(
                                 width: _getController.width.value * 0.16,
                                 height: _getController.height.value * 0.08,
@@ -831,7 +834,7 @@ class DetailPage extends StatelessWidget {
                                   borderRadius: const BorderRadius.all(Radius.circular(8)),
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                      _getController.productDetailModel.value.data?.simularProducts![0].image ?? '',
+                                      'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].image ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].image ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].image ?? '' : '',
                                     ),
                                     fit: BoxFit.cover,
                                   ),
@@ -842,14 +845,16 @@ class DetailPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(_getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '',
+                                  Text(
+                                    'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : '',
                                     style: TextStyle(
                                       fontSize: _getController.width.value * 0.04,
                                       fontWeight: FontWeight.w500,
                                       color: Theme.of(context).colorScheme.onBackground
                                     ),
                                   ),
-                                  Text('Mualif: ${_getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? ''}',
+                                  Text(
+                                    'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : '',
                                     style: TextStyle(
                                       fontSize: _getController.width.value * 0.04,
                                       fontWeight: FontWeight.w400,
@@ -887,12 +892,12 @@ class DetailPage extends StatelessWidget {
                               return ProductItem(
                                 id: _getController.productDetailModel.value.data?.simularProducts![index].slug ?? '',
                                 title: _getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? '',
-                                deck: 'Mualif: ${_getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? ''}',
+                                deck: _getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? '',
                                 price: _getController.productDetailModel.value.data?.simularProducts![index].price.toString() ?? '',
                                 imageUrl: _getController.productDetailModel.value.data?.simularProducts![index].image ?? '',
                                 function: () {
-                                  ApiController().getProductDetail(_getController.productDetailModel.value.data?.simularProducts![index].slug ?? '');
-                                  //ApiController().getProductDetail(slug);
+                                  //new page for product detail
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(slug: _getController.productDetailModel.value.data?.simularProducts![index].slug ?? '')));
                                 },
                               );
                             },
