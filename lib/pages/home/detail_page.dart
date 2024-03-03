@@ -451,14 +451,16 @@ class DetailPage extends StatelessWidget {
           ),
         actions: [
           IconButton(
-            icon: Icon(Icons.share,
+            icon: Icon(
+                TablerIcons.share,
                 color: Theme.of(context).colorScheme.onBackground, size: 20),
             onPressed: () {
               print('Share');
             },
           ),
           IconButton(
-            icon: Icon(Icons.bookmark,
+            icon: Icon(
+                TablerIcons.bookmark,
                 color: Theme.of(context).colorScheme.onBackground, size: 20),
             onPressed: () {
               print('Collection');
@@ -547,12 +549,7 @@ class DetailPage extends StatelessWidget {
                       },
                     ),
                   ),
-                  Padding(
-                      padding: EdgeInsets.only(
-                        left: _getController.width.value * 0.03,
-                        right: _getController.width.value * 0.03,
-                        top: _getController.height.value * 0.02,
-                      ),
+                  Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.02),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -592,6 +589,7 @@ class DetailPage extends StatelessWidget {
                           width: _getController.width.value,
                           margin: EdgeInsets.only(
                             top: _getController.height.value * 0.02,
+                            bottom: _getController.height.value * 0.02,
                           ),
                           padding: EdgeInsets.only(
                             left: _getController.width.value * 0.03,
@@ -608,7 +606,6 @@ class DetailPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              //type elektron kitob or qog'oz kitob
                               Expanded(child:
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -638,7 +635,15 @@ class DetailPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                        )
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+
+                            )
+                          ],
+                        ),
                       ],
                     )
                   )
