@@ -444,32 +444,6 @@ class DetailPage extends StatelessWidget {
     //ApiController().getProductDetail('aldanganlar');
     ApiController().getProductDetail(slug);
     return Scaffold(
-      appBar: AppBar(
-          surfaceTintColor: Colors.transparent,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        actions: [
-          IconButton(
-            icon: Icon(
-                TablerIcons.share,
-                color: Theme.of(context).colorScheme.onBackground, size: 20),
-            onPressed: () {
-              print('Share');
-            },
-          ),
-          IconButton(
-            icon: Icon(
-                TablerIcons.bookmark,
-                color: Theme.of(context).colorScheme.onBackground, size: 20),
-            onPressed: () {
-              print('Collection');
-            },
-          ),],
-      ),
       body: SmartRefresher(
           enablePullDown: true,
           enablePullUp: true,
@@ -506,10 +480,41 @@ class DetailPage extends StatelessWidget {
             child: Obx(() => _getController.productDetailModel.value.data != null
                 ? Column(
                 children: [
+                  AppBar(
+                    surfaceTintColor: Colors.transparent,
+                    leading: IconButton(
+                      icon: Icon(Icons.arrow_back,
+                          color: Theme.of(context).colorScheme.onBackground,
+                          size: _getController.width.value * 0.065),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }
+                    ),
+                    actions: [
+                      IconButton(
+                        icon: Icon(
+                            TablerIcons.share,
+                            color: Theme.of(context).colorScheme.onBackground,
+                            size: _getController.width.value * 0.065),
+                        onPressed: () {
+                          print('Share');
+                        }
+                      ),
+                      IconButton(
+                        icon: Icon(
+                            TablerIcons.bookmark,
+                            color: Theme.of(context).colorScheme.onBackground,
+                            size: _getController.width.value * 0.065),
+                        onPressed: () {
+                          print('Collection');
+                        }
+                      )],
+                  ),
                   Container(
                     width: _getController.width.value,
-                    height: _getController.height.value * 0.4,
+                    height: _getController.height.value * 0.427,
                     margin: EdgeInsets.only(
+                      top: _getController.height.value * 0.01,
                       left: _getController.width.value * 0.03,
                       right: _getController.width.value * 0.03,
                     ),
@@ -524,10 +529,10 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: _getController.height.value * 0.08,
+                    height: _getController.height.value * 0.061,
                     width: _getController.width.value,
                     margin: EdgeInsets.only(
-                      top: _getController.height.value * 0.01,
+                      top: _getController.height.value * 0.007,
                     ),
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -537,8 +542,8 @@ class DetailPage extends StatelessWidget {
                           margin: EdgeInsets.only(
                             left: _getController.width.value * 0.03,
                           ),
-                          width: _getController.width.value * 0.15,
-                          height: _getController.height.value * 0.08,
+                          width: _getController.width.value * 0.14,
+                          height: _getController.height.value * 0.06,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(4)),
                             image: DecorationImage(
@@ -552,7 +557,8 @@ class DetailPage extends StatelessWidget {
                       },
                     ),
                   ),
-                  Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.02),
+                  Padding(
+                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.02),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -563,13 +569,13 @@ class DetailPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
-                          height: _getController.height.value * 0.01,
-                        ),
+                        SizedBox(height: _getController.height.value * 0.013),
                         Row(
                           children: [
                             DetailElement(
-                              title: _getController.productDetailModel.value.data?.views.toString() ?? '',
+                              title: _getController.productRate.value.data!.result!.average == null
+                                  ? '0'
+                                  : _getController.productRate.value.data!.result!.average.toString(),
                               subTitle: '',
                               icon: Icons.star,
                             ),
@@ -591,7 +597,7 @@ class DetailPage extends StatelessWidget {
                           height: _getController.height.value * 0.08,
                           width: _getController.width.value,
                           margin: EdgeInsets.only(
-                            top: _getController.height.value * 0.02,
+                            top: _getController.height.value * 0.025,
                             bottom: _getController.height.value * 0.02,
                           ),
                           padding: EdgeInsets.only(

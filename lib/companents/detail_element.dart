@@ -24,7 +24,6 @@ class DetailElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: _getController.width.value * 0.03,
         right: _getController.width.value * 0.03,
       ),
       child: Row(
