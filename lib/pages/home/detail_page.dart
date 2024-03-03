@@ -592,20 +592,11 @@ class DetailPage extends StatelessWidget {
                         Container(
                           height: _getController.height.value * 0.08,
                           width: _getController.width.value,
-                          margin: EdgeInsets.only(
-                            top: _getController.height.value * 0.025,
-                            bottom: _getController.height.value * 0.013,
-                          ),
-                          padding: EdgeInsets.only(
-                            left: _getController.width.value * 0.03,
-                            right: _getController.width.value * 0.03,
-                          ),
+                          margin: EdgeInsets.only(top: _getController.height.value * 0.025, bottom: _getController.height.value * 0.013),
+                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                           decoration: BoxDecoration(
                             color: AppColors.primaryColor3.withOpacity(0.15),
-                            border: Border.all(
-                              color: AppColors.primaryColor3,
-                              width: 1,
-                            ),
+                            border: Border.all(color: AppColors.primaryColor3, width: 1),
                             borderRadius: const BorderRadius.all(Radius.circular(8)),
                           ),
                           child: Row(
@@ -634,7 +625,7 @@ class DetailPage extends StatelessWidget {
                                 ]
                               )),
                               Icon(
-                                TablerIcons.bookmark_ai,
+                                TablerIcons.book_2,
                                 color: AppColors.primaryColor3,
                                 size: _getController.width.value * 0.1,
                               ),
@@ -683,7 +674,7 @@ class DetailPage extends StatelessWidget {
                                     ]
                                   )),
                                   Icon(
-                                    TablerIcons.bookmark_ai,
+                                    TablerIcons.book,
                                     color: AppColors.primaryColor3,
                                     size: _getController.width.value * 0.06,
                                   )
@@ -729,7 +720,7 @@ class DetailPage extends StatelessWidget {
                                       ]
                                   )),
                                   Icon(
-                                    TablerIcons.bookmark_ai,
+                                    TablerIcons.headphones,
                                     color: AppColors.primaryColor3,
                                     size: _getController.width.value * 0.06
                                   )
