@@ -4,6 +4,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../../companents/detail_element.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
 
@@ -558,52 +559,85 @@ class DetailPage extends StatelessWidget {
                         Text(
                           _getController.productDetailModel.value.data?.name?.uz ?? '',
                           style: TextStyle(
-                            fontSize: _getController.width.value * 0.05,
+                            fontSize: _getController.width.value * 0.06,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        SizedBox(
+                          height: _getController.height.value * 0.01,
+                        ),
                         Row(
                           children: [
-                            Icon(
-                              Icons.star,
-                              color: AppColors.primaryColor,
-                              size: _getController.width.value * 0.06,
+                            DetailElement(
+                              title: _getController.productDetailModel.value.data?.views.toString() ?? '',
+                              subTitle: '',
+                              icon: Icons.star,
                             ),
-                            Text(
-                              _getController.productDetailModel.value.data?.views.toString() ?? '',
-                              style: TextStyle(
-                                fontSize: _getController.width.value * 0.04,
-                                fontWeight: FontWeight.bold,
-                              ),
+
+                            DetailElement(
+                              title: _getController.productDetailModel.value.data?.views.toString() ?? '',
+                              subTitle: 'ta izoh'.tr,
+                              icon: Icons.mode_comment
                             ),
-                            SizedBox(width: _getController.width.value * 0.02),
-                            //coment icon
-                            Icon(
-                              Icons.comment,
-                              color: AppColors.primaryColor,
-                              size: _getController.width.value * 0.06,
-                            ),
-                            Text(
-                              "${_getController.productDetailModel.value.data?.comments!.length} ta",
-                              style: TextStyle(
-                                fontSize: _getController.width.value * 0.04,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(width: _getController.width.value * 0.02),
-                            Icon(
-                              Icons.remove_red_eye,
-                              color: AppColors.primaryColor,
-                              size: _getController.width.value * 0.06,
-                            ),
-                            Text(
-                              _getController.productDetailModel.value.data?.searched.toString() ?? '',
-                              style: TextStyle(
-                                fontSize: _getController.width.value * 0.04,
-                                fontWeight: FontWeight.bold,
-                              ),
+
+                            DetailElement(
+                                title: _getController.productDetailModel.value.data?.searched.toString() ?? '',
+                                subTitle: 'ta ko\'rilgan'.tr,
+                                icon: Icons.remove_red_eye
                             ),
                           ],
+                        ),
+                        Container(
+                          height: _getController.height.value * 0.08,
+                          width: _getController.width.value,
+                          margin: EdgeInsets.only(
+                            top: _getController.height.value * 0.02,
+                          ),
+                          padding: EdgeInsets.only(
+                            left: _getController.width.value * 0.03,
+                            right: _getController.width.value * 0.03,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryColor2.withOpacity(0.3),
+                            border: Border.all(
+                              color: AppColors.primaryColor2,
+                              width: 1,
+                            ),
+                            borderRadius: const BorderRadius.all(Radius.circular(8)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              //type elektron kitob or qog'oz kitob
+                              Expanded(child:
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Elektron kitob'.tr,
+                                    style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).colorScheme.onBackground
+                                    ),
+                                  ),
+                                  //price
+                                  Text('${_getController.productDetailModel.value.data?.price} so\'m',
+                                    style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.w400,
+                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                    )
+                                  )
+                                ]
+                              )),
+                              Icon(
+                                TablerIcons.bookmark_ai,
+                                color: AppColors.primaryColor2,
+                                size: _getController.width.value * 0.1,
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     )
