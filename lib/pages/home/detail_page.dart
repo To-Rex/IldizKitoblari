@@ -573,41 +573,37 @@ class DetailPage extends StatelessWidget {
                         Row(
                           children: [
                             DetailElement(
-                              title: _getController.productRate.value.data!.result!.average == null
-                                  ? '0'
-                                  : _getController.productRate.value.data!.result!.average.toString(),
+                              title: _getController.productRate.value.data!.result!.average == null ? '0' : _getController.productRate.value.data!.result!.average.toString(),
                               subTitle: '',
                               icon: Icons.star,
                             ),
-
                             DetailElement(
                               title: _getController.productDetailModel.value.data?.views.toString() ?? '',
                               subTitle: 'ta izoh'.tr,
                               icon: Icons.mode_comment
                             ),
-
                             DetailElement(
                                 title: _getController.productDetailModel.value.data?.searched.toString() ?? '',
                                 subTitle: 'ta ko\'rilgan'.tr,
                                 icon: Icons.remove_red_eye
-                            ),
-                          ],
+                            )
+                          ]
                         ),
                         Container(
                           height: _getController.height.value * 0.08,
                           width: _getController.width.value,
                           margin: EdgeInsets.only(
                             top: _getController.height.value * 0.025,
-                            bottom: _getController.height.value * 0.02,
+                            bottom: _getController.height.value * 0.013,
                           ),
                           padding: EdgeInsets.only(
                             left: _getController.width.value * 0.03,
                             right: _getController.width.value * 0.03,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.primaryColor2.withOpacity(0.3),
+                            color: AppColors.primaryColor3.withOpacity(0.15),
                             border: Border.all(
-                              color: AppColors.primaryColor2,
+                              color: AppColors.primaryColor3,
                               width: 1,
                             ),
                             borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -639,7 +635,7 @@ class DetailPage extends StatelessWidget {
                               )),
                               Icon(
                                 TablerIcons.bookmark_ai,
-                                color: AppColors.primaryColor2,
+                                color: AppColors.primaryColor3,
                                 size: _getController.width.value * 0.1,
                               ),
                             ],
@@ -656,7 +652,7 @@ class DetailPage extends StatelessWidget {
                                 right: _getController.width.value * 0.03,
                               ),
                               decoration: BoxDecoration(
-                                color: AppColors.grey.withOpacity(0.3),
+                                color: AppColors.grey.withOpacity(0.2),
                                 border: Border.all(
                                   color: AppColors.grey,
                                   width: 1,
@@ -688,8 +684,8 @@ class DetailPage extends StatelessWidget {
                                   )),
                                   Icon(
                                     TablerIcons.bookmark_ai,
-                                    color: AppColors.grey,
-                                    size: _getController.width.value * 0.08,
+                                    color: AppColors.primaryColor3,
+                                    size: _getController.width.value * 0.06,
                                   )
                                 ]
                               )
@@ -702,7 +698,7 @@ class DetailPage extends StatelessWidget {
                                 right: _getController.width.value * 0.03,
                               ),
                               decoration: BoxDecoration(
-                                color: AppColors.grey.withOpacity(0.3),
+                                color: AppColors.grey.withOpacity(0.2),
                                 border: Border.all(
                                   color: AppColors.grey,
                                   width: 1,
@@ -734,20 +730,29 @@ class DetailPage extends StatelessWidget {
                                   )),
                                   Icon(
                                     TablerIcons.bookmark_ai,
-                                    color: AppColors.grey,
-                                    size: _getController.width.value * 0.08
+                                    color: AppColors.primaryColor3,
+                                    size: _getController.width.value * 0.06
                                   )
                                 ]
                               )
                             )
                           ],
                         ),
-                        SizedBox(height: _getController.height.value * 0.02),
+                        SizedBox(height: _getController.height.value * 0.03),
                         Text('Tavsilotlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
                         SizedBox(height: _getController.height.value * 0.01),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
+                          //not expended list
+                          semanticChildCount: _getController.productDetailModel.value.data?.options!.length,
+                          addAutomaticKeepAlives: true,
+                          primary: true,
+                          addRepaintBoundaries: true,
+                          scrollDirection: Axis.vertical,
+                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                          findChildIndexCallback: (key) => null,
+
                           itemCount: _getController.productDetailModel.value.data?.options!.length,
                           itemBuilder: (context, index) {
                             return Container(

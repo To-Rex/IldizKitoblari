@@ -140,7 +140,7 @@ class AccountPage extends StatelessWidget {
                                           Get.toNamed('/myInfo');
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: AppColors.primaryColor2,
+                                          backgroundColor: AppColors.primaryColor3,
                                           shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(10.0)
                                           ),
