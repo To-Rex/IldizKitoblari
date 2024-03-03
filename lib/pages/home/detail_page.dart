@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/detail_element.dart';
+import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
 
@@ -733,15 +735,8 @@ class DetailPage extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: _getController.height.value * 0.02,
-                        ),
-                        Text('Tavsilotlar'.tr,
-                          style: TextStyle(
-                            fontSize: _getController.width.value * 0.05,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        SizedBox(height: _getController.height.value * 0.02),
+                        Text('Tavsilotlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
                         SizedBox(height: _getController.height.value * 0.01),
                         ListView.builder(
                           shrinkWrap: true,
@@ -778,8 +773,6 @@ class DetailPage extends StatelessWidget {
                             );
                           },
                         ),
-
-
                         SizedBox(height: _getController.height.value * 0.01),
                         Text('Tavsif',
                           style: TextStyle(
@@ -787,16 +780,132 @@ class DetailPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(_getController.productDetailModel.value.data?.content?.uz ?? '',
+                        Html(
+                          style: {
+                            'p': Style(
+                              fontSize: FontSize(_getController.width.value * 0.04),
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
+                          },
+                          data: _getController.productDetailModel.value.data?.content?.uz ?? '',
+                        ),
+                        Text('Mualif haqida',
                           style: TextStyle(
-                            fontSize: _getController.width.value * 0.04,
-                            fontWeight: FontWeight.w400,
-                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                            fontSize: _getController.width.value * 0.05,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Container(
+                          width: _getController.width.value,
+                          height: _getController.height.value * 0.1,
+                          margin: EdgeInsets.only(
+                            top: _getController.height.value * 0.02,
+                            bottom: _getController.height.value * 0.02,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.all(Radius.circular(8)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              //image and name
+                              Container(
+                                width: _getController.width.value * 0.16,
+                                height: _getController.height.value * 0.08,
+                                margin: EdgeInsets.only(
+                                  left: _getController.width.value * 0.03,
+                                  right: _getController.width.value * 0.03,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      _getController.productDetailModel.value.data?.simularProducts![0].image ?? '',
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(_getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '',
+                                    style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.w500,
+                                      color: Theme.of(context).colorScheme.onBackground
+                                    ),
+                                  ),
+                                  Text('Mualif: ${_getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? ''}',
+                                    style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.w400,
+                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                    ),
+                                  )
+                                ],
+                              )),
+                              Icon(
+                                TablerIcons.arrow_right,
+                                color: Theme.of(context).colorScheme.onBackground,
+                                size: _getController.width.value * 0.07,
+                              ),
+                              SizedBox(width: _getController.width.value * 0.03),
+                            ],
+                          ),
+                        ),
+                        Text('Tavsiya etiladi',
+                          style: TextStyle(
+                            fontSize: _getController.width.value * 0.05,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Container(
+                          height: _getController.height.value * 0.35,
+                          width: _getController.width.value,
+                          margin: EdgeInsets.only(
+                            top: _getController.height.value * 0.02,
+                            bottom: _getController.height.value * 0.02,
+                          ),
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _getController.productDetailModel.value.data?.simularProducts!.length,
+                            itemBuilder: (context, index) {
+                              return ProductItem(
+                                id: _getController.productDetailModel.value.data?.simularProducts![index].slug ?? '',
+                                title: _getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? '',
+                                deck: 'Mualif: ${_getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? ''}',
+                                price: _getController.productDetailModel.value.data?.simularProducts![index].price.toString() ?? '',
+                                imageUrl: _getController.productDetailModel.value.data?.simularProducts![index].image ?? '',
+                                function: () {
+                                  ApiController().getProductDetail(_getController.productDetailModel.value.data?.simularProducts![index].slug ?? '');
+                                  //ApiController().getProductDetail(slug);
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        Text('Sizning fikringiz',
+                          style: TextStyle(
+                            fontSize: _getController.width.value * 0.05,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     )
-                  )
+                  ),
+
                 ]
             ) : SizedBox(
               height: _getController.height.value,
