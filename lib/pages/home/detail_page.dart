@@ -640,9 +640,165 @@ class DetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-
+                              height: _getController.height.value * 0.08,
+                              width: _getController.width.value * 0.45,
+                              padding: EdgeInsets.only(
+                                left: _getController.width.value * 0.03,
+                                right: _getController.width.value * 0.03,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.grey.withOpacity(0.3),
+                                border: Border.all(
+                                  color: AppColors.grey,
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                              ),
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Elektron kitob'.tr,
+                                        style: TextStyle(
+                                            fontSize: _getController.width.value * 0.04,
+                                            fontWeight: FontWeight.w500,
+                                            color: Theme.of(context).colorScheme.onBackground
+                                        )
+                                      ),
+                                      Text('16000 so\'m',
+                                        style: TextStyle(
+                                          fontSize: _getController.width.value * 0.04,
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                        )
+                                      )
+                                    ]
+                                  )),
+                                  Icon(
+                                    TablerIcons.bookmark_ai,
+                                    color: AppColors.grey,
+                                    size: _getController.width.value * 0.08,
+                                  )
+                                ]
+                              )
+                            ),
+                            Container(
+                              height: _getController.height.value * 0.08,
+                              width: _getController.width.value * 0.45,
+                              padding: EdgeInsets.only(
+                                left: _getController.width.value * 0.03,
+                                right: _getController.width.value * 0.03,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.grey.withOpacity(0.3),
+                                border: Border.all(
+                                  color: AppColors.grey,
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                              ),
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Audio kitob'.tr,
+                                            style: TextStyle(
+                                                fontSize: _getController.width.value * 0.04,
+                                                fontWeight: FontWeight.w500,
+                                                color: Theme.of(context).colorScheme.onBackground
+                                            )
+                                        ),
+                                        Text('16000 so\'m',
+                                            style: TextStyle(
+                                                fontSize: _getController.width.value * 0.04,
+                                                fontWeight: FontWeight.w400,
+                                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                            )
+                                        )
+                                      ]
+                                  )),
+                                  Icon(
+                                    TablerIcons.bookmark_ai,
+                                    color: AppColors.grey,
+                                    size: _getController.width.value * 0.08
+                                  )
+                                ]
+                              )
                             )
                           ],
+                        ),
+                        SizedBox(
+                          height: _getController.height.value * 0.02,
+                        ),
+                        Text('Tavsilotlar'.tr,
+                          style: TextStyle(
+                            fontSize: _getController.width.value * 0.05,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: _getController.height.value * 0.01),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: _getController.productDetailModel.value.data?.options!.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.only(
+                                bottom: _getController.height.value * 0.01,
+                              ),
+                              child: Row(
+                                children: [
+                                  Text(_getController.productDetailModel.value.data?.options![index].optionId?.name?.uz ?? '',
+                                    style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.w500,
+                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
+                                    ),
+                                  ),
+                                  Expanded(child:
+                                      Text('  ---------------------------------------------------------  ',
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: _getController.width.value * 0.04,
+                                        fontWeight: FontWeight.w400,
+                                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                      ),
+                                    )
+                                  ),
+                                  Text(
+                                    _getController.productDetailModel.value.data?.options![index].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![index].value ?? '',
+                                    style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.w500,
+                                      color: Theme.of(context).colorScheme.onBackground
+                                    ),
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+
+
+                        SizedBox(height: _getController.height.value * 0.01),
+                        Text('Tavsif',
+                          style: TextStyle(
+                            fontSize: _getController.width.value * 0.05,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(_getController.productDetailModel.value.data?.content?.uz ?? '',
+                          style: TextStyle(
+                            fontSize: _getController.width.value * 0.04,
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                          ),
                         ),
                       ],
                     )
