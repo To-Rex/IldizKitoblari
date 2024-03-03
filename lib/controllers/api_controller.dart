@@ -8,6 +8,7 @@ import 'package:ildiz/models/login_model.dart';
 import '../models/banner_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_model.dart';
+import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/quotos_model.dart';
 import '../pages/auth/verify_page.dart';
@@ -284,7 +285,7 @@ class ApiController extends GetxController {
     );
     print('productDetail: ${response.body}');
     if (response.statusCode == 200) {
-      _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+      _getController.changeProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

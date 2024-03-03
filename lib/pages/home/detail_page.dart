@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../controllers/get_controller.dart';
@@ -14,6 +15,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ApiController().getProductDetail('aldanganlar');
     return Scaffold(
       appBar: AppBar(
           title: const Text('Detail Page',

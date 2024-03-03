@@ -14,6 +14,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/banner_model.dart';
 import '../models/login_model.dart';
 import '../models/menu_model.dart';
+import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 
 class GetController extends GetxController {
@@ -63,6 +64,7 @@ class GetController extends GetxController {
   var bannerModel = BannerModel().obs;
   var productModel = ProductModel().obs;
   var quotesModel = QuotesModel().obs;
+  var productDetailModel = ProductDetailModel().obs;
 
   //methods
   void changeLoginModel(LoginModel loginModel) {
@@ -92,6 +94,10 @@ class GetController extends GetxController {
 
   void changeQuotesModel(QuotesModel quotesModel) {
     this.quotesModel.value = quotesModel;
+  }
+
+  void changeProductDetailModel(ProductDetailModel productDetailModel) {
+    this.productDetailModel.value = productDetailModel;
   }
 
 
