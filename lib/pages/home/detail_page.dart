@@ -761,15 +761,9 @@ class DetailPage extends StatelessWidget {
                                       color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
                                     ),
                                   ),
-                                  Expanded(child:
-                                      Text('  ---------------------------------------------------------  ',
+                                  Expanded(child: Text('  ---------------------------------------------------------  ',
                                       maxLines: 1,
-                                      style: TextStyle(
-                                        fontSize: _getController.width.value * 0.04,
-                                        fontWeight: FontWeight.w400,
-                                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
-                                      ),
-                                    )
+                                      style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
                                   ),
                                   Text(
                                     _getController.productDetailModel.value.data?.options![index].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![index].value ?? '',
