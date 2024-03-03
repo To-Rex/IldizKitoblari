@@ -35,13 +35,15 @@ class DetailElement extends StatelessWidget {
           Text(' $title ',
             style: TextStyle(
               fontSize: _getController.width.value * 0.035,
-              fontWeight: FontWeight.bold,
-            ),
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+            )
           ),
           Text(subTitle,
             style: TextStyle(
               fontSize: _getController.width.value * 0.035,
-              fontWeight: FontWeight.bold
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
             )
           ),
         ],

@@ -580,12 +580,12 @@ class DetailPage extends StatelessWidget {
                             DetailElement(
                               title: _getController.productDetailModel.value.data?.views.toString() ?? '',
                               subTitle: 'ta izoh'.tr,
-                              icon: Icons.mode_comment
+                              icon: TablerIcons.message_circle,
                             ),
                             DetailElement(
                                 title: _getController.productDetailModel.value.data?.searched.toString() ?? '',
                                 subTitle: 'ta ko\'rilgan'.tr,
-                                icon: Icons.remove_red_eye
+                                icon: TablerIcons.eye
                             )
                           ]
                         ),
@@ -730,12 +730,11 @@ class DetailPage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: _getController.height.value * 0.03),
-                        Text('Tavsilotlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
+                        Text('Tafsilotlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
                         SizedBox(height: _getController.height.value * 0.01),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          //not expended list
                           semanticChildCount: _getController.productDetailModel.value.data?.options!.length,
                           addAutomaticKeepAlives: true,
                           primary: true,
@@ -936,7 +935,6 @@ class DetailPage extends StatelessWidget {
                       ],
                     )
                   ),
-
                 ]
             ) : SizedBox(
               height: _getController.height.value,
