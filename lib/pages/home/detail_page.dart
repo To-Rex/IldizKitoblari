@@ -9,7 +9,7 @@ class DetailPage extends StatelessWidget {
 
 
   final GetController _getController = Get.put(GetController());
-  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+  //final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   DetailPage({super.key});
 
@@ -30,13 +30,8 @@ class DetailPage extends StatelessWidget {
               Navigator.pop(context);
             },
           )),
-      body: const Expanded(
-          child: Column(
-            children: [
-              Text('Detail Page'),
-            ],
-          )
-      ),
-    );
+      body: Center(
+        child: Text('Detail Page'),
+    ));
   }
 }
