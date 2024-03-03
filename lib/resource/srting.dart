@@ -83,6 +83,10 @@ class LocaleString extends Translations{
       'Biz bilan bog\'lanish':'Contact us',
       'Ilovadan chiqish':'Exit the application',
 
+      //detail page
+      'ta izoh':'Comment',
+      'ta ko\'rilgan':'Viewed',
+
 
     },
     'ru_RU':{
@@ -163,6 +167,10 @@ class LocaleString extends Translations{
       'Biz bilan bog\'lanish':'Связаться с нами',
       'Ilovadan chiqish':'Выйти из приложения',
 
+      //detail page
+      'ta izoh':'Комментарий',
+      'ta ko\'rilgan':'Просмотрено',
+
     },
     'uz_UZ':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -242,6 +250,10 @@ class LocaleString extends Translations{
       'Dastur haqida':'Dastur haqida',
       'Biz bilan bog\'lanish':'Biz bilan bog\'lanish',
       'Ilovadan chiqish':'Ilovadan chiqish',
+
+      //detail page
+      'ta izoh':'ta izoh',
+      'ta ko\'rilgan':'ta ko\'rilgan',
     }
   };
 

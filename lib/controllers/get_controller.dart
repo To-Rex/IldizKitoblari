@@ -100,6 +100,13 @@ class GetController extends GetxController {
     this.productDetailModel.value = productDetailModel;
   }
 
+  //clear productDetailModel
+  void clearProductDetailModel() {
+    if (productDetailModel.value.data != null) {
+      productDetailModel.value = ProductDetailModel();
+    }
+  }
+
 
   //clear productModel
   void clearProductModel() {

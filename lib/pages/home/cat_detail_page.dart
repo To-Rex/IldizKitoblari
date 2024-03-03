@@ -127,6 +127,7 @@ class CatDetailPage extends StatelessWidget {
                         imageUrl: _getController.productModel.value.data!.result![index].image!,
                         function: () {
                          // Get.to(() => QuotesPage());
+                          _getController.clearProductDetailModel();
                           Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!));
                         }
                       );
