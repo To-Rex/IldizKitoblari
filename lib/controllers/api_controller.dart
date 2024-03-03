@@ -10,6 +10,7 @@ import '../models/me_models.dart';
 import '../models/menu_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
+import '../models/product_rate.dart';
 import '../models/quotos_model.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/onboarding_page.dart';
@@ -33,8 +34,9 @@ class ApiController extends GetxController {
   static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6';
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
-  //https://ildizkitoblari.uz/api/v1/product/aldanganlar
   static const String _productDetail = '$_baseUrl/api/v1/product/';
+  //https://ildizkitoblari.uz/api/v1/product/rate/658ef7fef37883518b90d0ef
+  static const String _productRate = '$_baseUrl/api/v1/product/rate/';
 
 
   //show toast message
@@ -283,12 +285,26 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    print('productDetail: ${response.body}');
+    //print('productDetail: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
+      getProductRate(_getController.productDetailModel.value.data!.sId);
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
 
+  Future<void> getProductRate(id) async {
+    var response = await get(Uri.parse('$_productRate$id'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    print('productRate: ${response.body}');
+    if (response.statusCode == 200) {
+      _getController.changeProductRate(ProductRate.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
 }

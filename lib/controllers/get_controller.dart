@@ -16,6 +16,7 @@ import '../models/login_model.dart';
 import '../models/menu_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
+import '../models/product_rate.dart';
 
 class GetController extends GetxController {
   var height = 0.0.obs;
@@ -65,6 +66,7 @@ class GetController extends GetxController {
   var productModel = ProductModel().obs;
   var quotesModel = QuotesModel().obs;
   var productDetailModel = ProductDetailModel().obs;
+  var productRate = ProductRate().obs;
 
   //methods
   void changeLoginModel(LoginModel loginModel) {
@@ -107,12 +109,22 @@ class GetController extends GetxController {
     }
   }
 
-
   //clear productModel
   void clearProductModel() {
     if (productModel.value.data != null) {
       productModelLength.value = 0;
       productModel.value.data!.result!.clear();
+    }
+  }
+
+  void changeProductRate(ProductRate productRate) {
+    this.productRate.value = productRate;
+  }
+
+  //clear productRate
+  void clearProductRate() {
+    if (productRate.value.data != null) {
+      productRate.value = ProductRate();
     }
   }
 

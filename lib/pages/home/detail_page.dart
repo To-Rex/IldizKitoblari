@@ -9,6 +9,7 @@ import '../../companents/detail_element.dart';
 import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailPage extends StatelessWidget {
 
@@ -440,8 +441,8 @@ class DetailPage extends StatelessWidget {
   // }
   @override
   Widget build(BuildContext context) {
-    ApiController().getProductDetail('aldanganlar');
-    //ApiController().getProductDetail(slug);
+    //ApiController().getProductDetail('aldanganlar');
+    ApiController().getProductDetail(slug);
     return Scaffold(
       appBar: AppBar(
           surfaceTintColor: Colors.transparent,
@@ -901,6 +902,34 @@ class DetailPage extends StatelessWidget {
                             fontSize: _getController.width.value * 0.05,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        SizedBox(height: _getController.height.value * 0.02),
+                        //baholang rating bar {"data":{"result":{"1":0,"2":0,"3":0,"4":0,"5":0,"average":null,"total":0},"message":"Ok!"},"status":true}
+                        Text('Baholang',
+                          style: TextStyle(
+                            fontSize: _getController.width.value * 0.04,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: _getController.height.value * 0.01),
+                        // {"data":{"result":{"1":0,"2":0,"3":0,"4":0,"5":0,"average":null,"total":0},"message":"Ok!"},"status":true} to rating bar {"1":0,"2":0,"3":0,"4":0,"5":0,"average":null,"total":0}
+                        //_getController.productRate.value.data.result.average == null ? 0 : _getController.productRate.value.data.result.average,
+                        RatingBar.builder(
+                          //initialRating: double.parse(_getController.productRate.value.data!.result!.average.toString()),
+                          initialRating: _getController.productRate.value.data!.result!.average == null ? 0 : double.parse(_getController.productRate.value.data!.result!.average.toString()),
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: _getController.width.value * 0.07,
+                          itemPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
                         ),
                       ],
                     )
