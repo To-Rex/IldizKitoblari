@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
@@ -1012,23 +1011,15 @@ class DetailPage extends StatelessWidget {
                                                       allowHalfRating: true,
                                                       itemCount: 5,
                                                       itemSize: _getController.width.value * 0.06,
-                                                      itemBuilder: (context, _) => const Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
-                                                      ),
-                                                      onRatingUpdate: (rating) {
-                                                      }
+                                                      itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+                                                      onRatingUpdate: (rating) {}
                                                   ),
                                                 ),
                                                 Expanded(child:
                                                 Text(
                                                     DateTime.parse(_getController.productDetailModel.value.data?.comments![index].createdAt ?? '').toString().substring(0, 10),
                                                     maxLines: 1,
-                                                    style: TextStyle(
-                                                        fontSize: _getController.width.value * 0.04,
-                                                        fontWeight: FontWeight.w400,
-                                                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
-                                                    )
+                                                    style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
                                                 ))
                                               ],
                                             ),
@@ -1041,10 +1032,10 @@ class DetailPage extends StatelessWidget {
                                                     color: Theme.of(context).colorScheme.onBackground
                                                 )
                                             )
-                                          ],
-                                        ),
+                                          ]
+                                        )
                                       );
-                                    },
+                                    }
                                   ),
                                 if (_getController.productDetailModel.value.data!.comments!.isEmpty)
                                   Container(
@@ -1081,20 +1072,15 @@ class DetailPage extends StatelessWidget {
                 )
               ),
               Positioned(
-                  bottom: 0,
-                  left:  0,
-                  right: 0,
-                  child: Obx(
-                    () => SizedBox(
+                  bottom: 0, left:  0, right: 0,
+                  child: Obx(() => SizedBox(
                       height: _getController.height.value * 0.12,
                       width: _getController.width.value,
                       child: Expanded(
                         child: Container(
                           height: _getController.height.value * 0.1,
                           width: _getController.width.value * 0.5,
-                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,
-                            //top: _getController.height.value * 0.015
-                          ),
+                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.background,
                             boxShadow: [
