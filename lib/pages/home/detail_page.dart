@@ -476,11 +476,7 @@ class DetailPage extends StatelessWidget {
           controller: _refreshController,
           child: Stack(
             children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
+              Positioned(top: 0, left: 0, right: 0, bottom: 0,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Obx(() => _getController.productDetailModel.value.data != null
