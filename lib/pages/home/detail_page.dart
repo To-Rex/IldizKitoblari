@@ -440,8 +440,8 @@ class DetailPage extends StatelessWidget {
   // }
   @override
   Widget build(BuildContext context) {
-    ApiController().getProductDetail('aldanganlar');
-    //ApiController().getProductDetail(slug);
+    //ApiController().getProductDetail('aldanganlar');
+    ApiController().getProductDetail(slug);
     return Scaffold(
       body: SmartRefresher(
           enablePullDown: true,
@@ -879,7 +879,7 @@ class DetailPage extends StatelessWidget {
                                 Container(
                                   height: _getController.height.value * 0.35,
                                   width: _getController.width.value,
-                                  margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.02),
+                                  margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.01),
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: _getController.productDetailModel.value.data?.simularProducts!.length,
@@ -899,9 +899,9 @@ class DetailPage extends StatelessWidget {
                                   ),
                                 ),
                                 Text('Sizning fikringiz', style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
-                                SizedBox(height: _getController.height.value * 0.02),
+                                SizedBox(height: _getController.height.value * 0.015),
                                 if (_getController.productRate.value.data != null)
-                                  Text('Baholang', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
+                                  Text('Baholang', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
                                 if (_getController.productRate.value.data != null)
                                   SizedBox(height: _getController.height.value * 0.01),
                                 if (_getController.productRate.value.data != null)
@@ -913,18 +913,23 @@ class DetailPage extends StatelessWidget {
                                       itemCount: 5,
                                       itemSize: _getController.width.value * 0.07,
                                       itemPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
-                                      itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+                                      unratedColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+                                      itemBuilder: (context, _) =>
+                                      const Icon(
+                                          TablerIcons.star_filled,
+                                          color: AppColors.primaryColor
+                                      ),
                                       onRatingUpdate: (rating) {}
                                   ),
-                                SizedBox(height: _getController.height.value * 0.01),
-                                Text('Izoh:', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
+                                SizedBox(height: _getController.height.value * 0.02),
+                                Text('Izoh:', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
                                 SizedBox(height: _getController.height.value * 0.01),
                                 Container(
                                   width: _getController.width.value,
                                   padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).colorScheme.background,
-                                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                    borderRadius: const BorderRadius.all(Radius.circular(12)),
                                     border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
                                   ),
                                   child: TextField(
@@ -949,15 +954,14 @@ class DetailPage extends StatelessWidget {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: AppColors.primaryColor,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child: Text('Yuborish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background)))
+                                    child: Text('Yuborish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.background)))
                                 ),
                                 SizedBox(height: _getController.height.value * 0.033),
                                 Text('Izohlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
-                                if (_getController.productDetailModel.value.data!.comments!.isEmpty)
-                                  SizedBox(height: _getController.height.value * 0.02),
+
                                 if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
                                 ListView.builder(
                                     shrinkWrap: true,
@@ -1047,6 +1051,7 @@ class DetailPage extends StatelessWidget {
                                   Container(
                                     width: _getController.width.value,
                                     height: _getController.height.value * 0.11,
+                                    margin: EdgeInsets.only(top: _getController.height.value * 0.015),
                                     decoration: BoxDecoration(
                                       color: AppColors.grey.withOpacity(0.1),
                                       borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -1068,7 +1073,7 @@ class DetailPage extends StatelessWidget {
                               ],
                             )
                         ),
-                        SizedBox(height: _getController.height.value * 0.2)
+                        SizedBox(height: _getController.height.value * 0.214)
                       ]
                   ) : SizedBox(
                       height: _getController.height.value,
