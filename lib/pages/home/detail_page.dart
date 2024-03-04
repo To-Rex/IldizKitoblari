@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
@@ -19,6 +18,7 @@ class DetailPage extends StatelessWidget {
   DetailPage({super.key, required this.slug});
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
+  //final SwiperController swiperController = SwiperController();
 
   //{
   //     "message": "Ok!",
@@ -444,6 +444,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //ApiController().getProductDetail('aldanganlar');
     ApiController().getProductDetail(slug);
+    _getController.fullIndex.value = 0;
     return Scaffold(
       body: SmartRefresher(
           enablePullDown: true,
@@ -535,35 +536,23 @@ class DetailPage extends StatelessWidget {
                         Container(
                           height: _getController.height.value * 0.427,
                           width: _getController.width.value,
-                          margin: EdgeInsets.only(
-                            top: _getController.height.value * 0.01,
-                            left: _getController.width.value * 0.03,
-                            right: _getController.width.value * 0.03,
-                          ),
+                          margin: EdgeInsets.only(top: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                           child: Swiper(
+                            onIndexChanged: (index) {
+                              _getController.fullIndex.value = index;
+                            },
+                            controller: _getController.swiperController,
                             itemCount: int.parse(_getController.productDetailModel.value.data!.images!.length.toString()),
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      _getController.productDetailModel.value.data?.images![index].file ?? '',
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                  image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.images![index].file ?? ''), fit: BoxFit.cover)
+                                )
                               );
-                            },
-                            pagination: SwiperPagination(
-                              builder: DotSwiperPaginationBuilder(
-                                color: AppColors.grey.withOpacity(0.5),
-                                activeColor: AppColors.primaryColor3,
-                              ),
-                            ),
-                          ),
+                            }
+                          )
                         ),
-
                         Container(
                           height: _getController.height.value * 0.061,
                           width: _getController.width.value,
@@ -572,19 +561,21 @@ class DetailPage extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             itemCount: _getController.productDetailModel.value.data?.images!.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.only(left: _getController.width.value * 0.03),
-                                width: _getController.width.value * 0.14,
-                                height: _getController.height.value * 0.06,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      _getController.productDetailModel.value.data?.images![index].file ?? '',
-                                    ),
-                                    fit: BoxFit.cover,
+                              return InkWell(
+                                onTap: () {
+                                  _getController.fullIndex.value = index;
+                                  _getController.swiperController.move(index);
+                                },
+                                child: Obx(() => Container(
+                                  margin: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                  width: _getController.width.value * 0.14,
+                                  height: _getController.height.value * 0.06,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(Radius.circular(4)),
+                                      border: _getController.fullIndex.value == index ? Border.all(color: AppColors.primaryColor3, width: 1) : null,
+                                      image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.images![index].file ?? ''), fit: BoxFit.cover)
                                   ),
-                                ),
+                                )),
                               );
                             },
                           ),

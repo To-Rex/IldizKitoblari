@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/bottomBar/accaunt_page.dart';
 import 'package:ildiz/bottomBar/basket_page.dart';
@@ -172,4 +173,5 @@ class GetController extends GetxController {
   final TextEditingController codeController = TextEditingController();
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);
+  final SwiperController swiperController = SwiperController();
 }
