@@ -770,32 +770,14 @@ class DetailPage extends StatelessWidget {
                                     )
                                 ),*/
                                 if (_getController.productDetailModel.value.data?.options != null)
-                                for (int i = 0; i < _getController.productDetailModel.value.data!.options!.length; i++)
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                      bottom: _getController.height.value * 0.019,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Text(_getController.productDetailModel.value.data?.options![i].optionId?.name?.uz ?? '',
-                                          style: TextStyle(
-                                              fontSize: _getController.width.value * 0.04,
-                                              fontWeight: FontWeight.w500,
-                                              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
-                                          ),
-                                        ),
-                                        Expanded(child: Text('  ---------------------------------------------------------  ',
-                                            maxLines: 1,
-                                            style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                                        ),
-                                        Text(
-                                          _getController.productDetailModel.value.data?.options![i].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![i].value ?? '',
-                                          style: TextStyle(
-                                              fontSize: _getController.width.value * 0.04,
-                                              fontWeight: FontWeight.w500,
-                                              color: Theme.of(context).colorScheme.onBackground
-                                          ),
-                                        )
+                                  for (int i = 0; i < _getController.productDetailModel.value.data!.options!.length; i++)
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: _getController.height.value * 0.019),
+                                      child: Row(
+                                        children: [
+                                          Text(_getController.productDetailModel.value.data?.options![i].optionId?.name?.uz ?? '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),
+                                          Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))),
+                                          Text(_getController.productDetailModel.value.data?.options![i].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![i].value ?? '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),)
                                       ],
                                     ),
                                   ),
@@ -931,13 +913,8 @@ class DetailPage extends StatelessWidget {
                                       itemCount: 5,
                                       itemSize: _getController.width.value * 0.07,
                                       itemPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
-                                      itemBuilder: (context, _) => const Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                      ),
-                                      onRatingUpdate: (rating) {
-
-                                      }
+                                      itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+                                      onRatingUpdate: (rating) {}
                                   ),
                                 SizedBox(height: _getController.height.value * 0.01),
                                 Text('Izoh:', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
@@ -975,13 +952,7 @@ class DetailPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                     ),
-                                    child: Text('Yuborish'.tr, style: TextStyle(
-                                        fontSize: _getController.width.value * 0.04,
-                                        fontWeight: FontWeight.w500,
-                                        color: Theme.of(context).colorScheme.background
-                                    )
-                                    ),
-                                  ),
+                                    child: Text('Yuborish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background)))
                                 ),
                                 SizedBox(height: _getController.height.value * 0.033),
                                 Text('Izohlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
