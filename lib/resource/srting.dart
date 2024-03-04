@@ -100,6 +100,7 @@ class LocaleString extends Translations{
       'Baholang':'Rating',
       'Mualif haqida':'About the author',
       'Tavsiya etiladi':'Recommended',
+      'Izohlar yo\'q':'No comments',
 
     },
     'ru_RU':{
@@ -197,6 +198,7 @@ class LocaleString extends Translations{
       'Baholang':'Оценка',
       'Mualif haqida':'Об авторе',
       'Tavsiya etiladi':'Рекомендуется',
+      'Izohlar yo\'q':'Комментарии отсутствуют',
 
     },
     'uz_UZ':{
@@ -295,6 +297,7 @@ class LocaleString extends Translations{
       'Baholang':'Baholang',
       'Mualif haqida':'Mualif haqida',
       'Tavsiya etiladi':'Tavsiya etiladi',
+      'Izohlar yo\'q':'Izohlar yo\'q',
 
     },
     'oz_Oz':{
@@ -392,6 +395,7 @@ class LocaleString extends Translations{
       'Baholang':'Баҳоланг',
       'Mualif haqida':'Муаллиф ҳақида',
       'Tavsiya etiladi':'Тавсия этилади',
+      'Izohlar yo\'q':'Изоҳлар йўқ',
 
     }
   };

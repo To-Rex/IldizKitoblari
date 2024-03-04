@@ -1024,7 +1024,8 @@ class DetailPage extends StatelessWidget {
                                           color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
                                           size: _getController.width.value * 0.1,
                                         ),
-                                        Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                        Text('Izohlar yo\'q'.tr,
+                                            style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
                                       ],
                                     ),
                                   )

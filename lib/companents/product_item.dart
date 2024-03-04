@@ -46,24 +46,12 @@ class _ProductItemState extends State<ProductItem> {
             ),
             SizedBox(child: Text(
               widget.title!,
-              maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
-            SizedBox(height: _getController.height.value * 0.006),
-            SizedBox(
-              child: Text(
-                widget.deck!,
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: _getController.width.value * 0.04,
-                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+              maxLines: 2, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
             SizedBox(height: _getController.height.value * 0.01),
             Row(
               children: [
                 Expanded(child: Text(
-                  '${widget.price} so`m',
+                  '${widget.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}',
                   style: TextStyle(
                     fontSize: _getController.width.value * 0.04,
                     color: AppColors.primaryColor2,
