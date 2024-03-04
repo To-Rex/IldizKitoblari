@@ -1140,9 +1140,7 @@ class DetailPage extends StatelessWidget {
                                 child: IconButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: AppColors.primaryColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                   ),
                                   icon: Icon(
                                     TablerIcons.shopping_bag,
@@ -1153,7 +1151,6 @@ class DetailPage extends StatelessWidget {
                                   },
                                 ),
                               ),
-
                             ],
                           ),
                         )
