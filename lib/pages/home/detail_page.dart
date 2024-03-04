@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
@@ -510,7 +512,7 @@ class DetailPage extends StatelessWidget {
                                 }
                             )],
                         ),
-                        Container(
+                        /*Container(
                           width: _getController.width.value,
                           height: _getController.height.value * 0.427,
                           margin: EdgeInsets.only(
@@ -527,7 +529,41 @@ class DetailPage extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
+                        ),*/
+                        //image slider container
+                        if (_getController.productDetailModel.value.data?.images != null)
+                        Container(
+                          height: _getController.height.value * 0.427,
+                          width: _getController.width.value,
+                          margin: EdgeInsets.only(
+                            top: _getController.height.value * 0.01,
+                            left: _getController.width.value * 0.03,
+                            right: _getController.width.value * 0.03,
+                          ),
+                          child: Swiper(
+                            itemCount: int.parse(_getController.productDetailModel.value.data!.images!.length.toString()),
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(Radius.circular(4)),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      _getController.productDetailModel.value.data?.images![index].file ?? '',
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            },
+                            pagination: SwiperPagination(
+                              builder: DotSwiperPaginationBuilder(
+                                color: AppColors.grey.withOpacity(0.5),
+                                activeColor: AppColors.primaryColor3,
+                              ),
+                            ),
+                          ),
                         ),
+
                         Container(
                           height: _getController.height.value * 0.061,
                           width: _getController.width.value,

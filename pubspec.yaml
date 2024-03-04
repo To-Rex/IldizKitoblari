@@ -49,6 +49,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   flutter_html: ^3.0.0-beta.2
   flutter_rating_bar: ^4.0.1
+  flutter_swiper_view: ^1.1.8
 
 dev_dependencies:
   flutter_test:
