@@ -6,11 +6,6 @@ import 'package:ildiz/pages/splash_screen.dart';
 import 'package:ildiz/resource/colors.dart';
 import 'package:ildiz/resource/srting.dart';
 
-/*
-void main() {
-  runApp(const MyApp());
-}
-*/
 
 main() async {
   await GetStorage.init();
@@ -19,22 +14,6 @@ main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  /*@override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amberAccent),
-        useMaterial3: true,
-      ),
-
-
-      home: SplashScreen()
-    );
-
-
-  }*/
 
   @override
   Widget build(BuildContext context) {
