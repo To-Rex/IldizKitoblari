@@ -39,7 +39,7 @@ class ChildItem extends StatelessWidget {
                     function();
                   },
                   child: Text(
-                    'Barchasi',
+                    'Barchasi'.tr,
                     style: TextStyle(
                       fontSize: _getController.width.value * 0.04,
                       color: AppColors.primaryColor,

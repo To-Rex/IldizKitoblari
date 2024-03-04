@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -109,7 +108,7 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ),
                                         )
-                                      else if ('oz_UZ' == Get.locale.toString() && i.imageOz != '')
+                                      else if ('oz_OZ' == Get.locale.toString() && i.imageOz != '')
                                         Container(
                                           width: _getController.width.value * 0.93,
                                           decoration: BoxDecoration(
@@ -137,10 +136,8 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                             ChildItem(
-                                title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya',
-                                function: (){
-                                  print('Barchasi');
-                                }),
+                                title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
+                                function: (){}),
                             if (_getController.menuModel.value.data != null)
                               SizedBox(
                                   width: _getController.width.value * 0.93,
@@ -156,7 +153,7 @@ class HomePage extends StatelessWidget {
                                           },
                                           child: Chip(
                                             visualDensity: VisualDensity.compact,
-                                            label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_UZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
+                                            label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
                                             padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.007),
                                             labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                             side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
@@ -167,9 +164,7 @@ class HomePage extends StatelessWidget {
                                     ],
                                   )
                               ),
-                            ChildItem(title: 'Elektron kitoblar', function: (){
-                              print('Barchasi');
-                            }),
+                            ChildItem(title: 'Elektron kitoblar'.tr, function: (){}),
                             if (_getController.productModel.value.data != null)
                               SizedBox(
                                 height: _getController.height.value * 0.35,
@@ -182,7 +177,6 @@ class HomePage extends StatelessWidget {
                                       return Container(
                                         margin: EdgeInsets.only(top: _getController.height.value * 0.007, left: _getController.width.value * 0.013, right: _getController.width.value * 0.013),
                                         width: _getController.width.value * 0.44,
-                                        //height: _getController.height.value * 0.25,
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
@@ -197,23 +191,11 @@ class HomePage extends StatelessWidget {
                                               ),
                                             ),
                                             SizedBox(child: Text(_getController.productModel.value.data!.result![index].name!.toString(), maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
-                                            SizedBox(height: _getController.height.value * 0.006),
-                                            SizedBox(
-                                              child: Text(
-                                                _getController.productModel.value.data!.result![index].menuSlug!.toString(),
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                  fontSize: _getController.width.value * 0.04,
-                                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
                                             SizedBox(height: _getController.height.value * 0.01),
                                             Row(
                                               children: [
                                                 Text(
-                                                  '${_getController.productModel.value.data!.result![index].price!} so\'m',
+                                                  '${_getController.productModel.value.data!.result![index].price!} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}',
                                                   style: TextStyle(
                                                     fontSize: _getController.width.value * 0.04,
                                                     color: AppColors.primaryColor2,
@@ -222,9 +204,7 @@ class HomePage extends StatelessWidget {
                                                 ),
                                                 const Spacer(),
                                                 InkWell(
-                                                  onTap: () {
-                                                    print('Korzinka');
-                                                  },
+                                                  onTap: () {},
                                                   child: Icon(
                                                     TablerIcons.shopping_cart_plus,
                                                     size: _getController.width.value * 0.06,

@@ -28,8 +28,8 @@ class AccountPage extends StatelessWidget {
     showDialog(context: context,
         builder: (builder){
           return AlertDialog(
-            title: Text('Choose Your Language'),
-            content: Container(
+            title: const Text('Choose Your Language'),
+            content: SizedBox(
               width: double.maxFinite,
               child: ListView.separated(
                   shrinkWrap: true,
@@ -37,12 +37,11 @@ class AccountPage extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
-                        print(locale[index]['name']);
                         updateLanguage(locale[index]['locale']);
                       },),
                     );
                   }, separatorBuilder: (context,index){
-                return Divider(
+                return const Divider(
                   color: Colors.blue,
                 );
               }, itemCount: locale.length
