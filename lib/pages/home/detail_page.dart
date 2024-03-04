@@ -566,7 +566,8 @@ class DetailPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  _getController.productDetailModel.value.data?.name?.uz ?? '',
+                                  //_getController.productDetailModel.value.data?.name?.uz ?? '',
+                                  'uz_UZ' == 'uz' ? _getController.productDetailModel.value.data?.name?.uz ?? '' : 'uz_UZ' == 'oz' ? _getController.productDetailModel.value.data?.name?.oz ?? '' : _getController.productDetailModel.value.data?.name?.ru ?? '',
                                   style: TextStyle(
                                     fontSize: _getController.width.value * 0.06,
                                     fontWeight: FontWeight.bold,
