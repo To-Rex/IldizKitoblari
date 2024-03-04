@@ -513,25 +513,6 @@ class DetailPage extends StatelessWidget {
                                 }
                             )],
                         ),
-                        /*Container(
-                          width: _getController.width.value,
-                          height: _getController.height.value * 0.427,
-                          margin: EdgeInsets.only(
-                            top: _getController.height.value * 0.01,
-                            left: _getController.width.value * 0.03,
-                            right: _getController.width.value * 0.03,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(4)),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                _getController.productDetailModel.value.data?.images![0].file ?? '',
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),*/
-                        //image slider container
                         if (_getController.productDetailModel.value.data?.images != null)
                         Container(
                           height: _getController.height.value * 0.427,
