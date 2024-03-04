@@ -441,8 +441,8 @@ class DetailPage extends StatelessWidget {
   // }
   @override
   Widget build(BuildContext context) {
-    //ApiController().getProductDetail('aldanganlar');
-    ApiController().getProductDetail(slug);
+    ApiController().getProductDetail('aldanganlar');
+    //ApiController().getProductDetail(slug);
     return Scaffold(
       body: SmartRefresher(
           enablePullDown: true,
@@ -531,17 +531,13 @@ class DetailPage extends StatelessWidget {
                   Container(
                     height: _getController.height.value * 0.061,
                     width: _getController.width.value,
-                    margin: EdgeInsets.only(
-                      top: _getController.height.value * 0.007,
-                    ),
+                    margin: EdgeInsets.only(top: _getController.height.value * 0.007),
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: _getController.productDetailModel.value.data?.images!.length,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: EdgeInsets.only(
-                            left: _getController.width.value * 0.03,
-                          ),
+                          margin: EdgeInsets.only(left: _getController.width.value * 0.03),
                           width: _getController.width.value * 0.14,
                           height: _getController.height.value * 0.06,
                           decoration: BoxDecoration(
@@ -557,8 +553,7 @@ class DetailPage extends StatelessWidget {
                       },
                     ),
                   ),
-                  Padding(
-                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.02),
+                  Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.02),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -572,6 +567,7 @@ class DetailPage extends StatelessWidget {
                         SizedBox(height: _getController.height.value * 0.013),
                         Row(
                           children: [
+                            if (_getController.productRate.value.data != null)
                             DetailElement(
                               title: _getController.productRate.value.data!.result!.average == null ? '0' : _getController.productRate.value.data!.result!.average.toString(),
                               subTitle: '',
@@ -640,18 +636,14 @@ class DetailPage extends StatelessWidget {
                               width: _getController.width.value * 0.45,
                               padding: EdgeInsets.only(
                                 left: _getController.width.value * 0.03,
-                                right: _getController.width.value * 0.03,
+                                right: _getController.width.value * 0.03
                               ),
                               decoration: BoxDecoration(
                                 color: AppColors.grey.withOpacity(0.2),
-                                border: Border.all(
-                                  color: AppColors.grey,
-                                  width: 1,
-                                ),
+                                border: Border.all(color: AppColors.grey, width: 1),
                                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                               ),
                               child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Expanded(child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -684,20 +676,13 @@ class DetailPage extends StatelessWidget {
                             Container(
                               height: _getController.height.value * 0.08,
                               width: _getController.width.value * 0.45,
-                              padding: EdgeInsets.only(
-                                left: _getController.width.value * 0.03,
-                                right: _getController.width.value * 0.03,
-                              ),
+                              padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                               decoration: BoxDecoration(
                                 color: AppColors.grey.withOpacity(0.2),
-                                border: Border.all(
-                                  color: AppColors.grey,
-                                  width: 1,
-                                ),
+                                border: Border.all(color: AppColors.grey, width: 1),
                                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                               ),
                               child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Expanded(child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -776,7 +761,6 @@ class DetailPage extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: _getController.height.value * 0.01),
-
                         if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
                           Text('Tavsif',
                           style: TextStyle(
@@ -805,10 +789,7 @@ class DetailPage extends StatelessWidget {
                         Container(
                           width: _getController.width.value,
                           height: _getController.height.value * 0.09,
-                          margin: EdgeInsets.only(
-                            top: _getController.height.value * 0.02,
-                            bottom: _getController.height.value * 0.02,
-                          ),
+                          margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.02),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.background,
                             borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -817,19 +798,16 @@ class DetailPage extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
                                 spreadRadius: 1,
                                 blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
+                                offset: const Offset(0, 3)
+                              )
+                            ]
                           ),
                           child: Row(
                             children: [
                               Container(
                                 width: _getController.width.value * 0.16,
                                 height: _getController.height.value * 0.08,
-                                margin: EdgeInsets.only(
-                                  left: _getController.width.value * 0.03,
-                                  right: _getController.width.value * 0.03,
-                                ),
+                                margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(Radius.circular(8)),
                                   image: DecorationImage(
@@ -840,10 +818,9 @@ class DetailPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                              Expanded(child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : '',
@@ -881,10 +858,7 @@ class DetailPage extends StatelessWidget {
                         Container(
                           height: _getController.height.value * 0.35,
                           width: _getController.width.value,
-                          margin: EdgeInsets.only(
-                            top: _getController.height.value * 0.02,
-                            bottom: _getController.height.value * 0.02,
-                          ),
+                          margin: EdgeInsets.only(top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.02),
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: _getController.productDetailModel.value.data?.simularProducts!.length,
@@ -903,27 +877,16 @@ class DetailPage extends StatelessWidget {
                             },
                           ),
                         ),
-                        Text('Sizning fikringiz',
-                          style: TextStyle(
-                            fontSize: _getController.width.value * 0.05,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        Text('Sizning fikringiz', style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
                         SizedBox(height: _getController.height.value * 0.02),
-                        //baholang rating bar {"data":{"result":{"1":0,"2":0,"3":0,"4":0,"5":0,"average":null,"total":0},"message":"Ok!"},"status":true}
-                        Text('Baholang',
-                          style: TextStyle(
-                            fontSize: _getController.width.value * 0.04,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        if (_getController.productRate.value.data != null)
+                        Text('Baholang', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
+                        if (_getController.productRate.value.data != null)
                         SizedBox(height: _getController.height.value * 0.01),
-                        // {"data":{"result":{"1":0,"2":0,"3":0,"4":0,"5":0,"average":null,"total":0},"message":"Ok!"},"status":true} to rating bar {"1":0,"2":0,"3":0,"4":0,"5":0,"average":null,"total":0}
-                        //_getController.productRate.value.data.result.average == null ? 0 : _getController.productRate.value.data.result.average,
+                        if (_getController.productRate.value.data != null)
                         RatingBar.builder(
-                          //initialRating: double.parse(_getController.productRate.value.data!.result!.average.toString()),
                           initialRating: _getController.productRate.value.data!.result!.average == null ? 0 : double.parse(_getController.productRate.value.data!.result!.average.toString()),
-                          minRating: 1,
+                          minRating: 0,
                           direction: Axis.horizontal,
                           allowHalfRating: true,
                           itemCount: 5,
@@ -935,7 +898,150 @@ class DetailPage extends StatelessWidget {
                           ),
                           onRatingUpdate: (rating) {
                             print(rating);
-                          },
+                          }
+                        ),
+                        SizedBox(height: _getController.height.value * 0.01),
+                        Text('Izoh:', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
+                        SizedBox(height: _getController.height.value * 0.01),
+                        Container(
+                          width: _getController.width.value,
+                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            borderRadius: const BorderRadius.all(Radius.circular(8)),
+                            border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                          ),
+                          child: TextField(
+                            minLines: 1,
+                            maxLines: 3,
+                            style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),
+                            decoration: InputDecoration(
+                              hintText: 'Kiriting'.tr,
+                              labelStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
+                              hintStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: _getController.height.value * 0.02),
+                        SizedBox(
+                          width: _getController.width.value,
+                          height: _getController.height.value * 0.06,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              print('Send');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: Text('Yuborish'.tr, style: TextStyle(
+                                fontSize: _getController.width.value * 0.04,
+                                fontWeight: FontWeight.w500,
+                                color: Theme.of(context).colorScheme.background
+                            )
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: _getController.height.value * 0.02),
+                        Text('Izohlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
+                        SizedBox(height: _getController.height.value * 0.01),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          semanticChildCount: _getController.productDetailModel.value.data?.comments!.length,
+                          addAutomaticKeepAlives: true,
+                          primary: true,
+                          addRepaintBoundaries: true,
+                          scrollDirection: Axis.vertical,
+                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                          findChildIndexCallback: (key) => null,
+                          itemCount: _getController.productDetailModel.value.data?.comments!.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
+                              padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
+                              decoration: BoxDecoration(
+                                color: AppColors.grey.withOpacity(0.1),
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: _getController.width.value * 0.12,
+                                        height: _getController.width.value * 0.12,
+                                        margin: EdgeInsets.only(right: _getController.width.value * 0.03),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.comments![index].user?.avatar ?? '',), fit: BoxFit.cover))
+                                      ),
+                                      Expanded(
+                                          child: Text(
+                                            _getController.productDetailModel.value.data?.comments![index].user?.fullName ?? '',
+                                            style: TextStyle(
+                                                fontSize: _getController.width.value * 0.04,
+                                                fontWeight: FontWeight.w500,
+                                                color: Theme.of(context).colorScheme.onBackground
+                                            )
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(height: _getController.height.value * 0.01),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: _getController.width.value * 0.32,
+                                        child: RatingBar.builder(
+                                          initialRating: _getController.productDetailModel.value.data?.comments![index].rate?.toDouble() ?? 0,
+                                          minRating: 0,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemSize: _getController.width.value * 0.06,
+                                          itemBuilder: (context, _) => const Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                          ),
+                                          onRatingUpdate: (rating) {
+                                            print(rating);
+                                          }
+                                        ),
+                                      ),
+                                      Expanded(child:
+                                      Text(
+                                        //_getController.productDetailModel.value.data?.comments![index].createdAt ?? '',
+                                        //'2024-02-01T16:01:07.938Z', to date time 2024-02-01
+                                        DateTime.parse(_getController.productDetailModel.value.data?.comments![index].createdAt ?? '').toString().substring(0, 10),
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: _getController.width.value * 0.04,
+                                            fontWeight: FontWeight.w400,
+                                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                        )
+                                      ))
+                                    ],
+                                  ),
+                                  SizedBox(height: _getController.height.value * 0.01),
+                                  Text(
+                                    _getController.productDetailModel.value.data?.comments![index].description ?? '',
+                                    style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.w400,
+                                      color: Theme.of(context).colorScheme.onBackground
+                                    )
+                                  )
+                                ],
+                              ),
+                            );
+                            },
                         ),
                       ],
                     )
