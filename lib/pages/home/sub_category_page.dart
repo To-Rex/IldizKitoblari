@@ -5,10 +5,10 @@ import '../../controllers/get_controller.dart';
 import 'cat_detail_page.dart';
 
 class SubCategoryPage extends StatelessWidget {
-  var title;
-  var menuSlug;
-  var menuIndex;
-  var index;
+  String title;
+  String menuSlug;
+  int menuIndex;
+  int index;
 
   SubCategoryPage({super.key, required this.title, required this.menuSlug, required this.menuIndex, required this.index});
 
@@ -18,7 +18,19 @@ class SubCategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+            title: Text(title),
+            centerTitle: false,
+            toolbarTextStyle: TextStyle(fontSize: _getController.width.value * 0.048, fontWeight: FontWeight.w600),
+            surfaceTintColor: Colors.transparent,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).colorScheme.onBackground,
+                size: _getController.width.value * 0.06,
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            )
         ),
         body: Obx(() => _getController.menuModel.value.data!.result![menuIndex].children![menuIndex].children != null
             ? Center(child: Text('Ma\'lumotlar yo\'q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)))
