@@ -13,7 +13,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailPage extends StatelessWidget {
 
-  var slug;
+  String slug;
 
   DetailPage({super.key, required this.slug});
   final GetController _getController = Get.put(GetController());
@@ -504,7 +504,6 @@ class DetailPage extends StatelessWidget {
                                     color: Theme.of(context).colorScheme.onBackground,
                                     size: _getController.width.value * 0.065),
                                 onPressed: () {
-                                  print('Share');
                                 }
                             ),
                             IconButton(
@@ -513,7 +512,6 @@ class DetailPage extends StatelessWidget {
                                     color: Theme.of(context).colorScheme.onBackground,
                                     size: _getController.width.value * 0.065),
                                 onPressed: () {
-                                  print('Collection');
                                 }
                             )],
                         ),
@@ -904,7 +902,7 @@ class DetailPage extends StatelessWidget {
                                         color: Colors.amber,
                                       ),
                                       onRatingUpdate: (rating) {
-                                        print(rating);
+
                                       }
                                   ),
                                 SizedBox(height: _getController.height.value * 0.01),
@@ -936,7 +934,6 @@ class DetailPage extends StatelessWidget {
                                   height: _getController.height.value * 0.06,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      print('Send');
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: AppColors.primaryColor,
@@ -1020,14 +1017,11 @@ class DetailPage extends StatelessWidget {
                                                         color: Colors.amber,
                                                       ),
                                                       onRatingUpdate: (rating) {
-                                                        print(rating);
                                                       }
                                                   ),
                                                 ),
                                                 Expanded(child:
                                                 Text(
-                                                  //_getController.productDetailModel.value.data?.comments![index].createdAt ?? '',
-                                                  //'2024-02-01T16:01:07.938Z', to date time 2024-02-01
                                                     DateTime.parse(_getController.productDetailModel.value.data?.comments![index].createdAt ?? '').toString().substring(0, 10),
                                                     maxLines: 1,
                                                     style: TextStyle(
@@ -1079,8 +1073,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         SizedBox(height: _getController.height.value * 0.2)
                       ]
-                  )
-                      : SizedBox(
+                  ) : SizedBox(
                       height: _getController.height.value,
                       width: _getController.width.value,
                       child: Center(child: Text('Ma\'lumotlar yo\'q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
@@ -1091,81 +1084,83 @@ class DetailPage extends StatelessWidget {
                   bottom: 0,
                   left:  0,
                   right: 0,
-                  child: SizedBox(
-                    height: _getController.height.value * 0.12,
-                    width: _getController.width.value,
-                    child: Expanded(
-                      child: Container(
-                        height: _getController.height.value * 0.1,
-                        width: _getController.width.value * 0.5,
-                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,
-                          //top: _getController.height.value * 0.015
-                        ),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.background,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(0, -1)
-                            )
-                          ],
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            if (_getController.productDetailModel.value.data != null)
-                            Expanded(child: Text('${_getController.productDetailModel.value.data!.price} so\'m', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground))),
-                            SizedBox(
-                              width: _getController.width.value * 0.35,
-                              height: _getController.height.value * 0.06,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  print('Xarid');
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.primaryColor2,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
+                  child: Obx(
+                    () => SizedBox(
+                      height: _getController.height.value * 0.12,
+                      width: _getController.width.value,
+                      child: Expanded(
+                        child: Container(
+                          height: _getController.height.value * 0.1,
+                          width: _getController.width.value * 0.5,
+                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,
+                            //top: _getController.height.value * 0.015
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.background,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, -1)
+                              )
+                            ],
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              if (_getController.productDetailModel.value.data != null)
+                                Expanded(
+                                    child: _getController.productDetailModel.value.data != null
+                                        ? Text('${_getController.productDetailModel.value.data!.price} so\'m', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox()),
+                              SizedBox(
+                                width: _getController.width.value * 0.35,
+                                height: _getController.height.value * 0.06,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.primaryColor2,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: Text('Xarid'.tr, style: TextStyle(
+                                      fontSize: _getController.width.value * 0.04,
+                                      fontWeight: FontWeight.w500,
+                                      color: Theme.of(context).colorScheme.background)
                                   ),
                                 ),
-                                child: Text('Xarid'.tr, style: TextStyle(
-                                    fontSize: _getController.width.value * 0.04,
-                                    fontWeight: FontWeight.w500,
-                                    color: Theme.of(context).colorScheme.background)
-                                ),
                               ),
-                            ),
-                            Container(
-                              width: _getController.width.value * 0.13,
-                              height: _getController.height.value * 0.06,
-                              margin: EdgeInsets.only(left: _getController.width.value * 0.02),
-                              child: IconButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
+                              Container(
+                                width: _getController.width.value * 0.13,
+                                height: _getController.height.value * 0.06,
+                                margin: EdgeInsets.only(left: _getController.width.value * 0.02),
+                                child: IconButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
                                   ),
+                                  icon: Icon(
+                                    TablerIcons.shopping_bag,
+                                    color: Theme.of(context).colorScheme.background,
+                                    size: _getController.width.value * 0.07,
+                                  ),
+                                  onPressed: () {
+                                  },
                                 ),
-                                icon: Icon(
-                                  TablerIcons.shopping_bag,
-                                  color: Theme.of(context).colorScheme.background,
-                                  size: _getController.width.value * 0.07,
-                                ),
-                                onPressed: () {
-                                  print('Add to cart');
-                                },
                               ),
-                            ),
 
-                          ],
-                        ),
-                      ),
-                    ),
+                            ],
+                          ),
+                        )
+                      )
+                    )
                   )
               )
-            ],
+            ]
           )
       )
     );
