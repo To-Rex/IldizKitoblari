@@ -658,6 +658,7 @@ class DetailPage extends StatelessWidget {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Text('Elektron kitob'.tr,
+                                                        maxLines: 1,
                                                         style: TextStyle(
                                                             fontSize: _getController.width.value * 0.04,
                                                             fontWeight: FontWeight.w500,
@@ -725,75 +726,27 @@ class DetailPage extends StatelessWidget {
                                 SizedBox(height: _getController.height.value * 0.02),
                                 Text('Tafsilotlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),
                                 SizedBox(height: _getController.height.value * 0.02),
-                                /*SizedBox(
-                                    width: _getController.width.value,
-                                    height:  _getController.productDetailModel.value != null ? _getController.productDetailModel.value.data!.options!.length * _getController.height.value * 0.035 : 0,
-                                    child: Center(
-                                      child: ListView.builder(
-                                        shrinkWrap: true,
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        //semanticChildCount: _getController.productDetailModel.value.data?.options!.length,
-                                        addAutomaticKeepAlives: true,
-                                        primary: true,
-                                        addRepaintBoundaries: true,
-                                        scrollDirection: Axis.vertical,
-                                        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                                        findChildIndexCallback: (key) => null,
-                                        itemCount: _getController.productDetailModel.value.data?.options!.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            margin: EdgeInsets.only(
-                                              bottom: _getController.height.value * 0.01,
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Text(_getController.productDetailModel.value.data?.options![index].optionId?.name?.uz ?? '',
-                                                  style: TextStyle(
-                                                      fontSize: _getController.width.value * 0.04,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
-                                                  ),
-                                                ),
-                                                Expanded(child: Text('  ---------------------------------------------------------  ',
-                                                    maxLines: 1,
-                                                    style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                                                ),
-                                                Text(
-                                                  _getController.productDetailModel.value.data?.options![index].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![index].value ?? '',
-                                                  style: TextStyle(
-                                                      fontSize: _getController.width.value * 0.04,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: Theme.of(context).colorScheme.onBackground
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        }
-                                      )
-                                    )
-                                ),*/
                                 if (_getController.productDetailModel.value.data?.options != null)
                                   for (int i = 0; i < _getController.productDetailModel.value.data!.options!.length; i++)
                                     Container(
                                       margin: EdgeInsets.only(bottom: _getController.height.value * 0.019),
                                       child: Row(
                                         children: [
-                                          Text(_getController.productDetailModel.value.data?.options![i].optionId?.name?.uz ?? '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),
+                                          Text('uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),
                                           Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))),
-                                          Text(_getController.productDetailModel.value.data?.options![i].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![i].value ?? '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),)
+                                          Text('uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.ru ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.oz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
                                       ],
                                     ),
                                   ),
                                 SizedBox(height: _getController.height.value * 0.01),
-                                if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
-                                  Text('Tavsif',
+                                if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
+                                  Text('Tavsif'.tr,
                                     style: TextStyle(
                                       fontSize: _getController.width.value * 0.05,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
+                                if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
                                   Html(
                                     style: {
                                       'p': Style(
@@ -805,7 +758,7 @@ class DetailPage extends StatelessWidget {
                                     //data: _getController.productDetailModel.value.data?.content?.uz ?? '',
                                     data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.oz ?? '' : '',
                                   ),
-                                Text('Mualif haqida',
+                                Text('Mualif haqida'.tr,
                                   style: TextStyle(
                                     fontSize: _getController.width.value * 0.05,
                                     fontWeight: FontWeight.bold,
@@ -874,7 +827,7 @@ class DetailPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Text('Tavsiya etiladi',
+                                Text('Tavsiya etiladi'.tr,
                                   style: TextStyle(
                                     fontSize: _getController.width.value * 0.05,
                                     fontWeight: FontWeight.bold,
@@ -902,10 +855,10 @@ class DetailPage extends StatelessWidget {
                                     },
                                   ),
                                 ),
-                                Text('Sizning fikringiz', style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
+                                Text('Sizning fikringiz'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
                                 SizedBox(height: _getController.height.value * 0.015),
                                 if (_getController.productRate.value.data != null)
-                                  Text('Baholang', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
+                                  Text('Baholang'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
                                 if (_getController.productRate.value.data != null)
                                   SizedBox(height: _getController.height.value * 0.01),
                                 if (_getController.productRate.value.data != null)
@@ -926,7 +879,7 @@ class DetailPage extends StatelessWidget {
                                       onRatingUpdate: (rating) {}
                                   ),
                                 SizedBox(height: _getController.height.value * 0.02),
-                                Text('Izoh:', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
+                                Text('${'Izoh'.tr}:', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
                                 SizedBox(height: _getController.height.value * 0.01),
                                 Container(
                                   width: _getController.width.value,
@@ -961,7 +914,7 @@ class DetailPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child: Text('Yuborish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.background)))
+                                    child: Text('Jo\'natish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.background)))
                                 ),
                                 SizedBox(height: _getController.height.value * 0.033),
                                 Text('Izohlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),

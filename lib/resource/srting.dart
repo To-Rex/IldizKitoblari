@@ -97,6 +97,9 @@ class LocaleString extends Translations{
       'Qog\'ozli kitob':'Paper book',
       'Elektron kitob':'E-book',
       'Audio kitob':'Audio book',
+      'Baholang':'Rating',
+      'Mualif haqida':'About the author',
+      'Tavsiya etiladi':'Recommended',
 
     },
     'ru_RU':{
@@ -191,6 +194,9 @@ class LocaleString extends Translations{
       'Qog\'ozli kitob':'Бумажная книга',
       'Elektron kitob':'Электронная книга',
       'Audio kitob':'Аудиокнига',
+      'Baholang':'Оценка',
+      'Mualif haqida':'Об авторе',
+      'Tavsiya etiladi':'Рекомендуется',
 
     },
     'uz_UZ':{
@@ -286,9 +292,12 @@ class LocaleString extends Translations{
       'Qog\'ozli kitob':'Qog\'ozli kitob',
       'Elektron kitob':'Elektron kitob',
       'Audio kitob':'Audio kitob',
+      'Baholang':'Baholang',
+      'Mualif haqida':'Mualif haqida',
+      'Tavsiya etiladi':'Tavsiya etiladi',
+
     },
     'oz_Oz':{
-      //kril
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
       'hello': 'Салом Дунё',
       'message':'Прото Кодерс Пойнтга хуш келибсиз',
@@ -380,6 +389,9 @@ class LocaleString extends Translations{
       'Qog\'ozli kitob':'Қоғозли китоб',
       'Elektron kitob':'Электрон китоб',
       'Audio kitob':'Аудио китоб',
+      'Baholang':'Баҳоланг',
+      'Mualif haqida':'Муаллиф ҳақида',
+      'Tavsiya etiladi':'Тавсия этилади',
 
     }
   };
