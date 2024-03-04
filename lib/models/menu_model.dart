@@ -155,7 +155,7 @@ class Children {
   bool? isFooter;
   bool? isHeader;
   Title? shortContent;
-  Null? banner;
+  var banner;
   List<Childrens>? children;
   bool? isSelect = false;
 
@@ -234,7 +234,7 @@ class Childrens {
   bool? isHeader;
   bool? isFooter;
   int? order;
-  Null? banner;
+  //var banner;
 
   Childrens(
       {this.sId,
@@ -247,22 +247,23 @@ class Childrens {
         this.isHeader,
         this.isFooter,
         this.order,
-        this.banner});
+        //this.banner
+      });
 
   Childrens.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    title = json['title'] != null ? new Title.fromJson(json['title']) : null;
+    title = json['title'] != null ? Title.fromJson(json['title']) : null;
     slug = json['slug'];
     link = json['link'];
     menuId = json['menu_id'];
     shortContent = json['short_content'] != null
-        ? new Title.fromJson(json['short_content'])
+        ? Title.fromJson(json['short_content'])
         : null;
     isStatic = json['is_static'];
     isHeader = json['is_header'];
     isFooter = json['is_footer'];
     order = json['order'];
-    banner = json['banner'];
+    //banner = json['banner'];
   }
 
   Map<String, dynamic> toJson() {
@@ -281,7 +282,7 @@ class Childrens {
     data['is_header'] = isHeader;
     data['is_footer'] = isFooter;
     data['order'] = order;
-    data['banner'] = banner;
+    //data['banner'] = banner;
     return data;
   }
 }
@@ -318,15 +319,15 @@ class Banner {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['link'] = this.link;
-    data['menu'] = this.menu;
-    data['status'] = this.status;
-    data['image_uz'] = this.imageUz;
-    data['image_oz'] = this.imageOz;
-    data['image_ru'] = this.imageRu;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['name'] = name;
+    data['link'] = link;
+    data['menu'] = menu;
+    data['status'] = status;
+    data['image_uz'] = imageUz;
+    data['image_oz'] = imageOz;
+    data['image_ru'] = imageRu;
     return data;
   }
 }

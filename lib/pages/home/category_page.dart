@@ -1,7 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../companents/app_bar.dart';
+import 'package:ildiz/pages/home/sub_category_page.dart';
 import '../../companents/category_item.dart';
 import '../../controllers/get_controller.dart';
 import 'cat_detail_page.dart';
@@ -15,6 +14,7 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('menuIndex: $menuIndex');
     return Scaffold(
       appBar: AppBar(
         title: Text('Kategoriya'.tr),
@@ -46,13 +46,21 @@ class CategoryPage extends StatelessWidget {
                         _getController.page.value = 1;
                         _getController.productModelLength.value = 0;
                         _getController.clearProductModel();
+                        print('menuIndex: $menuIndex');
+                        if (_getController.menuModel.value.data!.result![menuIndex].children![index].children != null) {
+                          Get.to(() => SubCategoryPage(
+                            title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!,
+                            menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!,
+                            menuIndex: menuIndex,
+                            index: index,
+                          ));
+                        } else {
                         Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!));}
-                  );
+                      });
                 }
             )
           )
-        ])
-      )
+        ]))
     );
   }
 }
