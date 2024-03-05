@@ -7,7 +7,6 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../companents/child_item.dart';
 import '../../companents/detail_child_item.dart';
 import '../../companents/detail_element.dart';
 import '../../companents/product_item.dart';
@@ -183,7 +182,7 @@ class DetailPage extends StatelessWidget {
                                         ),
                                       if (_getController.productRate.value.data != null)
                                       DetailElement(
-                                        title: _getController.productRate.value.data!.result!.total.toString() ?? '',
+                                        title: _getController.productRate.value.data!.result!.total.toString(),
                                         subTitle: 'ta izoh'.tr,
                                         icon: TablerIcons.message_circle,
                                       ),
