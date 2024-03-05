@@ -468,7 +468,7 @@ class DetailPage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).colorScheme.background,
                                     borderRadius: const BorderRadius.all(Radius.circular(12)),
-                                    border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                                    border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1)
                                   ),
                                   child: TextField(
                                     minLines: 1,
@@ -478,9 +478,9 @@ class DetailPage extends StatelessWidget {
                                       hintText: 'Kiriting'.tr,
                                       labelStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
                                       hintStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
+                                      border: InputBorder.none
+                                    )
+                                  )
                                 ),
                                 SizedBox(height: _getController.height.value * 0.02),
                                 SizedBox(
@@ -491,9 +491,7 @@ class DetailPage extends StatelessWidget {
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: AppColors.primaryColor,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                                     ),
                                     child: Text('Jo\'natish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.background)))
                                 ),
@@ -561,15 +559,14 @@ class DetailPage extends StatelessWidget {
                                                           itemSize: _getController.width.value * 0.06,
                                                           itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
                                                           onRatingUpdate: (rating) {}
-                                                      ),
+                                                      )
                                                     ),
-                                                    Expanded(child:
-                                                    Text(
+                                                    Expanded(child: Text(
                                                         DateTime.parse(_getController.productDetailModel.value.data?.comments![index].createdAt ?? '').toString().substring(0, 10),
                                                         maxLines: 1,
                                                         style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
                                                     ))
-                                                  ],
+                                                  ]
                                                 ),
                                                 SizedBox(height: _getController.height.value * 0.01),
                                                 Text(
@@ -604,10 +601,9 @@ class DetailPage extends StatelessWidget {
                                           color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
                                           size: _getController.width.value * 0.1,
                                         ),
-                                        Text('Izohlar yo\'q'.tr,
-                                            style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                                      ],
-                                    ),
+                                        Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                      ]
+                                    )
                                   )
                               ],
                             )
@@ -645,9 +641,7 @@ class DetailPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             if (_getController.productDetailModel.value.data != null)
-                              Expanded(
-                                  child: _getController.productDetailModel.value.data != null
-                                      ? Text('${_getController.productDetailModel.value.data!.price} so\'m', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox()),
+                              Expanded(child: _getController.productDetailModel.value.data != null ? Text('${_getController.productDetailModel.value.data!.price} so\'m', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox()),
                             SizedBox(
                               width: _getController.width.value * 0.35,
                               height: _getController.height.value * 0.06,
@@ -656,16 +650,14 @@ class DetailPage extends StatelessWidget {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primaryColor2,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                                 ),
                                 child: Text('Xarid'.tr, style: TextStyle(
                                     fontSize: _getController.width.value * 0.04,
                                     fontWeight: FontWeight.w500,
                                     color: Theme.of(context).colorScheme.background)
-                                ),
-                              ),
+                                )
+                              )
                             ),
                             Container(
                               width: _getController.width.value * 0.13,
@@ -682,11 +674,11 @@ class DetailPage extends StatelessWidget {
                                   size: _getController.width.value * 0.07,
                                 ),
                                 onPressed: () {
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                                }
+                              )
+                            )
+                          ]
+                        )
                       )
                     )
                   )
