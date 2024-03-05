@@ -8,8 +8,14 @@ class CategoryItem extends StatelessWidget {
   final String id;
   final String title;
   Function function;
+  //String imgUrl;
 
-  CategoryItem(this.id, this.title, this.function, {super.key});
+  CategoryItem(
+      this.id,
+      this.title,
+      this.function,
+      //this.imgUrl,
+      {Key? key}) : super(key: key);
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -35,7 +41,13 @@ class CategoryItem extends StatelessWidget {
               height: _getController.width.value * 0.1,
               margin: EdgeInsets.only(right: _getController.width.value * 0.04),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: Theme.of(context).colorScheme.background),
-              child: Center(child: Icon(Icons.category, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground),),
+              child: Center(
+                  child: Icon(Icons.category,
+                      size: _getController.width.value * 0.06,
+                      color: Theme.of(context).colorScheme.onBackground
+                  )
+              ),
+              //child: Image.network(imgUrl, fit: BoxFit.cover),
             ),
             Expanded(child: Text(title, maxLines: 2, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400))),
             Icon(Icons.arrow_forward, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground),

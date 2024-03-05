@@ -42,7 +42,8 @@ class CategoryPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return CategoryItem(
                       _getController.menuModel.value.data!.result![menuIndex].children![index].sId!,
-                      'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, () {
+                      'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!,
+                          () {
                         _getController.page.value = 1;
                         _getController.productModelLength.value = 0;
                         _getController.clearProductModel();
@@ -56,7 +57,9 @@ class CategoryPage extends StatelessWidget {
                           ));
                         } else {
                         Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!));}
-                      });
+                      },
+
+                      );
                 }
             )
           )

@@ -31,11 +31,12 @@ class ApiController extends GetxController {
   static const String _passwordUpdate = '$_baseUrl/api/v1/user/password-update';
 
   //home
-  static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
+  //static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
+  //https://ildizkitoblari.uz/api/v1/menu/mobile/list
+  static const String _menu = '$_baseUrl/api/v1/menu/mobile/list';
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6';
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
   static const String _productDetail = '$_baseUrl/api/v1/product/';
-  //https://ildizkitoblari.uz/api/v1/product/rate/658ef7fef37883518b90d0ef
   static const String _productRate = '$_baseUrl/api/v1/product/rate/';
 
 
