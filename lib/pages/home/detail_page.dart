@@ -530,9 +530,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         DetailChildItem(title: 'Izohlar'.tr, function: (){}, check: true),
                         if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
-                          SizedBox(
-                            height: _getController.height.value * 0.01,
-                          ),
+                          SizedBox(height: _getController.height.value * 0.01),
                         if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
                           for (int i = 0; i < _getController.productDetailModel.value.data!.comments!.length; i++)
                             Container(
