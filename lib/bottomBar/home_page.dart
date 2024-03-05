@@ -11,6 +11,8 @@ import '../companents/search_fild.dart';
 import '../controllers/get_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../pages/home/cat_detail_page.dart';
+
 class HomePage extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
@@ -147,9 +149,11 @@ class HomePage extends StatelessWidget {
                                       for (var i in _getController.menuModel.value.data!.result!)
                                         InkWell(
                                           onTap: () {
-                                            Get.to(() => CategoryPage(
-                                              menuIndex: _getController.menuModel.value.data!.result!.indexOf(i),
-                                            ));
+                                            if (i.children == null) {
+                                              Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!));
+                                            }else {
+                                              Get.to(() => CategoryPage(menuIndex: _getController.menuModel.value.data!.result!.indexOf(i)));
+                                            }
                                           },
                                           child: Chip(
                                             visualDensity: VisualDensity.compact,
