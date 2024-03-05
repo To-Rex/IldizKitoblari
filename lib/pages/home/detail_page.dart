@@ -80,16 +80,14 @@ class DetailPage extends StatelessWidget {
                                     TablerIcons.share,
                                     color: Theme.of(context).colorScheme.onBackground,
                                     size: _getController.width.value * 0.065),
-                                onPressed: () {
-                                }
+                                onPressed: () {}
                             ),
                             IconButton(
                                 icon: Icon(
                                     TablerIcons.bookmark,
                                     color: Theme.of(context).colorScheme.onBackground,
                                     size: _getController.width.value * 0.065),
-                                onPressed: () {
-                                }
+                                onPressed: () {}
                             )],
                         ),
                         if (_getController.productDetailModel.value.data?.images != null)
@@ -122,6 +120,7 @@ class DetailPage extends StatelessWidget {
                             itemCount: _getController.productDetailModel.value.data?.images!.length,
                             itemBuilder: (context, index) {
                               return InkWell(
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
                                 onTap: () {
                                   _getController.fullIndex.value = index;
                                   _getController.swiperController.move(index);
