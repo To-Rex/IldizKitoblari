@@ -5,6 +5,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/detail_element.dart';
 import '../../companents/product_item.dart';
@@ -99,8 +100,21 @@ class DetailPage extends StatelessWidget {
                           child: Swiper(
                               onIndexChanged: (index) {_getController.fullIndex.value = index;},
                               onTap: (index) {
-                                Get.to(() => PhotoView(
-                                  imageProvider: NetworkImage(_getController.productDetailModel.value.data?.images![_getController.fullIndex.value].file ?? ''),
+                                Get.to(() => Container(
+                                  color: Theme.of(context).colorScheme.background,
+                                  width: _getController.width.value,
+                                  height: _getController.height.value,
+                                  child: PhotoViewGallery(
+                                    pageOptions: List.generate(_getController.productDetailModel.value.data!.images!.length, (index) {
+                                      return PhotoViewGalleryPageOptions(
+                                        imageProvider: NetworkImage(_getController.productDetailModel.value.data!.images![index].file ?? ''),
+                                        initialScale: PhotoViewComputedScale.contained,
+                                        heroAttributes: PhotoViewHeroAttributes(tag: index),
+                                      );
+                                    }),
+                                    backgroundDecoration: const BoxDecoration(color: Colors.transparent),
+                                    pageController: PageController(initialPage: _getController.fullIndex.value),
+                                  )
                                 ));
                               },
                             controller: _getController.swiperController,
