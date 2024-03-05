@@ -4,6 +4,7 @@ import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/detail_element.dart';
 import '../../companents/product_item.dart';
@@ -96,9 +97,12 @@ class DetailPage extends StatelessWidget {
                           width: _getController.width.value,
                           margin: EdgeInsets.only(top: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                           child: Swiper(
-                            onIndexChanged: (index) {
-                              _getController.fullIndex.value = index;
-                            },
+                              onIndexChanged: (index) {_getController.fullIndex.value = index;},
+                              onTap: (index) {
+                                Get.to(() => PhotoView(
+                                  imageProvider: NetworkImage(_getController.productDetailModel.value.data?.images![_getController.fullIndex.value].file ?? ''),
+                                ));
+                              },
                             controller: _getController.swiperController,
                             itemCount: int.parse(_getController.productDetailModel.value.data!.images!.length.toString()),
                             itemBuilder: (BuildContext context, int index) {
