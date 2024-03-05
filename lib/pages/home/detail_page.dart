@@ -21,8 +21,8 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getProductDetail('aldanganlar');
-    //ApiController().getProductDetail(slug);
+    //ApiController().getProductDetail('aldanganlar');
+    ApiController().getProductDetail(slug);
     _getController.fullIndex.value = 0;
     return Scaffold(
       body: SmartRefresher(
