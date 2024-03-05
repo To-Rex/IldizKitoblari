@@ -25,8 +25,8 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getProductDetail('aldanganlar');
-    //ApiController().getProductDetail(slug);
+    //ApiController().getProductDetail('aldanganlar');
+    ApiController().getProductDetail(slug);
     _getController.fullIndex.value = 0;
     return Scaffold(
       body: SmartRefresher(
@@ -446,6 +446,7 @@ class DetailPage extends StatelessWidget {
                           margin: EdgeInsets.only(top: _getController.height.value * 0.02),
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.only(left: _getController.width.value * 0.03),
                             itemCount: _getController.productDetailModel.value.data?.simularProducts!.length,
                             itemBuilder: (context, index) {
                               return ProductItem(
@@ -462,7 +463,7 @@ class DetailPage extends StatelessWidget {
                           ),
                         ),
                         DetailChildItem(title: 'Sizning fikringiz'.tr, function: (){}, check: false),
-                        Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                        Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.025),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -524,118 +525,108 @@ class DetailPage extends StatelessWidget {
                                           ),
                                           child: Text('Jo\'natish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.background)))
                                   ),
-                                  SizedBox(height: _getController.height.value * 0.033),
-                                  Text('Izohlar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.bold)),
-                                  if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
-                                    ListView.builder(
-                                        shrinkWrap: true,
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        semanticChildCount: _getController.productDetailModel.value.data?.comments!.length,
-                                        addAutomaticKeepAlives: true,
-                                        primary: true,
-                                        addRepaintBoundaries: true,
-                                        scrollDirection: Axis.vertical,
-                                        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                                        findChildIndexCallback: (key) => null,
-                                        itemCount: _getController.productDetailModel.value.data?.comments!.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                              margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
-                                              padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
-                                              decoration: BoxDecoration(
-                                                color: AppColors.grey.withOpacity(0.1),
-                                                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                                                border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
-                                              ),
-                                              child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Container(
-                                                            width: _getController.width.value * 0.12,
-                                                            height: _getController.width.value * 0.12,
-                                                            margin: EdgeInsets.only(right: _getController.width.value * 0.03),
-                                                            decoration: BoxDecoration(
-                                                                shape: BoxShape.circle,
-                                                                image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.comments![index].user?.avatar ?? '',), fit: BoxFit.cover))
-                                                        ),
-                                                        Expanded(
-                                                            child: Text(
-                                                                _getController.productDetailModel.value.data?.comments![index].user?.fullName ?? '',
-                                                                style: TextStyle(
-                                                                    fontSize: _getController.width.value * 0.04,
-                                                                    fontWeight: FontWeight.w500,
-                                                                    color: Theme.of(context).colorScheme.onBackground
-                                                                )
-                                                            )
-                                                        )
-                                                      ],
-                                                    ),
-                                                    SizedBox(height: _getController.height.value * 0.01),
-                                                    Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                        children: [
-                                                          SizedBox(
-                                                              width: _getController.width.value * 0.32,
-                                                              child: RatingBar.builder(
-                                                                  initialRating: _getController.productDetailModel.value.data?.comments![index].rate?.toDouble() ?? 0,
-                                                                  minRating: 0,
-                                                                  direction: Axis.horizontal,
-                                                                  allowHalfRating: true,
-                                                                  itemCount: 5,
-                                                                  itemSize: _getController.width.value * 0.06,
-                                                                  itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
-                                                                  onRatingUpdate: (rating) {}
-                                                              )
-                                                          ),
-                                                          Expanded(child: Text(
-                                                              DateTime.parse(_getController.productDetailModel.value.data?.comments![index].createdAt ?? '').toString().substring(0, 10),
-                                                              maxLines: 1,
-                                                              style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
-                                                          ))
-                                                        ]
-                                                    ),
-                                                    SizedBox(height: _getController.height.value * 0.01),
-                                                    Text(
-                                                        _getController.productDetailModel.value.data?.comments![index].description ?? '',
-                                                        style: TextStyle(
-                                                            fontSize: _getController.width.value * 0.04,
-                                                            fontWeight: FontWeight.w400,
-                                                            color: Theme.of(context).colorScheme.onBackground
-                                                        )
-                                                    )
-                                                  ]
-                                              )
-                                          );
-                                        }
-                                    ),
-                                  if (_getController.productDetailModel.value.data!.comments!.isEmpty)
-                                    Container(
-                                        width: _getController.width.value,
-                                        height: _getController.height.value * 0.11,
-                                        margin: EdgeInsets.only(top: _getController.height.value * 0.015),
-                                        decoration: BoxDecoration(
-                                          color: AppColors.grey.withOpacity(0.1),
-                                          borderRadius: const BorderRadius.all(Radius.circular(8)),
-                                          border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
-                                        ),
-                                        child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                TablerIcons.message_circle_cancel,
-                                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-                                                size: _getController.width.value * 0.1,
-                                              ),
-                                              Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                                            ]
-                                        )
-                                    ),
                                 ]
                             )
                         ),
+                        DetailChildItem(title: 'Izohlar'.tr, function: (){}, check: true),
+                        if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
+                          SizedBox(
+                            height: _getController.height.value * 0.01,
+                          ),
+                        if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
+                          for (int i = 0; i < _getController.productDetailModel.value.data!.comments!.length; i++)
+                            Container(
+                              margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
+                              padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
+                              decoration: BoxDecoration(
+                                color: AppColors.grey.withOpacity(0.1),
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                              ),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                            width: _getController.width.value * 0.12,
+                                            height: _getController.width.value * 0.12,
+                                            margin: EdgeInsets.only(right: _getController.width.value * 0.03),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.comments![i].user?.avatar ?? '',), fit: BoxFit.cover))
+                                        ),
+                                        Expanded(
+                                            child: Text(
+                                                _getController.productDetailModel.value.data?.comments![i].user?.fullName ?? '',
+                                                style: TextStyle(
+                                                    fontSize: _getController.width.value * 0.04,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Theme.of(context).colorScheme.onBackground
+                                                )
+                                            )
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: _getController.height.value * 0.01),
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                              width: _getController.width.value * 0.32,
+                                              child: RatingBar.builder(
+                                                  initialRating: _getController.productDetailModel.value.data?.comments![i].rate?.toDouble() ?? 0,
+                                                  minRating: 0,
+                                                  direction: Axis.horizontal,
+                                                  allowHalfRating: true,
+                                                  itemCount: 5,
+                                                  itemSize: _getController.width.value * 0.06,
+                                                  itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+                                                  onRatingUpdate: (rating) {}
+                                              )
+                                          ),
+                                          Expanded(child: Text(
+                                              DateTime.parse(_getController.productDetailModel.value.data?.comments![i].createdAt ?? '').toString().substring(0, 10),
+                                              maxLines: 1,
+                                              style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                          ))
+                                        ]
+                                    ),
+                                    SizedBox(height: _getController.height.value * 0.01),
+                                    Text(
+                                        _getController.productDetailModel.value.data?.comments![i].description ?? '',
+                                        style: TextStyle(
+                                            fontSize: _getController.width.value * 0.04,
+                                            fontWeight: FontWeight.w400,
+                                            color: Theme.of(context).colorScheme.onBackground
+                                        )
+                                    )
+                                  ]
+                              )
+                          ),
+                        if (_getController.productDetailModel.value.data!.comments!.isEmpty)
+                          Container(
+                              width: _getController.width.value,
+                              height: _getController.height.value * 0.12,
+                              margin: EdgeInsets.only(top: _getController.height.value * 0.015),
+                              decoration: BoxDecoration(
+                                color: AppColors.grey.withOpacity(0.1),
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                              ),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      TablerIcons.message_circle_cancel,
+                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                                      size: _getController.width.value * 0.1,
+                                    ),
+                                    Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                  ]
+                              )
+                          ),
                         SizedBox(height: _getController.height.value * 0.214)
                       ]
                   ) : SizedBox(
