@@ -158,13 +158,12 @@ class DetailPage extends StatelessWidget {
                             },
                           ),
                         ),
-                        Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.02, bottom: _getController.height.value * 0.03),
+                        Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.015, bottom: _getController.height.value * 0.03),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  //_getController.productDetailModel.value.data?.name?.uz ?? '',
-                                  'uz_UZ' == 'uz' ? _getController.productDetailModel.value.data?.name?.uz ?? '' : 'uz_UZ' == 'oz' ? _getController.productDetailModel.value.data?.name?.oz ?? '' : _getController.productDetailModel.value.data?.name?.ru ?? '',
+                                  'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.name?.oz ?? '' : '',
                                   style: TextStyle(
                                     fontSize: _getController.width.value * 0.06,
                                     fontWeight: FontWeight.bold,
@@ -369,7 +368,9 @@ class DetailPage extends StatelessWidget {
                                 ]
                             )
                         ),
-                        DetailChildItem(title: 'Mualif haqida'.tr, function: (){}, check: false),
+                        if (_getController.productDetailModel.value.data?.simularProducts != null)
+                        /*DetailChildItem(title: 'Mualif haqida'.tr, function: (){}, check: false),
+                        if (_getController.productDetailModel.value.data!.simularProducts![0].image != null)
                         Container(
                           width: _getController.width.value,
                           height: _getController.height.value * 0.09,
@@ -437,7 +438,7 @@ class DetailPage extends StatelessWidget {
                               SizedBox(width: _getController.width.value * 0.03),
                             ],
                           ),
-                        ),
+                        ),*/
                         DetailChildItem(title: 'Tavsiya etiladi'.tr, function: (){}, check: false),
                         Container(
                           height: _getController.height.value * 0.35,

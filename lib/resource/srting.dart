@@ -300,7 +300,7 @@ class LocaleString extends Translations{
       'Izohlar yo\'q':'Izohlar yo\'q',
 
     },
-    'oz_Oz':{
+    'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
       'hello': 'Салом Дунё',
       'message':'Прото Кодерс Пойнтга хуш келибсиз',
