@@ -439,7 +439,6 @@ class DetailPage extends StatelessWidget {
                             ],
                           ),
                         ),*/
-
                         DetailChildItem(title: 'Tavsiya etiladi'.tr, function: (){}, check: false),
                         Container(
                           height: _getController.height.value * 0.35,
