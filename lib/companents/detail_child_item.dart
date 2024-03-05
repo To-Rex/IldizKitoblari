@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
-class ChildItem extends StatelessWidget {
+class DetailChildItem extends StatelessWidget {
   String title;
+  bool check;
   Function function;
 
-  ChildItem({super.key, required this.title, required this.function});
+  DetailChildItem({super.key, required this.title, required this.function, required this.check});
 
 
   final GetController _getController = Get.put(GetController());
@@ -18,8 +19,9 @@ class ChildItem extends StatelessWidget {
     return Container(
         width: _getController.width.value,
         margin: EdgeInsets.only(
-            left: _getController.width.value * 0.04,
-            right: _getController.width.value * 0.01),
+            left: _getController.width.value * 0.03,
+            right: _getController.width.value * 0.01
+        ),
         child:InkWell(
             onTap: () {
               _getController.fullCheck.value = false;
@@ -35,6 +37,7 @@ class ChildItem extends StatelessWidget {
                   SizedBox(width: _getController.width.value * 0.02),
                 Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w600,)),
                 const Expanded(child: SizedBox()),
+                if (check == true)
                 TextButton(
                   onPressed: () {
                     function();
