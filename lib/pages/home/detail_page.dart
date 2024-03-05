@@ -605,7 +605,7 @@ class DetailPage extends StatelessWidget {
                           Container(
                               width: _getController.width.value,
                               height: _getController.height.value * 0.12,
-                              margin: EdgeInsets.only(top: _getController.height.value * 0.015),
+                              margin: EdgeInsets.only(top: _getController.height.value * 0.015,left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                               decoration: BoxDecoration(
                                 color: AppColors.grey.withOpacity(0.1),
                                 borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -682,12 +682,12 @@ class DetailPage extends StatelessWidget {
                               child: IconButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primaryColor,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                                 ),
                                 icon: Icon(
                                   TablerIcons.shopping_bag,
                                   color: Theme.of(context).colorScheme.background,
-                                  size: _getController.width.value * 0.07,
+                                  size: _getController.width.value * 0.07
                                 ),
                                 onPressed: () {
                                 }
