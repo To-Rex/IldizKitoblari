@@ -34,6 +34,7 @@ class _ProductItemState extends State<ProductItem> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (widget.imageUrl != null || widget.imageUrl != ''|| widget.imageUrl != 'null' || widget.imageUrl != ' ')
             Container(
               width: _getController.width.value * 0.44,
               height: _getController.height.value * 0.205,
@@ -41,7 +42,8 @@ class _ProductItemState extends State<ProductItem> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: Theme.of(context).colorScheme.background,
-                image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
+                //image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
+                image: DecorationImage(image: NetworkImage(widget.imageUrl == null || widget.imageUrl == ''|| widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg' : widget.imageUrl!), fit: BoxFit.cover),
               ),
             ),
             SizedBox(child: Text(

@@ -287,10 +287,11 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    //print('productDetail: ${response.body}');
     if (response.statusCode == 200) {
-      _getController.changeProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
-      getProductRate(_getController.productDetailModel.value.data!.sId);
+      //_getController.changeProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
+      _getController.addProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
+      //getProductRate(_getController.productDetailModel.value.data!.sId);
+      getProductRate(jsonDecode(response.body)['data']['_id']);
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
@@ -305,6 +306,7 @@ class ApiController extends GetxController {
     print('productRate: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeProductRate(ProductRate.fromJson(jsonDecode(response.body)));
+      _getController.addProductRate(ProductRate.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

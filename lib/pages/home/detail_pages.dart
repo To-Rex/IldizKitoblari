@@ -14,11 +14,11 @@ import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class DetailPage extends StatelessWidget {
-  String slug;
-  int pageIndex;
+class DetailPages extends StatelessWidget {
 
-  DetailPage({super.key, required this.slug, required this.pageIndex});
+  String slug;
+
+  DetailPages({super.key, required this.slug});
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
@@ -64,8 +64,7 @@ class DetailPage extends StatelessWidget {
               Positioned(top: 0, left: 0, right: 0, bottom: 0,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  child: Obx(() =>
-                  _getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex
+                  child: Obx(() => _getController.productDetailModel.value.data != null && _getController.productRate.value.data != null
                       ? Column(
                       children: [
                         AppBar(
@@ -94,7 +93,7 @@ class DetailPage extends StatelessWidget {
                                 onPressed: () {}
                             )],
                         ),
-                        if (_getController.productDetailList[pageIndex].data?.images != null)
+                        if (_getController.productDetailModel.value.data?.images != null)
                         Container(
                           height: _getController.height.value * 0.427,
                           width: _getController.width.value,
@@ -107,9 +106,9 @@ class DetailPage extends StatelessWidget {
                                   width: _getController.width.value,
                                   height: _getController.height.value,
                                   child: PhotoViewGallery(
-                                    pageOptions: List.generate(_getController.productDetailList[pageIndex].data!.images!.length, (index) {
+                                    pageOptions: List.generate(_getController.productDetailModel.value.data!.images!.length, (index) {
                                       return PhotoViewGalleryPageOptions(
-                                        imageProvider: NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''),
+                                        imageProvider: NetworkImage(_getController.productDetailModel.value.data!.images![index].file ?? ''),
                                         initialScale: PhotoViewComputedScale.contained,
                                         heroAttributes: PhotoViewHeroAttributes(tag: index),
                                       );
@@ -120,13 +119,12 @@ class DetailPage extends StatelessWidget {
                                 ));
                               },
                             controller: _getController.swiperController,
-                            itemCount: int.parse(_getController.productDetailList[pageIndex].data!.images!.length.toString()),
+                            itemCount: int.parse(_getController.productDetailModel.value.data!.images!.length.toString()),
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                  image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover
-                                  )
+                                  image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.images![index].file ?? ''), fit: BoxFit.cover)
                                 )
                               );
                             }
@@ -138,7 +136,7 @@ class DetailPage extends StatelessWidget {
                           margin: EdgeInsets.only(top: _getController.height.value * 0.007),
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: _getController.productDetailList[pageIndex].data?.images!.length,
+                            itemCount: _getController.productDetailModel.value.data?.images!.length,
                             itemBuilder: (context, index) {
                               return InkWell(
                                 overlayColor: MaterialStateProperty.all(Colors.transparent),
@@ -153,27 +151,45 @@ class DetailPage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: const BorderRadius.all(Radius.circular(4)),
                                       border: _getController.fullIndex.value == index ? Border.all(color: AppColors.primaryColor3, width: 1) : null,
-                                      image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover)
-                                  )
-                                ))
+                                      image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.images![index].file ?? ''), fit: BoxFit.cover)
+                                  ),
+                                )),
                               );
-                            }
-                          )
+                            },
+                          ),
                         ),
                         Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.015, bottom: _getController.height.value * 0.03),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.06, fontWeight: FontWeight.bold)),
+                                Text(
+                                  'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.name?.oz ?? '' : '',
+                                  style: TextStyle(
+                                    fontSize: _getController.width.value * 0.06,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                                 SizedBox(height: _getController.height.value * 0.013),
-                                if (_getController.productDetailList[pageIndex].data != null)
+                                if (_getController.productDetailModel.value.data != null)
                                 Row(
                                     children: [
-                                      if (_getController.productRateList.length > pageIndex)
-                                        DetailElement(title: _getController.productRateList[pageIndex].data!.result!.average == null ? '0' : _getController.productRateList[pageIndex].data!.result!.average.toString(), subTitle: '', icon: Icons.star),
-                                      if (_getController.productRateList.length > pageIndex)
-                                        DetailElement(title: _getController.productRateList[pageIndex].data!.result!.total.toString(), subTitle: 'ta izoh'.tr, icon: TablerIcons.message_circle),
-                                      DetailElement(title: _getController.productDetailList[pageIndex].data?.views.toString() ?? '', subTitle: 'ta ko\'rilgan'.tr, icon: TablerIcons.eye)
+                                      if (_getController.productRate.value.data != null)
+                                        DetailElement(
+                                          title: _getController.productRate.value.data!.result!.average == null ? '0' : _getController.productRate.value.data!.result!.average.toString(),
+                                          subTitle: '',
+                                          icon: Icons.star,
+                                        ),
+                                      if (_getController.productRate.value.data != null)
+                                      DetailElement(
+                                        title: _getController.productRate.value.data!.result!.total.toString(),
+                                        subTitle: 'ta izoh'.tr,
+                                        icon: TablerIcons.message_circle,
+                                      ),
+                                      DetailElement(
+                                          title: _getController.productDetailModel.value.data?.views.toString() ?? '',
+                                          subTitle: 'ta ko\'rilgan'.tr,
+                                          icon: TablerIcons.eye
+                                      )
                                     ]
                                 ),
                                 Container(
@@ -181,19 +197,41 @@ class DetailPage extends StatelessWidget {
                                   width: _getController.width.value,
                                   margin: EdgeInsets.only(top: _getController.height.value * 0.025, bottom: _getController.height.value * 0.013),
                                   padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                  decoration: BoxDecoration(color: AppColors.primaryColor3.withOpacity(0.15), border: Border.all(color: AppColors.primaryColor3, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primaryColor3.withOpacity(0.15),
+                                    border: Border.all(color: AppColors.primaryColor3, width: 1),
+                                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                  ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
-                                      Expanded(child: Column(
+                                      Expanded(child:
+                                      Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Elektron kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground)),
-                                            Text('${_getController.productDetailList[pageIndex].data?.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                            Text('Elektron kitob'.tr,
+                                              style: TextStyle(
+                                                  fontSize: _getController.width.value * 0.04,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Theme.of(context).colorScheme.onBackground
+                                              ),
+                                            ),
+                                            //price
+                                            Text('${_getController.productDetailModel.value.data?.price} so\'m',
+                                                style: TextStyle(
+                                                    fontSize: _getController.width.value * 0.04,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                )
+                                            )
                                           ]
                                       )),
-                                      Icon(TablerIcons.book_2, color: AppColors.primaryColor3, size: _getController.width.value * 0.1),
+                                      Icon(
+                                        TablerIcons.book_2,
+                                        color: AppColors.primaryColor3,
+                                        size: _getController.width.value * 0.1,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -203,19 +241,43 @@ class DetailPage extends StatelessWidget {
                                     Container(
                                         height: _getController.height.value * 0.08,
                                         width: _getController.width.value * 0.45,
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                        decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
+                                        padding: EdgeInsets.only(
+                                            left: _getController.width.value * 0.03,
+                                            right: _getController.width.value * 0.03
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.grey.withOpacity(0.2),
+                                          border: Border.all(color: AppColors.grey, width: 1),
+                                          borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                        ),
                                         child: Row(
                                             children: [
                                               Expanded(child: Column(
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    Text('Elektron kitob'.tr, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                                    Text('16000 so\'m', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                                    Text('Elektron kitob'.tr,
+                                                        maxLines: 1,
+                                                        style: TextStyle(
+                                                            fontSize: _getController.width.value * 0.04,
+                                                            fontWeight: FontWeight.w500,
+                                                            color: Theme.of(context).colorScheme.onBackground
+                                                        )
+                                                    ),
+                                                    Text('16000 so\'m',
+                                                        style: TextStyle(
+                                                            fontSize: _getController.width.value * 0.04,
+                                                            fontWeight: FontWeight.w400,
+                                                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                        )
+                                                    )
                                                   ]
                                               )),
-                                              Icon(TablerIcons.book, color: AppColors.primaryColor3, size: _getController.width.value * 0.06)
+                                              Icon(
+                                                TablerIcons.book,
+                                                color: AppColors.primaryColor3,
+                                                size: _getController.width.value * 0.06,
+                                              )
                                             ]
                                         )
                                     ),
@@ -223,18 +285,38 @@ class DetailPage extends StatelessWidget {
                                         height: _getController.height.value * 0.08,
                                         width: _getController.width.value * 0.45,
                                         padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                        decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.grey.withOpacity(0.2),
+                                          border: Border.all(color: AppColors.grey, width: 1),
+                                          borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                        ),
                                         child: Row(
                                             children: [
                                               Expanded(child: Column(
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    Text('Audio kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                                    Text('16000 so\'m', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                                    Text('Audio kitob'.tr,
+                                                        style: TextStyle(
+                                                            fontSize: _getController.width.value * 0.04,
+                                                            fontWeight: FontWeight.w500,
+                                                            color: Theme.of(context).colorScheme.onBackground
+                                                        )
+                                                    ),
+                                                    Text('16000 so\'m',
+                                                        style: TextStyle(
+                                                            fontSize: _getController.width.value * 0.04,
+                                                            fontWeight: FontWeight.w400,
+                                                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                        )
+                                                    )
                                                   ]
                                               )),
-                                              Icon(TablerIcons.headphones, color: AppColors.primaryColor3, size: _getController.width.value * 0.06)
+                                              Icon(
+                                                  TablerIcons.headphones,
+                                                  color: AppColors.primaryColor3,
+                                                  size: _getController.width.value * 0.06
+                                              )
                                             ]
                                         )
                                     )
@@ -249,16 +331,19 @@ class DetailPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(height: _getController.height.value * 0.02),
-                                  if (_getController.productDetailList[pageIndex].data?.options != null)
-                                    for (int i = 0; i < _getController.productDetailList[pageIndex].data!.options!.length; i++)
+                                  if (_getController.productDetailModel.value.data?.options != null)
+                                    for (int i = 0; i < _getController.productDetailModel.value.data!.options!.length; i++)
                                       Container(
                                         width: _getController.width.value,
                                         margin: EdgeInsets.only(bottom: _getController.height.value * 0.011),
                                         child: Row(
                                           children: [
-                                            LimitedBox(maxWidth: _getController.width.value * 0.25, child: Text(maxLines: 1, textAlign: TextAlign.start, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),),
+                                            LimitedBox(maxWidth: _getController.width.value * 0.25, child: Text(maxLines: 1, textAlign: TextAlign.start, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),),
                                             Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))),
-                                            LimitedBox(maxWidth: _getController.width.value * 0.7, child: Text(maxLines: 1, textAlign: TextAlign.end, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.uz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.ru ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.oz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),)
+                                            LimitedBox(
+                                              maxWidth: _getController.width.value * 0.7,
+                                              child: Text(maxLines: 1, textAlign: TextAlign.end, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.ru ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.oz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                            )
                                           ]
                                         )
                                       ),
@@ -266,14 +351,14 @@ class DetailPage extends StatelessWidget {
                                 ]
                             )
                         ),
-                        if ('uz_UZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.oz != '')
+                        if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
                           DetailChildItem(title: 'Tavsif'.tr, function: (){}, check: false),
                         Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if ('uz_UZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.oz != '')
-                                  Html(
+                                  if ('uz_UZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailModel.value.data?.content?.oz != '')
+                                    Html(
                                       style: {
                                         'p': Style(
                                           fontSize: FontSize(_getController.width.value * 0.04),
@@ -281,12 +366,13 @@ class DetailPage extends StatelessWidget {
                                           color: Theme.of(context).colorScheme.onBackground,
                                         ),
                                       },
-                                      data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.oz ?? '' : '',
+                                      //data: _getController.productDetailModel.value.data?.content?.uz ?? '',
+                                      data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.content?.oz ?? '' : '',
                                     ),
                                 ]
                             )
                         ),
-                        //if (_getController.productDetailModel.value.data?.simularProducts != null)
+                        if (_getController.productDetailModel.value.data?.simularProducts != null)
                         /*DetailChildItem(title: 'Mualif haqida'.tr, function: (){}, check: false),
                         if (_getController.productDetailModel.value.data!.simularProducts![0].image != null)
                         Container(
@@ -365,19 +451,16 @@ class DetailPage extends StatelessWidget {
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             padding: EdgeInsets.only(left: _getController.width.value * 0.03),
-                            itemCount: _getController.productDetailList[pageIndex].data?.simularProducts!.length,
+                            itemCount: _getController.productDetailModel.value.data?.simularProducts!.length,
                             itemBuilder: (context, index) {
                               return ProductItem(
-                                id: _getController.productDetailList[pageIndex].data?.simularProducts![index].slug ?? '',
-                                title: _getController.productDetailList[pageIndex].data?.simularProducts![index].name ?? '',
-                                deck: _getController.productDetailList[pageIndex].data?.simularProducts![index].option?.valueId?.name?.uz ?? '',
-                                price: _getController.productDetailList[pageIndex].data?.simularProducts![index].price.toString() ?? '',
-                                imageUrl: _getController.productDetailList[pageIndex].data?.simularProducts![index].image ?? '',
+                                id: _getController.productDetailModel.value.data?.simularProducts![index].slug ?? '',
+                                title: _getController.productDetailModel.value.data?.simularProducts![index].name ?? '',
+                                deck: _getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? '',
+                                price: _getController.productDetailModel.value.data?.simularProducts![index].price.toString() ?? '',
+                                imageUrl: _getController.productDetailModel.value.data?.simularProducts![index].image ?? '',
                                 function: () {
-                                  _getController.fullIndex.value = 0;
-                                  _getController.swiperController.move(0);
-                                  _getController.removeProductDetailModel(pageIndex+1);
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(slug: _getController.productDetailList[pageIndex].data?.simularProducts![index].slug ?? '', pageIndex: pageIndex+1)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPages(slug: _getController.productDetailModel.value.data?.simularProducts![index].slug ?? '')));
                                 },
                               );
                             },
@@ -389,13 +472,13 @@ class DetailPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(height: _getController.height.value * 0.015),
-                                  if (_getController.productRateList.length > pageIndex)
+                                  if (_getController.productRate.value.data != null)
                                     Text('Baholang'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
-                                  if (_getController.productRateList.length > pageIndex)
+                                  if (_getController.productRate.value.data != null)
                                     SizedBox(height: _getController.height.value * 0.01),
-                                  if (_getController.productRateList.length > pageIndex)
+                                  if (_getController.productRate.value.data != null)
                                     RatingBar.builder(
-                                        initialRating: _getController.productRateList[pageIndex].data!.result!.average == null ? 0 : double.parse(_getController.productRateList[pageIndex].data!.result!.average.toString()),
+                                        initialRating: _getController.productRate.value.data!.result!.average == null ? 0 : double.parse(_getController.productRate.value.data!.result!.average.toString()),
                                         minRating: 0,
                                         direction: Axis.horizontal,
                                         allowHalfRating: true,
@@ -450,10 +533,10 @@ class DetailPage extends StatelessWidget {
                             )
                         ),
                         DetailChildItem(title: 'Izohlar'.tr, function: (){}, check: true),
-                        if (_getController.productDetailList[pageIndex].data!.comments!.isNotEmpty)
+                        if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
                           SizedBox(height: _getController.height.value * 0.01),
-                        if (_getController.productDetailList[pageIndex].data!.comments!.isNotEmpty)
-                          for (int i = 0; i < _getController.productDetailList[pageIndex].data!.comments!.length; i++)
+                        if (_getController.productDetailModel.value.data!.comments!.isNotEmpty)
+                          for (int i = 0; i < _getController.productDetailModel.value.data!.comments!.length; i++)
                             Container(
                               margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
                               padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
@@ -473,11 +556,11 @@ class DetailPage extends StatelessWidget {
                                             margin: EdgeInsets.only(right: _getController.width.value * 0.03),
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.comments![i].user?.avatar ?? '',), fit: BoxFit.cover))
+                                                image: DecorationImage(image: NetworkImage(_getController.productDetailModel.value.data?.comments![i].user?.avatar ?? '',), fit: BoxFit.cover))
                                         ),
                                         Expanded(
                                             child: Text(
-                                                _getController.productDetailList[pageIndex].data?.comments![i].user?.fullName ?? '',
+                                                _getController.productDetailModel.value.data?.comments![i].user?.fullName ?? '',
                                                 style: TextStyle(
                                                     fontSize: _getController.width.value * 0.04,
                                                     fontWeight: FontWeight.w500,
@@ -494,7 +577,7 @@ class DetailPage extends StatelessWidget {
                                           SizedBox(
                                               width: _getController.width.value * 0.32,
                                               child: RatingBar.builder(
-                                                  initialRating: _getController.productDetailList[pageIndex].data?.comments![i].rate?.toDouble() ?? 0,
+                                                  initialRating: _getController.productDetailModel.value.data?.comments![i].rate?.toDouble() ?? 0,
                                                   minRating: 0,
                                                   direction: Axis.horizontal,
                                                   allowHalfRating: true,
@@ -505,7 +588,7 @@ class DetailPage extends StatelessWidget {
                                               )
                                           ),
                                           Expanded(child: Text(
-                                              DateTime.parse(_getController.productDetailList[pageIndex].data?.comments![i].createdAt ?? '').toString().substring(0, 10),
+                                              DateTime.parse(_getController.productDetailModel.value.data?.comments![i].createdAt ?? '').toString().substring(0, 10),
                                               maxLines: 1,
                                               style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
                                           ))
@@ -513,7 +596,7 @@ class DetailPage extends StatelessWidget {
                                     ),
                                     SizedBox(height: _getController.height.value * 0.01),
                                     Text(
-                                        _getController.productDetailList[pageIndex].data?.comments![i].description ?? '',
+                                        _getController.productDetailModel.value.data?.comments![i].description ?? '',
                                         style: TextStyle(
                                             fontSize: _getController.width.value * 0.04,
                                             fontWeight: FontWeight.w400,
@@ -523,7 +606,7 @@ class DetailPage extends StatelessWidget {
                                   ]
                               )
                           ),
-                        if (_getController.productDetailList[pageIndex].data!.comments!.isEmpty)
+                        if (_getController.productDetailModel.value.data!.comments!.isEmpty)
                           Container(
                               width: _getController.width.value,
                               height: _getController.height.value * 0.12,
@@ -578,8 +661,8 @@ class DetailPage extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            if (_getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex)
-                              Expanded(child: _getController.productDetailList[pageIndex].data != null ? Text('${_getController.productDetailList[pageIndex].data!.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox()),
+                            if (_getController.productDetailModel.value.data != null)
+                              Expanded(child: _getController.productDetailModel.value.data != null ? Text('${_getController.productDetailModel.value.data!.price} so\'m', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox()),
                             SizedBox(
                               width: _getController.width.value * 0.35,
                               height: _getController.height.value * 0.06,

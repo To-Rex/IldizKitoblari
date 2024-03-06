@@ -7,6 +7,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/home/category_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import '../companents/child_item.dart';
+import '../companents/product_item.dart';
 import '../companents/search_fild.dart';
 import '../controllers/get_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -170,7 +171,7 @@ class HomePage extends StatelessWidget {
                               ),
                             ChildItem(title: 'Elektron kitoblar'.tr, function: (){}),
                             if (_getController.productModel.value.data != null)
-                              SizedBox(
+                             /* SizedBox(
                                 height: _getController.height.value * 0.35,
                                 width: _getController.width.value,
                                 child: ListView.builder(
@@ -219,6 +220,27 @@ class HomePage extends StatelessWidget {
                                             )
                                           ],
                                         ),
+                                      );
+                                    }
+                                ),
+                              ),*/
+                             SizedBox(
+                                height: _getController.height.value * 0.35,
+                                width: _getController.width.value,
+                                child: ListView.builder(
+                                    padding: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                    itemCount: _getController.productModel.value.data!.result!.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return ProductItem(
+                                        imageUrl: _getController.productModel.value.data!.result![index].image,
+                                        title: _getController.productModel.value.data!.result![index].name,
+                                        price: _getController.productModel.value.data!.result![index].price.toString(),
+                                        function: () {
+                                          Get.to(() => CatDetailPage(title: _getController.productModel.value.data!.result![index].name!, menuSlug: _getController.productModel.value.data!.result![index].slug!));
+                                        },
+                                        id: _getController.productModel.value.data!.result![index].sId,
+                                        deck: _getController.productModel.value.data!.result![index].name,
                                       );
                                     }
                                 ),

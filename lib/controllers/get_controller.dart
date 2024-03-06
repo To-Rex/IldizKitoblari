@@ -68,6 +68,34 @@ class GetController extends GetxController {
   var quotesModel = QuotesModel().obs;
   var productDetailModel = ProductDetailModel().obs;
   var productRate = ProductRate().obs;
+  var productDetailList = <ProductDetailModel>[].obs;
+  var productRateList = <ProductRate>[].obs;
+
+  void addProductDetailModel(ProductDetailModel productDetailModel) {
+    productDetailList.add(productDetailModel);
+  }
+
+  void clearProductDetailList() {
+    productDetailList.clear();
+    productRateList.clear();
+  }
+
+  void removeProductDetailModel(int index) {
+    if (productDetailList.isNotEmpty&&productDetailList.length>=index){
+      productDetailList.removeRange(index, productDetailList.length);
+      removeProductRate(index);
+    }
+  }
+
+  void addProductRate(ProductRate productRate) {
+    productRateList.add(productRate);
+  }
+
+  void removeProductRate(int index) {
+    if (productRateList.isNotEmpty&&productRateList.length>=index){
+      productRateList.removeRange(index, productRateList.length);
+    }
+  }
 
   //methods
   void changeLoginModel(LoginModel loginModel) {

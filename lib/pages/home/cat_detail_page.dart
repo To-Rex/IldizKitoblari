@@ -122,11 +122,12 @@ class CatDetailPage extends StatelessWidget {
                         title: _getController.productModel.value.data!.result![index].name!,
                         deck: _getController.productModel.value.data!.result![index].slug!,
                         price: _getController.productModel.value.data!.result![index].price!.toString(),
-                        imageUrl: _getController.productModel.value.data!.result![index].image!,
+                        imageUrl: _getController.productModel.value.data!.result![index].image ?? '',
                         function: () {
                          // Get.to(() => QuotesPage());
                           _getController.clearProductDetailModel();
-                          Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!));
+                          _getController.clearProductDetailList();
+                          Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));
                         }
                       );
                     }
