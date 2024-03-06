@@ -74,7 +74,7 @@ class ApiController extends GetxController {
       if (jsonDecode(response.body)['status'] == true) {
         _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
         _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
-        print(_getController.loginModel.value.data!.token);
+        debugPrint('token: ${_getController.loginModel.value.data!.token}');
         GetStorage().write('token', _getController.loginModel.value.data!.token);
         if (GetStorage().read('token') != null) {
           Get.offAll(SamplePage());
@@ -97,9 +97,9 @@ class ApiController extends GetxController {
       'type': type.toString(),
     });
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('check: ${response.body}');
+      debugPrint('check: ${_getController.phoneController.text}');
       if (jsonDecode(response.body)['status'] == true) {
-        print(_getController.phoneController.text);
+        debugPrint('check: ${_getController.phoneController.text}');
         otp(_getController.phoneController.text, type, resend);
       }else{
         if (resend == true && jsonDecode(response.body)['data']['message'] == 'User already exists!'){
@@ -119,7 +119,7 @@ class ApiController extends GetxController {
       'type': type.toString(),
     });
     if (response.statusCode == 200) {
-      print('otp: ${response.body}');
+      debugPrint('otp: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         _getController.resetTimer();
         if (!resend) {
@@ -138,7 +138,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> create(String fullName, String otp, String password, String phone) async {
-    print('fullName: $fullName, otp: $otp, password: $password, phone: $phone');
+    debugPrint('create: $fullName, $otp, $password, $phone');
     var response = await post(Uri.parse(_create),
         body: {
           'full_name': fullName,
@@ -148,13 +148,13 @@ class ApiController extends GetxController {
         }
     );
     if (response.statusCode == 200|| response.statusCode == 201) {
-      print('create: ${response.body}');
+      debugPrint('create: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
         _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
-        print(_getController.loginModel.value.data!.token);
         GetStorage().write('token', _getController.loginModel.value.data!.token);
         Get.offAll(SamplePage());
+        debugPrint('token: ${_getController.loginModel.value.data!.token}');
       }else{
         if (jsonDecode(response.body)['data']['message'] == 'OTP is wrong!') {
           showToast(Get.context, 'Xatolik', 'Kod noto\'g\'ri!', true, 3);
@@ -171,7 +171,7 @@ class ApiController extends GetxController {
     var response = await get(Uri.parse(_me), headers: {
       'Authorization': 'Bearer ${GetStorage().read('token')}',
     });
-    print('me: ${response.body}');
+    debugPrint('me: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
     } else if (response.statusCode == 401) {
@@ -187,7 +187,7 @@ class ApiController extends GetxController {
       'otp': _getController.codeController.text.toString(),
     });
     if (response.statusCode == 200) {
-      print('checkOtp: ${response.body}');
+      debugPrint('checkOtp: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         _getController.fullCheck.value = true;
         _getController.passwordCheck.value = false;
@@ -204,9 +204,8 @@ class ApiController extends GetxController {
       'phone': _getController.phoneController.text.toString(),
       'password': _getController.passwordController.text.toString(),
     });
-    print(response.body);
+    debugPrint('passwordUpdate: ${response.body}');
     if (response.statusCode == 200) {
-      print('passwordUpdate: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         showToast(Get.context, 'Muvaffaqiyatli', 'Parolni muvaffaqiyatli o\'zgartirdingiz!', false, 3);
         Get.offAll(const OnboardingPage());
@@ -229,7 +228,7 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    print('menu: ${response.body}');
+    debugPrint('menu: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeMenuModel(MenuModel.fromJson(jsonDecode(response.body)));
     } else {
@@ -243,7 +242,7 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    print('banner: ${response.body}');
+    debugPrint('banner: ${response.body}');
     getMenu();
     if (response.statusCode == 200) {
       if(type == 1){
@@ -262,18 +261,15 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    print('product: ${response.body}');
+    debugPrint('product: ${response.body}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('added: $add');
       if (add==false) {
         _getController.clearProductModel();
         _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
-        print(_getController.productModel.value.data!.result!.length);
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       }else{
         _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
-        print(_getController.productModel.value.data!.result!.length);
       }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
@@ -281,7 +277,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProductDetail(id) async {
-    print('menuSlug: ${Get.locale!.languageCode}');
     var response = await get(Uri.parse('$_productDetail$id'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
@@ -303,7 +298,7 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    print('productRate: ${response.body}');
+    debugPrint('productRate: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeProductRate(ProductRate.fromJson(jsonDecode(response.body)));
       _getController.addProductRate(ProductRate.fromJson(jsonDecode(response.body)));
