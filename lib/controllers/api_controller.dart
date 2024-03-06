@@ -281,6 +281,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProductDetail(id) async {
+    print('menuSlug: ${Get.locale!.languageCode}');
     var response = await get(Uri.parse('$_productDetail$id'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,

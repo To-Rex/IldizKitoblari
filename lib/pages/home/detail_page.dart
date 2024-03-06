@@ -334,14 +334,18 @@ class DetailPage extends StatelessWidget {
                                   if (_getController.productDetailModel.value.data?.options != null)
                                     for (int i = 0; i < _getController.productDetailModel.value.data!.options!.length; i++)
                                       Container(
+                                        width: _getController.width.value,
                                         margin: EdgeInsets.only(bottom: _getController.height.value * 0.011),
                                         child: Row(
                                           children: [
-                                            Text('uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),
+                                            LimitedBox(maxWidth: _getController.width.value * 0.25, child: Text(maxLines: 1, textAlign: TextAlign.start, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),),
                                             Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))),
-                                            Text('uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.ru ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.oz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
-                                          ],
-                                        ),
+                                            LimitedBox(
+                                              maxWidth: _getController.width.value * 0.7,
+                                              child: Text(maxLines: 1, textAlign: TextAlign.end, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.uz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.ru ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.options![i].valueId?.name?.oz ?? _getController.productDetailModel.value.data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                            )
+                                          ]
+                                        )
                                       ),
                                   SizedBox(height: _getController.height.value * 0.02),
                                 ]
@@ -451,7 +455,7 @@ class DetailPage extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return ProductItem(
                                 id: _getController.productDetailModel.value.data?.simularProducts![index].slug ?? '',
-                                title: _getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? '',
+                                title: _getController.productDetailModel.value.data?.simularProducts![index].name ?? '',
                                 deck: _getController.productDetailModel.value.data?.simularProducts![index].option?.valueId?.name?.uz ?? '',
                                 price: _getController.productDetailModel.value.data?.simularProducts![index].price.toString() ?? '',
                                 imageUrl: _getController.productDetailModel.value.data?.simularProducts![index].image ?? '',

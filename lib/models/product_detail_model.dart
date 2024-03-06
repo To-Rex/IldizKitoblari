@@ -291,6 +291,7 @@ class ValueId {
 
 class SimularProducts {
   String? sId;
+  String? name;
   String? slug;
   int? price;
   int? sale;
@@ -300,15 +301,18 @@ class SimularProducts {
 
   SimularProducts(
       {this.sId,
+        this.name,
         this.slug,
         this.price,
         this.sale,
         this.count,
         this.option,
-        this.image});
+        this.image
+      });
 
   SimularProducts.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    name = json['name'];
     slug = json['slug'];
     price = json['price'];
     sale = json['sale'];
@@ -321,6 +325,7 @@ class SimularProducts {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
+    data['name'] = name;
     data['slug'] = slug;
     data['price'] = price;
     data['sale'] = sale;
