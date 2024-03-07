@@ -43,7 +43,7 @@ class _ProductItemState extends State<ProductItem> {
                 borderRadius: BorderRadius.circular(5),
                 color: Theme.of(context).colorScheme.background,
                 //image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
-                image: DecorationImage(image: NetworkImage(widget.imageUrl == null || widget.imageUrl == ''|| widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg' : widget.imageUrl!), fit: BoxFit.cover),
+                image: DecorationImage(image: NetworkImage(widget.imageUrl == null || widget.imageUrl == ''|| widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740' : widget.imageUrl!), fit: BoxFit.cover),
               ),
             ),
             SizedBox(child: Text(

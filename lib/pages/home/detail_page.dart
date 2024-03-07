@@ -97,9 +97,9 @@ class DetailPage extends StatelessWidget {
                                   width: _getController.width.value,
                                   height: _getController.height.value,
                                   child: PhotoViewGallery(
-                                    pageOptions: List.generate(_getController.productDetailList[pageIndex].data!.images!.length, (index) {
+                                    pageOptions: List.generate(_getController.productDetailList[pageIndex].data!.images!.isEmpty ? 1 : _getController.productDetailList[pageIndex].data!.images!.length, (index) {
                                       return PhotoViewGalleryPageOptions(
-                                        imageProvider: NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''),
+                                        imageProvider: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''),
                                         initialScale: PhotoViewComputedScale.contained,
                                         heroAttributes: PhotoViewHeroAttributes(tag: index),
                                       );
@@ -110,12 +110,13 @@ class DetailPage extends StatelessWidget {
                                 ));
                               },
                             controller: _getController.swiperController,
-                            itemCount: int.parse(_getController.productDetailList[pageIndex].data!.images!.length.toString()),
+                            itemCount: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? 1 : _getController.productDetailList[pageIndex].data!.images!.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                  image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover)
+                                  image: DecorationImage(
+                                      image: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''), fit: BoxFit.cover)
                                 )
                               );
                             }
