@@ -71,26 +71,16 @@ class DetailPage extends StatelessWidget {
                         AppBar(
                           surfaceTintColor: Colors.transparent,
                           leading: IconButton(
-                              icon: Icon(Icons.arrow_back,
-                                  color: Theme.of(context).colorScheme.onBackground,
-                                  size: _getController.width.value * 0.065),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              }
+                              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
+                              onPressed: () {Navigator.pop(context);}
                           ),
                           actions: [
                             IconButton(
-                                icon: Icon(
-                                    TablerIcons.share,
-                                    color: Theme.of(context).colorScheme.onBackground,
-                                    size: _getController.width.value * 0.065),
+                                icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
                                 onPressed: () {}
                             ),
                             IconButton(
-                                icon: Icon(
-                                    TablerIcons.bookmark,
-                                    color: Theme.of(context).colorScheme.onBackground,
-                                    size: _getController.width.value * 0.065),
+                                icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
                                 onPressed: () {}
                             )],
                         ),
@@ -125,8 +115,7 @@ class DetailPage extends StatelessWidget {
                               return Container(
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                  image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover
-                                  )
+                                  image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover)
                                 )
                               );
                             }
@@ -273,16 +262,7 @@ class DetailPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   if ('uz_UZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.oz != '')
-                                  Html(
-                                      style: {
-                                        'p': Style(
-                                          fontSize: FontSize(_getController.width.value * 0.04),
-                                          fontWeight: FontWeight.w400,
-                                          color: Theme.of(context).colorScheme.onBackground,
-                                        ),
-                                      },
-                                      data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.oz ?? '' : '',
-                                    ),
+                                  Html(style: {'p': Style(fontSize: FontSize(_getController.width.value * 0.04), fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground)},data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.oz ?? '' : '',)
                                 ]
                             )
                         ),
@@ -404,10 +384,7 @@ class DetailPage extends StatelessWidget {
                                         itemPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
                                         unratedColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
                                         itemBuilder: (context, _) =>
-                                        const Icon(
-                                            TablerIcons.star_filled,
-                                            color: AppColors.primaryColor
-                                        ),
+                                        const Icon(TablerIcons.star_filled, color: AppColors.primaryColor),
                                         onRatingUpdate: (rating) {}
                                     ),
                                   SizedBox(height: _getController.height.value * 0.02),
@@ -584,8 +561,7 @@ class DetailPage extends StatelessWidget {
                               width: _getController.width.value * 0.35,
                               height: _getController.height.value * 0.06,
                               child: ElevatedButton(
-                                onPressed: () {
-                                },
+                                onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primaryColor2,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
@@ -606,13 +582,8 @@ class DetailPage extends StatelessWidget {
                                   backgroundColor: AppColors.primaryColor,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                                 ),
-                                icon: Icon(
-                                  TablerIcons.shopping_bag,
-                                  color: Theme.of(context).colorScheme.background,
-                                  size: _getController.width.value * 0.07
-                                ),
-                                onPressed: () {
-                                }
+                                icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.07),
+                                onPressed: () {}
                               )
                             )
                           ]
