@@ -11,7 +11,7 @@ import '../companents/product_item.dart';
 import '../companents/search_fild.dart';
 import '../controllers/get_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import '../pages/home/cat_detail_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -171,59 +171,6 @@ class HomePage extends StatelessWidget {
                               ),
                             ChildItem(title: 'Elektron kitoblar'.tr, function: (){}),
                             if (_getController.productModel.value.data != null)
-                             /* SizedBox(
-                                height: _getController.height.value * 0.35,
-                                width: _getController.width.value,
-                                child: ListView.builder(
-                                    padding: EdgeInsets.only(left: _getController.width.value * 0.03),
-                                    itemCount: _getController.productModel.value.data!.result!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        margin: EdgeInsets.only(top: _getController.height.value * 0.007, left: _getController.width.value * 0.013, right: _getController.width.value * 0.013),
-                                        width: _getController.width.value * 0.44,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: _getController.width.value * 0.44,
-                                              height: _getController.height.value * 0.205,
-                                              margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(5),
-                                                color: Theme.of(context).colorScheme.background,
-                                                image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![index].image!), fit: BoxFit.cover),
-                                              ),
-                                            ),
-                                            SizedBox(child: Text(_getController.productModel.value.data!.result![index].name!.toString(), maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
-                                            SizedBox(height: _getController.height.value * 0.01),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  '${_getController.productModel.value.data!.result![index].price!} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}',
-                                                  style: TextStyle(
-                                                    fontSize: _getController.width.value * 0.04,
-                                                    color: AppColors.primaryColor2,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const Spacer(),
-                                                InkWell(
-                                                  onTap: () {},
-                                                  child: Icon(
-                                                    TablerIcons.shopping_cart_plus,
-                                                    size: _getController.width.value * 0.06,
-                                                    color: Theme.of(context).colorScheme.onBackground,
-                                                  ),
-                                                )
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                ),
-                              ),*/
                              SizedBox(
                                 height: _getController.height.value * 0.35,
                                 width: _getController.width.value,
@@ -245,6 +192,45 @@ class HomePage extends StatelessWidget {
                                     }
                                 ),
                               ),
+                            ChildItem(title: 'Iqtiboslar'.tr, function: (){}),
+                            //swiper view for quotes
+                            SizedBox(
+                              height: _getController.height.value * 0.2,
+                              width: _getController.width.value,
+                              child: Swiper(
+                                itemCount: 10,
+                                loop: true,
+                                layout: SwiperLayout.STACK,
+                                itemHeight: _getController.height.value * 0.2,
+                                itemWidth: _getController.width.value * 0.93,
+                                scrollDirection: Axis.horizontal,
+                                axisDirection: AxisDirection.right,
+                                curve: Curves.decelerate,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    margin: EdgeInsets.only(left: _getController.width.value * 0.01),
+                                    width: _getController.width.value * 0.93,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Theme.of(context).colorScheme.background,
+                                      border: Border.all(color: AppColors.grey, width: 0.9),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
+                                          child: Text(
+                                            'salom',
+                                            style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                           ],
                         ),
                       )
