@@ -13,7 +13,7 @@ class ProductItem extends StatefulWidget {
    String? imageUrl;
    Function function;
 
-  ProductItem({Key? key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl, required this.function}) : super(key: key);
+  ProductItem({super.key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl, required this.function});
 
   @override
   State<ProductItem> createState() => _ProductItemState();
@@ -44,12 +44,10 @@ class _ProductItemState extends State<ProductItem> {
                 borderRadius: BorderRadius.circular(5),
                 color: Theme.of(context).colorScheme.background,
                 //image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
-                image: DecorationImage(image: NetworkImage(widget.imageUrl == null || widget.imageUrl == ''|| widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740' : widget.imageUrl!), fit: BoxFit.cover),
-              ),
+                image: DecorationImage(image: NetworkImage(widget.imageUrl == null || widget.imageUrl == ''|| widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740' : widget.imageUrl!), fit: BoxFit.cover)
+              )
             ),
-            SizedBox(child: Text(
-              widget.title!,
-              maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
+            SizedBox(child: Text(widget.title!, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
             SizedBox(height: _getController.height.value * 0.01),
             Row(
               children: [
@@ -58,23 +56,21 @@ class _ProductItemState extends State<ProductItem> {
                   style: TextStyle(
                     fontSize: _getController.width.value * 0.04,
                     color: AppColors.primaryColor2,
-                    fontWeight: FontWeight.w600,
-                  ),
+                    fontWeight: FontWeight.w600
+                  )
                 )),
                 InkWell(
-                  onTap: () {
-                    print('Korzinka');
-                  },
+                  onTap: () {},
                   child: Icon(
                     TablerIcons.shopping_cart_plus,
                     size: _getController.width.value * 0.06,
-                    color: Theme.of(context).colorScheme.onBackground,
-                  ),
+                    color: Theme.of(context).colorScheme.onBackground
+                  )
                 )
-              ],
+              ]
             )
-          ],
-        ),
+          ]
+        )
       )
     );
   }
