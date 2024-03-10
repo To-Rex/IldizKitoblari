@@ -25,6 +25,7 @@ class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
       onTap: () {
         widget.function();
       },
@@ -48,7 +49,7 @@ class _ProductItemState extends State<ProductItem> {
             ),
             SizedBox(child: Text(
               widget.title!,
-              maxLines: 2, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
+              maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
             SizedBox(height: _getController.height.value * 0.01),
             Row(
               children: [
