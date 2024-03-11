@@ -137,6 +137,7 @@ class ShopPage extends StatelessWidget {
                           ),
                           Container(
                               width: _getController.width.value,
+                              padding: EdgeInsets.only(top: _getController.height.value * 0.01),
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
                               child:Column(
                                   children: [
