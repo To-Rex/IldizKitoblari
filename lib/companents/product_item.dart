@@ -68,6 +68,18 @@ class _ProductItemState extends State<ProductItem> {
                   )
                 )
               ]
+            ),
+            Expanded(
+              child: Container(
+                  margin: EdgeInsets.only(top: _getController.height.value * 0.01),
+                  height: _getController.height.value * 0.05,
+                  width: _getController.width.value * 1.0,
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, padding: EdgeInsets.zero, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+                      child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.w600))
+                  )
+              ),
             )
           ]
         )
