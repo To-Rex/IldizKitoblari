@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             if (_getController.bannerModel.value.data != null)
                               Container(
-                                margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.02),
+                                margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.025),
                                 height: _getController.height.value * 0.173,
                                 width: _getController.width.value,
                                 decoration: BoxDecoration(
@@ -159,6 +159,7 @@ class HomePage extends StatelessWidget {
                                           },
                                           child: Chip(
                                             visualDensity: VisualDensity.compact,
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                             label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
                                             padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.007),
                                             labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
@@ -170,6 +171,8 @@ class HomePage extends StatelessWidget {
                                     ],
                                   )
                               ),
+                            if (_getController.menuModel.value.data != null)
+                              SizedBox(height: _getController.height.value * 0.04),
                             if (_getController.menuModel.value.data != null)
                               for (var i in _getController.menuModel.value.data!.result!.length > 2 ? _getController.menuModel.value.data!.result!.sublist(0, 2) : _getController.menuModel.value.data!.result!)
                                 Column(
