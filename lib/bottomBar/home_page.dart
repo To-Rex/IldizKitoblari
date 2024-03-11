@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ApiController().getBanner(1,1);
     ApiController().getProduct(1, 'badiiy-kitoblar',false);
+
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
@@ -169,9 +170,13 @@ class HomePage extends StatelessWidget {
                                     ],
                                   )
                               ),
-                            ChildItem(title: 'Elektron kitoblar'.tr, function: (){}),
-                            if (_getController.productModel.value.data != null)
-                             SizedBox(
+                            if (_getController.menuModel.value.data != null)
+                              for (var i in _getController.menuModel.value.data!.result!.length > 2 ? _getController.menuModel.value.data!.result!.sublist(0, 2) : _getController.menuModel.value.data!.result!)
+                                Column(
+                                  children: [
+                                    ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){}),
+                                if (_getController.productModel.value.data != null)
+                                  SizedBox(
                                 height: _getController.height.value * 0.35,
                                 width: _getController.width.value,
                                 child: ListView.builder(
@@ -192,6 +197,8 @@ class HomePage extends StatelessWidget {
                                     }
                                 ),
                               ),
+                                  ],
+                                ),
                             ChildItem(title: 'Iqtiboslar'.tr, function: (){}),
                             //swiper view for quotes
                             SizedBox(
@@ -203,40 +210,37 @@ class HomePage extends StatelessWidget {
                                 layout: SwiperLayout.STACK,
                                 itemHeight: _getController.height.value * 0.2,
                                 itemWidth: _getController.width.value * 0.93,
+                                containerHeight: _getController.height.value * 0.2,
+                                containerWidth: _getController.width.value * 0.93,
+                                physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 axisDirection: AxisDirection.right,
                                 curve: Curves.decelerate,
                                 itemBuilder: (context, index) {
                                   return Container(
-                                    margin: EdgeInsets.only(left: _getController.width.value * 0.01),
+                                    margin: EdgeInsets.only(left: _getController.width.value * 0.01,right: _getController.width.value * 0.01),
                                     width: _getController.width.value * 0.93,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Theme.of(context).colorScheme.background,
-                                      border: Border.all(color: AppColors.grey, width: 0.9),
-                                    ),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.background, border: Border.all(color: AppColors.grey, width: 0.9)),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
-                                          child: Text(
-                                            'salom',
-                                            style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                          child: Text('salom', style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600)
+                                          )
+                                        )
+                                      ]
+                                    )
                                   );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                                }
+                              )
+                            )
+                          ]
+                        )
                       )
-                    ],
+                    ]
                   ))
-              ),
+              )
             )
         )
     );
