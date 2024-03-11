@@ -32,6 +32,7 @@ class GetController extends GetxController {
   var fullIndex = 0.obs;
   var indexSub = 0.obs;
   var page = 0.obs;
+  var itemPage = 0.obs;
   var productModelLength = 0.obs;
   var passwordCheck = false.obs;
 
@@ -55,6 +56,10 @@ class GetController extends GetxController {
 
   void changePage(int page) {
     this.page.value = page;
+  }
+
+  void changeItemPage(int itemPage) {
+    this.itemPage.value = itemPage;
   }
 
   var nameController;
@@ -176,6 +181,10 @@ class GetController extends GetxController {
 
   void addPage() {
     page.value++;
+  }
+
+  void addItemPage() {
+    itemPage.value++;
   }
   //productModel length
   void changeProductModelLength(int length) {
