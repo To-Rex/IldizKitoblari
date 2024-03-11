@@ -175,29 +175,27 @@ class HomePage extends StatelessWidget {
                                 Column(
                                   children: [
                                     ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){}),
-                                if (_getController.productModel.value.data != null)
-                                  SizedBox(
-                                height: _getController.height.value * 0.35,
-                                width: _getController.width.value,
-                                child: ListView.builder(
-                                    padding: EdgeInsets.only(left: _getController.width.value * 0.03),
-                                    itemCount: _getController.productModel.value.data!.result!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return ProductItem(
-                                        imageUrl: _getController.productModel.value.data!.result![index].image,
-                                        title: _getController.productModel.value.data!.result![index].name,
-                                        price: _getController.productModel.value.data!.result![index].price.toString(),
-                                        function: () {
-                                          Get.to(() => CatDetailPage(title: _getController.productModel.value.data!.result![index].name!, menuSlug: _getController.productModel.value.data!.result![index].slug!));
-                                        },
-                                        id: _getController.productModel.value.data!.result![index].sId,
-                                        deck: _getController.productModel.value.data!.result![index].name,
-                                      );
-                                    }
-                                ),
-                              ),
-                                  ],
+                                    if (_getController.productModel.value.data != null)
+                                      SizedBox(
+                                        height: _getController.height.value * 0.35,
+                                        width: _getController.width.value,
+                                        child: ListView.builder(
+                                            padding: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                            itemCount: _getController.productModel.value.data!.result!.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return ProductItem(
+                                                imageUrl: _getController.productModel.value.data!.result![index].image,
+                                                title: _getController.productModel.value.data!.result![index].name,
+                                                price: _getController.productModel.value.data!.result![index].price.toString(),
+                                                function: () {
+                                                  Get.to(() => CatDetailPage(title: _getController.productModel.value.data!.result![index].name!, menuSlug: _getController.productModel.value.data!.result![index].slug!));
+                                                  },
+                                                id: _getController.productModel.value.data!.result![index].sId,
+                                                deck: _getController.productModel.value.data!.result![index].name,
+                                              );
+                                            }))
+                                  ]
                                 ),
                             ChildItem(title: 'Iqtiboslar'.tr, function: (){}),
                             //swiper view for quotes
