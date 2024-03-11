@@ -132,8 +132,8 @@ class ShopPage extends StatelessWidget {
                                     child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
                                 ),
                                 Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0, child: SearchFields())
-                              ],
-                            ),
+                              ]
+                            )
                           ),
                           Container(
                               width: _getController.width.value,
@@ -166,7 +166,7 @@ class ShopPage extends StatelessWidget {
                                                           );
                                                         }))
                                             ]
-                                        ),
+                                        )
                                   ]
                               )
                           )
