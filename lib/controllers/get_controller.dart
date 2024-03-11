@@ -70,6 +70,23 @@ class GetController extends GetxController {
   var productRate = ProductRate().obs;
   var productDetailList = <ProductDetailModel>[].obs;
   var productRateList = <ProductRate>[].obs;
+  var productModelList = <ProductModel>[].obs;
+
+  //add productModel to productModel list
+  void addProductModelList(ProductModel productModel) {
+    productModelList.add(productModel);
+  }
+
+  //clear productModelList
+  void clearProductModelList() {
+    productModelList.clear();
+  }
+
+  void removeProductModelList(int index) {
+    if (productModelList.isNotEmpty&&productModelList.length>=index){
+      productModelList.removeRange(index, productModelList.length);
+    }
+  }
 
   void addProductDetailModel(ProductDetailModel productDetailModel) {
     productDetailList.add(productDetailModel);
