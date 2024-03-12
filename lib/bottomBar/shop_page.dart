@@ -8,6 +8,7 @@ import '../companents/search_fild.dart';
 import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
 import '../pages/home/cat_detail_page.dart';
+import '../pages/home/category_page.dart';
 import '../resource/colors.dart';
 
 class ShopPage extends StatelessWidget {
@@ -112,7 +113,13 @@ class ShopPage extends StatelessWidget {
                                       for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
                                         Column(
                                             children: [
-                                              ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){}),
+                                              ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
+                                                if (i.children == null) {
+                                                  Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!));
+                                                }else {
+                                                  Get.to(() => CategoryPage(menuIndex: _getController.menuModel.value.data!.result!.indexOf(i)));
+                                                }
+                                              }),
                                               //if (_getController.productModel.value.data != null)
                                               if (_getController.productModelList.isNotEmpty)
                                                 SizedBox(
@@ -129,7 +136,9 @@ class ShopPage extends StatelessWidget {
                                                             imageUrl: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].image!,
                                                             title: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name!,
                                                             price: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].price.toString(),
-                                                            function: () {Get.to(() => CatDetailPage(title: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name!, menuSlug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!));},
+                                                            function: () {
+                                                              Get.to(() => CatDetailPage(title: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name!, menuSlug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!));
+                                                              },
                                                             id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
                                                             deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name
                                                           );

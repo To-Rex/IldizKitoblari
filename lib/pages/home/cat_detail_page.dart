@@ -110,7 +110,7 @@ class CatDetailPage extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.07,
-                      mainAxisExtent: _getController.height.value * 0.33,
+                      mainAxisExtent: _getController.height.value * 0.35,
                       mainAxisSpacing: _getController.height.value * 0.015,
                       crossAxisSpacing: _getController.width.value * 0.03,
                     ),
