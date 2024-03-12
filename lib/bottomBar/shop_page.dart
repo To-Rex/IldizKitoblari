@@ -33,9 +33,7 @@ class ShopPage extends StatelessWidget {
   void _onLoading() async {
     print('onLoading');
     if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value) {
-      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![_getController.itemPage.value].slug!], true).then((value) => _refreshController.loadComplete());
-      print(_getController.menuModel.value.data!.result![0].slug!);
-      print(_getController.menuModel.value.data!.result![1].slug!);
+      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![_getController.itemPage.value].slug!, _getController.menuModel.value.data!.result![_getController.itemPage.value + 1].slug!], true).then((value) => _refreshController.loadComplete());
     }else{
       _refreshController.loadNoData();
     }

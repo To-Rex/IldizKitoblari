@@ -278,11 +278,7 @@ class ApiController extends GetxController {
 
   Future<void> getItemsProduct(page,List menuSlug,bool add) async {
     var lang = Get.locale!.languageCode;
-    print('menuSlug: $menuSlug');
-    print('menuSlug: ${menuSlug.length}');
     for (var i = 0; i < menuSlug.length; i++) {
-      print('menuSlug1: ${menuSlug[i]}');
-      https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&parent_slug=kitoblar
       var response = await get(Uri.parse('$_product&page=$page&parent_slug=${menuSlug[i]}'),
         headers: {
           'Accept-Language': lang,
