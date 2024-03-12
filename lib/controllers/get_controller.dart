@@ -132,6 +132,13 @@ class GetController extends GetxController {
     this.menuModel.value = menuModel;
   }
 
+  //delete menuModel data result list index
+  void deleteMenuModel(int index) {
+    if (menuModel.value.data != null) {
+      menuModel.value.data!.result!.removeAt(index);
+    }
+  }
+
   void changeBannerModel(BannerModel bannerModel) {
     this.bannerModel.value = bannerModel;
   }

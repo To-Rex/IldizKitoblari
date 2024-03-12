@@ -276,6 +276,42 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> getItemsProduct(page,List menuSlug,bool add) async {
+    var lang = Get.locale!.languageCode;
+    print('menuSlug: $menuSlug');
+    print('menuSlug: ${menuSlug.length}');
+    for (var i = 0; i < menuSlug.length; i++) {
+      print('menuSlug1: ${menuSlug[i]}');
+      https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&parent_slug=kitoblar
+      var response = await get(Uri.parse('$_product&page=$page&parent_slug=${menuSlug[i]}'),
+        headers: {
+          'Accept-Language': lang,
+        },
+      );
+      debugPrint('product: ${response.body}');
+      print('product: ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        if (jsonDecode(response.body)['data']['result'].isEmpty) {
+          debugPrint('menuSlugssss: ${menuSlug[i]}');
+          _getController.deleteMenuModel(_getController.itemPage.value);
+          continue;
+        }
+        if (add==false) {
+          _getController.clearProductModelList();
+          _getController.addProductModelList(ProductModel.fromJson(jsonDecode(response.body)));
+          _getController.changeItemPage(2);
+        }else{
+          _getController.addProductModelList(ProductModel.fromJson(jsonDecode(response.body)));
+          _getController.addItemPage();
+        }
+      } else {
+        _getController.deleteMenuModel(_getController.itemPage.value);
+        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      }
+    }
+  }
+
+
   Future<void> getProductDetail(id) async {
     var response = await get(Uri.parse('$_productDetail$id'),
       headers: {
