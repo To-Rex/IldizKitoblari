@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import '../companents/acc_item.dart';
 import '../controllers/get_controller.dart';
 import '../pages/onboarding_page.dart';
+import '../pages/profile/edit_user.dart';
 
 class AccountPage extends StatelessWidget {
   AccountPage({super.key});
@@ -86,29 +87,14 @@ class AccountPage extends StatelessWidget {
                         width: _getController.width.value, top: _getController.height.value * 0.12,
                         child: Container(
                             width: _getController.width.value,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(16),
-                                topRight: Radius.circular(16),
-                              ),
-                            ),
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
                             child: Column(
                               children: [
                                 Row(
                                   children: [
-                                    /*Container(
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
-                                        child: CircleAvatar(
-                                            radius: _getController.width.value * 0.08,
-                                            backgroundImage: const AssetImage('assets/images/men.png')
-                                        )
-                                    ),*/
-                                    //network image _getController.meModel.value.data!.image
                                     Container(
                                         padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                         child: _getController.meModel.value.data!.result!.avatar == null
-                                            //Circle avatar in full name first letter
                                             ? CircleAvatar(
                                                 radius: _getController.width.value * 0.08,
                                                 backgroundColor: Theme.of(context).colorScheme.primary,
@@ -137,7 +123,7 @@ class AccountPage extends StatelessWidget {
                                     height: _getController.height.value * 0.06,
                                     child: ElevatedButton(
                                         onPressed: () {
-                                          Get.toNamed('/myInfo');
+                                          Get.to(() => EditUser());
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: AppColors.primaryColor3,

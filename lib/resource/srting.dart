@@ -82,6 +82,7 @@ class LocaleString extends Translations{
       'Dastur haqida':'About the program',
       'Biz bilan bog\'lanish':'Contact us',
       'Ilovadan chiqish':'Exit the application',
+      'Shaxsiy ma\'lumotlar':'Personal information',
 
       //detail page
       'ta izoh':'Comment',
@@ -180,6 +181,7 @@ class LocaleString extends Translations{
       'Dastur haqida':'О программе',
       'Biz bilan bog\'lanish':'Связаться с нами',
       'Ilovadan chiqish':'Выйти из приложения',
+      'Shaxsiy ma\'lumotlar':'Персональные данные',
 
       //detail page
       'ta izoh':'Комментарий',
@@ -279,6 +281,7 @@ class LocaleString extends Translations{
       'Dastur haqida':'Dastur haqida',
       'Biz bilan bog\'lanish':'Biz bilan bog\'lanish',
       'Ilovadan chiqish':'Ilovadan chiqish',
+      'Shaxsiy ma\'lumotlar':'Shaxsiy ma\'lumotlar',
 
       //detail page
       'ta izoh':'ta izoh',
@@ -377,6 +380,7 @@ class LocaleString extends Translations{
       'Dastur haqida':'Дастур ҳақида',
       'Biz bilan bog\'lanish':'Биз билан боғланиш',
       'Ilovadan chiqish':'Иловадан чиқиш',
+      'Shaxsiy ma\'lumotlar':'Шахсий маълумотлар',
 
       //detail page
       'ta izoh':'та изоҳ',
