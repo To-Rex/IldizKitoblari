@@ -9,6 +9,7 @@ import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
 import '../pages/home/cat_detail_page.dart';
 import '../pages/home/category_page.dart';
+import '../pages/home/detail_page.dart';
 import '../resource/colors.dart';
 
 class ShopPage extends StatelessWidget {
@@ -36,7 +37,7 @@ class ShopPage extends StatelessWidget {
     if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value) {
       ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![_getController.itemPage.value].slug!, _getController.menuModel.value.data!.result![_getController.itemPage.value + 1].slug!], true).then((value) => _refreshController.loadComplete());
     }else{
-      _refreshController.loadNoData();
+      _refreshController.loadComplete();
     }
   }
 
@@ -137,9 +138,15 @@ class ShopPage extends StatelessWidget {
                                                             title: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name!,
                                                             price: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].price.toString(),
                                                             function: () {
-                                                              Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,
-                                                                  menuSlug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].message ));
-                                                              },
+                                                              //Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].message ));
+                                                              _getController.page.value = 1;
+                                                              _getController.productModelLength.value = 0;
+                                                              _getController.clearProductModel();
+                                                              Get.to(() => DetailPage(
+                                                                slug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!,
+                                                                pageIndex: _getController.menuModel.value.data!.result!.indexOf(i),
+                                                              ));
+                                                            },
                                                             id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
                                                             deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name
                                                           );
