@@ -77,7 +77,7 @@ class _ProductItemState extends State<ProductItem> {
                   child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, padding: EdgeInsets.zero, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-                      child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.w600))
+                      child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600))
                   )
               ),
             )
