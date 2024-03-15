@@ -238,7 +238,7 @@ class HomePage extends StatelessWidget {
                                         if (_getController.quotesModel.value.data!.result![index].product != null && _getController.quotesModel.value.data!.result![index].product!.name != null)
                                         Padding(
                                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01,bottom: _getController.height.value * 0.01),
-                                          child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.oz! : _getController.quotesModel.value.data!.result![index].product!.name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7), fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400)),
+                                          child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.oz! : _getController.quotesModel.value.data!.result![index].product!.name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
                                         ),
                                       ]
                                     )
