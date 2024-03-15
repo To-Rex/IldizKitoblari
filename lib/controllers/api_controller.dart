@@ -38,6 +38,8 @@ class ApiController extends GetxController {
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
   static const String _productDetail = '$_baseUrl/api/v1/product/';
   static const String _productRate = '$_baseUrl/api/v1/product/rate/';
+  //https://ildizkitoblari.uz/api/v1/banner/quotation/list?limit=5&page=1
+  static const String _quotation = '$_baseUrl/api/v1/banner/quotation/list';
 
 
   //show toast message
@@ -307,7 +309,6 @@ class ApiController extends GetxController {
     }
   }
 
-
   Future<void> getProductDetail(id) async {
     var response = await get(Uri.parse('$_productDetail$id'),
       headers: {
@@ -334,6 +335,21 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.changeProductRate(ProductRate.fromJson(jsonDecode(response.body)));
       _getController.addProductRate(ProductRate.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getQuotation(page) async {
+    //https://ildizkitoblari.uz/api/v1/banner/quotation/list?limit=5&page=1
+    var response = await get(Uri.parse('$_quotation?limit=5&page=$page'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    //debugPrint('quotation: ${response.body}');
+    if (response.statusCode == 200) {
+      _getController.changeQuotesModel(QuotesModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

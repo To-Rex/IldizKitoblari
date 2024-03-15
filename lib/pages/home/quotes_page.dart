@@ -27,51 +27,7 @@ class QuotesPage extends StatelessWidget {
             },
           )),
       body: Expanded(
-          child: Obx(
-            () => _getController.productModelLength.value > 0
-                ? SmartRefresher(
-                enablePullDown: true,
-                enablePullUp: true,
-                header: const ClassicHeader(),
-                footer: CustomFooter(
-                  builder: (BuildContext context, LoadStatus? mode) {
-                    Widget body;
-                    if (mode == LoadStatus.idle) {
-                      body = const CircularProgressIndicator();
-                    } else if (mode == LoadStatus.loading) {
-                      body = const CircularProgressIndicator();
-                    } else if (mode == LoadStatus.failed) {
-                      body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-                    } else if (mode == LoadStatus.canLoading) {
-                      body = const SizedBox();
-                    } else {
-                      body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));
-                    }
-                    return SizedBox(
-                      height: _getController.height.value * 0.1,
-                      child: Center(child: body),
-                    );
-                  },
-                ),
-                onLoading: () async {
-                  _refreshController.loadComplete();
-                },
-                onRefresh: () async {
-                  _getController.page.value = 1;
-                  _refreshController.refreshCompleted();
-                },
-                physics: const BouncingScrollPhysics(),
-                controller: _refreshController,
-                child: ListView.builder(
-                    itemCount: _getController.quotesModel.value.data!.result!.count!,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(_getController.quotesModel.value.data!.result!.name!.uz!));
-                    }
-                )
-            )
-                : Center(child: Text('Ma`lumotlar yo`q!', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600))),
-          )
+          child:  Center(child: Text('Ma`lumotlar yo`q!', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600))),
       )
     );
   }

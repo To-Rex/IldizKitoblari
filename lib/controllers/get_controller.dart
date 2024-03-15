@@ -156,6 +156,18 @@ class GetController extends GetxController {
     this.quotesModel.value = quotesModel;
   }
 
+  //add quotes
+  void addQuotesModel(QuotesModel quotesModel) {
+    this.quotesModel.value.data!.result!.addAll(quotesModel.data!.result!);
+  }
+
+  //clear quotes
+  void clearQuotesModel() {
+    if (quotesModel.value.data != null) {
+      quotesModel.value = QuotesModel();
+    }
+  }
+
   void changeProductDetailModel(ProductDetailModel productDetailModel) {
     this.productDetailModel.value = productDetailModel;
   }

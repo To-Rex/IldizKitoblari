@@ -23,21 +23,25 @@ class QuotesModel {
 }
 
 class Data {
-  Result? result;
+  List<Result>? result;
   int? count;
 
   Data({this.result, this.count});
 
   Data.fromJson(Map<String, dynamic> json) {
-    result =
-    json['result'] != null ? Result.fromJson(json['result']) : null;
+    if (json['result'] != null) {
+      result = <Result>[];
+      json['result'].forEach((v) {
+        result!.add(Result.fromJson(v));
+      });
+    }
     count = json['count'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (result != null) {
-      data['result'] = result!.toJson();
+      data['result'] = result!.map((v) => v.toJson()).toList();
     }
     data['count'] = count;
     return data;
@@ -48,23 +52,10 @@ class Result {
   String? sId;
   Name? name;
   Name? description;
-  int? type;
-  bool? status;
   String? image;
-  String? pubDate;
   Product? product;
-  int? count;
 
-  Result(
-      {this.sId,
-        this.name,
-        this.description,
-        this.type,
-        this.status,
-        this.image,
-        this.pubDate,
-        this.product,
-        this.count});
+  Result({this.sId, this.name, this.description, this.image, this.product});
 
   Result.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -72,13 +63,9 @@ class Result {
     description = json['description'] != null
         ? Name.fromJson(json['description'])
         : null;
-    type = json['type'];
-    status = json['status'];
     image = json['image'];
-    pubDate = json['pub_date'];
     product =
     json['product'] != null ? Product.fromJson(json['product']) : null;
-    count = json['count'];
   }
 
   Map<String, dynamic> toJson() {
@@ -90,14 +77,10 @@ class Result {
     if (description != null) {
       data['description'] = description!.toJson();
     }
-    data['type'] = type;
-    data['status'] = status;
     data['image'] = image;
-    data['pub_date'] = pubDate;
     if (product != null) {
       data['product'] = product!.toJson();
     }
-    data['count'] = count;
     return data;
   }
 }

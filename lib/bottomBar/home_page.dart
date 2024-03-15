@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ApiController().getBanner(1,1);
     ApiController().getProduct(1, 'badiiy-kitoblar',false);
-
+    ApiController().getQuotation(1);
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
@@ -200,18 +201,22 @@ class HomePage extends StatelessWidget {
                                             }))
                                   ]
                                 ),
-                            ChildItem(title: 'Iqtiboslar'.tr, function: (){}),
+                            if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
+                              ChildItem(title: 'Iqtiboslar'.tr, function: (){}),
                             //swiper view for quotes
-                            SizedBox(
-                              height: _getController.height.value * 0.2,
+                            if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
+                            Container(
+                              height: _getController.height.value * 0.23,
+                              margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.02),
                               width: _getController.width.value,
                               child: Swiper(
-                                itemCount: 10,
+                                //itemCount: 10,
+                                itemCount: _getController.quotesModel.value.data != null ? _getController.quotesModel.value.data!.result!.length : 0,
                                 loop: true,
                                 layout: SwiperLayout.STACK,
-                                itemHeight: _getController.height.value * 0.2,
+                                itemHeight: _getController.height.value * 0.3,
                                 itemWidth: _getController.width.value * 0.93,
-                                containerHeight: _getController.height.value * 0.2,
+                                containerHeight: _getController.height.value * 0.3,
                                 containerWidth: _getController.width.value * 0.93,
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
@@ -225,11 +230,16 @@ class HomePage extends StatelessWidget {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
-                                          child: Text('salom', style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600)
-                                          )
-                                        )
+                                        Padding(
+                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
+                                          child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].name!.oz! : _getController.quotesModel.value.data!.result![index].name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)),
+                                        ),
+                                        const Expanded(child: SizedBox()),
+                                        if (_getController.quotesModel.value.data!.result![index].product != null && _getController.quotesModel.value.data!.result![index].product!.name != null)
+                                        Padding(
+                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01,bottom: _getController.height.value * 0.01),
+                                          child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.oz! : _getController.quotesModel.value.data!.result![index].product!.name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7), fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400)),
+                                        ),
                                       ]
                                     )
                                   );
