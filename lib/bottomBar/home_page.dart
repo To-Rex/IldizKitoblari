@@ -25,8 +25,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ApiController().getBanner(1,1);
-    ApiController().getProduct(1, 'badiiy-kitoblar',false);
+    //ApiController().getProduct(1, 'badiiy-kitoblar',false);
+    //getTopProduct
     ApiController().getQuotation(1);
+    ApiController().getTopProduct(1,false);
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
@@ -174,7 +176,7 @@ class HomePage extends StatelessWidget {
                               ),
                             if (_getController.menuModel.value.data != null)
                               SizedBox(height: _getController.height.value * 0.04),
-                            if (_getController.menuModel.value.data != null)
+                            /*if (_getController.menuModel.value.data != null)
                               for (var i in _getController.menuModel.value.data!.result!.length > 2 ? _getController.menuModel.value.data!.result!.sublist(0, 2) : _getController.menuModel.value.data!.result!)
                                 Column(
                                   children: [
@@ -200,10 +202,31 @@ class HomePage extends StatelessWidget {
                                               );
                                             }))
                                   ]
-                                ),
+                                ),*/
+                            if (_getController.menuModel.value.data != null)
+                              ChildItem(title: 'Kitoblar'.tr, function: (){}),
+                              if (_getController.productModel.value.data != null)
+                                SizedBox(
+                                    height: _getController.height.value * 0.35,
+                                    width: _getController.width.value,
+                                    child: ListView.builder(
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                        itemCount: _getController.productModel.value.data!.result!.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) {
+                                          return ProductItem(
+                                            imageUrl: _getController.productModel.value.data!.result![index].image,
+                                            title: _getController.productModel.value.data!.result![index].name,
+                                            price: _getController.productModel.value.data!.result![index].price.toString(),
+                                            function: () {},
+                                            id: _getController.productModel.value.data!.result![index].sId,
+                                            deck: _getController.productModel.value.data!.result![index].name,
+                                          );
+                                        })),
+                            if (_getController.menuModel.value.data != null)
+                              SizedBox(height: _getController.height.value * 0.02),
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
                               ChildItem(title: 'Iqtiboslar'.tr, function: (){}),
-                            //swiper view for quotes
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
                             Container(
                               height: _getController.height.value * 0.23,
@@ -239,7 +262,7 @@ class HomePage extends StatelessWidget {
                                         Padding(
                                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01,bottom: _getController.height.value * 0.01),
                                           child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.oz! : _getController.quotesModel.value.data!.result![index].product!.name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
-                                        ),
+                                        )
                                       ]
                                     )
                                   );

@@ -244,7 +244,7 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    debugPrint('banner: ${response.body}');
+    //debugPrint('banner: ${response.body}');
     getMenu();
     if (response.statusCode == 200) {
       if(type == 1){
@@ -263,7 +263,30 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    debugPrint('product: ${response.body}');
+    //debugPrint('product: ${response.body}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (add==false) {
+        _getController.clearProductModel();
+        _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
+      }else{
+        _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
+      }
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&famous=true
+  //get top product
+  Future<void> getTopProduct(page,bool add) async {
+    var response = await get(Uri.parse('$_product&page=$page&famous=true'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    debugPrint('topProduct: ${response.body}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (add==false) {
         _getController.clearProductModel();
@@ -341,7 +364,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> getQuotation(page) async {
-    //https://ildizkitoblari.uz/api/v1/banner/quotation/list?limit=5&page=1
     var response = await get(Uri.parse('$_quotation?limit=5&page=$page'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
