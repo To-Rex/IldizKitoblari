@@ -14,6 +14,7 @@ import '../controllers/get_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import '../pages/home/cat_detail_page.dart';
+import '../pages/home/category.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -144,7 +145,9 @@ class HomePage extends StatelessWidget {
                               ),
                             ChildItem(
                                 title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
-                                function: (){}),
+                                function: (){
+                                  Get.to(() => Category());
+                                }),
                             if (_getController.menuModel.value.data != null)
                               SizedBox(
                                   width: _getController.width.value * 0.93,
@@ -169,9 +172,9 @@ class HomePage extends StatelessWidget {
                                             side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                                             backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                             labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400),
-                                          ),
-                                        ),
-                                    ],
+                                          )
+                                        )
+                                    ]
                                   )
                               ),
                             if (_getController.menuModel.value.data != null)
@@ -204,7 +207,9 @@ class HomePage extends StatelessWidget {
                                   ]
                                 ),*/
                             if (_getController.menuModel.value.data != null)
-                              ChildItem(title: 'Kitoblar'.tr, function: (){}),
+                              ChildItem(title: 'Kitoblar'.tr, function: (){
+                                Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!));
+                              }),
                               if (_getController.productModel.value.data != null)
                                 SizedBox(
                                     height: _getController.height.value * 0.35,
