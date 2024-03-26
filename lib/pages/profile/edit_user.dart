@@ -87,7 +87,7 @@ class EditUser extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
+                /*Container(
                     padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                     child: _getController.meModel.value.data!.result!.avatar == null
                         ? CircleAvatar(
@@ -99,6 +99,43 @@ class EditUser extends StatelessWidget {
                         radius: _getController.width.value * 0.12,
                         backgroundImage: NetworkImage(_getController.meModel.value.data!.result!.avatar.toString())
                     )
+                ),*/
+                //stack edit photo iconbutton
+                Container(
+                  padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
+                  child: Stack(
+                    children: [
+                      _getController.meModel.value.data!.result!.avatar == null
+                          ? CircleAvatar(
+                          radius: _getController.width.value * 0.12,
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.06))
+                          )
+                          : CircleAvatar(
+                          radius: _getController.width.value * 0.12,
+                          backgroundImage: NetworkImage(_getController.meModel.value.data!.result!.avatar.toString())
+                          ),
+                      Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            width: _getController.width.value * 0.08,
+                            height: _getController.width.value * 0.08,
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(_getController.width.value * 0.06)
+                            ),
+                            child: IconButton(
+                              icon: Icon(Icons.edit, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.06),
+                              onPressed: () => {},
+                              padding: EdgeInsets.all(0),
+                              constraints: BoxConstraints(),
+                              iconSize: _getController.width.value * 0.06,
+                            )
+                          )
+                        )
+                    ]
+                  )
                 ),
                 Padding(
                     padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
