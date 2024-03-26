@@ -35,6 +35,7 @@ class GetController extends GetxController {
   var itemPage = 0.obs;
   var productModelLength = 0.obs;
   var passwordCheck = false.obs;
+  var editCheck = false.obs;
 
   void setHeightWidth(BuildContext context) {
     height.value = MediaQuery.of(context).size.height;

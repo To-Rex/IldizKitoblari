@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:ildiz/models/login_model.dart';
 import '../models/banner_model.dart';
 import '../models/me_models.dart';
@@ -38,8 +39,9 @@ class ApiController extends GetxController {
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
   static const String _productDetail = '$_baseUrl/api/v1/product/';
   static const String _productRate = '$_baseUrl/api/v1/product/rate/';
-  //https://ildizkitoblari.uz/api/v1/banner/quotation/list?limit=5&page=1
   static const String _quotation = '$_baseUrl/api/v1/banner/quotation/list';
+  //https://ildizkitoblari.uz/api/v1/user/update
+  static const String _update = '$_baseUrl/api/v1/user/update';
 
 
   //show toast message
@@ -170,6 +172,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> me() async {
+    debugPrint('token: ${GetStorage().read('token')}');
     var response = await get(Uri.parse(_me), headers: {
       'Authorization': 'Bearer ${GetStorage().read('token')}',
     });
@@ -181,6 +184,30 @@ class ApiController extends GetxController {
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
+  }
+
+  //edit user
+
+  Future<void> editUser(avatar) async {
+    var headers = {
+      'Authorization': 'Bearer ${GetStorage().read('token')}',
+    };
+    var request = http.MultipartRequest('PUT', Uri.parse(_update));
+    request.fields.addAll({
+      'full_name': _getController.fullNameController.text.toString(),
+    });
+    if (avatar != null && avatar != '') {
+      debugPrint('avatar: $avatar');
+      request.files.add(await http.MultipartFile.fromPath('avatar', avatar));
+    }
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      me();
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+
   }
 
   Future<void> checkOtp() async {

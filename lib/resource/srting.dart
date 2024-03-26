@@ -102,6 +102,9 @@ class LocaleString extends Translations{
       'Mualif haqida':'About the author',
       'Tavsiya etiladi':'Recommended',
       'Izohlar yo\'q':'No comments',
+      'Tahrirlash':'Edit',
+      'O\'chirish':'Delete',
+      'Saqlash':'Save',
 
     },
     'ru_RU':{
@@ -201,6 +204,9 @@ class LocaleString extends Translations{
       'Mualif haqida':'Об авторе',
       'Tavsiya etiladi':'Рекомендуется',
       'Izohlar yo\'q':'Комментарии отсутствуют',
+      'Tahrirlash':'Редактировать',
+      'O\'chirish':'Удалить',
+      'Saqlash':'Сохранить',
 
     },
     'uz_UZ':{
@@ -301,6 +307,9 @@ class LocaleString extends Translations{
       'Mualif haqida':'Mualif haqida',
       'Tavsiya etiladi':'Tavsiya etiladi',
       'Izohlar yo\'q':'Izohlar yo\'q',
+      'Tahrirlash':'Tahrirlash',
+      'O\'chirish':'O\'chirish',
+      'Saqlash':'Saqlash',
 
     },
     'oz_OZ':{
@@ -400,7 +409,9 @@ class LocaleString extends Translations{
       'Mualif haqida':'Муаллиф ҳақида',
       'Tavsiya etiladi':'Тавсия этилади',
       'Izohlar yo\'q':'Изоҳлар йўқ',
-
+      'Tahrirlash':'Таҳрирлаш',
+      'O\'chirish':'Очириш',
+      'Saqlash':'Сақлаш',
     }
   };
 

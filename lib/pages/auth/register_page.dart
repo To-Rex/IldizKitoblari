@@ -29,23 +29,14 @@ class RegisterPage extends StatelessWidget {
         Positioned(
             height: _getController.height.value * 0.15,
             top: 0, left: 0, right: 0,
-            child:  SizedBox(
-              child: SvgPicture.asset('assets/svgImages/shap.svg',
-                  fit: BoxFit.fitWidth,
-                  height: _getController.height.value * 0.15),
-            )
+            child:  SizedBox(child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.15))
         ),
         Positioned(
             height: _getController.height.value * 0.1,
             width: _getController.width.value * 0.45,
             top: _getController.height.value * 0.038,
             left: _getController.width.value * 0.03,
-            child:  SizedBox(
-              child: SvgPicture.asset(
-                  'assets/svgImages/keps.svg',
-                  fit: BoxFit.fitWidth,
-                  height: _getController.height.value * 0.2),
-            )
+            child:  SizedBox(child: SvgPicture.asset('assets/svgImages/keps.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))
         ),
         Positioned(
             width: _getController.width.value,
@@ -53,13 +44,7 @@ class RegisterPage extends StatelessWidget {
             bottom: 0,
             child:  Container(
                 width: _getController.width.value,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.background,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
+                decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
                 child: Column(
                   children: [
                     AppBarSheets(
