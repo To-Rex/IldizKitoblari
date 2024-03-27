@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/resource/colors.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../companents/text_fild_auth.dart';
 import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
@@ -9,8 +11,29 @@ import '../../controllers/get_controller.dart';
 class EditUser extends StatelessWidget {
   EditUser({super.key});
   final GetController _getController = Get.put(GetController());
+  final ImagePicker _picker = ImagePicker();
+  var croppedImage;
 
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await _picker.pickImage(source: source);
 
+    if (pickedFile != null) {
+      //_getController.changeImage(pickedFile.path);
+      ApiController().editUser(pickedFile.path);
+      //_cropImage(pickedFile.path);
+
+    }
+  }
+
+  Future<void> _cropImage(String imagePath) async {
+    croppedImage = await ImageCropper.platform.cropImage(
+      sourcePath: imagePath,
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+      compressQuality: 100,
+      compressFormat: ImageCompressFormat.jpg,
+    );
+    _getController.changeImage(croppedImage.path);
+  }
   /*List<PopupMenuItem<int>> menuItems = [
     PopupMenuItem(
       value: 1,
@@ -127,7 +150,8 @@ class EditUser extends StatelessWidget {
                             ),
                             child: IconButton(
                               icon: Icon(Icons.edit, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.06),
-                              onPressed: () => {},
+                              //onPressed: () => _pickImage(ImageSource.gallery),
+                              onPressed: () => {_pickImage(ImageSource.gallery)},
                               padding: EdgeInsets.all(0),
                               constraints: BoxConstraints(),
                               iconSize: _getController.width.value * 0.06,
@@ -193,8 +217,12 @@ class EditUser extends StatelessWidget {
                       _getController.editCheck.value = true;
                       _getController.fullNameController.text = _getController.meModel.value.data!.result!.fullName.toString();
                     }else{
+                      if (_getController.fullNameController.text == '') {
+                        ApiController().showToast(context, 'Xatolik', 'f.i.sh kiriting!', true, 3);
+                        return;
+                      }
                       _getController.editCheck.value = false;
-                      ApiController().editUser('');
+                      ApiController().editUser(_getController.image.value);
                     }
                   },
                   child:Row(

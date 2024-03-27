@@ -204,6 +204,7 @@ class ApiController extends GetxController {
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       me();
+      _getController.image.value = '';
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

@@ -36,6 +36,7 @@ class GetController extends GetxController {
   var productModelLength = 0.obs;
   var passwordCheck = false.obs;
   var editCheck = false.obs;
+  var image = ''.obs;
 
   void setHeightWidth(BuildContext context) {
     height.value = MediaQuery.of(context).size.height;
@@ -61,6 +62,10 @@ class GetController extends GetxController {
 
   void changeItemPage(int itemPage) {
     this.itemPage.value = itemPage;
+  }
+
+  changeImage(String newImage) {
+    image.value = newImage;
   }
 
   var nameController;
