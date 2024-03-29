@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
                         child: Stack(
                           children: [
                             Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                            Positioned(top: _getController.height.value * 0.018, left: 0, right: 0, child: SearchFields())
+                            Positioned(top: _getController.height.value * 0.018, left: 0, right: 0, child: SearchFields(onChanged: (String ) {  },))
                           ],
                         ),
                       ),

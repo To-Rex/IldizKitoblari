@@ -250,6 +250,7 @@ class GetController extends GetxController {
   final TextEditingController repeatPasswordController = TextEditingController();
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);
   final SwiperController swiperController = SwiperController();

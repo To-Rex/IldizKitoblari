@@ -49,7 +49,7 @@ class LibraryPage extends StatelessWidget {
                         top: _getController.height.value * 0.02,
                         left: 0,
                         right: 0,
-                        child: SearchFields()
+                        child: SearchFields(onChanged: (String ) {  },)
                     ),
                     Positioned(
                         width: _getController.width.value,

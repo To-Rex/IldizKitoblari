@@ -231,9 +231,9 @@ class EditUser extends StatelessWidget {
                       if (_getController.editCheck == false)
                         Icon(Icons.edit, color: Theme.of(context).colorScheme.onPrimary, size: _getController.width.value * 0.05),
                       SizedBox(width: _getController.width.value * 0.02),
-                      Text(_getController.editCheck == false ? 'Tahrirlash'.tr : 'Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600)),
-                    ],
-                  ),
+                      Text(_getController.editCheck == false ? 'Tahrirlash'.tr : 'Saqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600))
+                    ]
+                  )
                 )
             )
           ],

@@ -40,7 +40,6 @@ class ApiController extends GetxController {
   static const String _productDetail = '$_baseUrl/api/v1/product/';
   static const String _productRate = '$_baseUrl/api/v1/product/rate/';
   static const String _quotation = '$_baseUrl/api/v1/banner/quotation/list';
-  //https://ildizkitoblari.uz/api/v1/user/update
   static const String _update = '$_baseUrl/api/v1/user/update';
 
 
@@ -329,10 +328,11 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getItemsProduct(page,List menuSlug,bool add) async {
+  Future<void> getItemsProduct(page,List menuSlug,bool add,String search) async {
     var lang = Get.locale!.languageCode;
     for (var i = 0; i < menuSlug.length; i++) {
-      var response = await get(Uri.parse('$_product&page=$page&parent_slug=${menuSlug[i]}'),
+      //var response = await get(Uri.parse('$_product&page=$page&parent_slug=${menuSlug[i]}'),
+      var response = await get(Uri.parse('$_product&page=$page&parent_slug=${menuSlug[i]}&search=$search'),
         headers: {
           'Accept-Language': lang,
         },

@@ -13,30 +13,28 @@ import '../pages/home/detail_page.dart';
 import '../resource/colors.dart';
 
 class ShopPage extends StatelessWidget {
-
   ShopPage({super.key});
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
+
   void _getData() {
+    ApiController().getBanner(1,1);
     _getController.clearProductModelList();
     _getController.changeItemPage(0);
     if (_getController.menuModel.value.data != null) {
-      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![0].slug!, _getController.menuModel.value.data!.result![1].slug!], true);
-      print(_getController.menuModel.value.data!.result![0].slug!);
-      print(_getController.menuModel.value.data!.result![1].slug!);
+      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![0].slug!, _getController.menuModel.value.data!.result![1].slug!], true,_getController.searchController.text);
       _refreshController.refreshCompleted();
-    }else{
+    } else {
       _refreshController.refreshCompleted();
     }
   }
 
   void _onLoading() async {
-    print('onLoading');
-    if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value) {
-      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![_getController.itemPage.value].slug!, _getController.menuModel.value.data!.result![_getController.itemPage.value + 1].slug!], true).then((value) => _refreshController.loadComplete());
-    }else{
+    if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value && _getController.searchController.text.isEmpty) {
+      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![_getController.itemPage.value].slug!, _getController.menuModel.value.data!.result![_getController.itemPage.value + 1].slug!], true,_getController.searchController.text).then((value) => _refreshController.loadComplete());
+    } else {
       _refreshController.loadComplete();
     }
   }
@@ -99,7 +97,19 @@ class ShopPage extends StatelessWidget {
                                     left: _getController.width.value * 0.03,
                                     child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
                                 ),
-                                Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0, child: SearchFields())
+                                Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0,
+                                    child: SearchFields(onChanged: (String value) {
+                                      if (value.isNotEmpty){
+                                        if (value.length >= 3) {
+                                          _getController.clearProductModelList();
+                                          _getController.changeItemPage(0);
+                                          ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![0].slug!, _getController.menuModel.value.data!.result![1].slug!], true,_getController.searchController.text);
+                                        }
+                                      }else{
+                                        _getData();
+                                      }
+                                    })
+                                )
                               ]
                             )
                           ),
@@ -109,7 +119,6 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
                               child:Column(
                                   children: [
-                                    //productModelList
                                     if (_getController.menuModel.value.data != null)
                                       for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
                                         Column(
@@ -128,9 +137,7 @@ class ShopPage extends StatelessWidget {
                                                     width: _getController.width.value,
                                                     child: ListView.builder(
                                                         padding: EdgeInsets.only(left: _getController.width.value * 0.03),
-                                                        //i indexof productModelList
                                                         itemCount: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result!.length,
-                                                        //itemCount:0,
                                                         scrollDirection: Axis.horizontal,
                                                         itemBuilder: (context, index) {
                                                           return ProductItem(
