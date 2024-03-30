@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/get_controller.dart';
 
 class SearchFields extends StatelessWidget {
-  final Function(String)? onChanged;
+  final Function(String) onChanged;
   SearchFields({super.key, required this.onChanged});
 
   final GetController _getController = Get.put(GetController());
@@ -27,7 +27,8 @@ class SearchFields extends StatelessWidget {
               child: TextField(
                 controller: _getController.searchController,
                 onChanged: onChanged,
-                decoration: InputDecoration(
+                  textInputAction: TextInputAction.search,
+                  decoration: InputDecoration(
                   hintText: 'Kitoblarni izlash'.tr,
                   hintStyle: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),

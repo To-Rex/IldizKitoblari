@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -7,6 +9,7 @@ import '../companents/product_item.dart';
 import '../companents/search_fild.dart';
 import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
+import '../models/banner_model.dart';
 import '../pages/home/cat_detail_page.dart';
 import '../pages/home/category_page.dart';
 import '../pages/home/detail_page.dart';
@@ -20,11 +23,12 @@ class ShopPage extends StatelessWidget {
 
 
   void _getData() {
+    _getController.clearBannerModel();
     ApiController().getBanner(1,1);
     _getController.clearProductModelList();
     _getController.changeItemPage(0);
     if (_getController.menuModel.value.data != null) {
-      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![0].slug!, _getController.menuModel.value.data!.result![1].slug!], true,_getController.searchController.text);
+      ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
       _refreshController.refreshCompleted();
     } else {
       _refreshController.refreshCompleted();
@@ -33,7 +37,7 @@ class ShopPage extends StatelessWidget {
 
   void _onLoading() async {
     if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value && _getController.searchController.text.isEmpty) {
-      ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![_getController.itemPage.value].slug!, _getController.menuModel.value.data!.result![_getController.itemPage.value + 1].slug!], true,_getController.searchController.text).then((value) => _refreshController.loadComplete());
+      ApiController().getItemsProductSearch(1,  true,_getController.searchController.text).then((value) => _refreshController.loadComplete());
     } else {
       _refreshController.loadComplete();
     }
@@ -99,14 +103,13 @@ class ShopPage extends StatelessWidget {
                                 ),
                                 Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0,
                                     child: SearchFields(onChanged: (String value) {
-                                      if (value.isNotEmpty){
-                                        if (value.length >= 3) {
-                                          _getController.clearProductModelList();
-                                          _getController.changeItemPage(0);
-                                          ApiController().getItemsProduct(1, [_getController.menuModel.value.data!.result![0].slug!, _getController.menuModel.value.data!.result![1].slug!], true,_getController.searchController.text);
-                                        }
-                                      }else{
+                                      if (value.isEmpty && _getController.searchController.text == '') {
                                         _getData();
+                                      }
+                                      if (value.isNotEmpty && _getController.menuModel.value.data != null && value.length >= 3 ) {
+                                        _getController.clearProductModelList();
+                                        _getController.changeItemPage(0);
+                                        ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
                                       }
                                     })
                                 )
@@ -123,6 +126,7 @@ class ShopPage extends StatelessWidget {
                                       for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
                                         Column(
                                             children: [
+                                              if (i.children != null && _getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                               ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
                                                 if (i.children == null) {
                                                   Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!));
@@ -130,8 +134,7 @@ class ShopPage extends StatelessWidget {
                                                   Get.to(() => CategoryPage(menuIndex: _getController.menuModel.value.data!.result!.indexOf(i)));
                                                 }
                                               }),
-                                              //if (_getController.productModel.value.data != null)
-                                              if (_getController.productModelList.isNotEmpty)
+                                              if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                                 SizedBox(
                                                     height: _getController.height.value * 0.35,
                                                     width: _getController.width.value,
@@ -157,7 +160,8 @@ class ShopPage extends StatelessWidget {
                                                             id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
                                                             deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name
                                                           );
-                                                        }))
+                                                        })),
+
                                             ]
                                         )
                                   ]

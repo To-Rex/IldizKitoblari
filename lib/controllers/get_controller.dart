@@ -140,13 +140,25 @@ class GetController extends GetxController {
 
   //delete menuModel data result list index
   void deleteMenuModel(int index) {
-    if (menuModel.value.data != null) {
+    if (menuModel.value.data != null && menuModel.value.data!.result != null && menuModel.value.data!.result!.isNotEmpty && index <= menuModel.value.data!.result!.length) {
       menuModel.value.data!.result!.removeAt(index);
     }
   }
 
   void changeBannerModel(BannerModel bannerModel) {
     this.bannerModel.value = bannerModel;
+  }
+
+  //clear
+  void clearBannerModel() {
+    if (bannerModel.value.data != null) {
+      bannerModel.value = BannerModel();
+    }
+  }
+
+  //add banner
+  void addBannerModel(BannerModel bannerModel) {
+    this.bannerModel.value.data!.result!.addAll(bannerModel.data!.result!);
   }
 
   void changeProductModel(ProductModel productModel) {
