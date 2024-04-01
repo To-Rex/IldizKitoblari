@@ -50,6 +50,7 @@ class LocaleString extends Translations{
       'Bunday foydalanuvchi mavjud emas!':'User not found!',
       'Noto\'g\'ri parol kiritdingiz!':'You entered the wrong password!',
       'Ma\'lumotlar yo\'q!':'No data!',
+      'Internet aloqasi yo\'q':'No Internet connection!',
 
       //Sample page
       'Kitoblarni izlash':'Search for books',
@@ -152,6 +153,7 @@ class LocaleString extends Translations{
       'Bunday foydalanuvchi mavjud emas!':'Пользователь не найден!',
       'Noto\'g\'ri parol kiritdingiz!':'Вы ввели неправильный пароль!',
       'Ma\'lumotlar yo\'q!':'Нет данных!',
+      'Internet aloqasi yo\'q':'Нет интернета',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -255,6 +257,7 @@ class LocaleString extends Translations{
       'Bunday foydalanuvchi mavjud emas!':'Bunday foydalanuvchi mavjud emas!',
       'Noto\'g\'ri parol kiritdingiz!':'Noto\'g\'ri parol kiritdingiz!',
       'Ma\'lumotlar yo\'q!':'Ma\'lumotlar yo\'q!',
+      'Internet aloqasi yo\'q':'Internet aloqasi yo\'q',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
@@ -357,6 +360,7 @@ class LocaleString extends Translations{
       'Bunday foydalanuvchi mavjud emas!':'Бундай фойдаланувчи мавжуд емас!',
       'Noto\'g\'ri parol kiritdingiz!':'Ното\'г\'ри парол киритдингиз!',
       'Ma\'lumotlar yo\'q!':'Маълумотлар йўқ!',
+      'Internet aloqasi yo\'q': 'Интернет алоқаси йўқ',
 
       //Sample page
       'Kitoblarni izlash':'Китобларни излаш',

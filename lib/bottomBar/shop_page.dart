@@ -19,7 +19,7 @@ class ShopPage extends StatelessWidget {
   ShopPage({super.key});
 
   final GetController _getController = Get.put(GetController());
-  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+  //final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
 
   void _getData() {
@@ -29,17 +29,23 @@ class ShopPage extends StatelessWidget {
     _getController.changeItemPage(0);
     if (_getController.menuModel.value.data != null) {
       ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
-      _refreshController.refreshCompleted();
+      //_refreshController.refreshCompleted();
+      _getController.refreshController.refreshCompleted();
     } else {
-      _refreshController.refreshCompleted();
+      //_refreshController.refreshCompleted();
+      _getController.refreshController.refreshCompleted();
     }
   }
 
   void _onLoading() async {
     if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value && _getController.searchController.text.isEmpty) {
-      ApiController().getItemsProductSearch(1,  true,_getController.searchController.text).then((value) => _refreshController.loadComplete());
+      ApiController().getItemsProductSearch(1,  true,_getController.searchController.text).then((value) =>
+          //_refreshController.loadComplete()
+          _getController.refreshController.loadComplete()
+      );
     } else {
-      _refreshController.loadComplete();
+      //_refreshController.loadComplete();
+      _getController.refreshController.loadComplete();
     }
   }
 
@@ -67,10 +73,12 @@ class ShopPage extends StatelessWidget {
                 } else if (mode == LoadStatus.canLoading) {
                   body = const SizedBox();
                 } else if ( mode == LoadStatus.noMore) {
-                  _refreshController.loadComplete();
+                  //_refreshController.loadComplete();
+                  _getController.refreshController.loadComplete();
                     body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
                 } else {
-                  _refreshController.loadComplete();
+                  //_refreshController.loadComplete();
+                  _getController.refreshController.loadComplete();
                   body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
                 }
                 return SizedBox(
@@ -81,7 +89,8 @@ class ShopPage extends StatelessWidget {
             ),
             onLoading: _onLoading,
             onRefresh: _getData,
-            controller: _refreshController,
+            //controller: _refreshController,
+            controller: _getController.refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Container(

@@ -65,6 +65,29 @@ class ApiController extends GetxController {
     );
   }
 
+  //show dialog connectivity
+
+  //show dialog connectivity
+  void showDialogConnectivity(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Internet bağlanmadi'.tr),
+          content: Text('Internet bağlanmadi'.tr),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Yana qayta urinish'.tr),
+              onPressed: () {
+                Navigator.of(context).pop();
+              }
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //auth
   //------------------------------------------------------------------------------------------------
   Future<void> login() async {

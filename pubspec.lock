@@ -360,6 +360,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  internet_connectivity_checker:
+    dependency: "direct main"
+    description:
+      name: internet_connectivity_checker
+      sha256: "31e46afc7bcb616dfdd44ad8731fee003a1eb1b3dcc12202984ef5f91886771e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   intl:
     dependency: "direct main"
     description:

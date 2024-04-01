@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
@@ -8,10 +7,10 @@ import 'package:ildiz/bottomBar/basket_page.dart';
 import 'package:ildiz/bottomBar/home_page.dart';
 import 'package:ildiz/bottomBar/library_page.dart';
 import 'package:ildiz/bottomBar/shop_page.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/models/me_models.dart';
 import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import '../models/banner_model.dart';
 import '../models/login_model.dart';
 import '../models/menu_model.dart';
@@ -266,4 +265,5 @@ class GetController extends GetxController {
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);
   final SwiperController swiperController = SwiperController();
+
 }
