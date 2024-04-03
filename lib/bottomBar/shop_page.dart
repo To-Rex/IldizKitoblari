@@ -13,6 +13,7 @@ import '../models/banner_model.dart';
 import '../pages/home/cat_detail_page.dart';
 import '../pages/home/category_page.dart';
 import '../pages/home/detail_page.dart';
+import '../pages/home/sub_category_page.dart';
 import '../resource/colors.dart';
 
 class ShopPage extends StatelessWidget {
@@ -137,11 +138,7 @@ class ShopPage extends StatelessWidget {
                                             children: [
                                               if (i.children != null && _getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                               ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
-                                                if (i.children == null) {
-                                                  Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!));
-                                                }else {
-                                                  Get.to(() => CategoryPage(menuIndex: _getController.menuModel.value.data!.result!.indexOf(i)));
-                                                }
+
                                               }),
                                               if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                                 SizedBox(

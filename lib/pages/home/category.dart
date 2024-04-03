@@ -33,8 +33,7 @@ class Category extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return CategoryItem(
                       _getController.menuModel.value.data!.result![index].sId!,
-                      _getController.menuModel.value.data!.result![index].slug!,
-                          () {
+                      _getController.menuModel.value.data!.result![index].slug!, () {
                         if (_getController.menuModel.value.data!.result![index].children == null) {
                           Get.to(() => CatDetailPage(title: _getController.menuModel.value.data!.result![index].title!.uz!, menuSlug: _getController.menuModel.value.data!.result![index].slug!));
                         }else {
