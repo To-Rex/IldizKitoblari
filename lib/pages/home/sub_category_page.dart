@@ -46,7 +46,12 @@ class SubCategoryPage extends StatelessWidget {
                             _getController.page.value = 1;
                             _getController.productModelLength.value = 0;
                             _getController.clearProductModel();
-                        Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].title!.ru!, menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].slug!));
+                        Get.to(() => CatDetailPage(
+                            title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].title!.ru!,
+                            menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].slug!,
+                          parent: false,
+                        )
+                        );
                       });
                     }
                 ),

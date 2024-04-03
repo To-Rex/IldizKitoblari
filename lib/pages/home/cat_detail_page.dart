@@ -12,15 +12,21 @@ import 'detail_page.dart';
 class CatDetailPage extends StatelessWidget {
   var title;
   var menuSlug;
+  var parent;
 
-  CatDetailPage({super.key, required this.title, required this.menuSlug});
+  CatDetailPage({super.key, required this.title, required this.menuSlug, required this.parent});
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getProduct(1, menuSlug, false);
+    if (!parent) {
+      ApiController().getProduct(1, menuSlug, false);
+    }else{
+      ApiController().getSelectProduct(1,menuSlug, false);
+    }
+
     return Scaffold(
         appBar: AppBar(
             title: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),
