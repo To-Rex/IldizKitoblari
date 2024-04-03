@@ -308,7 +308,30 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProduct(page, menuSlug,bool add) async {
+    debugPrint('getProduct: $page, $menuSlug');
     var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    //debugPrint('product: ${response.body}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (add==false) {
+        _getController.clearProductModel();
+        _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
+      }else{
+        _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
+      }
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getSelectProduct(page, menuSlug,bool add) async {
+    debugPrint('getProduct: $page, $menuSlug');
+    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },

@@ -9,18 +9,18 @@ import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
 import 'detail_page.dart';
 
-class CatDetailPage extends StatelessWidget {
+class SelectDetailPage extends StatelessWidget {
   var title;
   var menuSlug;
 
-  CatDetailPage({super.key, required this.title, required this.menuSlug});
+  SelectDetailPage({super.key, required this.title, required this.menuSlug});
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getProduct(1, menuSlug, false);
+    ApiController().getSelectProduct(1,menuSlug, false);
     return Scaffold(
         appBar: AppBar(
             title: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),

@@ -22,7 +22,67 @@ class SamplePage extends StatelessWidget {
     if (_getController.meModel.value.data == null) {
       ApiController().me();
     }
-    return StreamBuilder(
+    return Scaffold(
+        body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
+        bottomNavigationBar: BottomAppBar(
+          height: _getController.height.value * 0.09,
+          surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
+          elevation: 20,
+          shadowColor: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.background,
+          child: Obx(() => Container(
+            margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //home,shop,library,basket,account
+                BottomBarIcons(
+                  icon: 'assets/icon/home.svg',
+                  title: 'Asosiy'.tr,
+                  onTap: () {
+                    _onItemTapped(0);
+                  },
+                  isSelected: _getController.index.value == 0,
+                ),
+                BottomBarIcons(
+                  icon: 'assets/icon/shop.svg',
+                  title: 'Do\'kon'.tr,
+                  onTap: () {
+                    _onItemTapped(1);
+                  },
+                  isSelected: _getController.index.value == 1,
+                ),
+                BottomBarIcons(
+                  icon: 'assets/icon/library.svg',
+                  title: 'Kutubxona'.tr,
+                  onTap: () {
+                    _onItemTapped(2);
+                  },
+                  isSelected: _getController.index.value == 2,
+                ),
+                BottomBarIcons(
+                  icon: 'assets/icon/basket.svg',
+                  title: 'Savatcha'.tr,
+                  onTap: () {
+                    _onItemTapped(3);
+                  },
+                  isSelected: _getController.index.value == 3,
+                ),
+                BottomBarIcons(
+                  icon: 'assets/icon/account.svg',
+                  title: 'Sahifam'.tr,
+                  onTap: () {
+                    _onItemTapped(4);
+                  },
+                  isSelected: _getController.index.value == 4,
+                ),
+              ],
+            ),
+          ),
+          ),
+        )
+    );
+    /*return StreamBuilder(
       stream: ConnectivityChecker(interval: const Duration(seconds: 10)).stream,
       builder: (context, snapshot) {
         if (snapshot.hasData && (snapshot.data as bool) == true) {
@@ -107,6 +167,6 @@ class SamplePage extends StatelessWidget {
           );
         }
       },
-    );
+    );*/
   }
 }
