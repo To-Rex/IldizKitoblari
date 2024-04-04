@@ -114,8 +114,7 @@ class DetailPage extends StatelessWidget {
                                 return Container(
                                     decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                        image: DecorationImage(
-                                            image: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''), fit: BoxFit.cover)
+                                        image: DecorationImage(image: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''), fit: BoxFit.cover)
                                     )
                                 );
                               }
@@ -454,11 +453,60 @@ class DetailPage extends StatelessWidget {
                       ),
                     SizedBox(height: _getController.height.value * 0.214)
                   ]
-              ) : SizedBox(
-                  height: _getController.height.value,
-                  width: _getController.width.value,
-                  child: Center(child: Text('Ma\'lumotlar yo\'q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
               )
+                  : Column(children: [
+                    AppBar(
+                      surfaceTintColor: Colors.transparent,
+                      leading: IconButton(
+                          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
+                          onPressed: () {Navigator.pop(context);}
+                      ),
+                      actions: [
+                        IconButton(
+                            icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
+                            onPressed: () {}
+                        ),
+                        IconButton(
+                            icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
+                            onPressed: () {}
+                        )],
+                    ),
+                Skeletonizer(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                              width: _getController.width.value,
+                              height: _getController.height.value * 0.427,
+                              margin: EdgeInsets.only(top: _getController.height.value * 0.015,left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                              decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(4)), image: DecorationImage(image: NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740'), fit: BoxFit.cover))),
+                          SizedBox(height: _getController.height.value * 0.01),
+                          Row(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                  width: _getController.width.value * 0.14,
+                                  height: _getController.height.value * 0.06,
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(Radius.circular(4)),
+                                      //border: _getController.fullIndex.value == index ? Border.all(color: AppColors.primaryColor3, width: 1) : null,
+                                      border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                                      //image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover)
+                                      image: const DecorationImage(image:NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740'), fit: BoxFit.cover)
+                                  )
+                              )
+                            ]
+                          ),
+                          SizedBox(height: _getController.height.value * 0.01),
+                          Padding(
+                              padding: EdgeInsets.only(left: _getController.width.value * 0.03),
+                              child: Text('hello'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
+                          )
+                        ]
+                    )
+                )
+              ]))
           )
       ),
         bottomNavigationBar: BottomAppBar(
