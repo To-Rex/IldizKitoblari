@@ -3,10 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
-import 'package:ildiz/pages/home/quotes_page.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
+import '../../resource/colors.dart';
 import 'detail_page.dart';
 
 class CatDetailPage extends StatelessWidget {
@@ -69,7 +70,52 @@ class CatDetailPage extends StatelessWidget {
                     ],
                   )),
               if (_getController.productModelLength.value == 0)
-                Expanded(child: Center(child: Text('Ma`lumotlar yo`q!', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)))),
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: List.generate(8, (index) {
+                      return Skeletonizer(
+                        child: Container(
+                          width: _getController.width.value * 0.45,
+                          height: _getController.width.value * 0.4,
+                          margin: EdgeInsets.all(_getController.width.value * 0.02),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: AppColors.grey.withOpacity(0.2),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: _getController.width.value,
+                                height: _getController.width.value * 0.35,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: AppColors.grey.withOpacity(0.2),
+                                )
+                              ),
+                              Container(
+                                width: _getController.width.value,
+                                padding: EdgeInsets.only(left: _getController.width.value * 0.02),
+                                margin: EdgeInsets.only(
+                                    right: _getController.width.value * 0.02),
+                                child: Text('qwwqwqqwwwqqwqw'),
+                              ),
+                              Container(
+                                width: _getController.width.value,
+                                padding: EdgeInsets.only(left: _getController.width.value * 0.02),
+                                margin: EdgeInsets.only(right: _getController.width.value * 0.02),
+                                child: Text('qwwqwqq'),
+                              )
+                            ],
+                          )
+                        )
+                      );
+                    })
+                  )
+                ),
               if (_getController.productModelLength.value != 0)
               Expanded(
                   child: SmartRefresher(
@@ -98,15 +144,22 @@ class CatDetailPage extends StatelessWidget {
                     },
                   ),
                   onLoading: () async {
-                    ApiController().getProduct(_getController.page.value + 1, menuSlug,true).then((value) =>
-                        _refreshController.loadComplete()
-                    );
+                    if (!parent){
+                      ApiController().getProduct(_getController.page.value + 1, menuSlug, true).then((value) => _refreshController.loadComplete());
+                    }else{
+                      ApiController().getSelectProduct(_getController.page.value + 1, menuSlug, true).then((value) => _refreshController.loadComplete());
+                    }
                   },
                   onRefresh: () async {
                     _getController.page.value = 1;
-                    ApiController().getProduct(1, menuSlug, false).then((value) =>
-                        _refreshController.refreshCompleted()
-                    );
+                    if (!parent){
+                      ApiController().getProduct(1, menuSlug, false).then((value) => _refreshController.refreshCompleted());
+                    }else{
+                      _getController.page.value = 1;
+                      _getController.productModelLength.value = 0;
+                      _getController.clearProductModel();
+                      ApiController().getSelectProduct(1, menuSlug, false).then((value) => _refreshController.refreshCompleted());
+                    }
                   },
                   physics: const BouncingScrollPhysics(),
                   controller: _refreshController,
