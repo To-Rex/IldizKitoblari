@@ -7,6 +7,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../companents/bottombar_icons.dart';
 import '../../companents/detail_child_item.dart';
 import '../../companents/detail_element.dart';
@@ -543,7 +544,19 @@ class DetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (_getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex)
-                    Expanded(child: _getController.productDetailList[pageIndex].data != null ? Text('${_getController.productDetailList[pageIndex].data!.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox()),
+                    Expanded(child: _getController.productDetailList[pageIndex].data != null ? Text('${_getController.productDetailList[pageIndex].data!.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox())
+                  else
+                    Expanded(
+                        child: Skeletonizer(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: Theme.of(context).colorScheme.background
+                            ),
+                            child: Text('hello'.tr),
+                          )
+                        )
+                    ),
                   SizedBox(
                       width: _getController.width.value * 0.35,
                       height: _getController.height.value * 0.06,
