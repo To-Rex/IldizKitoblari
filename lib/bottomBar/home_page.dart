@@ -55,12 +55,8 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-            onLoading: () async {
-              _refreshController.loadComplete();
-            },
-            onRefresh: () async {
-              _refreshController.refreshCompleted();
-            },
+            onLoading: () async {_refreshController.loadComplete();},
+            onRefresh: () async {_refreshController.refreshCompleted();},
             controller: _refreshController,
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -88,10 +84,7 @@ class HomePage extends StatelessWidget {
                                 margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.025),
                                 height: _getController.height.value * 0.173,
                                 width: _getController.width.value,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: Theme.of(context).colorScheme.background,
-                                ),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.background),
                                 child: CarouselSlider(
                                   options: CarouselOptions(
                                     viewportFraction: 1,
@@ -100,7 +93,7 @@ class HomePage extends StatelessWidget {
                                     autoPlayAnimationDuration: const Duration(milliseconds: 800),
                                     autoPlayCurve: Curves.fastOutSlowIn,
                                     enlargeCenterPage: true,
-                                    scrollDirection: Axis.horizontal,
+                                    scrollDirection: Axis.horizontal
                                   ),
                                   items: [
                                     for (var i in _getController.bannerModel.value.data!.result!)
@@ -141,7 +134,7 @@ class HomePage extends StatelessWidget {
                                             ),
                                           )
                                   ],
-                                ),
+                                )
                               ),
                             ChildItem(
                                 title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,

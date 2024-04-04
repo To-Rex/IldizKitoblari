@@ -447,6 +447,7 @@ class ApiController extends GetxController {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
+    debugPrint('productDetail: ${response.body}');
     if (response.statusCode == 200) {
       //_getController.changeProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
       _getController.addProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));

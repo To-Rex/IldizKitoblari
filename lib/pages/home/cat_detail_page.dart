@@ -101,13 +101,13 @@ class CatDetailPage extends StatelessWidget {
                                 padding: EdgeInsets.only(left: _getController.width.value * 0.02),
                                 margin: EdgeInsets.only(
                                     right: _getController.width.value * 0.02),
-                                child: Text('qwwqwqqwwwqqwqw'),
+                                child: Text('Muvaffaqiyatli'.tr)
                               ),
                               Container(
                                 width: _getController.width.value,
                                 padding: EdgeInsets.only(left: _getController.width.value * 0.02),
                                 margin: EdgeInsets.only(right: _getController.width.value * 0.02),
-                                child: Text('qwwqwqq'),
+                                child: Text('Xatolik'.tr),
                               )
                             ],
                           )

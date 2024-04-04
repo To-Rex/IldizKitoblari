@@ -155,10 +155,11 @@ class ShopPage extends StatelessWidget {
                                                             title: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name!,
                                                             price: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].price.toString(),
                                                             function: () {
-                                                              //Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].message ));
                                                               _getController.page.value = 1;
                                                               _getController.productModelLength.value = 0;
                                                               _getController.clearProductModel();
+                                                              _getController.clearProductDetailModel();
+                                                              _getController.clearProductDetailList();
                                                               Get.to(() => DetailPage(
                                                                 slug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!,
                                                                 pageIndex: _getController.menuModel.value.data!.result!.indexOf(i),
