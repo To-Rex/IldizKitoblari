@@ -266,77 +266,6 @@ class DetailPage extends StatelessWidget {
                             ]
                         )
                     ),
-                    //if (_getController.productDetailModel.value.data?.simularProducts != null)
-                    /*DetailChildItem(title: 'Mualif haqida'.tr, function: (){}, check: false),
-                        if (_getController.productDetailModel.value.data!.simularProducts![0].image != null)
-                        Container(
-                          width: _getController.width.value,
-                          height: _getController.height.value * 0.09,
-                          margin: EdgeInsets.only(
-                              top: _getController.height.value * 0.02,
-                              bottom: _getController.height.value * 0.03,
-                              left: _getController.width.value * 0.03,
-                              right: _getController.width.value * 0.03
-                          ),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: const BorderRadius.all(Radius.circular(8)),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
-                                    spreadRadius: 1,
-                                    blurRadius: 5,
-                                    offset: const Offset(0, 3)
-                                )
-                              ]
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: _getController.width.value * 0.16,
-                                height: _getController.height.value * 0.08,
-                                margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].image ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].image ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].image ?? '' : '',
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Expanded(child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : '',
-                                    style: TextStyle(
-                                        fontSize: _getController.width.value * 0.04,
-                                        fontWeight: FontWeight.w500,
-                                        color: Theme.of(context).colorScheme.onBackground
-                                    ),
-                                  ),
-                                  Text(
-                                    'uz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailModel.value.data?.simularProducts![0].option?.valueId?.name?.uz ?? '' : '',
-                                    style: TextStyle(
-                                        fontSize: _getController.width.value * 0.04,
-                                        fontWeight: FontWeight.w400,
-                                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
-                                    ),
-                                  )
-                                ],
-                              )),
-                              Icon(
-                                TablerIcons.arrow_right,
-                                color: Theme.of(context).colorScheme.onBackground,
-                                size: _getController.width.value * 0.07,
-                              ),
-                              SizedBox(width: _getController.width.value * 0.03),
-                            ],
-                          ),
-                        ),*/
                     DetailChildItem(title: 'Tavsiya etiladi'.tr, function: (){}, check: false),
                     Container(
                       height: _getController.height.value * 0.35,
@@ -554,35 +483,51 @@ class DetailPage extends StatelessWidget {
                           )
                         )
                     ),
-                  SizedBox(
+                  if (_getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex)
+                    SizedBox(
                       width: _getController.width.value * 0.35,
                       height: _getController.height.value * 0.06,
                       child: ElevatedButton(
                           onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primaryColor2,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                          ),
-                          child: Text('Xarid'.tr, style: TextStyle(
-                              fontSize: _getController.width.value * 0.04,
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context).colorScheme.background)
-                          )
+                          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                          child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
+                      ))
+                  else
+                    SizedBox(
+                      width: _getController.width.value * 0.35,
+                      height: _getController.height.value * 0.06,
+                      child: Skeletonizer(
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                            child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
+                        )
                       )
-                  ),
-                  Container(
+                    ),
+                  if (_getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex)
+                    Container(
                       width: _getController.width.value * 0.13,
                       height: _getController.height.value * 0.06,
                       margin: EdgeInsets.only(left: _getController.width.value * 0.02),
                       child: IconButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primaryColor,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                          ),
+                          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                           icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.07),
                           onPressed: () {}
                       )
                   )
+                  else
+                    Skeletonizer(
+                      child: Container(
+                          width: _getController.width.value * 0.13,
+                          height: _getController.height.value * 0.06,
+                          margin: EdgeInsets.only(left: _getController.width.value * 0.02),
+                          child: IconButton(
+                              style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                              icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.07),
+                              onPressed: () {}
+                          )
+                      )
+                    )
                 ]
             )
           ),
