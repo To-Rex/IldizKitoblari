@@ -490,9 +490,7 @@ class DetailPage extends StatelessWidget {
                                   height: _getController.height.value * 0.06,
                                   decoration: BoxDecoration(
                                       borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                      //border: _getController.fullIndex.value == index ? Border.all(color: AppColors.primaryColor3, width: 1) : null,
                                       border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
-                                      //image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover)
                                       image: const DecorationImage(image:NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740'), fit: BoxFit.cover)
                                   )
                               )
