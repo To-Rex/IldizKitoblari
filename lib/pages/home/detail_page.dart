@@ -549,10 +549,7 @@ class DetailPage extends StatelessWidget {
                     Expanded(
                         child: Skeletonizer(
                           child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Theme.of(context).colorScheme.background
-                            ),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Theme.of(context).colorScheme.background),
                             child: Text('hello'.tr),
                           )
                         )
