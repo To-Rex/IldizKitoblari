@@ -179,36 +179,12 @@ class HomePage extends StatelessWidget {
                               ),
                             if (_getController.menuModel.value.data != null)
                               SizedBox(height: _getController.height.value * 0.04),
-                            /*if (_getController.menuModel.value.data != null)
-                              for (var i in _getController.menuModel.value.data!.result!.length > 2 ? _getController.menuModel.value.data!.result!.sublist(0, 2) : _getController.menuModel.value.data!.result!)
-                                Column(
-                                  children: [
-                                    ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){}),
-                                    if (_getController.productModel.value.data != null)
-                                      SizedBox(
-                                        height: _getController.height.value * 0.35,
-                                        width: _getController.width.value,
-                                        child: ListView.builder(
-                                            padding: EdgeInsets.only(left: _getController.width.value * 0.03),
-                                            itemCount: _getController.productModel.value.data!.result!.length,
-                                            scrollDirection: Axis.horizontal,
-                                            itemBuilder: (context, index) {
-                                              return ProductItem(
-                                                imageUrl: _getController.productModel.value.data!.result![index].image,
-                                                title: _getController.productModel.value.data!.result![index].name,
-                                                price: _getController.productModel.value.data!.result![index].price.toString(),
-                                                function: () {
-                                                  Get.to(() => CatDetailPage(title: _getController.productModel.value.data!.result![index].name!, menuSlug: _getController.productModel.value.data!.result![index].slug!));
-                                                  },
-                                                id: _getController.productModel.value.data!.result![index].sId,
-                                                deck: _getController.productModel.value.data!.result![index].name,
-                                              );
-                                            }))
-                                  ]
-                                ),*/
                             if (_getController.menuModel.value.data != null)
-                              ChildItem(title: 'Kitoblar'.tr, function: (){
-                                Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: false));
+                              ChildItem(title: '${'Top'.tr} ${'Kitoblar'.tr}', function: (){
+                                _getController.page.value = 1;
+                                _getController.productModelLength.value = 0;
+                                _getController.clearProductModel();
+                                Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: true));
                               }),
                               if (_getController.productModel.value.data != null)
                                 SizedBox(
