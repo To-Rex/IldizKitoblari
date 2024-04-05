@@ -6,15 +6,15 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
-class ScletonItem extends StatefulWidget {
+class SkeletonItem extends StatefulWidget {
 
-   ScletonItem({super.key});
+  SkeletonItem({super.key});
 
   @override
-  State<ScletonItem> createState() => _ProductItemState();
+  State<SkeletonItem> createState() => _ProductItemState();
 }
 
-class _ProductItemState extends State<ScletonItem> {
+class _ProductItemState extends State<SkeletonItem> {
   final GetController _getController = Get.put(GetController());
 
   @override

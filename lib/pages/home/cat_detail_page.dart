@@ -3,12 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/product_item.dart';
 import '../../companents/scleton_item.dart';
 import '../../controllers/get_controller.dart';
-import '../../resource/colors.dart';
 import 'detail_page.dart';
 
 class CatDetailPage extends StatelessWidget {
@@ -78,7 +76,7 @@ class CatDetailPage extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                       childAspectRatio: 0.71,
                     children: List.generate(8, (index) {
-                      return ScletonItem();
+                      return SkeletonItem();
                     })
                   )
                 ),

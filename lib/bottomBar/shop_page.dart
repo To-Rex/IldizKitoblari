@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../companents/child_item.dart';
 import '../companents/product_item.dart';
+import '../companents/scleton_item.dart';
 import '../companents/search_fild.dart';
 import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
@@ -49,6 +50,7 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _getController.clearProductModelList();
     _getController.changeItemPage(0);
+    _getController.clearBannerModel();
     _getData();
     return Scaffold(
         body: SmartRefresher(
@@ -85,7 +87,6 @@ class ShopPage extends StatelessWidget {
             ),
             onLoading: _onLoading,
             onRefresh: _getData,
-            //controller: _refreshController,
             controller: _getController.refreshController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -94,8 +95,8 @@ class ShopPage extends StatelessWidget {
                     decoration: const BoxDecoration(color: AppColors.backgroundApp),
                     child: Obx(() =>
                         Column(
-                        children: [
-                          SizedBox(
+                            children: [
+                              SizedBox(
                             height: _getController.height.value * 0.19,
                             child: Stack(
                               children: [
@@ -121,28 +122,28 @@ class ShopPage extends StatelessWidget {
                               ]
                             )
                           ),
-                          Container(
-                              width: _getController.width.value,
-                              padding: EdgeInsets.only(top: _getController.height.value * 0.01),
-                              decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
-                              child:Column(
-                                  children: [
-                                    if (_getController.menuModel.value.data != null)
-                                      for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
-                                        Column(
-                                            children: [
-                                              if (i.children != null && _getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
-                                              ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
-                                                _getController.page.value = 1;
-                                                _getController.productModelLength.value = 0;
-                                                _getController.clearProductModel();
-                                                Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!, parent: true));
-                                              }),
-                                              if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
-                                                SizedBox(
-                                                    height: _getController.height.value * 0.37,
-                                                    width: _getController.width.value,
-                                                    child: ListView.builder(
+                              Container(
+                                  width: _getController.width.value,
+                                  padding: EdgeInsets.only(top: _getController.height.value * 0.01),
+                                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
+                                  child: Column(
+                                      children: [
+                                        if (_getController.menuModel.value.data != null && _getController.productModelList.isNotEmpty)
+                                          for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
+                                            Column(
+                                                children: [
+                                                  if (i.children != null && _getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
+                                                    ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
+                                                      _getController.page.value = 1;
+                                                      _getController.productModelLength.value = 0;
+                                                      _getController.clearProductModel();
+                                                      Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!, parent: true));
+                                                    }),
+                                                  if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
+                                                    SizedBox(
+                                                        height: _getController.height.value * 0.37,
+                                                        width: _getController.width.value,
+                                                        child: ListView.builder(
                                                         padding: EdgeInsets.only(left: _getController.width.value * 0.03),
                                                         itemCount: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result!.length,
                                                         scrollDirection: Axis.horizontal,
@@ -167,14 +168,34 @@ class ShopPage extends StatelessWidget {
                                                             count: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].count,
                                                           );
                                                         })),
-
-                                            ]
-                                        )
-                                  ]
+                                                ]
+                                            )
+                                        else
+                                          Container(
+                                            height: _getController.height.value * 1.1,
+                                            width: _getController.width.value,
+                                              margin: EdgeInsets.only(
+                                                right: _getController.width.value * 0.01,
+                                                left: _getController.width.value * 0.01,
+                                              ),
+                                              child: Expanded(
+                                                  child: GridView.count(
+                                                      crossAxisCount: 2,
+                                                      shrinkWrap: true,
+                                                      physics: const NeverScrollableScrollPhysics(),
+                                                      childAspectRatio: 0.7,
+                                                      children: List.generate(6, (index) {
+                                                        return SkeletonItem();
+                                                      })
+                                                  )
+                                              ),
+                                          ),
+                                      ]
+                                  )
                               )
-                          )
-                        ]
-                    ))
+                            ]
+                        )
+                    )
                 )
             )
         )
