@@ -267,7 +267,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     DetailChildItem(title: 'Tavsiya etiladi'.tr, function: (){}, check: false),
                     Container(
-                      height: _getController.height.value * 0.35,
+                      height: _getController.height.value * 0.37,
                       width: _getController.width.value,
                       margin: EdgeInsets.only(top: _getController.height.value * 0.02),
                       child: ListView.builder(
@@ -286,7 +286,7 @@ class DetailPage extends StatelessWidget {
                               _getController.swiperController.move(0);
                               _getController.removeProductDetailModel(pageIndex+1);
                               Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(slug: _getController.productDetailList[pageIndex].data?.simularProducts![index].slug ?? '', pageIndex: pageIndex+1)));
-                            },
+                            }, count: _getController.productDetailList[pageIndex].data?.simularProducts![index].count ?? 0,
                           );
                         },
                       ),

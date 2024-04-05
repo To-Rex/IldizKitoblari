@@ -51,6 +51,8 @@ class LocaleString extends Translations{
       'Noto\'g\'ri parol kiritdingiz!':'You entered the wrong password!',
       'Ma\'lumotlar yo\'q!':'No data!',
       'Internet aloqasi yo\'q':'No Internet connection!',
+      'Sotuvda mavjud': 'In the store',
+      'Sotuvda mavjud emas': 'Not in the store',
 
       //Sample page
       'Kitoblarni izlash':'Search for books',
@@ -154,6 +156,8 @@ class LocaleString extends Translations{
       'Noto\'g\'ri parol kiritdingiz!':'Вы ввели неправильный пароль!',
       'Ma\'lumotlar yo\'q!':'Нет данных!',
       'Internet aloqasi yo\'q':'Нет интернета',
+      'Sotuvda mavjud': 'В наличии',
+      'Sotuvda mavjud emas': 'Нет в наличии',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -258,6 +262,8 @@ class LocaleString extends Translations{
       'Noto\'g\'ri parol kiritdingiz!':'Noto\'g\'ri parol kiritdingiz!',
       'Ma\'lumotlar yo\'q!':'Ma\'lumotlar yo\'q!',
       'Internet aloqasi yo\'q':'Internet aloqasi yo\'q',
+      'Sotuvda mavjud': 'Sotuvda mavjud',
+      'Sotuvda mavjud emas': 'Sotuvda mavjud emas',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
@@ -361,6 +367,8 @@ class LocaleString extends Translations{
       'Noto\'g\'ri parol kiritdingiz!':'Ното\'г\'ри парол киритдингиз!',
       'Ma\'lumotlar yo\'q!':'Маълумотлар йўқ!',
       'Internet aloqasi yo\'q': 'Интернет алоқаси йўқ',
+      'Sotuvda mavjud': 'Сотувда мавжуд',
+      'Sotuvda mavjud emas': 'Сотувда мавжуд емас',
 
       //Sample page
       'Kitoblarni izlash':'Китобларни излаш',

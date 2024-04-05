@@ -11,9 +11,10 @@ class ProductItem extends StatefulWidget {
    String? deck;
    String? price;
    String? imageUrl;
+   int? count;
    Function function;
 
-  ProductItem({super.key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl, required this.function});
+  ProductItem({super.key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl, required this.count, required this.function});
 
   @override
   State<ProductItem> createState() => _ProductItemState();
@@ -30,23 +31,25 @@ class _ProductItemState extends State<ProductItem> {
         widget.function();
       },
       child: Container(
-        margin: EdgeInsets.only(top: _getController.height.value * 0.007, left: _getController.width.value * 0.013, right: _getController.width.value * 0.013),
+        margin: EdgeInsets.only(
+            top: _getController.height.value * 0.007,
+            left: _getController.width.value * 0.013,
+            right: _getController.width.value * 0.013),
         width: _getController.width.value * 0.44,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (widget.imageUrl != null || widget.imageUrl != ''|| widget.imageUrl != 'null' || widget.imageUrl != ' ')
-            Container(
-              width: _getController.width.value * 0.44,
-              height: _getController.height.value * 0.205,
-              margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Theme.of(context).colorScheme.background,
-                //image: DecorationImage(image: NetworkImage(widget.imageUrl!), fit: BoxFit.cover),
-                image: DecorationImage(image: NetworkImage(widget.imageUrl == null || widget.imageUrl == ''|| widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740' : widget.imageUrl!), fit: BoxFit.cover)
-              )
-            ),
+              Container(
+                  width: _getController.width.value * 0.44,
+                  height: _getController.height.value * 0.205,
+                  margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Theme.of(context).colorScheme.background,
+                      image: DecorationImage(image: NetworkImage(widget.imageUrl == null || widget.imageUrl == ''|| widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740' : widget.imageUrl!), fit: BoxFit.cover)
+                  )
+              ),
             SizedBox(child: Text(widget.title!, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
             SizedBox(height: _getController.height.value * 0.01),
             Row(
@@ -55,7 +58,7 @@ class _ProductItemState extends State<ProductItem> {
                   '${widget.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}',
                   style: TextStyle(
                     fontSize: _getController.width.value * 0.04,
-                    color: AppColors.primaryColor2,
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontWeight: FontWeight.w600
                   )
                 )),
@@ -68,6 +71,27 @@ class _ProductItemState extends State<ProductItem> {
                   )
                 )
               ]
+            ),
+            Row(
+                children: [
+                  InkWell(
+                      onTap: () {},
+                      child: Icon(
+                          TablerIcons.shopping_cart_plus,
+                          size: _getController.width.value * 0.045,
+                          color: widget.count == 0 ? AppColors.secondaryColor : AppColors.primaryColor2
+                      )
+                  ),
+                  SizedBox(width: _getController.width.value * 0.02),
+                  Expanded(child: Text(
+                      widget.count == 0 ? 'Sotuvda mavjud emas'.tr : 'Sotuvda mavjud'.tr,
+                      style: TextStyle(
+                          fontSize: _getController.width.value * 0.035,
+                          color: widget.count == 0 ? AppColors.secondaryColor : AppColors.primaryColor2,
+                          fontWeight: FontWeight.w600
+                      )
+                  )),
+                ]
             ),
             Expanded(
               child: Container(

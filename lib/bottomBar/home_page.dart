@@ -181,7 +181,7 @@ class HomePage extends StatelessWidget {
                               }),
                               if (_getController.productModel.value.data != null)
                                 SizedBox(
-                                    height: _getController.height.value * 0.35,
+                                    height: _getController.height.value * 0.37,
                                     width: _getController.width.value,
                                     child: ListView.builder(
                                         padding: EdgeInsets.only(left: _getController.width.value * 0.03),
@@ -195,6 +195,7 @@ class HomePage extends StatelessWidget {
                                             function: () {},
                                             id: _getController.productModel.value.data!.result![index].sId,
                                             deck: _getController.productModel.value.data!.result![index].name,
+                                            count: _getController.productModel.value.data!.result![index].count
                                           );
                                         })),
                             if (_getController.menuModel.value.data != null)

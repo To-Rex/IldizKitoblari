@@ -136,14 +136,11 @@ class ShopPage extends StatelessWidget {
                                                 _getController.page.value = 1;
                                                 _getController.productModelLength.value = 0;
                                                 _getController.clearProductModel();
-                                                Get.to(() => CatDetailPage(
-                                                    title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,
-                                                    menuSlug: i.slug!, parent: true)
-                                                );
+                                                Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!, parent: true));
                                               }),
                                               if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                                 SizedBox(
-                                                    height: _getController.height.value * 0.35,
+                                                    height: _getController.height.value * 0.37,
                                                     width: _getController.width.value,
                                                     child: ListView.builder(
                                                         padding: EdgeInsets.only(left: _getController.width.value * 0.03),
@@ -166,7 +163,8 @@ class ShopPage extends StatelessWidget {
                                                               ));
                                                             },
                                                             id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
-                                                            deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name
+                                                            deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name,
+                                                            count: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].count,
                                                           );
                                                         })),
 

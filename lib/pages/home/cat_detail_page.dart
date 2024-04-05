@@ -6,6 +6,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/product_item.dart';
+import '../../companents/scleton_item.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
 import 'detail_page.dart';
@@ -75,44 +76,9 @@ class CatDetailPage extends StatelessWidget {
                     crossAxisCount: 2,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
+                      childAspectRatio: 0.71,
                     children: List.generate(8, (index) {
-                      return Skeletonizer(
-                        child: Container(
-                          width: _getController.width.value * 0.45,
-                          height: _getController.width.value * 0.4,
-                          margin: EdgeInsets.all(_getController.width.value * 0.02),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: AppColors.grey.withOpacity(0.2),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: _getController.width.value,
-                                height: _getController.width.value * 0.35,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: AppColors.grey.withOpacity(0.2),
-                                )
-                              ),
-                              Container(
-                                width: _getController.width.value,
-                                padding: EdgeInsets.only(left: _getController.width.value * 0.02),
-                                margin: EdgeInsets.only(
-                                    right: _getController.width.value * 0.02),
-                                child: Text('Muvaffaqiyatli'.tr)
-                              ),
-                              Container(
-                                width: _getController.width.value,
-                                padding: EdgeInsets.only(left: _getController.width.value * 0.02),
-                                margin: EdgeInsets.only(right: _getController.width.value * 0.02),
-                                child: Text('Xatolik'.tr),
-                              )
-                            ],
-                          )
-                        )
-                      );
+                      return ScletonItem();
                     })
                   )
                 ),
@@ -167,7 +133,7 @@ class CatDetailPage extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.07,
-                      mainAxisExtent: _getController.height.value * 0.35,
+                      mainAxisExtent: _getController.height.value * 0.37,
                       mainAxisSpacing: _getController.height.value * 0.015,
                       crossAxisSpacing: _getController.width.value * 0.03,
                     ),
@@ -180,12 +146,13 @@ class CatDetailPage extends StatelessWidget {
                         deck: _getController.productModel.value.data!.result![index].slug!,
                         price: _getController.productModel.value.data!.result![index].price!.toString(),
                         imageUrl: _getController.productModel.value.data!.result![index].image ?? '',
+                          count: _getController.productModel.value.data!.result![index].count ?? 0,
                         function: () {
                          // Get.to(() => QuotesPage());
                           _getController.clearProductDetailModel();
                           _getController.clearProductDetailList();
                           Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));
-                        }
+                        },
                       );
                     }
                   )
