@@ -7,9 +7,12 @@ import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/home/category_page.dart';
 import 'package:ildiz/resource/colors.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../companents/child_item.dart';
 import '../companents/product_item.dart';
+import '../companents/scleton_item.dart';
 import '../companents/search_fild.dart';
+import '../companents/skleton_child_item.dart';
 import '../controllers/get_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
@@ -135,12 +138,37 @@ class HomePage extends StatelessWidget {
                                           )
                                   ],
                                 )
+                              )
+                            else
+                              Container(
+                                margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.025),
+                                height: _getController.height.value * 0.173,
+                                width: _getController.width.value,
+                                padding: EdgeInsets.all(_getController.width.value * 0.02),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Skeletonizer(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        image: const DecorationImage(
+                                          image: AssetImage('assets/images/oo1.png'),
+                                          fit: BoxFit.fill
+                                        )
+                                    ),
+                                  )
+                                )
                               ),
+
+                            if (_getController.menuModel.value.data != null)
                             ChildItem(
                                 title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
                                 function: (){
                                   Get.to(() => Category());
-                                }),
+                                })
+                            else
+                              SkeletonChildItem(),
                             if (_getController.menuModel.value.data != null)
                               SizedBox(
                                   width: _getController.width.value * 0.93,
@@ -201,7 +229,9 @@ class HomePage extends StatelessWidget {
                             if (_getController.menuModel.value.data != null)
                               SizedBox(height: _getController.height.value * 0.02),
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
-                              ChildItem(title: 'Iqtiboslar'.tr, function: (){}),
+                              ChildItem(title: 'Iqtiboslar'.tr, function: (){})
+                            else
+                              SkeletonChildItem(),
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
                             Container(
                               height: _getController.height.value * 0.23,
