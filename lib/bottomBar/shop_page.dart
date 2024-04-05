@@ -26,10 +26,8 @@ class ShopPage extends StatelessWidget {
     _getController.changeItemPage(0);
     if (_getController.menuModel.value.data != null) {
       ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
-      //_refreshController.refreshCompleted();
       _getController.refreshController.refreshCompleted();
     } else {
-      //_refreshController.refreshCompleted();
       _getController.refreshController.refreshCompleted();
     }
   }
@@ -37,11 +35,9 @@ class ShopPage extends StatelessWidget {
   void _onLoading() async {
     if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value && _getController.searchController.text.isEmpty) {
       ApiController().getItemsProductSearch(1,  true,_getController.searchController.text).then((value) =>
-          //_refreshController.loadComplete()
           _getController.refreshController.loadComplete()
       );
     } else {
-      //_refreshController.loadComplete();
       _getController.refreshController.loadComplete();
     }
   }
