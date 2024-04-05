@@ -120,7 +120,7 @@ class CatDetailPage extends StatelessWidget {
                     _getController.page.value = 1;
                     if (!parent){
                       ApiController().getProduct(1, menuSlug, false).then((value) => _refreshController.refreshCompleted());
-                    }else{
+                    } else {
                       _getController.page.value = 1;
                       _getController.productModelLength.value = 0;
                       _getController.clearProductModel();
