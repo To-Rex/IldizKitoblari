@@ -340,7 +340,7 @@ class SimularProducts {
 
 class Comments {
   String? sId;
-  int? rate;
+  var rate;
   String? description;
   User? user;
   String? createdAt;
@@ -349,7 +349,7 @@ class Comments {
 
   Comments.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    rate = json['rate'];
+    rate = json['rate'] ?? 0;
     description = json['description'];
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     createdAt = json['createdAt'];
@@ -358,7 +358,7 @@ class Comments {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
-    data['rate'] = rate;
+    data['rate'] = rate ?? 0;
     data['description'] = description;
     if (user != null) {
       data['user'] = user!.toJson();

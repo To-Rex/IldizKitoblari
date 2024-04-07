@@ -47,31 +47,31 @@ class Result {
   int? i3;
   int? i4;
   int? i5;
-  int? average;
+  double? average;
   int? total;
 
   Result(
       {this.i1, this.i2, this.i3, this.i4, this.i5, this.average, this.total});
 
   Result.fromJson(Map<String, dynamic> json) {
-    i1 = json['1'];
-    i2 = json['2'];
-    i3 = json['3'];
-    i4 = json['4'];
-    i5 = json['5'];
-    average = json['average'];
-    total = json['total'];
+    i1 = json['1'] ?? 0;
+    i2 = json['2'] ?? 0;
+    i3 = json['3'] ?? 0;
+    i4 = json['4'] ?? 0;
+    i5 = json['5'] ?? 0;
+    average = json['average'] ?? 0;
+    total = json['total'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['1'] = i1;
-    data['2'] = i2;
-    data['3'] = i3;
-    data['4'] = i4;
-    data['5'] = i5;
-    data['average'] = average;
-    data['total'] = total;
+    data['1'] = i1 ?? 0;
+    data['2'] = i2 ?? 0;
+    data['3'] = i3 ?? 0;
+    data['4'] = i4 ?? 0;
+    data['5'] = i5 ?? 0;
+    data['average'] = average ?? 0;
+    data['total'] = total ?? 0;
     return data;
   }
 }

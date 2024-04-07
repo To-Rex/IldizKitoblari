@@ -262,6 +262,8 @@ class GetController extends GetxController {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
   final TextEditingController searchController = TextEditingController();
+  final TextEditingController commentController = TextEditingController();
+  final TextEditingController ratingController = TextEditingController();
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);
   final SwiperController swiperController = SwiperController();

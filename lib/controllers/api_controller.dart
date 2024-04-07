@@ -32,8 +32,6 @@ class ApiController extends GetxController {
   static const String _passwordUpdate = '$_baseUrl/api/v1/user/password-update';
 
   //home
-  //static const String _menu = '$_baseUrl/api/v1/menu/list/?for_mobile=true';
-  //https://ildizkitoblari.uz/api/v1/menu/mobile/list
   static const String _menu = '$_baseUrl/api/v1/menu/mobile/list';
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6';
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
@@ -41,6 +39,8 @@ class ApiController extends GetxController {
   static const String _productRate = '$_baseUrl/api/v1/product/rate/';
   static const String _quotation = '$_baseUrl/api/v1/banner/quotation/list';
   static const String _update = '$_baseUrl/api/v1/user/update';
+                //https://ildizkitoblari.uz/api/v1/product/comment/create
+  static const String _comment = '$_baseUrl/api/v1/product/comment/create';
 
 
   //show toast message
@@ -484,6 +484,24 @@ class ApiController extends GetxController {
       _getController.changeQuotesModel(QuotesModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> createComment(String description,String productId,rate) async {
+    debugPrint('comment: $description, $productId, $rate');
+    var response = await post(Uri.parse(_comment),
+        headers: {
+          'Authorization': 'Bearer ${GetStorage().read('token')}',
+        },
+        body: {'description': description,
+          'product_id': productId,
+          'rate': rate.toString()
+    });
+    debugPrint('comment: ${response.body}');
+    if (response.statusCode == 200) {
+      debugPrint('comment: ${response.body}');
+    }else{
+      debugPrint('comment: ${response.body}');
     }
   }
 }

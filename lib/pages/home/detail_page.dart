@@ -313,7 +313,10 @@ class DetailPage extends StatelessWidget {
                                     unratedColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
                                     itemBuilder: (context, _) =>
                                     const Icon(TablerIcons.star_filled, color: AppColors.primaryColor),
-                                    onRatingUpdate: (rating) {}
+                                    onRatingUpdate: (rating) {
+                                      print(rating);
+                                      _getController.ratingController.text = rating.toString();
+                                    }
                                 ),
                               SizedBox(height: _getController.height.value * 0.02),
                               Text('${'Izoh'.tr}:', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500)),
@@ -329,6 +332,7 @@ class DetailPage extends StatelessWidget {
                                   child: TextField(
                                       minLines: 1,
                                       maxLines: 3,
+                                      controller: _getController.commentController,
                                       style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),
                                       decoration: InputDecoration(
                                           hintText: 'Kiriting'.tr,
@@ -344,6 +348,15 @@ class DetailPage extends StatelessWidget {
                                   height: _getController.height.value * 0.06,
                                   child: ElevatedButton(
                                       onPressed: () {
+                                        if (_getController.commentController.text.isEmpty) {
+                                          ApiController().showToast(context, 'Xatolik', 'Ma\'lumotlar yo\'q!', true, 3);
+                                        } else {
+                                          ApiController().createComment(
+                                              _getController.commentController.text,
+                                              _getController.productDetailList[pageIndex].data!.sId.toString(),
+                                              _getController.ratingController.text
+                                          );
+                                        }
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: AppColors.primaryColor,
@@ -453,8 +466,7 @@ class DetailPage extends StatelessWidget {
                       ),
                     SizedBox(height: _getController.height.value * 0.214)
                   ]
-              )
-                  : Column(children: [
+              ) : Column(children: [
                     AppBar(
                       surfaceTintColor: Colors.transparent,
                       leading: IconButton(
