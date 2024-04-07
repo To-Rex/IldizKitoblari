@@ -58,13 +58,15 @@ class DetailPage extends StatelessWidget {
             _refreshController.loadComplete();
           },
           onRefresh: () async {
-            _refreshController.refreshCompleted();
+            _getController.fullIndex.value = 0;
+            _getController.productDetailList.clear();
+            _getController.productRateList.clear();
+            ApiController().getProductDetail(slug).then((value) => _refreshController.refreshCompleted());
           },
           controller: _refreshController,
           child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              child: Obx(() =>
-              _getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex
+              child: Obx(() => _getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex
                   ? Column(
                   children: [
                     AppBar(
@@ -158,7 +160,12 @@ class DetailPage extends StatelessWidget {
                                 Row(
                                     children: [
                                       if (_getController.productRateList.length > pageIndex)
-                                        DetailElement(title: _getController.productRateList[pageIndex].data!.result!.average == null ? '0' : _getController.productRateList[pageIndex].data!.result!.average.toString(), subTitle: '', icon: Icons.star),
+                                        DetailElement(title: _getController.productRateList[pageIndex].data!.result!.average == null
+                                            ? '0.0'
+                                            : _getController.productRateList[pageIndex].data!.result!.average.toString().length > 3
+                                            ? _getController.productRateList[pageIndex].data!.result!.average.toString().substring(0, 3)
+                                            : _getController.productRateList[pageIndex].data!.result!.average.toString(),
+                                            subTitle: '', icon: Icons.star),
                                       if (_getController.productRateList.length > pageIndex)
                                         DetailElement(title: _getController.productRateList[pageIndex].data!.result!.total.toString(), subTitle: 'ta izoh'.tr, icon: TablerIcons.message_circle),
                                       DetailElement(title: _getController.productDetailList[pageIndex].data?.views.toString() ?? '', subTitle: 'ta ko\'rilgan'.tr, icon: TablerIcons.eye)
@@ -355,7 +362,12 @@ class DetailPage extends StatelessWidget {
                                               _getController.commentController.text,
                                               _getController.productDetailList[pageIndex].data!.sId.toString(),
                                               _getController.ratingController.text
-                                          );
+                                          ).then((value) => {
+                                            _getController.fullIndex.value = 0,
+                                            _getController.productDetailList.clear(),
+                                            _getController.productRateList.clear(),
+                                            ApiController().getProductDetail(slug)
+                                          });
                                         }
                                       },
                                       style: ElevatedButton.styleFrom(
@@ -370,103 +382,109 @@ class DetailPage extends StatelessWidget {
                     DetailChildItem(title: 'Izohlar'.tr, function: (){}, check: true),
                     if (_getController.productDetailList[pageIndex].data!.comments!.isNotEmpty)
                       SizedBox(height: _getController.height.value * 0.01),
-                    if (_getController.productDetailList[pageIndex].data!.comments!.isNotEmpty)
-                      for (int i = 0; i < _getController.productDetailList[pageIndex].data!.comments!.length; i++)
-                        Container(
-                            margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
-                            padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
-                            decoration: BoxDecoration(
-                              color: AppColors.grey.withOpacity(0.1),
-                              borderRadius: const BorderRadius.all(Radius.circular(8)),
-                              border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
-                            ),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                          width: _getController.width.value * 0.12,
-                                          height: _getController.width.value * 0.12,
-                                          margin: EdgeInsets.only(right: _getController.width.value * 0.03),
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.comments![i].user?.avatar ?? '',), fit: BoxFit.cover))
-                                      ),
-                                      Expanded(
-                                          child: Text(
-                                              _getController.productDetailList[pageIndex].data?.comments![i].user?.fullName ?? '',
-                                              style: TextStyle(
-                                                  fontSize: _getController.width.value * 0.04,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Theme.of(context).colorScheme.onBackground
-                                              )
-                                          )
-                                      )
-                                    ],
+                    Obx(() => _getController.productDetailList[pageIndex].data!.comments!.isNotEmpty
+                        ? Padding(
+                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                        child: Column(
+                          children: [
+                            for (int i = 0; i < _getController.productDetailList[pageIndex].data!.comments!.length; i++)
+                              Container(
+                                  margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
+                                  padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.grey.withOpacity(0.1),
+                                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                    border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
                                   ),
-                                  SizedBox(height: _getController.height.value * 0.01),
-                                  Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(
-                                            width: _getController.width.value * 0.32,
-                                            child: RatingBar.builder(
-                                                initialRating: _getController.productDetailList[pageIndex].data?.comments![i].rate?.toDouble() ?? 0,
-                                                minRating: 0,
-                                                direction: Axis.horizontal,
-                                                allowHalfRating: true,
-                                                itemCount: 5,
-                                                itemSize: _getController.width.value * 0.06,
-                                                itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
-                                                onRatingUpdate: (rating) {}
+                                        Row(
+                                          children: [
+                                            Container(
+                                                width: _getController.width.value * 0.12,
+                                                height: _getController.width.value * 0.12,
+                                                margin: EdgeInsets.only(right: _getController.width.value * 0.03),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.comments![i].user?.avatar ?? '',), fit: BoxFit.cover))
+                                            ),
+                                            Expanded(
+                                                child: Text(
+                                                    _getController.productDetailList[pageIndex].data?.comments![i].user?.fullName ?? '',
+                                                    style: TextStyle(
+                                                        fontSize: _getController.width.value * 0.04,
+                                                        fontWeight: FontWeight.w500,
+                                                        color: Theme.of(context).colorScheme.onBackground
+                                                    )
+                                                )
                                             )
+                                          ],
                                         ),
-                                        Expanded(child: Text(
-                                            DateTime.parse(_getController.productDetailList[pageIndex].data?.comments![i].createdAt ?? '').toString().substring(0, 10),
-                                            maxLines: 1,
-                                            style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
-                                        ))
+                                        SizedBox(height: _getController.height.value * 0.01),
+                                        Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(
+                                                  width: _getController.width.value * 0.32,
+                                                  child: RatingBar.builder(
+                                                      initialRating: _getController.productDetailList[pageIndex].data?.comments![i].rate?.toDouble() ?? 0,
+                                                      minRating: 0,
+                                                      direction: Axis.horizontal,
+                                                      allowHalfRating: true,
+                                                      itemCount: 5,
+                                                      itemSize: _getController.width.value * 0.06,
+                                                      itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
+                                                      onRatingUpdate: (rating) {}
+                                                  )
+                                              ),
+                                              Expanded(child: Text(
+                                                  DateTime.parse(_getController.productDetailList[pageIndex].data?.comments![i].createdAt ?? '').toString().substring(0, 10),
+                                                  maxLines: 1,
+                                                  style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                              ))
+                                            ]
+                                        ),
+                                        SizedBox(height: _getController.height.value * 0.01),
+                                        Text(
+                                            _getController.productDetailList[pageIndex].data?.comments![i].description ?? '',
+                                            style: TextStyle(
+                                                fontSize: _getController.width.value * 0.04,
+                                                fontWeight: FontWeight.w400,
+                                                color: Theme.of(context).colorScheme.onBackground
+                                            )
+                                        )
                                       ]
-                                  ),
-                                  SizedBox(height: _getController.height.value * 0.01),
-                                  Text(
-                                      _getController.productDetailList[pageIndex].data?.comments![i].description ?? '',
-                                      style: TextStyle(
-                                          fontSize: _getController.width.value * 0.04,
-                                          fontWeight: FontWeight.w400,
-                                          color: Theme.of(context).colorScheme.onBackground
-                                      )
                                   )
-                                ]
-                            )
+                              ),
+                          ]))
+                        :Container(
+                        width: _getController.width.value,
+                        height: _getController.height.value * 0.12,
+                        margin: EdgeInsets.only(top: _getController.height.value * 0.015,left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                        decoration: BoxDecoration(
+                          color: AppColors.grey.withOpacity(0.1),
+                          borderRadius: const BorderRadius.all(Radius.circular(8)),
+                          border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
                         ),
-                    if (_getController.productDetailList[pageIndex].data!.comments!.isEmpty)
-                      Container(
-                          width: _getController.width.value,
-                          height: _getController.height.value * 0.12,
-                          margin: EdgeInsets.only(top: _getController.height.value * 0.015,left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                          decoration: BoxDecoration(
-                            color: AppColors.grey.withOpacity(0.1),
-                            borderRadius: const BorderRadius.all(Radius.circular(8)),
-                            border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
-                          ),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  TablerIcons.message_circle_cancel,
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-                                  size: _getController.width.value * 0.1,
-                                ),
-                                Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                              ]
-                          )
-                      ),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                TablerIcons.message_circle_cancel,
+                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                                size: _getController.width.value * 0.1,
+                              ),
+                              Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                            ]
+                        )
+                    )
+                    ),
                     SizedBox(height: _getController.height.value * 0.214)
                   ]
-              ) : Column(children: [
+              )
+                  : Column(children: [
                     AppBar(
                       surfaceTintColor: Colors.transparent,
                       leading: IconButton(
@@ -516,7 +534,8 @@ class DetailPage extends StatelessWidget {
                         ]
                     )
                 )
-              ]))
+              ])
+              )
           )
       ),
         bottomNavigationBar: BottomAppBar(

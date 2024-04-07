@@ -501,6 +501,7 @@ class ApiController extends GetxController {
     debugPrint('comment: ${response.body}');
     if (response.statusCode == 200) {
       debugPrint('comment: ${response.body}');
+      _getController.ratingController.clear();
     }else{
       debugPrint('comment: ${response.body}');
     }
