@@ -382,7 +382,7 @@ class DetailPage extends StatelessWidget {
                     DetailChildItem(title: 'Izohlar'.tr, function: (){}, check: true),
                     if (_getController.productDetailList[pageIndex].data!.comments!.isNotEmpty)
                       SizedBox(height: _getController.height.value * 0.01),
-                    Obx(() => _getController.productDetailList[pageIndex].data!.comments!.isNotEmpty
+                    _getController.productDetailList[pageIndex].data!.comments!.isNotEmpty
                         ? Padding(
                         padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                         child: Column(
@@ -479,7 +479,6 @@ class DetailPage extends StatelessWidget {
                               Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
                             ]
                         )
-                    )
                     ),
                     SizedBox(height: _getController.height.value * 0.214)
                   ]

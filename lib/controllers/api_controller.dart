@@ -448,7 +448,7 @@ class ApiController extends GetxController {
       },
     );
     debugPrint('productDetail: ${response.body}');
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       //_getController.changeProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
       _getController.addProductDetailModel(ProductDetailModel.fromJson(jsonDecode(response.body)));
       //getProductRate(_getController.productDetailModel.value.data!.sId);
@@ -499,9 +499,10 @@ class ApiController extends GetxController {
           'rate': rate.toString()
     });
     debugPrint('comment: ${response.body}');
-    if (response.statusCode == 200) {
+    debugPrint('comment: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
       debugPrint('comment: ${response.body}');
-      _getController.ratingController.clear();
+      _getController.commentController.clear();
     }else{
       debugPrint('comment: ${response.body}');
     }
