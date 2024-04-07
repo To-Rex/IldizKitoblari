@@ -145,18 +145,13 @@ class HomePage extends StatelessWidget {
                                 height: _getController.height.value * 0.173,
                                 width: _getController.width.value,
                                 padding: EdgeInsets.all(_getController.width.value * 0.02),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                ),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
                                 child: Skeletonizer(
                                   child: Container(
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(16),
-                                        image: const DecorationImage(
-                                          image: AssetImage('assets/images/oo1.png'),
-                                          fit: BoxFit.fill
-                                        )
-                                    ),
+                                        image: const DecorationImage(image: AssetImage('assets/images/oo1.png'), fit: BoxFit.fill)
+                                    )
                                   )
                                 )
                               ),
@@ -238,7 +233,6 @@ class HomePage extends StatelessWidget {
                               margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.02),
                               width: _getController.width.value,
                               child: Swiper(
-                                //itemCount: 10,
                                 itemCount: _getController.quotesModel.value.data != null ? _getController.quotesModel.value.data!.result!.length : 0,
                                 loop: true,
                                 layout: SwiperLayout.STACK,
