@@ -468,6 +468,7 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.changeProductRate(ProductRate.fromJson(jsonDecode(response.body)));
       _getController.addProductRate(ProductRate.fromJson(jsonDecode(response.body)));
+      _getController.ratingController.text = _getController.productRate.value.data!.result!.average!.toString();
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
