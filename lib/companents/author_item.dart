@@ -51,13 +51,14 @@ class _AccItemState extends State<AuthorItem> {
                 decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(widget.image), fit: BoxFit.cover))
             )
             else
-              Icon(Icons.person, size: _getController.width.value * 0.1),
+              Icon(Icons.person, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5), size: _getController.width.value * 0.1),
             SizedBox(width: _getController.width.value * 0.02),
             Expanded(child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(widget.title, style: TextStyle(fontSize: _getController.width.value * 0.04, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600)),
-                Text(widget.subTitle, style: TextStyle(fontSize: _getController.width.value * 0.035, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500))
+                Text('${widget.subTitle} ${'ta kitob'.tr}',
+                    style: TextStyle(fontSize: _getController.width.value * 0.035, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500))
               ]
             )),
             Icon(TablerIcons.arrow_right, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5), size: _getController.width.value * 0.06)

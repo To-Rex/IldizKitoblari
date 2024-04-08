@@ -88,6 +88,7 @@ class LocaleString extends Translations{
       'Shaxsiy ma\'lumotlar':'Personal information',
 
       //detail page
+      'ta kitob':'Book',
       'ta izoh':'Comment',
       'ta ko\'rilgan':'Viewed',
       'Xarid':'Buy',
@@ -193,6 +194,7 @@ class LocaleString extends Translations{
       'Shaxsiy ma\'lumotlar':'Персональные данные',
 
       //detail page
+      'ta kitob':'Книга',
       'ta izoh':'Комментарий',
       'ta ko\'rilgan':'Просмотрено',
       'Xarid':'Купить',
@@ -299,6 +301,7 @@ class LocaleString extends Translations{
       'Shaxsiy ma\'lumotlar':'Shaxsiy ma\'lumotlar',
 
       //detail page
+      'ta kitob':'ta kitob',
       'ta izoh':'ta izoh',
       'ta ko\'rilgan':'ta ko\'rilgan',
       'Xarid':'Xarid',
@@ -404,6 +407,7 @@ class LocaleString extends Translations{
       'Shaxsiy ma\'lumotlar':'Шахсий маълумотлар',
 
       //detail page
+      'ta kitob':'та китоб',
       'ta izoh':'та изоҳ',
       'ta ko\'rilgan':'та кўрилган',
       'Xarid':'Харид',
