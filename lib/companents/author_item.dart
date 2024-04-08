@@ -56,6 +56,7 @@ class _AccItemState extends State<AuthorItem> {
             )
             else
               Icon(Icons.person, size: _getController.width.value * 0.1),
+            SizedBox(width: _getController.width.value * 0.02),
             Expanded(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
