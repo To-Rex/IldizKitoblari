@@ -30,14 +30,14 @@ class _AccItemState extends State<AuthorItem> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      margin: EdgeInsets.all(_getController.width.value * 0.02),
+      margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.035, vertical: _getController.width.value * 0.02),
       color: Theme.of(context).colorScheme.background,
       surfaceTintColor: Theme.of(context).colorScheme.onBackground,
       elevation: 5,
       shadowColor: Theme.of(context).colorScheme.background,
       child: Container(
-        width: _getController.width.value * 0.9,
-        padding: EdgeInsets.all(_getController.width.value * 0.03),
+        width: _getController.width.value,
+        padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.width.value * 0.03),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           color: Theme.of(context).colorScheme.background
