@@ -11,6 +11,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/models/me_models.dart';
 import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../models/author_model.dart';
 import '../models/banner_model.dart';
 import '../models/login_model.dart';
 import '../models/menu_model.dart';
@@ -78,6 +79,7 @@ class GetController extends GetxController {
   var quotesModel = QuotesModel().obs;
   var productDetailModel = ProductDetailModel().obs;
   var productRate = ProductRate().obs;
+  var authorModel = AuthorModel().obs;
   var productDetailList = <ProductDetailModel>[].obs;
   var productRateList = <ProductRate>[].obs;
   var productModelList = <ProductModel>[].obs;
@@ -183,6 +185,23 @@ class GetController extends GetxController {
     if (quotesModel.value.data != null) {
       quotesModel.value = QuotesModel();
     }
+  }
+
+  //authorModel
+  void changeAuthorModel(AuthorModel authorModel) {
+    this.authorModel.value = authorModel;
+  }
+
+  //clear authorModel
+  void clearAuthorModel() {
+    if (authorModel.value.data != null) {
+      authorModel.value = AuthorModel();
+    }
+  }
+
+  //add authorModel
+  void addAuthorModel(AuthorModel authorModel) {
+    this.authorModel.value.data!.result!.addAll(authorModel.data!.result!);
   }
 
   void changeProductDetailModel(ProductDetailModel productDetailModel) {

@@ -8,6 +8,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/home/category_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../companents/author_item.dart';
 import '../companents/child_item.dart';
 import '../companents/product_item.dart';
 import '../companents/scleton_item.dart';
@@ -33,6 +34,7 @@ class HomePage extends StatelessWidget {
     //getTopProduct
     ApiController().getQuotation(1);
     ApiController().getTopProduct(1,false);
+    ApiController().getAuthors(5,1,'');
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
@@ -267,7 +269,25 @@ class HomePage extends StatelessWidget {
                                   );
                                 }
                               )
-                            )
+                            ),
+                            if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
+                              ChildItem(title: 'Mualliflar'.tr, function: (){}),
+                            if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
+                              SizedBox(height: _getController.height.value * 0.02),
+                            if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
+                              for (int i = 0; i < _getController.authorModel.value.data!.result!.length; i++)
+                                AuthorItem(
+                                  title: 'uz_UZ' == Get.locale.toString()
+                                    ? _getController.authorModel.value.data!.result![i].name!.uz.toString()
+                                    : 'oz_OZ' == Get.locale.toString()
+                                    ? _getController.authorModel.value.data!.result![i].name!.oz.toString()
+                                    : _getController.authorModel.value.data!.result![i].name!.ru.toString(),
+                                  subTitle: _getController.authorModel.value.data!.result![i].productCount!.toString(),
+                                  image: _getController.authorModel.value.data!.result![i].image!.toString(),
+                                  onTap: () {},
+                                ),
+                            if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
+                              SizedBox(height: _getController.height.value * 0.03),
                           ]
                         )
                       )
