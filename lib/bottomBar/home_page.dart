@@ -40,8 +40,7 @@ class HomePage extends StatelessWidget {
             enablePullDown: true,
             enablePullUp: true,
             header: CustomHeader(
-              builder:
-                  (BuildContext context, RefreshStatus? mode) {
+              builder: (BuildContext context, RefreshStatus? mode) {
                 Widget body;
                 if (mode == RefreshStatus.idle) {
                   body = const Text("Ma`lumotlarni yangilash uchun tashlang");
@@ -182,7 +181,6 @@ class HomePage extends StatelessWidget {
                                   )
                                 )
                               ),
-
                             if (_getController.menuModel.value.data != null)
                             ChildItem(
                                 title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
