@@ -34,12 +34,37 @@ class HomePage extends StatelessWidget {
     //getTopProduct
     ApiController().getQuotation(1);
     ApiController().getTopProduct(1,false);
-    ApiController().getAuthors(15,1,'Shayx Muhammad Sodiq');
+    ApiController().getAuthors(3,1,'');
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
-            header: const ClassicHeader(),
+            header: CustomHeader(
+              builder:
+                  (BuildContext context, RefreshStatus? mode) {
+                Widget body;
+                if (mode == RefreshStatus.idle) {
+                  body = const Text("Ma`lumotlarni yangilash uchun tashlang");
+                } else if (mode == RefreshStatus.refreshing) {
+                  body = const CircularProgressIndicator(
+                    color: Colors.blue,
+                    backgroundColor: Colors.white,
+                    strokeWidth: 2,
+                  );
+                } else if (mode == RefreshStatus.failed) {
+                  body = const Text("Ex nimadir xato ketdi",
+                      style: TextStyle(fontSize: 14, color: Colors.red));
+                } else if (mode == RefreshStatus.canRefresh) {
+                  body = const Text("Ma`lumotlarni yangilash uchun tashlang");
+                } else {
+                  body = const Text("Ma`lumotlar yangilandi");
+                }
+                return SizedBox(
+                  height: _getController.height.value * 0.1,
+                  child: Center(child: body),
+                );
+              },
+            ),
             footer: CustomFooter(
               builder: (BuildContext context, LoadStatus? mode) {
                 Widget body;

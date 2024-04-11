@@ -2,115 +2,7 @@ import 'package:get/get.dart';
 
 class LocaleString extends Translations{
   @override
-  // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
-    'en_US':{
-      'Dilshodjon Haydarov':'Dilshodjon Haydarov',
-
-      'hello':'Hello World',
-      'message':'Welcome to Proto Coders Point',
-      'title':'Flutter Language - Localization',
-      'sub':'Subscribe Now',
-      'changelang':'Change Language',
-      'f.i.sh':'F.I.SH:',
-      'Kiriting':'Enter',
-      'Telefon raqam':'Phone number',
-      'Parolni kiriting':'Enter password',
-      'Parolni takrorlang':'Repeat password',
-      'Ommaviy oferta':'Public offer',
-      'shartlariga roziman':'I agree to the terms',
-      'Ro\'yxatdan o\'tish':'Register',
-      'Ro\'yxatdan o\'tganmisiz?':'Have you registered?',
-      'Kirish':'Login',
-      'Parol':'Password',
-      'Eslab qolish':'Remember me',
-      'Parolni unutdingizmi?':'Forgot your password?',
-      'SMS kod' : 'SMS code',
-      'SMS xabar kelmadimi?':'Didn\'t receive an SMS message?',
-      'Qayta yuborish' : 'Resend',
-      'Tasdiqlash' : 'Confirm',
-      'Parolni tiklash':'Reset password',
-      'SMS kodni yuborish':'Send SMS code',
-
-      //validation
-      'Xatolik':'Error',
-      'Bunday foydalanuvchi mavjud!':'User already exists!',
-      'Server bilan bog\'lanishda xatolik!':'Error connecting to the server!',
-      'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!':'Password must be at least 6 characters long!',
-      'f.i.sh kiriting!':'Enter F.I.SH!',
-      'Parolni takrorlangan qismi mos kelmadi!':'The repeated part of the password did not match!',
-      'Telefon raqamni kiriting!':'Enter your phone number!',
-      'Parolni kiriting!':'Enter your password!',
-      'Parolni takrorlang!':'Repeat the password!',
-      'Parollar mos kelmadi!':'Passwords did not match!',
-      'Ommaviy oferta shartlariga rozilik bildirishingiz kerak!': 'You must agree to the terms of the public offer!',
-      'SMS kodni kiriting!':'Enter the SMS code!',
-      'Muvaffaqiyatli' : 'Success',
-      'Parolni muvaffaqiyatli o\'zgartirdingiz!':'You have successfully changed your password!',
-      'Bunday foydalanuvchi mavjud emas!':'User not found!',
-      'Noto\'g\'ri parol kiritdingiz!':'You entered the wrong password!',
-      'Ma\'lumotlar yo\'q!':'No data!',
-      'Internet aloqasi yo\'q':'No Internet connection!',
-      'Sotuvda mavjud': 'In the store',
-      'Sotuvda mavjud emas': 'Not in the store',
-
-      //Sample page
-      'Kitoblarni izlash':'Search for books',
-      'Kategoriya':'Category',
-      'Barchasi':'All',
-      'Elektron kitoblar':'E-books',
-      'Asosiy':'Main',
-      'Do\'kon':'Store',
-      'Kutubxona':'Library',
-      'Savatcha':'Cart',
-      'Sahifam':'My page',
-      'Audio kitoblar':'Audio books',
-      'Iqtiboslar':'Favorites',
-      'Mualliflar':'Authors',
-      'Top':'Top',
-      'Kitoblar':'Books',
-      'Do‘kon mahsulotlari':'Store products',
-      'Sizni yuzlab jozibador hikoyalar kutmoqda':'Hundreds of exciting stories are waiting for you',
-      'Sevimli janrlaringizni o\'rganing':'Learn your favorite genres',
-
-      //Sahifam page
-      'Profilni tahrirlash':'Edit profile',
-      'Mening kitoblarim':'My books',
-      'Buyurtmalar':'Orders',
-      'Chegirmalar':'Discounts',
-      'Promokod':'Promocode',
-      'Tilni o\'zgartirish':'Change language',
-      'O\'qish turi' : 'Reading mode',
-      'Tungi rejim':'Night mode',
-      'Dastur haqida':'About the program',
-      'Biz bilan bog\'lanish':'Contact us',
-      'Ilovadan chiqish':'Exit the application',
-      'Shaxsiy ma\'lumotlar':'Personal information',
-
-      //detail page
-      'ta kitob':'Book',
-      'ta izoh':'Comment',
-      'ta ko\'rilgan':'Viewed',
-      'Xarid':'Buy',
-      'Izoh':'Comment',
-      'Izohlar':'Comments',
-      'Tafsilotlar':'Details',
-      'Tavsif':'Description',
-      'Sizning fikringiz':'Your opinion',
-      'Jo\'natish':'Send',
-      'Muallif':'Author',
-      'Qog\'ozli kitob':'Paper book',
-      'Elektron kitob':'E-book',
-      'Audio kitob':'Audio book',
-      'Baholang':'Rating',
-      'Mualif haqida':'About the author',
-      'Tavsiya etiladi':'Recommended',
-      'Izohlar yo\'q':'No comments',
-      'Tahrirlash':'Edit',
-      'O\'chirish':'Delete',
-      'Saqlash':'Save',
-
-    },
     'ru_RU':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
       'hello': 'Привет, мир',
@@ -159,6 +51,8 @@ class LocaleString extends Translations{
       'Internet aloqasi yo\'q':'Нет интернета',
       'Sotuvda mavjud': 'В наличии',
       'Sotuvda mavjud emas': 'Нет в наличии',
+      'Ma\'lumotlar yangilandi':'Данные обновлены',
+
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -266,6 +160,7 @@ class LocaleString extends Translations{
       'Internet aloqasi yo\'q':'Internet aloqasi yo\'q',
       'Sotuvda mavjud': 'Sotuvda mavjud',
       'Sotuvda mavjud emas': 'Sotuvda mavjud emas',
+      'Ma\'lumotlar yangilandi!':'Ma\'lumotlar yangilandi!',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
@@ -372,6 +267,7 @@ class LocaleString extends Translations{
       'Internet aloqasi yo\'q': 'Интернет алоқаси йўқ',
       'Sotuvda mavjud': 'Сотувда мавжуд',
       'Sotuvda mavjud emas': 'Сотувда мавжуд емас',
+      'Ma\'lumotlar yangilandi':'Маълумотлар ўзгартирилди',
 
       //Sample page
       'Kitoblarni izlash':'Китобларни излаш',

@@ -14,7 +14,7 @@ class AccountPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
 
   final List locale =[
-    {'name':'English','locale':const Locale('en','US')},
+    //{'name':'English','locale':const Locale('en','US')},
     {'name':'Russian','locale':const Locale('ru','RU')},
     {'name':'Uzbek','locale':const Locale('uz','UZ')},
     {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
@@ -32,21 +32,21 @@ class AccountPage extends StatelessWidget {
             title: const Text('Choose Your Language'),
             content: SizedBox(
               width: double.maxFinite,
-              child: ListView.separated(
+              child: ListView.builder(
                   shrinkWrap: true,
-                  itemBuilder: (context,index){
+                  itemCount: locale.length,
+                  itemBuilder: (context, index){
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
-                        updateLanguage(locale[index]['locale']);
-                      },),
+                      child: GestureDetector(
+                        child: Text(locale[index]['name']),
+                        onTap: (){
+                          updateLanguage(locale[index]['locale']);
+                        }
+                      )
                     );
-                  }, separatorBuilder: (context,index){
-                return const Divider(
-                  color: Colors.blue,
-                );
-              }, itemCount: locale.length
-              ),
+                  }
+              )
             ),
           );
         }
