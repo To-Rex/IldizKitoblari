@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
     //getTopProduct
     ApiController().getQuotation(1);
     ApiController().getTopProduct(1,false);
-    ApiController().getAuthors(3,1,'');
+    ApiController().getAuthors(15,1,'Shayx Muhammad Sodiq');
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
@@ -284,7 +284,9 @@ class HomePage extends StatelessWidget {
                                     : _getController.authorModel.value.data!.result![i].name!.ru.toString(),
                                   subTitle: _getController.authorModel.value.data!.result![i].productCount!.toString(),
                                   image: _getController.authorModel.value.data!.result![i].image!.toString(),
-                                  onTap: () {},
+                                  onTap: () {
+                                    debugPrint(_getController.authorModel.value.data!.result![i].name!.uz.toString());
+                                  },
                                 ),
                             if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
                               SizedBox(height: _getController.height.value * 0.03),
