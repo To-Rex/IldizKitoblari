@@ -28,6 +28,7 @@ class _AccItemState extends State<AuthorItem> {
       onTap: () {
         widget.onTap();
         Get.to(() => AuthorDetail(
+          title: widget.title,
           sId: widget.sId,
           index: 0,
         ));
