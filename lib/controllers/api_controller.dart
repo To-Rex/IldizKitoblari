@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:ildiz/models/login_model.dart';
+import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
 import '../models/me_models.dart';
@@ -43,6 +44,8 @@ class ApiController extends GetxController {
   static const String _comment = '$_baseUrl/api/v1/product/comment/create';
   //https://ildizkitoblari.uz/api/v1/author/list?limit=15&page=1&search=Yusuf
   static const String _authors = '$_baseUrl/api/v1/author/list';
+  //https://ildizkitoblari.uz/api/v1/author/643a5f49590e7e6f7fb931cc
+  static const String _authorDetail = '$_baseUrl/api/v1/author/';
 
 
   //show toast message
@@ -520,6 +523,21 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.changeAuthorModel(AuthorModel.fromJson(jsonDecode(response.body)));
     }else{
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getAuthorDetail(id) async {
+    var response = await get(Uri.parse('$_authorDetail$id'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    debugPrint('authorDetail: ${response.body}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.addAuthorDetailModel(AuthorDetailModel.fromJson(jsonDecode(response.body)));
+      print(_getController.authorDetailModelList.length);
+    } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }

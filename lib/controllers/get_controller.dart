@@ -11,6 +11,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/models/me_models.dart';
 import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
 import '../models/login_model.dart';
@@ -83,6 +84,7 @@ class GetController extends GetxController {
   var productDetailList = <ProductDetailModel>[].obs;
   var productRateList = <ProductRate>[].obs;
   var productModelList = <ProductModel>[].obs;
+  var authorDetailModelList = <AuthorDetailModel>[].obs;
 
   //add productModel to productModel list
   void addProductModelList(ProductModel productModel) {
@@ -123,6 +125,26 @@ class GetController extends GetxController {
   void removeProductRate(int index) {
     if (productRateList.isNotEmpty&&productRateList.length>=index){
       productRateList.removeRange(index, productRateList.length);
+    }
+  }
+
+  void addAuthorDetailModel(AuthorDetailModel authorDetailModel) {
+    authorDetailModelList.add(authorDetailModel);
+  }
+
+  void clearAuthorDetailList() {
+    authorDetailModelList.clear();
+  }
+
+  void removeAuthorDetailModel(int index) {
+    if (authorDetailModelList.isNotEmpty&&authorDetailModelList.length>=index){
+      authorDetailModelList.removeRange(index, authorDetailModelList.length);
+    }
+  }
+
+  void clearMenuModel() {
+    if (menuModel.value.data != null && menuModel.value.data!.result != null && menuModel.value.data!.result!.isNotEmpty) {
+      menuModel.value.data!.result!.clear();
     }
   }
 

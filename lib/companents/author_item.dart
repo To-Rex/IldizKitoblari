@@ -5,6 +5,7 @@ import '../controllers/get_controller.dart';
 import '../pages/home/author_detail.dart';
 
 class AuthorItem extends StatefulWidget {
+  final String sId;
   final String title;
   final String subTitle;
   final String image;
@@ -12,7 +13,7 @@ class AuthorItem extends StatefulWidget {
   bool? switchValue;
   Color? color;
 
-  AuthorItem({super.key, required this.title, required this.subTitle, required this.image, required this.onTap, this.switchValue, this.color});
+  AuthorItem({super.key,required this.sId, required this.title, required this.subTitle, required this.image, required this.onTap, this.switchValue, this.color});
 
   @override
   State<AuthorItem> createState() => _AccItemState();
@@ -26,7 +27,10 @@ class _AccItemState extends State<AuthorItem> {
     return InkWell(
       onTap: () {
         widget.onTap();
-        Get.to(() => const AuthorDetail());
+        Get.to(() => AuthorDetail(
+          sId: widget.sId,
+          index: 0,
+        ));
       },
       child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -37,13 +41,8 @@ class _AccItemState extends State<AuthorItem> {
           shadowColor: Theme.of(context).colorScheme.background,
           child: Container(
               width: _getController.width.value,
-              padding: EdgeInsets.symmetric(
-                  horizontal: _getController.width.value * 0.025,
-                  vertical: _getController.width.value * 0.02),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Theme.of(context).colorScheme.background
-              ),
+              padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.025, vertical: _getController.width.value * 0.02),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.background),
               child: Row(
                   children: [
                     if (widget.image != '')

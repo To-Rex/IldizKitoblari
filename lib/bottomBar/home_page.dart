@@ -300,6 +300,7 @@ class HomePage extends StatelessWidget {
                             if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
                               for (int i = 0; i < _getController.authorModel.value.data!.result!.length; i++)
                                 AuthorItem(
+                                  sId: _getController.authorModel.value.data!.result![i].sId.toString(),
                                   title: 'uz_UZ' == Get.locale.toString()
                                     ? _getController.authorModel.value.data!.result![i].name!.uz.toString()
                                     : 'oz_OZ' == Get.locale.toString()
