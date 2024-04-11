@@ -14,9 +14,7 @@ class AuthorDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (index == 0){
-      _getController.clearAuthorDetailList();
-    }
+    if (index == 0) _getController.clearAuthorDetailList();
     ApiController().getAuthorDetail(sId);
     return Scaffold(
       body: Container(
