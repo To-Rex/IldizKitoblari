@@ -66,7 +66,7 @@ class CatDetailPage extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onBackground,
                         ),
                       ),
-                    ],
+                    ]
                   )),
               if (_getController.productModelLength.value == 0)
                 Expanded(

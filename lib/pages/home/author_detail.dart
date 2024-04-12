@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
-import '../../companents/product_item.dart';
-import '../../companents/scleton_item.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
-import 'detail_page.dart';
 
 class AuthorDetail extends StatelessWidget {
   String sId;
@@ -51,8 +44,8 @@ class AuthorDetail extends StatelessWidget {
                   )
               )
             else
-            Center(
-                child: CircleAvatar(
+              Center(
+                  child: CircleAvatar(
                     radius: _getController.width.value * 0.14,
                     backgroundImage: Image.network(
                         _getController.authorDetailModelList[index].data!.image.toString(),
@@ -62,16 +55,10 @@ class AuthorDetail extends StatelessWidget {
                           return SizedBox(
                             width: _getController.width.value * 0.15,
                             height: _getController.width.value * 0.15,
-                            child: Skeletonizer(
-                                child: Container(
-                                  width: _getController.width.value * 0.15,
-                                  height: _getController.width.value * 0.15,
-                                  color: AppColors.grey,
-                                )
-                            )
+                            child: Skeletonizer(child: Container(width: _getController.width.value * 0.15, height: _getController.width.value * 0.15, color: AppColors.grey))
                           );
                         }
-                    ).image,
+                    ).image
                 )
             ),
             SizedBox(height: _getController.height.value * 0.01),
@@ -81,11 +68,7 @@ class AuthorDetail extends StatelessWidget {
                     ? _getController.authorDetailModelList[index].data!.name!.uz!
                     : 'oz_OZ' == Get.locale.toString() ? _getController.authorDetailModelList[index].data!.name!.oz!
                     : _getController.authorDetailModelList[index].data!.name!.ru!,
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.onBackground,
-                      fontSize: _getController.width.value * 0.05,
-                      fontWeight: FontWeight.w500),
-                )
+                  style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))
             )
           ])
           : const Center(child: CircularProgressIndicator())
