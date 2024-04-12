@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -18,7 +20,8 @@ class AuthorCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getAuthors(30,1,'');
+    _getController.page.value = 1;
+    ApiController().getAuthors(15,_getController.page.value,'',false);
     return Scaffold(
       appBar: AppBar(
           title: Text('Mualliflar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),
@@ -85,27 +88,27 @@ class AuthorCategory extends StatelessWidget {
                     ),
                     onLoading: () async {
                       _refreshController.loadComplete();
+                      ApiController().getAuthors(15,_getController.itemPage.value,'',true);
+                      debugPrint('item count: ${_getController.productModelLength.value}');
                     },
                     onRefresh: () async {
+                      debugPrint('refresh');
                       _refreshController.refreshCompleted();
+                      ApiController().getAuthors(15,_getController.itemPage.value,'',false);
                     },
                     physics: const BouncingScrollPhysics(),
                     controller: _refreshController,
                     child: ListView.builder(
-                        itemCount: _getController.authorModel.value.data!.result!.length,
+                        itemCount: _getController.productModelLength.value,
                         itemBuilder: (context, index) {
                           return AuthorItem(
                             sId: _getController.authorModel.value.data!.result![index].sId.toString(),
-                            title: 'uz_UZ' == Get.locale.toString()
-                                ? _getController.authorModel.value.data!.result![index].name!.uz.toString()
-                                : 'oz_OZ' == Get.locale.toString()
-                                ? _getController.authorModel.value.data!.result![index].name!.oz.toString()
-                                : _getController.authorModel.value.data!.result![index].name!.ru.toString(),
+                            title: 'uz_UZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![index].name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![index].name!.oz.toString() : _getController.authorModel.value.data!.result![index].name!.ru.toString(),
                             subTitle: _getController.authorModel.value.data!.result![index].productCount!.toString(),
                             image: _getController.authorModel.value.data!.result![index].image!.toString(),
                             onTap: () {
                               debugPrint(_getController.authorModel.value.data!.result![index].name!.uz.toString());
-                            }
+                            },
                           );
                         }
                     )

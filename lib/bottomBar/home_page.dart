@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
     //getTopProduct
     ApiController().getQuotation(1);
     ApiController().getTopProduct(1,false);
-    ApiController().getAuthors(30,1,'Shayx Muhammad S');
+    ApiController().getAuthors(30,1,'Shayx Muhammad S',false);
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
@@ -305,19 +305,15 @@ class HomePage extends StatelessWidget {
                               for (int i = 0; i < _getController.authorModel.value.data!.result!.length; i++)
                                 AuthorItem(
                                   sId: _getController.authorModel.value.data!.result![i].sId.toString(),
-                                  title: 'uz_UZ' == Get.locale.toString()
-                                    ? _getController.authorModel.value.data!.result![i].name!.uz.toString()
-                                    : 'oz_OZ' == Get.locale.toString()
-                                    ? _getController.authorModel.value.data!.result![i].name!.oz.toString()
-                                    : _getController.authorModel.value.data!.result![i].name!.ru.toString(),
+                                  title: 'uz_UZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![i].name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![i].name!.oz.toString() : _getController.authorModel.value.data!.result![i].name!.ru.toString(),
                                   subTitle: _getController.authorModel.value.data!.result![i].productCount!.toString(),
                                   image: _getController.authorModel.value.data!.result![i].image!.toString(),
                                   onTap: () {
                                     debugPrint(_getController.authorModel.value.data!.result![i].name!.uz.toString());
-                                  },
+                                  }
                                 ),
                             if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
-                              SizedBox(height: _getController.height.value * 0.03),
+                              SizedBox(height: _getController.height.value * 0.03)
                           ]
                         )
                       )

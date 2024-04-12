@@ -212,11 +212,13 @@ class GetController extends GetxController {
   //authorModel
   void changeAuthorModel(AuthorModel authorModel) {
     this.authorModel.value = authorModel;
+    productModelLength.value = authorModel.data!.result!.length;
   }
 
   //clear authorModel
   void clearAuthorModel() {
     if (authorModel.value.data != null) {
+      productModelLength.value = 0;
       authorModel.value = AuthorModel();
     }
   }
@@ -224,6 +226,7 @@ class GetController extends GetxController {
   //add authorModel
   void addAuthorModel(AuthorModel authorModel) {
     this.authorModel.value.data!.result!.addAll(authorModel.data!.result!);
+    productModelLength.value = productModelLength.value + authorModel.data!.result!.length;
   }
 
   void changeProductDetailModel(ProductDetailModel productDetailModel) {

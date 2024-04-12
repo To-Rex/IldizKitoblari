@@ -513,7 +513,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getAuthors(limit,page,search) async {
+  Future<void> getAuthors(limit,page,search,add) async {
     var response = await get(Uri.parse('$_authors?limit=$limit&page=$page&search=$search'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
@@ -521,8 +521,15 @@ class ApiController extends GetxController {
     );
     debugPrint('authors: ${response.body}');
     if (response.statusCode == 200) {
-      _getController.changeAuthorModel(AuthorModel.fromJson(jsonDecode(response.body)));
-    }else{
+      if (add==false) {
+        _getController.clearAuthorModel();
+        _getController.itemPage.value = 1;
+        _getController.changeAuthorModel(AuthorModel.fromJson(jsonDecode(response.body)));
+      } else {
+        _getController.addAuthorModel(AuthorModel.fromJson(jsonDecode(response.body)));
+        _getController.addItemPage();
+      }
+    } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
