@@ -50,6 +50,7 @@ class AuthorDetail extends StatelessWidget {
                     style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.1, fontWeight: FontWeight.bold),
                   )
               )
+
             else
             Center(
                 child: CircleAvatar(
