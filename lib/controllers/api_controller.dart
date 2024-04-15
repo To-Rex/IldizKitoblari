@@ -42,9 +42,7 @@ class ApiController extends GetxController {
   static const String _quotation = '$_baseUrl/api/v1/banner/quotation/list';
   static const String _update = '$_baseUrl/api/v1/user/update';
   static const String _comment = '$_baseUrl/api/v1/product/comment/create';
-  //https://ildizkitoblari.uz/api/v1/author/list?limit=15&page=1&search=Yusuf
   static const String _authors = '$_baseUrl/api/v1/author/list';
-  //https://ildizkitoblari.uz/api/v1/author/643a5f49590e7e6f7fb931cc
   static const String _authorDetail = '$_baseUrl/api/v1/author/';
 
 
@@ -473,7 +471,8 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.changeProductRate(ProductRate.fromJson(jsonDecode(response.body)));
       _getController.addProductRate(ProductRate.fromJson(jsonDecode(response.body)));
-      _getController.ratingController.text = _getController.productRate.value.data!.result!.average!.toString();
+      //_getController.ratingController.text = _getController.productRate.value.data!.result!.average!.toString();
+      _getController.ratingController.text = jsonDecode(response.body)['data']['result']['average'].toString();
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

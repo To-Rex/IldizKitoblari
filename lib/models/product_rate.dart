@@ -59,7 +59,7 @@ class Result {
     i3 = json['3'] ?? 0;
     i4 = json['4'] ?? 0;
     i5 = json['5'] ?? 0;
-    average = json['average'] ?? 0;
+    average = json['average'] != null ? json['average'].toDouble() : 0.0;
     total = json['total'] ?? 0;
   }
 
@@ -70,7 +70,7 @@ class Result {
     data['3'] = i3 ?? 0;
     data['4'] = i4 ?? 0;
     data['5'] = i5 ?? 0;
-    data['average'] = average ?? 0;
+    data['average'] = average ?? 0.0;
     data['total'] = total ?? 0;
     return data;
   }

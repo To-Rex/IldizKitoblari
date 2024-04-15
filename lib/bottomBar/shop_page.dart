@@ -154,8 +154,11 @@ class ShopPage extends StatelessWidget {
                                                               _getController.clearProductDetailList();
                                                               Get.to(() => DetailPage(
                                                                 slug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!,
-                                                                pageIndex: _getController.menuModel.value.data!.result!.indexOf(i),
+                                                                //pageIndex: _getController.menuModel.value.data!.result!.indexOf(i),
+                                                                pageIndex: 0,
                                                               ));
+                                                              print('${_getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug}');
+                                                              print('${_getController.menuModel.value.data!.result!.indexOf(i)}');
                                                             },
                                                             id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
                                                             deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name,

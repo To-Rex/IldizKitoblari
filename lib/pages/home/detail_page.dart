@@ -30,7 +30,7 @@ class DetailPage extends StatelessWidget {
     ApiController().getProductDetail(slug);
     _getController.fullIndex.value = 0;
     return Scaffold(
-      body: SmartRefresher(
+        body: SmartRefresher(
           enablePullDown: true,
           enablePullUp: true,
           header: const ClassicHeader(),
@@ -71,19 +71,10 @@ class DetailPage extends StatelessWidget {
                   children: [
                     AppBar(
                       surfaceTintColor: Colors.transparent,
-                      leading: IconButton(
-                          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
-                          onPressed: () {Navigator.pop(context);}
-                      ),
+                      leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065), onPressed: () {Navigator.pop(context);}),
                       actions: [
-                        IconButton(
-                            icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
-                            onPressed: () {}
-                        ),
-                        IconButton(
-                            icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
-                            onPressed: () {}
-                        )],
+                        IconButton(icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065), onPressed: () {}),
+                        IconButton(icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065), onPressed: () {})],
                     ),
                     if (_getController.productDetailList[pageIndex].data?.images != null)
                       Container(
@@ -383,40 +374,44 @@ class DetailPage extends StatelessWidget {
                     if (_getController.productDetailList[pageIndex].data!.comments!.isNotEmpty)
                       SizedBox(height: _getController.height.value * 0.01),
                     _getController.productDetailList[pageIndex].data!.comments!.isNotEmpty
-                        ? Padding(
-                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                        ? Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                         child: Column(
                           children: [
                             for (int i = 0; i < _getController.productDetailList[pageIndex].data!.comments!.length; i++)
                               Container(
                                   margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
                                   padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.grey.withOpacity(0.1),
-                                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                                    border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
-                                  ),
+                                  decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.1), borderRadius: const BorderRadius.all(Radius.circular(8)), border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1)),
                                   child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
-                                            Container(
+                                            if (_getController.productDetailList[pageIndex].data?.comments![i].user?.avatar != '')
+                                              Container(
+                                                  width: _getController.width.value * 0.12,
+                                                  height: _getController.width.value * 0.12,
+                                                  margin: EdgeInsets.only(right: _getController.width.value * 0.03),
+                                                  decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(
+                                                      image: NetworkImage(_getController.productDetailList[pageIndex].data?.comments![i].user?.avatar ?? '',),
+                                                      fit: BoxFit.cover)
+                                                  )
+                                              )
+                                            else
+                                              Container(
                                                 width: _getController.width.value * 0.12,
                                                 height: _getController.width.value * 0.12,
                                                 margin: EdgeInsets.only(right: _getController.width.value * 0.03),
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.comments![i].user?.avatar ?? '',), fit: BoxFit.cover))
-                                            ),
+                                                decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.primaryColor),
+                                                child: Icon(Icons.person, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.06),
+                                              ),
                                             Expanded(
                                                 child: Text(
                                                     _getController.productDetailList[pageIndex].data?.comments![i].user?.fullName ?? '',
                                                     style: TextStyle(
                                                         fontSize: _getController.width.value * 0.04,
                                                         fontWeight: FontWeight.w500,
-                                                        color: Theme.of(context).colorScheme.onBackground
-                                                    )
+                                                        color: Theme.of(context).colorScheme.onBackground)
                                                 )
                                             )
                                           ],
@@ -458,7 +453,7 @@ class DetailPage extends StatelessWidget {
                                   )
                               ),
                           ]))
-                        :Container(
+                        : Container(
                         width: _getController.width.value,
                         height: _getController.height.value * 0.12,
                         margin: EdgeInsets.only(top: _getController.height.value * 0.015,left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
@@ -533,10 +528,9 @@ class DetailPage extends StatelessWidget {
                         ]
                     )
                 )
-              ])
-              )
+              ]))
           )
-      ),
+        ),
         bottomNavigationBar: BottomAppBar(
           height: _getController.height.value * 0.09,
           surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
