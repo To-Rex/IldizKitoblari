@@ -25,7 +25,7 @@ class _ProductItemState extends State<SkeletonItem> {
             height: _getController.width.value * 0.5,
             margin: EdgeInsets.all(_getController.width.value * 0.02),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(7),
                 color: AppColors.grey.withOpacity(0.2)
             ),
             child: Column(
@@ -34,7 +34,7 @@ class _ProductItemState extends State<SkeletonItem> {
                 Container(
                     width: _getController.width.value,
                     height: _getController.width.value * 0.35,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: AppColors.grey.withOpacity(0.2))
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColors.grey.withOpacity(0.2))
                 ),
                 Row(
                   children: [
