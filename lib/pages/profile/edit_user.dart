@@ -18,9 +18,8 @@ class EditUser extends StatelessWidget {
     final pickedFile = await _picker.pickImage(source: source);
 
     if (pickedFile != null) {
-      //_getController.changeImage(pickedFile.path);
+      _getController.fullNameController.text = _getController.meModel.value.data!.result!.fullName.toString();
       ApiController().editUser(pickedFile.path);
-      //_cropImage(pickedFile.path);
 
     }
   }
@@ -34,23 +33,6 @@ class EditUser extends StatelessWidget {
     );
     _getController.changeImage(croppedImage.path);
   }
-  /*List<PopupMenuItem<int>> menuItems = [
-    PopupMenuItem(
-      value: 1,
-      child: Row(
-        children: [
-          Icon(Icons.person, color: Theme.of(Get.context!).colorScheme.onBackground, size: _getController.width.value * 0.06),
-          SizedBox(width: _getController.width.value * 0.02),
-          Text('Shaxsiy ma\'lumotlar'.tr),
-          SizedBox(width: _getController.width.value * 0.02),
-        ]
-      )
-    ),
-    PopupMenuItem(
-      value: 2,
-      child: Text('Menu Item 2'),
-    ),
-  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -110,33 +92,19 @@ class EditUser extends StatelessWidget {
           children: [
             Row(
               children: [
-                /*Container(
-                    padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
-                    child: _getController.meModel.value.data!.result!.avatar == null
-                        ? CircleAvatar(
-                        radius: _getController.width.value * 0.12,
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.06))
-                    )
-                        : CircleAvatar(
-                        radius: _getController.width.value * 0.12,
-                        backgroundImage: NetworkImage(_getController.meModel.value.data!.result!.avatar.toString())
-                    )
-                ),*/
-                //stack edit photo iconbutton
+
                 Container(
                   padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                   child: Stack(
                     children: [
                       _getController.meModel.value.data!.result!.avatar == null
                           ? CircleAvatar(
-                          radius: _getController.width.value * 0.12,
-                          backgroundColor: Theme.of(context).colorScheme.primary,
-                          child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.06))
-                          )
+                              radius: _getController.width.value * 0.12,
+                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.06)))
                           : CircleAvatar(
-                          radius: _getController.width.value * 0.12,
-                          backgroundImage: NetworkImage(_getController.meModel.value.data!.result!.avatar.toString())
+                              radius: _getController.width.value * 0.12,
+                              backgroundImage: NetworkImage(_getController.meModel.value.data!.result!.avatar.toString())
                           ),
                       Positioned(
                           bottom: 0,
@@ -152,9 +120,9 @@ class EditUser extends StatelessWidget {
                               icon: Icon(Icons.edit, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.06),
                               //onPressed: () => _pickImage(ImageSource.gallery),
                               onPressed: () => {_pickImage(ImageSource.gallery)},
-                              padding: EdgeInsets.all(0),
-                              constraints: BoxConstraints(),
-                              iconSize: _getController.width.value * 0.06,
+                              padding: const EdgeInsets.all(0),
+                              constraints: const BoxConstraints(),
+                              iconSize: _getController.width.value * 0.06
                             )
                           )
                         )

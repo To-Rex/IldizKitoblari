@@ -143,7 +143,6 @@ class AccountPage extends StatelessWidget {
                                 SizedBox(height: _getController.width.value * 0.025),
                                 AccItem(
                                     title: 'Mualliflar'.tr,
-                                    //icon: TablerIcons.copyright,
                                     icon: 'assets/icon/copyRight.svg',
                                     subTitle: '',
                                     onTap: () {
