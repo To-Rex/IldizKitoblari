@@ -300,7 +300,7 @@ class HomePage extends StatelessWidget {
                                 Get.to(() => AuthorCategory());
                               }),
                             if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
-                              SizedBox(height: _getController.height.value * 0.02),
+                              SizedBox(height: _getController.height.value * 0.01),
                             if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
                               for (int i = 0; i < _getController.authorModel.value.data!.result!.length; i++)
                                 if (i < 3)

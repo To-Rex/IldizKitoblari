@@ -12,8 +12,8 @@ import '../pages/home/cat_detail_page.dart';
 import '../pages/home/detail_page.dart';
 import '../resource/colors.dart';
 
-class ShopPage extends StatelessWidget {
-  ShopPage({super.key});
+class ShopPag1 extends StatelessWidget {
+  ShopPag1({super.key});
 
   final GetController _getController = Get.put(GetController());
 
@@ -91,18 +91,17 @@ class ShopPage extends StatelessWidget {
                         Column(
                             children: [
                               SizedBox(
-                                  height: _getController.height.value * 0.19,
-                                  width: _getController.width.value,
-                                  child: Stack(
-                                      children: [
-                                        Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                                        Positioned(
+                            height: _getController.height.value * 0.19,
+                            child: Stack(
+                              children: [
+                                Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
+                                Positioned(
                                     height: _getController.height.value * 0.2,
                                     top: _getController.height.value * 0.062,
                                     left: _getController.width.value * 0.03,
                                     child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
                                 ),
-                                        Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0,
+                                Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0,
                                     child: SearchFields(onChanged: (String value) {
                                       if (value.isEmpty && _getController.searchController.text == '') {
                                         _getData();
@@ -114,9 +113,9 @@ class ShopPage extends StatelessWidget {
                                       }
                                     })
                                 )
-                                      ]
-                                  )
-                              ),
+                              ]
+                            )
+                          ),
                               Container(
                                   width: _getController.width.value,
                                   padding: EdgeInsets.only(top: _getController.height.value * 0.01),
@@ -170,16 +169,23 @@ class ShopPage extends StatelessWidget {
                                             )
                                         else
                                           Container(
-                                              height: _getController.height.value * 1.1,
-                                              width: _getController.width.value,
-                                              margin: EdgeInsets.only(right: _getController.width.value * 0.01, left: _getController.width.value * 0.01),
-                                              child: GridView.count(
-                                                  crossAxisCount: 2,
-                                                  shrinkWrap: true,
-                                                  physics: const NeverScrollableScrollPhysics(),
-                                                  childAspectRatio: 0.7,
-                                                  children: List.generate(6, (index) {return SkeletonItem();})
-                                              )
+                                            height: _getController.height.value * 1.1,
+                                            width: _getController.width.value,
+                                              margin: EdgeInsets.only(
+                                                right: _getController.width.value * 0.01,
+                                                left: _getController.width.value * 0.01,
+                                              ),
+                                              child: Expanded(
+                                                  child: GridView.count(
+                                                      crossAxisCount: 2,
+                                                      shrinkWrap: true,
+                                                      physics: const NeverScrollableScrollPhysics(),
+                                                      childAspectRatio: 0.7,
+                                                      children: List.generate(6, (index) {
+                                                        return SkeletonItem();
+                                                      })
+                                                  )
+                                              ),
                                           ),
                                       ]
                                   )
