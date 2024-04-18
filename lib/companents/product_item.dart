@@ -29,6 +29,7 @@ class _ProductItemState extends State<ProductItem> {
     return InkWell(
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       onTap: () {
+        _getController.commentController.clear();
         widget.function();
       },
       child: Container(
