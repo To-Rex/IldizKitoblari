@@ -206,14 +206,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  flutter_network_connectivity:
-    dependency: "direct main"
-    description:
-      name: flutter_network_connectivity
-      sha256: "3dddee42e06f8479b021cc17b60ea891cf71b124c03896d4fedec366671cb623"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.6"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -400,14 +392,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
-  internet_connectivity_checker:
-    dependency: "direct main"
-    description:
-      name: internet_connectivity_checker
-      sha256: "31e46afc7bcb616dfdd44ad8731fee003a1eb1b3dcc12202984ef5f91886771e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   intl:
     dependency: "direct main"
     description:

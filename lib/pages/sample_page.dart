@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
-import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
 import '../companents/bottombar_icons.dart';
 import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
-import 'package:flutter_network_connectivity/flutter_network_connectivity.dart';
 
 class SamplePage extends StatelessWidget {
   SamplePage({super.key});
@@ -21,7 +18,6 @@ class SamplePage extends StatelessWidget {
     _getController.changeWidgetOptions();
   }
 
-  final Map _source = {ConnectivityResult.none: false};
   final MyConnectivity _connectivity = MyConnectivity.instance;
 
   @override
