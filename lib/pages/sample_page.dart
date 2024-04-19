@@ -20,18 +20,14 @@ class SamplePage extends StatelessWidget {
 
   final MyConnectivity _connectivity = MyConnectivity.instance;
 
+
   @override
   Widget build(BuildContext context) {
     _getController.changeWidgetOptions();
+    _connectivity.initialise();
     if (_getController.meModel.value.data == null) {
       ApiController().me();
     }
-
-    _connectivity.initialise();
-    /*_connectivity.myStream.listen((result) {
-      ApiController().showDialogConnectivity(context);
-    });*/
-
     return Scaffold(
         body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
         bottomNavigationBar: BottomAppBar(
