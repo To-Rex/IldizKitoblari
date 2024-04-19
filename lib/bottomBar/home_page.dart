@@ -20,6 +20,7 @@ import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import '../pages/home/author_category.dart';
 import '../pages/home/cat_detail_page.dart';
 import '../pages/home/category.dart';
+import '../pages/home/detail_page.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -241,7 +242,16 @@ class HomePage extends StatelessWidget {
                                             imageUrl: _getController.productModel.value.data!.result![index].image,
                                             title: _getController.productModel.value.data!.result![index].name,
                                             price: _getController.productModel.value.data!.result![index].price.toString(),
-                                            function: () {},
+                                            function: () {
+                                              _getController.page.value = 1;
+                                              _getController.productModelLength.value = 0;
+                                              _getController.clearProductDetailModel();
+                                              _getController.clearProductDetailList();
+                                              Get.to(() => DetailPage(
+                                                slug: _getController.productModel.value.data!.result![index].slug!,
+                                                pageIndex: 0,
+                                              ));
+                                            },
                                             id: _getController.productModel.value.data!.result![index].sId,
                                             deck: _getController.productModel.value.data!.result![index].name,
                                             count: _getController.productModel.value.data!.result![index].count

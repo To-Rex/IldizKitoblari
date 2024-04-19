@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -5,6 +9,7 @@ import 'package:internet_connectivity_checker/internet_connectivity_checker.dart
 import '../companents/bottombar_icons.dart';
 import '../controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
+import 'package:flutter_network_connectivity/flutter_network_connectivity.dart';
 
 class SamplePage extends StatelessWidget {
   SamplePage({super.key});
@@ -16,12 +21,21 @@ class SamplePage extends StatelessWidget {
     _getController.changeWidgetOptions();
   }
 
+  final Map _source = {ConnectivityResult.none: false};
+  final MyConnectivity _connectivity = MyConnectivity.instance;
+
   @override
   Widget build(BuildContext context) {
     _getController.changeWidgetOptions();
     if (_getController.meModel.value.data == null) {
       ApiController().me();
     }
+
+    _connectivity.initialise();
+    /*_connectivity.myStream.listen((result) {
+      ApiController().showDialogConnectivity(context);
+    });*/
+
     return Scaffold(
         body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
         bottomNavigationBar: BottomAppBar(
@@ -83,4 +97,38 @@ class SamplePage extends StatelessWidget {
         )
     );
   }
+}
+
+class MyConnectivity {
+  MyConnectivity._();
+
+  static final _instance = MyConnectivity._();
+  static MyConnectivity get instance => _instance;
+  final _connectivity = Connectivity();
+  final _controller = StreamController.broadcast();
+  Stream get myStream => _controller.stream;
+
+  void initialise() async {
+    ConnectivityResult result = await _connectivity.checkConnectivity();
+    _checkStatus(result);
+    _connectivity.onConnectivityChanged.listen((result) {
+      print('Connectivity changed: $result');
+      _checkStatus(result);
+    });
+  }
+
+  void _checkStatus(ConnectivityResult result) async {
+    bool isOnline = false;
+    try {
+      final result = await InternetAddress.lookup('www.google.com');
+      isOnline = result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+    } on SocketException catch (_) {
+      isOnline = false;
+      ApiController().showDialogConnectivity(Get.context);
+    }
+    print(isOnline);
+    _controller.sink.add({result: isOnline});
+  }
+
+  void disposeStream() => _controller.close();
 }
