@@ -18,6 +18,7 @@ import '../controllers/get_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import '../pages/home/author_category.dart';
+import '../pages/home/author_detail.dart';
 import '../pages/home/cat_detail_page.dart';
 import '../pages/home/category.dart';
 import '../pages/home/detail_page.dart';
@@ -321,7 +322,18 @@ class HomePage extends StatelessWidget {
                                       image: _getController.authorModel.value.data!.result![i].image!.toString(),
                                       onTap: () {
                                         debugPrint(_getController.authorModel.value.data!.result![i].name!.uz.toString());
-                                      }),
+                                        _getController.clearAuthorDetailList();
+                                        //Navigator.push(context, MaterialPageRoute(builder: (context) => AuthorDetail(title: 'uz_UZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![i].name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![i].name!.oz.toString() : _getController.authorModel.value.data!.result![i].name!.ru.toString(), sId: _getController.authorModel.value.data!.result![i].sId.toString(), index: 0)));
+                                        Get.to(
+                                            () => AuthorDetail(
+                                              sId: _getController.authorModel.value.data!.result![i].sId.toString(),
+                                              title: 'uz_UZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![i].name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![i].name!.oz.toString() : _getController.authorModel.value.data!.result![i].name!.ru.toString(),
+                                              index: 0
+                                            )
+                                        );
+                                      },
+                                      index: 0
+                                  ),
                             if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
                               SizedBox(height: _getController.height.value * 0.03)
                           ]

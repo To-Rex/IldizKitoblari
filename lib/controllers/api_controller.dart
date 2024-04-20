@@ -543,8 +543,7 @@ class ApiController extends GetxController {
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.addAuthorDetailModel(AuthorDetailModel.fromJson(jsonDecode(response.body)));
       print(_getController.authorDetailModelList.length);
-      print(_getController.authorDetailModelList[0].data!.name?.oz);
-
+      //print(_getController.authorDetailModelList[0].data!.name?.oz);
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

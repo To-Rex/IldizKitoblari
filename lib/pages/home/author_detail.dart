@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../companents/author_item.dart';
+import '../../companents/child_item.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
+import 'author_category.dart';
 
 class AuthorDetail extends StatelessWidget {
   String sId;
@@ -69,7 +72,36 @@ class AuthorDetail extends StatelessWidget {
                     : 'oz_OZ' == Get.locale.toString() ? _getController.authorDetailModelList[index].data!.name!.oz!
                     : _getController.authorDetailModelList[index].data!.name!.ru!,
                   style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))
-            )
+            ),
+            SizedBox(height: _getController.height.value * 0.01),
+            //if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
+            if (_getController.authorDetailModelList[index].data!.similarAuthors != null && _getController.authorDetailModelList[index].data!.similarAuthors!.isNotEmpty)
+              ChildItem(title: 'Mualliflar'.tr, function: (){
+                _getController.clearAuthorModel();
+                Get.to(() => AuthorCategory());
+              }),
+            if (_getController.authorDetailModelList[index].data!.similarAuthors != null && _getController.authorDetailModelList[index].data!.similarAuthors!.isNotEmpty)
+              SizedBox(height: _getController.height.value * 0.01),
+            if (_getController.authorDetailModelList[index].data!.similarAuthors != null && _getController.authorDetailModelList[index].data!.similarAuthors!.isNotEmpty)
+              for (int i = 0; i < _getController.authorDetailModelList[index].data!.similarAuthors!.length; i++)
+                AuthorItem(
+                    sId: _getController.authorDetailModelList[index].data!.similarAuthors![i].sId.toString(),
+                    title: 'uz_UZ' == Get.locale.toString() ? _getController.authorDetailModelList[index].data!.similarAuthors![i].name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.authorDetailModelList[index].data!.similarAuthors![i].name!.oz.toString() : _getController.authorDetailModelList[index].data!.similarAuthors![i].name!.ru.toString(),
+                    subTitle: _getController.authorDetailModelList[index].data!.similarAuthors![i].productCount!.toString(),
+                    image: _getController.authorDetailModelList[index].data!.similarAuthors![i].image!.toString(),
+                    onTap: () {
+                      _getController.removeAuthorDetailModel(index + 1);
+                      debugPrint('similarAuthors: ${_getController.authorDetailModelList[index].data!.similarAuthors![i].sId.toString()}');
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => AuthorDetail(
+                        sId: _getController.authorDetailModelList[index].data!.similarAuthors![i].sId.toString(),
+                        title: _getController.authorDetailModelList[index].data!.similarAuthors![i].name!.uz.toString(),
+                        index: index + 1
+                      )));
+                    },
+                    index: index + 1
+                ),
+            if (_getController.authorDetailModelList[index].data!.similarAuthors != null && _getController.authorDetailModelList[index].data!.similarAuthors!.isNotEmpty)
+              SizedBox(height: _getController.height.value * 0.01),
           ])
           : const Center(child: CircularProgressIndicator())
       )

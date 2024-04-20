@@ -28,8 +28,9 @@ class Data {
   String? optionId;
   Name? content;
   String? image;
+  List<SimilarAuthors>? similarAuthors;
 
-  Data({this.sId, this.name, this.optionId, this.content, this.image});
+  Data({this.sId, this.name, this.optionId, this.content, this.image, this.similarAuthors});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -38,6 +39,12 @@ class Data {
     content =
     json['content'] != null ? Name.fromJson(json['content']) : null;
     image = json['image'];
+    if (json['similar_authors'] != null) {
+      similarAuthors = <SimilarAuthors>[];
+      json['similar_authors'].forEach((v) {
+        similarAuthors!.add(SimilarAuthors.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +58,9 @@ class Data {
       data['content'] = content!.toJson();
     }
     data['image'] = image;
+    if (similarAuthors != null) {
+      data['similar_authors'] = similarAuthors!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -73,6 +83,33 @@ class Name {
     data['uz'] = uz;
     data['oz'] = oz;
     data['ru'] = ru;
+    return data;
+  }
+}
+
+class SimilarAuthors {
+  String? sId;
+  Name? name;
+  String? image;
+  int? productCount;
+
+  SimilarAuthors({this.sId, this.name, this.image, this.productCount});
+
+  SimilarAuthors.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    name = json['name'] != null ? Name.fromJson(json['name']) : null;
+    image = json['image'];
+    productCount = json['product_count'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    if (name != null) {
+      data['name'] = name!.toJson();
+    }
+    data['image'] = image;
+    data['product_count'] = productCount;
     return data;
   }
 }

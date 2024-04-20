@@ -10,6 +10,7 @@ import '../../companents/product_item.dart';
 import '../../companents/scleton_item.dart';
 import '../../controllers/api_controller.dart';
 import '../../controllers/get_controller.dart';
+import 'author_detail.dart';
 import 'detail_page.dart';
 
 class AuthorCategory extends StatelessWidget {
@@ -108,7 +109,14 @@ class AuthorCategory extends StatelessWidget {
                             image: _getController.authorModel.value.data!.result![index].image!.toString(),
                             onTap: () {
                               debugPrint(_getController.authorModel.value.data!.result![index].name!.uz.toString());
+                              //Navigator.push(context, MaterialPageRoute(builder: (context) => AuthorDetail(title: 'uz_UZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![index].name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![index].name!.oz.toString() : _getController.authorModel.value.data!.result![index].name!.ru.toString(), sId: _getController.authorModel.value.data!.result![index].sId.toString(), index: 0)));
+                              Get.to(() => AuthorDetail(
+                                sId: _getController.authorModel.value.data!.result![index].sId.toString(),
+                                title: 'uz_UZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![index].name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.authorModel.value.data!.result![index].name!.oz.toString() : _getController.authorModel.value.data!.result![index].name!.ru.toString(),
+                                index: 0,
+                              ));
                             },
+                            index: 0
                           );
                         }
                     )
