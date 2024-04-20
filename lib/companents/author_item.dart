@@ -22,12 +22,6 @@ class AuthorItem extends StatelessWidget {
     return InkWell(
         onTap: () {
           onTap();
-          //Get.to(() => AuthorDetail(title: widget.title, sId: widget.sId, index: 0));
-          /*Get.to(() => AuthorDetail(
-              sId: sId,
-              title: title,
-              index: index
-          ));*/
         },
         child: Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

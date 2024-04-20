@@ -83,7 +83,6 @@ class AuthorDetail extends StatelessWidget {
             if(index<1)
             if (_getController.authorDetailModelList[index].data!.similarAuthors != null && _getController.authorDetailModelList[index].data!.similarAuthors!.isNotEmpty)
               SizedBox(height: _getController.height.value * 0.01),
-            if(index<1)
             if (_getController.authorDetailModelList[index].data!.similarAuthors != null && _getController.authorDetailModelList[index].data!.similarAuthors!.isNotEmpty)
               for (int i = 0; i < _getController.authorDetailModelList[index].data!.similarAuthors!.length; i++)
                 AuthorItem(
