@@ -312,14 +312,16 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getProduct(page, menuSlug,bool add) async {
-    debugPrint('getProduct: $page, $menuSlug');
-    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug'),
+  Future<void> getProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
+    debugPrint('product: $page, \n $menuSlug,\n $add,\n $price,\n $newProduct,\n $famous,\n $name');
+    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
-    //debugPrint('product: ${response.body}');
+
+    debugPrint('product: ${response.body}');
+    debugPrint('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       if (add==false) {
         _getController.clearProductModel();

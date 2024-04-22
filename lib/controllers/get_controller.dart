@@ -38,6 +38,29 @@ class GetController extends GetxController {
   var passwordCheck = false.obs;
   var editCheck = false.obs;
   var image = ''.obs;
+  List filters = <bool>[false,false,false,false,false,false,].obs;
+  //filters update index
+  void changeFilterIndex(index){
+    if (index == 0) {
+      filters[0] = !filters[0];
+      filters[1] = false;
+    } else if (index == 1) {
+      filters[1] = !filters[1];
+      filters[0] = false;
+    } else if (index == 2) {
+      filters[2] = !filters[2];
+      filters[3] = false;
+    } else if (index == 3) {
+      filters[3] = !filters[3];
+      filters[2] = false;
+    } else if (index == 4) {
+      filters[4] = !filters[4];
+      filters[5] = false;
+    } else {
+      filters[5] = !filters[5];
+      filters[4] = false;
+    }
+  }
 
   void setHeightWidth(BuildContext context) {
     height.value = MediaQuery.of(context).size.height;
@@ -86,6 +109,7 @@ class GetController extends GetxController {
   var productModelList = <ProductModel>[].obs;
   var authorDetailModelList = <AuthorDetailModel>[].obs;
   var authorDetailProductModelList = <ProductModel>[].obs;
+
 
   //add authorDetailProductModelList to authorDetailProductModelList
   void addAuthorDetailProductModelList(ProductModel productModel) {
