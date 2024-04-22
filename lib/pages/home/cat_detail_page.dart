@@ -126,7 +126,6 @@ class CatDetailPage extends StatelessWidget {
                                                 _getController.filters[5] == true ? true : null,
                                                 _getController.filters[0] == true ? 1 : -1
                                             );
-
                                           } else {
                                             ApiController().getSelectProduct(1, menuSlug, false);
                                             print('suuuuuu111111');
