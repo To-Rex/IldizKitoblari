@@ -117,13 +117,10 @@ class CatDetailPage extends StatelessWidget {
                                         _getController.changeFilterIndex(i);
                                         setState(() {
                                           if (!parent) {
-                                            //ApiController().getProduct(1, menuSlug, false,null,null,null,null);
-                                            //price, newProduct, famous,name
                                             ApiController().getProduct(
                                                 1,
                                                 menuSlug,
                                                 false,
-                                                ////////
                                                 _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
                                                 _getController.filters[4] == true ? true : null,
                                                 _getController.filters[5] == true ? true : null,
