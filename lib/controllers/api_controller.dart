@@ -44,6 +44,8 @@ class ApiController extends GetxController {
   static const String _comment = '$_baseUrl/api/v1/product/comment/create';
   static const String _authors = '$_baseUrl/api/v1/author/list';
   static const String _authorDetail = '$_baseUrl/api/v1/author/';
+  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&value_id[]=643a5f49590e7e6f7fb931cc
+  static const String _authorProduct = '$_baseUrl/api/v1/product/list';
 
 
   //show toast message
@@ -546,6 +548,25 @@ class ApiController extends GetxController {
       //print(_getController.authorDetailModelList[0].data!.name?.oz);
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getAuthorsProducts(limit,page,search,add,id) async {
+    var response = await get(Uri.parse('$_authorProduct?limit=$limit&page=$page&value_id[]=$id&search=$search'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    debugPrint('authorProduct: ${response.body}');
+    if (response.statusCode == 200) {
+      if (add==false) {
+        _getController.clearAuthorDetailProductModelList();
+        _getController.itemPage.value = 1;
+        _getController.addAuthorDetailProductModelList(ProductModel.fromJson(jsonDecode(response.body)));
+      }else{
+        _getController.addAuthorDetailProductModelList(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.addItemPage();
+      }
     }
   }
 }

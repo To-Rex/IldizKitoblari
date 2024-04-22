@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/resource/colors.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/author_item.dart';
 import '../../companents/product_item.dart';
@@ -18,6 +19,14 @@ class AuthorCategory extends StatelessWidget {
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
+
+  void onChanged(String value) {
+    ApiController().getAuthors(
+        15,
+        _getController.page.value,
+        value,
+        false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +70,38 @@ class AuthorCategory extends StatelessWidget {
                     )
                   ]
               )),
+          SizedBox(height: _getController.height.value * 0.01),
+          Padding(
+              padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+              child: Container(
+                  height: _getController.height.value * 0.055,
+                  padding: EdgeInsets.only(right: _getController.width.value * 0.01),
+                  decoration: BoxDecoration(
+                    color: AppColors.grey.withOpacity(0.17),
+                    borderRadius: BorderRadius.circular(13),
+                  ),
+                  child: TextField(
+                      controller: _getController.searchController,
+                      onChanged: onChanged,
+                      textInputAction: TextInputAction.search,
+                      decoration: InputDecoration(
+                          hintText: 'Kitoblarni izlash'.tr,
+                          hintStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                              fontSize: _getController.width.value * 0.04
+                          ),
+                          prefixIcon: Padding(
+                              padding: EdgeInsets.all(_getController.height.value * 0.013),
+                              child: SvgPicture.asset(
+                                  'assets/icon/search.svg',
+                                  colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface.withOpacity(0.6), BlendMode.srcIn)
+                              )
+                          ),
+                          border: InputBorder.none
+                      )
+                  )
+              )),
+
           if (_getController.authorModel.value.data != null)
             Expanded(
                 child: SmartRefresher(

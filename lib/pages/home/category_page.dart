@@ -58,7 +58,9 @@ class CategoryPage extends StatelessWidget {
                         } else {
                           Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.uz! : 'oz_UZ' == Get.locale.toString() ? _getController.menuModel.value.data!.result![menuIndex].children![index].title!.oz! : _getController.menuModel.value.data!.result![menuIndex].children![index].title!.ru!, menuSlug: _getController.menuModel.value.data!.result![menuIndex].children![index].slug!, parent: false));
                         }
-                      });
+                      },
+                    _getController.menuModel.value.data!.result![menuIndex].children![index].productCount == null ? '0' : _getController.menuModel.value.data!.result![menuIndex].children![index].productCount.toString()
+                      );
                 }
             )
           )

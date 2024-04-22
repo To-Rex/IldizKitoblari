@@ -61,6 +61,8 @@ class Result {
   Title? shortContent;
   List<Children>? children;
   Banner? banner;
+  int? productCount;
+
   Result(
       {this.sId,
         this.title,
@@ -73,7 +75,8 @@ class Result {
         this.isHeader,
         this.shortContent,
         this.children,
-        this.banner
+        this.banner,
+        this.productCount
       });
 
   Result.fromJson(Map<String, dynamic> json) {
@@ -94,6 +97,7 @@ class Result {
       });
     }
     banner = json['banner'] != null ? Banner.fromJson(json['banner']) : null;
+    productCount = json['product_count'];
   }
 
   Map<String, dynamic> toJson() {
@@ -118,6 +122,7 @@ class Result {
     if (banner != null) {
       data['banner'] = banner!.toJson();
     }
+    data['product_count'] = productCount;
     return data;
   }
 }
@@ -158,6 +163,7 @@ class Children {
   var banner;
   List<Childrens>? children;
   bool? isSelect = false;
+  int? productCount = 0;
 
   Children(
       {this.sId,
@@ -172,7 +178,8 @@ class Children {
         this.shortContent,
         this.banner,
         this.children,
-        this.isSelect
+        this.isSelect,
+        this.productCount
       });
 
   Children.fromJson(Map<String, dynamic> json) {
@@ -196,6 +203,7 @@ class Children {
       });
     }
     isSelect = json['isSelect'];
+    productCount = json['product_count'];
   }
 
   Map<String, dynamic> toJson() {
@@ -219,6 +227,7 @@ class Children {
       data['children'] = children!.map((v) => v.toJson()).toList();
     }
     data['isSelect'] = isSelect;
+    data['product_count'] = productCount;
     return data;
   }
 }
@@ -234,6 +243,7 @@ class Childrens {
   bool? isHeader;
   bool? isFooter;
   int? order;
+  int? productCount = 0;
   //var banner;
 
   Childrens(
@@ -247,6 +257,7 @@ class Childrens {
         this.isHeader,
         this.isFooter,
         this.order,
+        this.productCount
         //this.banner
       });
 
@@ -263,6 +274,7 @@ class Childrens {
     isHeader = json['is_header'];
     isFooter = json['is_footer'];
     order = json['order'];
+    productCount = json['product_count'];
     //banner = json['banner'];
   }
 
@@ -282,6 +294,7 @@ class Childrens {
     data['is_header'] = isHeader;
     data['is_footer'] = isFooter;
     data['order'] = order;
+    data['product_count'] = productCount;
     //data['banner'] = banner;
     return data;
   }

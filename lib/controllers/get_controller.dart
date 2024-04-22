@@ -85,6 +85,39 @@ class GetController extends GetxController {
   var productRateList = <ProductRate>[].obs;
   var productModelList = <ProductModel>[].obs;
   var authorDetailModelList = <AuthorDetailModel>[].obs;
+  var authorDetailProductModelList = <ProductModel>[].obs;
+
+  //add authorDetailProductModelList to authorDetailProductModelList
+  void addAuthorDetailProductModelList(ProductModel productModel) {
+    authorDetailProductModelList.add(productModel);
+  }
+
+  //clear authorDetailProductModelList
+  void clearAuthorDetailProductModelList() {
+    authorDetailProductModelList.clear();
+  }
+
+  void removeAuthorDetailProductModelList(int index) {
+    if (authorDetailProductModelList.isNotEmpty&&authorDetailProductModelList.length>=index){
+      authorDetailProductModelList.removeRange(index, authorDetailProductModelList.length);
+    }
+  }
+
+  //add authorDetailModelList to authorDetailModelList
+  void addAuthorDetailModelList(AuthorDetailModel authorDetailModel) {
+    authorDetailModelList.add(authorDetailModel);
+  }
+
+
+  //clear authorDetailModelList
+  void clearAuthorDetailModelList() {
+    authorDetailModelList.clear();
+  }
+
+  //changeAuthorDetailProductModelList
+  void changeAuthorDetailProductModelList(int index, ProductModel productModel) {
+    authorDetailProductModelList[index] = productModel;
+  }
 
   //add productModel to productModel list
   void addProductModelList(ProductModel productModel) {

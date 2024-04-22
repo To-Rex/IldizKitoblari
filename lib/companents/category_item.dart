@@ -8,14 +8,15 @@ class CategoryItem extends StatelessWidget {
   final String id;
   final String title;
   Function function;
+  final String count;
   //String imgUrl;
 
   CategoryItem(
       this.id,
       this.title,
       this.function,
-      //this.imgUrl,
-      {Key? key}) : super(key: key);
+      this.count,
+      {super.key});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -49,7 +50,32 @@ class CategoryItem extends StatelessWidget {
               ),
               //child: Image.network(imgUrl, fit: BoxFit.cover),
             ),
-            Expanded(child: Text(title, maxLines: 2, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400))),
+            Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+
+                    Text(
+                        title,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontSize: _getController.width.value * 0.04,
+                            fontWeight: FontWeight.w400)
+                    ),
+                    Text(
+                        //count, ta kitob
+                      '$count ta kitob',
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontSize: _getController.width.value * 0.03,
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
+                        )
+                    )
+                  ],
+                )
+            ),
             Icon(Icons.arrow_forward, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground),
           ],
         ),

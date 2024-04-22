@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:text_scroll/text_scroll.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
@@ -51,8 +51,8 @@ class _ProductItemState extends State<ProductItem> {
                 ),
               ),
             ),
-
-            SizedBox(child: Text(widget.title!, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),),),
+            SizedBox(height: _getController.height.value * 0.01),
+            SizedBox(child: Text(widget.title!, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
             SizedBox(height: _getController.height.value * 0.01),
             Row(
               children: [
@@ -71,9 +71,11 @@ class _ProductItemState extends State<ProductItem> {
                     size: _getController.width.value * 0.06,
                     color: Theme.of(context).colorScheme.onBackground
                   )
-                )
+                ),
+                SizedBox(width: _getController.width.value * 0.01),
               ]
             ),
+            SizedBox(height: _getController.height.value * 0.01),
             Row(
                 children: [
                   InkWell(
@@ -85,19 +87,34 @@ class _ProductItemState extends State<ProductItem> {
                       )
                   ),
                   SizedBox(width: _getController.width.value * 0.02),
-                  Expanded(child: Text(
+                  /*Expanded(child: Text(
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                       widget.count == 0 ? 'Sotuvda mavjud emas'.tr : 'Sotuvda mavjud'.tr,
                       style: TextStyle(
                           fontSize: _getController.width.value * 0.035,
                           color: widget.count == 0 ? AppColors.secondaryColor : AppColors.primaryColor2,
                           fontWeight: FontWeight.w600
                       )
-                  )),
+                  )),*/
+                  Expanded(child:  TextScroll(
+                    widget.count == 0 ? '${'Sotuvda mavjud emas'.tr}.' : 'Sotuvda mavjud'.tr,
+                    style: TextStyle(
+                      fontSize: _getController.width.value * 0.035,
+                      color: widget.count == 0 ? AppColors.secondaryColor : AppColors.primaryColor2,
+                      fontWeight: FontWeight.w600
+                    ),
+                    mode: TextScrollMode.endless,
+                    pauseBetween: const Duration(milliseconds: 2000),
+                    selectable: true,
+                    delayBefore: const Duration(milliseconds: 3000),
+                  )
+                  ),
                 ]
             ),
             Expanded(
               child: Container(
-                  margin: EdgeInsets.only(top: _getController.height.value * 0.01),
+                  margin: EdgeInsets.only(top: _getController.height.value * 0.015),
                   height: _getController.height.value * 0.05,
                   width: _getController.width.value * 1.0,
                   child: ElevatedButton(

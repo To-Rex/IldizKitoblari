@@ -232,7 +232,7 @@ class HomePage extends StatelessWidget {
                               }),
                               if (_getController.productModel.value.data != null)
                                 SizedBox(
-                                    height: _getController.height.value * 0.37,
+                                    height: _getController.height.value * 0.38,
                                     width: _getController.width.value,
                                     child: ListView.builder(
                                         padding: EdgeInsets.only(left: _getController.width.value * 0.03),

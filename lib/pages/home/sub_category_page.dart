@@ -52,7 +52,9 @@ class SubCategoryPage extends StatelessWidget {
                           parent: false,
                         )
                         );
-                      });
+                      },
+                        _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].productCount == null ? '0' : _getController.menuModel.value.data!.result![menuIndex].children![index].children![indexs].productCount!.toString(),
+                      );
                     }
                 ),
               ),
