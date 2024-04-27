@@ -87,58 +87,57 @@ class ShopPage extends StatelessWidget {
                 child: Container(
                     width: _getController.width.value,
                     decoration: const BoxDecoration(color: AppColors.backgroundApp),
-                    child: Obx(() =>
-                        Column(
-                            children: [
-                              SizedBox(
-                                  height: _getController.height.value * 0.19,
-                                  width: _getController.width.value,
-                                  child: Stack(
-                                      children: [
-                                        Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                                        Positioned(
-                                    height: _getController.height.value * 0.2,
-                                    top: _getController.height.value * 0.062,
-                                    left: _getController.width.value * 0.03,
-                                    child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
-                                ),
-                                        Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0,
-                                    child: SearchFields(onChanged: (String value) {
-                                      if (value.isEmpty && _getController.searchController.text == '') {
-                                        _getData();
-                                      }
-                                      if (value.isNotEmpty && _getController.menuModel.value.data != null && value.length >= 3 ) {
-                                        _getController.clearProductModelList();
-                                        _getController.changeItemPage(0);
-                                        ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
-                                      }
-                                    })
-                                )
-                                      ]
-                                  )
-                              ),
-                              Container(
-                                  width: _getController.width.value,
-                                  padding: EdgeInsets.only(top: _getController.height.value * 0.01),
-                                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
-                                  child: Column(
-                                      children: [
-                                        if (_getController.menuModel.value.data != null && _getController.productModelList.isNotEmpty)
-                                          for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
-                                            Column(
-                                                children: [
-                                                  if (i.children != null && _getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
-                                                    ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
-                                                      _getController.page.value = 1;
-                                                      _getController.productModelLength.value = 0;
-                                                      _getController.clearProductModel();
-                                                      Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!, parent: true));
-                                                    }),
-                                                  if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
-                                                    SizedBox(
-                                                        height: _getController.height.value * 0.37,
-                                                        width: _getController.width.value,
-                                                        child: ListView.builder(
+                    child: Obx(() => Column(
+                        children: [
+                          SizedBox(
+                              height: _getController.height.value * 0.19,
+                              width: _getController.width.value,
+                              child: Stack(
+                                  children: [
+                                    Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
+                                    Positioned(
+                                        height: _getController.height.value * 0.2,
+                                        top: _getController.height.value * 0.062,
+                                        left: _getController.width.value * 0.03,
+                                        child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
+                                    ),
+                                    Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0,
+                                        child: SearchFields(onChanged: (String value) {
+                                          if (value.isEmpty && _getController.searchController.text == '') {
+                                            _getData();
+                                          }
+                                          if (value.isNotEmpty && _getController.menuModel.value.data != null && value.length >= 3 ) {
+                                            _getController.clearProductModelList();
+                                            _getController.changeItemPage(0);
+                                            ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
+                                          }
+                                        })
+                                    )
+                                  ]
+                              )
+                          ),
+                          Container(
+                              width: _getController.width.value,
+                              padding: EdgeInsets.only(top: _getController.height.value * 0.01),
+                              decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
+                              child: Column(
+                                  children: [
+                                    if (_getController.menuModel.value.data != null && _getController.productModelList.isNotEmpty)
+                                      for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
+                                        Column(
+                                            children: [
+                                              if (i.children != null && _getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
+                                                ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
+                                                  _getController.page.value = 1;
+                                                  _getController.productModelLength.value = 0;
+                                                  _getController.clearProductModel();
+                                                  Get.to(() => CatDetailPage(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!, parent: true));
+                                                }),
+                                              if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
+                                                SizedBox(
+                                                    height: _getController.height.value * 0.38,
+                                                    width: _getController.width.value,
+                                                    child: ListView.builder(
                                                         padding: EdgeInsets.only(left: _getController.width.value * 0.03),
                                                         itemCount: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result!.length,
                                                         scrollDirection: Axis.horizontal,
@@ -165,10 +164,9 @@ class ShopPage extends StatelessWidget {
                                                             deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name,
                                                             count: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].count,
                                                           );
-                                                        })),
+                                                        }))
                                                 ]
-                                            )
-                                        else
+                                        ) else
                                           Container(
                                               height: _getController.height.value * 1.1,
                                               width: _getController.width.value,
@@ -180,7 +178,7 @@ class ShopPage extends StatelessWidget {
                                                   childAspectRatio: 0.7,
                                                   children: List.generate(6, (index) {return SkeletonItem();})
                                               )
-                                          ),
+                                          )
                                       ]
                                   )
                               )
