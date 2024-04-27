@@ -226,7 +226,7 @@ class AccountPage extends StatelessWidget {
                                     Get.offAll(const OnboardingPage());
                                   }
                               ),
-                              SizedBox(height: _getController.width.value * 0.1),
+                              SizedBox(height: _getController.width.value * 0.1)
                             ],
                           )
                       )
