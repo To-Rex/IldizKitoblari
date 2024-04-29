@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../companents/child_item.dart';
 import '../companents/product_item.dart';
 import '../companents/scleton_item.dart';
@@ -11,6 +12,7 @@ import '../controllers/get_controller.dart';
 import '../pages/home/cat_detail_page.dart';
 import '../pages/home/detail_page.dart';
 import '../resource/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShopPage extends StatelessWidget {
   ShopPage({super.key});
@@ -135,10 +137,15 @@ class ShopPage extends StatelessWidget {
                                                 }),
                                               if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                                 SizedBox(
-                                                    height: _getController.height.value * 0.38,
+                                                  //QAZZAQs!2
+                                                    //height: _getController.height.value * 0.38,
+                                                    height: 330.sp,
                                                     width: _getController.width.value,
                                                     child: ListView.builder(
-                                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                                        padding: EdgeInsets.only(
+                                                            //left: _getController.width.value * 0.03
+                                                            left: 16.sp
+                                                        ),
                                                         itemCount: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result!.length,
                                                         scrollDirection: Axis.horizontal,
                                                         itemBuilder: (context, index) {
@@ -167,18 +174,26 @@ class ShopPage extends StatelessWidget {
                                                         }))
                                                 ]
                                         ) else
-                                          Container(
-                                              height: _getController.height.value * 1.1,
-                                              width: _getController.width.value,
-                                              margin: EdgeInsets.only(right: _getController.width.value * 0.01, left: _getController.width.value * 0.01),
-                                              child: GridView.count(
-                                                  crossAxisCount: 2,
-                                                  shrinkWrap: true,
-                                                  physics: const NeverScrollableScrollPhysics(),
-                                                  childAspectRatio: 0.7,
-                                                  children: List.generate(6, (index) {return SkeletonItem();})
+                                          Column(
+                                            children: [
+                                              SizedBox(height: 10.sp),
+                                              Container(
+                                                //height: _getController.height.value * 1.1,
+                                                  height: _getController.height.value * 1.1,
+                                                  width: _getController.width.value,
+                                                  child: GridView.count(
+                                                      crossAxisCount: 2,
+                                                      shrinkWrap: true,
+                                                      physics: const NeverScrollableScrollPhysics(),
+                                                      childAspectRatio: 0.68,
+                                                      padding: EdgeInsets.all(5.sp),
+                                                      mainAxisSpacing: 15.sp,
+                                                      children: List.generate(6, (index) {return SkeletonItem();})
+                                                  )
                                               )
+                                            ],
                                           )
+
                                       ]
                                   )
                               )

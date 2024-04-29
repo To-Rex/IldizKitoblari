@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -18,11 +19,11 @@ class SearchFields extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              height: _getController.height.value * 0.055,
-              padding: EdgeInsets.only(right: _getController.width.value * 0.01),
+              height: 52.sp,
+              padding: EdgeInsets.only(right: 5.sp),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.background,
-                borderRadius: BorderRadius.circular(13),
+                borderRadius: BorderRadius.circular(13)
               ),
               child: TextField(
                 controller: _getController.searchController,
@@ -32,7 +33,7 @@ class SearchFields extends StatelessWidget {
                   hintText: 'Kitoblarni izlash'.tr,
                   hintStyle: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                    fontSize: _getController.width.value * 0.04
+                    fontSize: 18.sp
                   ),
                   prefixIcon: Padding(
                     padding: EdgeInsets.all(_getController.height.value * 0.013),

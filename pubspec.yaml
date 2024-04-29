@@ -59,6 +59,7 @@ dependencies:
   shimmer: ^3.0.0
   connectivity: ^3.0.6
   text_scroll: ^0.2.0
+  flutter_screenutil: ^5.9.0
 
 
 dev_dependencies:

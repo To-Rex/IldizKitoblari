@@ -26,6 +26,8 @@ class BottomBarIcons extends StatelessWidget {
             children: <Widget>[
               SvgPicture.asset(
                 icon,
+                width: _getController.width * 0.025,
+                height: _getController.height * 0.025,
                 colorFilter: isSelected ? const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn) : null,
               ),
               SizedBox(height: _getController.height * 0.005),
@@ -38,11 +40,10 @@ class BottomBarIcons extends StatelessWidget {
                     style: TextStyle(
                       color: isSelected ? AppColors.primaryColor : AppColors.grey,
                       fontSize: _getController.width * 0.03,
+                      fontWeight: FontWeight.w500
                     )
                 )
               )
-
-
             ]
         )
       )
