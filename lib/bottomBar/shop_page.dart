@@ -92,18 +92,26 @@ class ShopPage extends StatelessWidget {
                     child: Obx(() => Column(
                         children: [
                           SizedBox(
-                              height: _getController.height.value * 0.19,
+                              height: 177.w,
                               width: _getController.width.value,
                               child: Stack(
                                   children: [
-                                    Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                                    Positioned(
-                                        height: _getController.height.value * 0.2,
-                                        top: _getController.height.value * 0.062,
-                                        left: _getController.width.value * 0.03,
-                                        child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
+                                    Positioned(child: SizedBox(
+                                        width: _getController.width.value,
+                                        child: SvgPicture.asset('assets/svgImages/shap.svg',
+                                            fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))
                                     ),
-                                    Positioned(top: _getController.height.value * 0.0675, left: 0, right: 0,
+                                    Positioned(
+                                        height: 200.w,
+                                        top: 58.w,
+                                        left: 15.sp,
+                                        child: Text('Do\'kon'.tr, style: TextStyle(
+                                            color: Theme.of(context).colorScheme.surface,
+                                            fontSize: 27.sp, fontWeight: FontWeight.bold))
+                                    ),
+                                    Positioned(
+                                        top: 62.sp,
+                                        left: 0, right: 0,
                                         child: SearchFields(onChanged: (String value) {
                                           if (value.isEmpty && _getController.searchController.text == '') {
                                             _getData();
