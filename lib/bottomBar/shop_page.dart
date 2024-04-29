@@ -92,17 +92,16 @@ class ShopPage extends StatelessWidget {
                     child: Obx(() => Column(
                         children: [
                           SizedBox(
-                              height: 177.w,
+                              height: 177.h,
                               width: _getController.width.value,
                               child: Stack(
                                   children: [
                                     Positioned(child: SizedBox(
                                         width: _getController.width.value,
-                                        child: SvgPicture.asset('assets/svgImages/shap.svg',
-                                            fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))
+                                        child: SvgPicture.asset('assets/svgImages/shap.svg',fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))
                                     ),
                                     Positioned(
-                                        height: 200.w,
+                                        height: 200.h,
                                         top: 58.w,
                                         left: 15.sp,
                                         child: Text('Do\'kon'.tr, style: TextStyle(
@@ -110,8 +109,7 @@ class ShopPage extends StatelessWidget {
                                             fontSize: 27.sp, fontWeight: FontWeight.bold))
                                     ),
                                     Positioned(
-                                        top: 62.sp,
-                                        left: 0, right: 0,
+                                        top: 61.h, left: 0, right: 0,
                                         child: SearchFields(onChanged: (String value) {
                                           if (value.isEmpty && _getController.searchController.text == '') {
                                             _getData();
@@ -129,7 +127,7 @@ class ShopPage extends StatelessWidget {
                           Container(
                               width: _getController.width.value,
                               padding: EdgeInsets.only(top: _getController.height.value * 0.01),
-                              decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
+                              decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
                                     if (_getController.menuModel.value.data != null && _getController.productModelList.isNotEmpty)
@@ -145,15 +143,10 @@ class ShopPage extends StatelessWidget {
                                                 }),
                                               if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                                 SizedBox(
-                                                  //QAZZAQs!2
-                                                    //height: _getController.height.value * 0.38,
-                                                    height: 330.sp,
+                                                    height: 330.h,
                                                     width: _getController.width.value,
                                                     child: ListView.builder(
-                                                        padding: EdgeInsets.only(
-                                                            //left: _getController.width.value * 0.03
-                                                            left: 16.sp
-                                                        ),
+                                                        padding: EdgeInsets.only(left: 16.w),
                                                         itemCount: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result!.length,
                                                         scrollDirection: Axis.horizontal,
                                                         itemBuilder: (context, index) {
@@ -169,12 +162,9 @@ class ShopPage extends StatelessWidget {
                                                               _getController.clearProductDetailList();
                                                               Get.to(() => DetailPage(
                                                                 slug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!,
-                                                                //pageIndex: _getController.menuModel.value.data!.result!.indexOf(i),
                                                                 pageIndex: 0,
                                                               ));
-                                                              print('${_getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug}');
-                                                              print('${_getController.menuModel.value.data!.result!.indexOf(i)}');
-                                                            },
+                                                              },
                                                             id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
                                                             deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name,
                                                             count: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].count,
@@ -185,8 +175,7 @@ class ShopPage extends StatelessWidget {
                                           Column(
                                             children: [
                                               SizedBox(height: 10.sp),
-                                              Container(
-                                                //height: _getController.height.value * 1.1,
+                                              SizedBox(
                                                   height: _getController.height.value * 1.1,
                                                   width: _getController.width.value,
                                                   child: GridView.count(
