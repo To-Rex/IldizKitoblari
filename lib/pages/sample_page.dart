@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import '../companents/bottombar_icons.dart';
@@ -31,17 +32,17 @@ class SamplePage extends StatelessWidget {
     return Scaffold(
         body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
         bottomNavigationBar: BottomAppBar(
-          height: _getController.height.value * 0.09,
-          surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
+          //height: _getController.height.value * 0.09,
+          height: 85.sp,
+          surfaceTintColor: Theme.of(context).colorScheme.background,
           elevation: 20,
-          shadowColor: Theme.of(context).colorScheme.secondary,
+          shadowColor: Theme.of(context).colorScheme.onBackground,
           color: Theme.of(context).colorScheme.background,
           child: Obx(() => Container(
-            margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
+            margin: EdgeInsets.only(left: 5.sp, right: 5.sp),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                //home,shop,library,basket,account
                 BottomBarIcons(
                   icon: 'assets/icon/home.svg',
                   title: 'Asosiy'.tr,
