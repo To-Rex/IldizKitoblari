@@ -247,35 +247,17 @@ class HomePage extends StatelessWidget {
                               }),
                               if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                                 Container(
-                                    margin: EdgeInsets.only(
-                                        top: 5.h,
-                                        bottom: 25.h,
-                                        left: _getController.width.value * 0.03,
-                                        right: _getController.width.value * 0.03
-                                    ),
+                                    margin: EdgeInsets.only(top: 5.h, bottom: 25.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                     height: _getController.height.value * 0.155,
                                     width: _getController.width.value,
-                                    //padding: EdgeInsets.all(_getController.width.value * 0.02),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        color: Theme.of(context).colorScheme.onBackground
-                                    ),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.onBackground),
                                     child: Stack(
                                       children: [
-                                        //Image.network(_getController.productModel.value.data!.result![0].image!, fit: BoxFit.fill),
                                         Positioned(
                                             left: 0,
                                             width: _getController.width.value * 0.6,
                                             height: _getController.height.value * 0.155,
-                                            child: Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.only(
-                                                        topLeft: Radius.circular(16.r),
-                                                        bottomLeft: Radius.circular(16.r)
-                                                    ),
-                                                    color: AppColors.primaryColor
-                                                )
-                                            )
+                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(16.r), bottomLeft: Radius.circular(16.r)), color: AppColors.primaryColor))
                                         ),
                                         Positioned(
                                             right: 0,
@@ -285,43 +267,49 @@ class HomePage extends StatelessWidget {
                                           )
                                         ),
                                         Positioned(
-                                          left: 200,
+                                          left: _getController.width.value * 0.47,
                                           width: _getController.width.value * 0.1,
                                           height: _getController.height.value * 0.155,
                                           child: Image.asset('assets/images/rectangle.png', fit: BoxFit.fill),
                                         ),
                                         Positioned(
-                                          left: 185,
-                                          top: 40.h,
-                                          width: _getController.width.value * 0.16,
-                                          child: Image.asset('assets/images/frame.png', fit: BoxFit.fill),
+                                          left: _getController.width.value * 0.44,
+                                          height: _getController.height.value * 0.155,
+                                          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Image.asset('assets/images/frame.png', fit: BoxFit.fill)])
+                                        ),
+                                        Positioned(
+                                          left: 10,
+                                          height: _getController.height.value * 0.155,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              SizedBox(height: 20.h),
+                                              SizedBox(width: _getController.width.value * 0.44, child: Text(maxLines: 1, overflow: TextOverflow.ellipsis, _getController.productModel.value.data!.result![0].name!, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.white)))
+                                            ]
+                                          )
                                         )
-                                      ],
+                                      ]
                                     )
                                 ),
 
-                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
-                              for (var i in _getController.productModel.value.data!.result! .sublist(0, 2))
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
+                              for (var i in _getController.productModel.value.data!.result!.sublist(1, 3))
                                 Container(
-                                  margin: EdgeInsets.only(
-                                      left: _getController.width.value * 0.03,
-                                      right: _getController.width.value * 0.03,
-                                      bottom: _getController.height.value * 0.01
-                                  ),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      color: Theme.of(context).colorScheme.background,
+                                  //height: _getController.height.value * 0.09,
+                                  //width: _getController.width.value,
+                                  margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.01),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.background,
                                     boxShadow: [
                                       BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                        offset: Offset(1, 2),
+                                        offset: const Offset(1, 2),
                                         blurRadius: 3,
                                         spreadRadius: 1)]
                                   ),
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      if (i.image != null)
-                                        Container(
+                                      //if (i.image != null)
+                                        /*Container(
                                             width: _getController.width.value * 0.2,
                                             height: _getController.height.value * 0.09,
                                             decoration: BoxDecoration(
@@ -330,7 +318,34 @@ class HomePage extends StatelessWidget {
                                                   image: NetworkImage(i.image.toString()),
                                                 )
                                             )
+                                        ),*/
+                                      if (i.image != null)
+                                        SizedBox(
+                                            width: _getController.width.value * 0.2,
+                                            height: _getController.height.value * 0.09,
+                                            child: Stack(
+                                              children: [
+                                                Positioned(
+                                                    left: 0,
+                                                    width: _getController.width.value * 0.2,
+                                                    height: _getController.height.value * 0.09,
+                                                    child: SizedBox(
+                                                        width: _getController.width.value * 0.2,
+                                                        height: _getController.height.value * 0.09,
+                                                        child: Image.asset('assets/images/rectangle.png', fit: BoxFit.none)
+                                                    ),
+                                                ),
+                                                Positioned(
+                                                    right: 0,
+                                                    width: _getController.width.value * 0.2,
+                                                    height: _getController.height.value * 0.09,
+                                                    child: Image.asset('assets/images/frame.png', fit: BoxFit.none)
+                                                )
+                                              ],
+                                            )
                                         ),
+
+
                                       Expanded(
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
