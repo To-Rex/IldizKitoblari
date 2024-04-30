@@ -1,6 +1,10 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -34,7 +38,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ApiController().getBanner(1,1);
     //ApiController().getProduct(1, 'badiiy-kitoblar',false);
-    //getTopProduct
     ApiController().getQuotation(1);
     ApiController().getTopProduct(1,false);
     ApiController().getAuthors(30,1,'Shayx Muhammad S',false);
@@ -98,25 +101,30 @@ class HomePage extends StatelessWidget {
                   child: Obx(() => Column(
                     children: [
                       SizedBox(
-                        height: _getController.height.value * 0.14,
+                        //height: _getController.height.value * 0.14,
+                        height: 130.h,
                         child: Stack(
                           children: [
                             Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                            Positioned(top: _getController.height.value * 0.018, left: 0, right: 0, child: SearchFields(onChanged: (String ) {  },))
-                          ],
-                        ),
+                            Positioned(top: 18.h, left: 0, right: 0, child: SearchFields(onChanged: (String ) {  },))
+                          ]
+                        )
                       ),
                       Container(
                         width: _getController.width.value,
-                        decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.background,
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))
+                        ),
                         child:Column(
                           children: [
                             if (_getController.bannerModel.value.data != null)
                               Container(
-                                margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.025),
-                                height: _getController.height.value * 0.173,
+                                margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
+                                //height: 159.h,
+                                height: _getController.height.value * 0.17,
                                 width: _getController.width.value,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.background),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Theme.of(context).colorScheme.background),
                                 child: CarouselSlider(
                                   options: CarouselOptions(
                                     viewportFraction: 1,
@@ -170,7 +178,12 @@ class HomePage extends StatelessWidget {
                               )
                             else
                               Container(
-                                margin: EdgeInsets.only(top: _getController.height.value * 0.018, bottom: _getController.height.value * 0.025),
+                                margin: EdgeInsets.only(
+                                    //top: _getController.height.value * 0.018,
+                                    top: 18.h,
+                                    //bottom: _getController.height.value * 0.025
+                                    bottom: 25.h
+                                ),
                                 height: _getController.height.value * 0.173,
                                 width: _getController.width.value,
                                 padding: EdgeInsets.all(_getController.width.value * 0.02),
@@ -193,10 +206,12 @@ class HomePage extends StatelessWidget {
                             else
                               SkeletonChildItem(),
                             if (_getController.menuModel.value.data != null)
-                              SizedBox(
-                                  width: _getController.width.value * 0.93,
+                              Container(
+                                  width: _getController.width.value,
+                                  padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
                                   child: Wrap(
                                     spacing: _getController.width.value * 0.02,
+                                    runSpacing: _getController.height.value * 0.006,
                                     children: [
                                       for (var i in _getController.menuModel.value.data!.result!)
                                         InkWell(
@@ -209,20 +224,20 @@ class HomePage extends StatelessWidget {
                                           },
                                           child: Chip(
                                             visualDensity: VisualDensity.compact,
-                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
                                             label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
-                                            padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.007),
-                                            labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
+                                            padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.008),
+                                            labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
                                             side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                                             backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400),
+                                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400),
                                           )
                                         )
                                     ]
                                   )
                               ),
                             if (_getController.menuModel.value.data != null)
-                              SizedBox(height: _getController.height.value * 0.04),
+                              SizedBox(height: _getController.height.value * 0.025),
                             if (_getController.menuModel.value.data != null)
                               ChildItem(title: '${'Top'.tr} ${'Kitoblar'.tr}', function: (){
                                 _getController.page.value = 1;
@@ -230,12 +245,118 @@ class HomePage extends StatelessWidget {
                                 _getController.clearProductModel();
                                 Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: true));
                               }),
-                              if (_getController.productModel.value.data != null)
-                                SizedBox(
+                              if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
+                                Container(
+                                    margin: EdgeInsets.only(
+                                        top: 5.h,
+                                        bottom: 25.h,
+                                        left: _getController.width.value * 0.03,
+                                        right: _getController.width.value * 0.03
+                                    ),
+                                    height: _getController.height.value * 0.155,
+                                    width: _getController.width.value,
+                                    //padding: EdgeInsets.all(_getController.width.value * 0.02),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        color: Theme.of(context).colorScheme.onBackground
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        //Image.network(_getController.productModel.value.data!.result![0].image!, fit: BoxFit.fill),
+                                        Positioned(
+                                            left: 0,
+                                            width: _getController.width.value * 0.6,
+                                            height: _getController.height.value * 0.155,
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.only(
+                                                        topLeft: Radius.circular(16.r),
+                                                        bottomLeft: Radius.circular(16.r)
+                                                    ),
+                                                    color: AppColors.primaryColor
+                                                )
+                                            )
+                                        ),
+                                        Positioned(
+                                            right: 0,
+                                            width: _getController.width.value * 0.42,
+                                            height: _getController.height.value * 0.155,
+                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(16.r), bottomRight: Radius.circular(16.r)), image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![0].image!), fit: BoxFit.cover))
+                                          )
+                                        ),
+                                        Positioned(
+                                          left: 200,
+                                          width: _getController.width.value * 0.1,
+                                          height: _getController.height.value * 0.155,
+                                          child: Image.asset('assets/images/rectangle.png', fit: BoxFit.fill),
+                                        ),
+                                        Positioned(
+                                          left: 185,
+                                          top: 40.h,
+                                          width: _getController.width.value * 0.16,
+                                          child: Image.asset('assets/images/frame.png', fit: BoxFit.fill),
+                                        )
+                                      ],
+                                    )
+                                ),
+
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
+                              for (var i in _getController.productModel.value.data!.result! .sublist(0, 2))
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: _getController.width.value * 0.03,
+                                      right: _getController.width.value * 0.03,
+                                      bottom: _getController.height.value * 0.01
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: Theme.of(context).colorScheme.background,
+                                    boxShadow: [
+                                      BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                        offset: Offset(1, 2),
+                                        blurRadius: 3,
+                                        spreadRadius: 1)]
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      if (i.image != null)
+                                        Container(
+                                            width: _getController.width.value * 0.2,
+                                            height: _getController.height.value * 0.09,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(10.4),
+                                                image: DecorationImage(
+                                                  image: NetworkImage(i.image.toString()),
+                                                )
+                                            )
+                                        ),
+                                      Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  i.name.toString(),
+                                                  style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                              SizedBox(height: _getController.height.value * 0.01),
+                                              Text(
+                                                i.sale.toString(),
+                                                style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),
+                                              )
+                                            ],
+                                          ))
+                                    ],
+                                  )
+                                ),
+
+
+
+
+                            /*SizedBox(
                                     height: _getController.height.value * 0.38,
                                     width: _getController.width.value,
                                     child: ListView.builder(
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.04),
                                         itemCount: _getController.productModel.value.data!.result!.length,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, index) {
@@ -257,7 +378,7 @@ class HomePage extends StatelessWidget {
                                             deck: _getController.productModel.value.data!.result![index].name,
                                             count: _getController.productModel.value.data!.result![index].count
                                           );
-                                        })),
+                                        })),*/
                             if (_getController.menuModel.value.data != null)
                               SizedBox(height: _getController.height.value * 0.02),
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
