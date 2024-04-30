@@ -179,9 +179,7 @@ class HomePage extends StatelessWidget {
                             else
                               Container(
                                 margin: EdgeInsets.only(
-                                    //top: _getController.height.value * 0.018,
                                     top: 18.h,
-                                    //bottom: _getController.height.value * 0.025
                                     bottom: 25.h
                                 ),
                                 height: _getController.height.value * 0.173,
@@ -278,6 +276,22 @@ class HomePage extends StatelessWidget {
                                           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Image.asset('assets/images/frame.png', fit: BoxFit.fill)])
                                         ),
                                         Positioned(
+                                          left: _getController.width.value * 0.50,
+                                          top: _getController.height.value * 0.065,
+                                          width: _getController.width.value * 0.1,
+                                          height: _getController.height.value * 0.155,
+                                          child: Text(
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              '1',
+                                              style: TextStyle(
+                                                  fontSize: _getController.width.value * 0.035,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColors.element
+                                              )
+                                          )
+                                        ),
+                                        Positioned(
                                           left: 10,
                                           height: _getController.height.value * 0.155,
                                           child: Column(
@@ -295,8 +309,6 @@ class HomePage extends StatelessWidget {
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
                               for (var i in _getController.productModel.value.data!.result!.sublist(1, 3))
                                 Container(
-                                  //height: _getController.height.value * 0.09,
-                                  //width: _getController.width.value,
                                   margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.01),
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.background,
                                     boxShadow: [
@@ -308,17 +320,6 @@ class HomePage extends StatelessWidget {
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      //if (i.image != null)
-                                        /*Container(
-                                            width: _getController.width.value * 0.2,
-                                            height: _getController.height.value * 0.09,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10.4),
-                                                image: DecorationImage(
-                                                  image: NetworkImage(i.image.toString()),
-                                                )
-                                            )
-                                        ),*/
                                       if (i.image != null)
                                         SizedBox(
                                             width: _getController.width.value * 0.2,
@@ -340,12 +341,24 @@ class HomePage extends StatelessWidget {
                                                     width: _getController.width.value * 0.2,
                                                     height: _getController.height.value * 0.09,
                                                     child: Image.asset('assets/images/frame.png', fit: BoxFit.none)
+                                                ),
+                                                Positioned(
+                                                    width: _getController.width.value * 0.2,
+                                                    height: _getController.height.value * 0.086,
+                                                    child: Center(
+                                                      child: Text(
+                                                          '${_getController.productModel.value.data!.result!.indexOf(i) + 1}',
+                                                          style: TextStyle(
+                                                              fontSize: _getController.width.value * 0.03,
+                                                              fontWeight: FontWeight.w600,
+                                                              color: AppColors.element
+                                                          )
+                                                      )
+                                                    )
                                                 )
-                                              ],
+                                              ]
                                             )
                                         ),
-
-
                                       Expanded(
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
