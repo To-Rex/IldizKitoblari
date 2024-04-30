@@ -196,7 +196,7 @@ class HomePage extends StatelessWidget {
                                 )
                               ),
                             if (_getController.menuModel.value.data != null)
-                            ChildItem(
+                              ChildItem(
                                 title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
                                 function: (){
                                   Get.to(() => Category());
@@ -235,160 +235,61 @@ class HomePage extends StatelessWidget {
                                   )
                               ),
                             if (_getController.menuModel.value.data != null)
-                              SizedBox(height: _getController.height.value * 0.025),
+                              SizedBox(height: _getController.height.value * 0.026),
                             if (_getController.menuModel.value.data != null)
-                              ChildItem(title: '${'Top'.tr} ${'Kitoblar'.tr}', function: (){
+                              ChildItem(title: 'Elektron kitoblar'.tr, function: (){
                                 _getController.page.value = 1;
                                 _getController.productModelLength.value = 0;
                                 _getController.clearProductModel();
                                 Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: true));
                               }),
-                              if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
-                                Container(
-                                    margin: EdgeInsets.only(top: 5.h, bottom: 25.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                    height: _getController.height.value * 0.155,
-                                    width: _getController.width.value,
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.onBackground),
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                            left: 0,
-                                            width: _getController.width.value * 0.6,
-                                            height: _getController.height.value * 0.155,
-                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(16.r), bottomLeft: Radius.circular(16.r)), color: AppColors.primaryColor))
-                                        ),
-                                        Positioned(
-                                            right: 0,
-                                            width: _getController.width.value * 0.42,
-                                            height: _getController.height.value * 0.155,
-                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(16.r), bottomRight: Radius.circular(16.r)), image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![0].image!), fit: BoxFit.cover))
-                                          )
-                                        ),
-                                        Positioned(
-                                          left: _getController.width.value * 0.47,
-                                          width: _getController.width.value * 0.1,
-                                          height: _getController.height.value * 0.155,
-                                          child: Image.asset('assets/images/rectangle.png', fit: BoxFit.fill),
-                                        ),
-                                        Positioned(
-                                          left: _getController.width.value * 0.44,
-                                          height: _getController.height.value * 0.155,
-                                          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Image.asset('assets/images/frame.png', fit: BoxFit.fill)])
-                                        ),
-                                        Positioned(
-                                          left: _getController.width.value * 0.50,
-                                          top: _getController.height.value * 0.065,
-                                          width: _getController.width.value * 0.1,
-                                          height: _getController.height.value * 0.155,
-                                          child: Text(
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              '1',
-                                              style: TextStyle(
-                                                  fontSize: _getController.width.value * 0.035,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColors.element
-                                              )
-                                          )
-                                        ),
-                                        Positioned(
-                                          left: 10,
-                                          height: _getController.height.value * 0.155,
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              SizedBox(height: 20.h),
-                                              SizedBox(width: _getController.width.value * 0.44, child: Text(maxLines: 1, overflow: TextOverflow.ellipsis, _getController.productModel.value.data!.result![0].name!, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.white)))
-                                            ]
-                                          )
-                                        )
-                                      ]
-                                    )
-                                ),
-
-                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
-                              for (var i in _getController.productModel.value.data!.result!.sublist(1, 3))
-                                Container(
-                                  margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.01),
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.background,
-                                    boxShadow: [
-                                      BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                        offset: const Offset(1, 2),
-                                        blurRadius: 3,
-                                        spreadRadius: 1)]
-                                  ),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      if (i.image != null)
-                                        SizedBox(
-                                            width: _getController.width.value * 0.2,
-                                            height: _getController.height.value * 0.09,
-                                            child: Stack(
-                                              children: [
-                                                Positioned(
-                                                    left: 0,
-                                                    width: _getController.width.value * 0.2,
-                                                    height: _getController.height.value * 0.09,
-                                                    child: SizedBox(
-                                                        width: _getController.width.value * 0.2,
-                                                        height: _getController.height.value * 0.09,
-                                                        child: Image.asset('assets/images/rectangle.png', fit: BoxFit.none)
-                                                    ),
-                                                ),
-                                                Positioned(
-                                                    right: 0,
-                                                    width: _getController.width.value * 0.2,
-                                                    height: _getController.height.value * 0.09,
-                                                    child: Image.asset('assets/images/frame.png', fit: BoxFit.none)
-                                                ),
-                                                Positioned(
-                                                    width: _getController.width.value * 0.2,
-                                                    height: _getController.height.value * 0.086,
-                                                    child: Center(
-                                                      child: Text(
-                                                          '${_getController.productModel.value.data!.result!.indexOf(i) + 1}',
-                                                          style: TextStyle(
-                                                              fontSize: _getController.width.value * 0.03,
-                                                              fontWeight: FontWeight.w600,
-                                                              color: AppColors.element
-                                                          )
-                                                      )
-                                                    )
-                                                )
-                                              ]
-                                            )
-                                        ),
-                                      Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                  i.name.toString(),
-                                                  style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                              SizedBox(height: _getController.height.value * 0.01),
-                                              Text(
-                                                i.sale.toString(),
-                                                style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),
-                                              )
-                                            ],
-                                          ))
-                                    ],
-                                  )
-                                ),
-
-
-
-
-                            /*SizedBox(
-                                    height: _getController.height.value * 0.38,
-                                    width: _getController.width.value,
-                                    child: ListView.builder(
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.04),
-                                        itemCount: _getController.productModel.value.data!.result!.length,
-                                        scrollDirection: Axis.horizontal,
-                                        itemBuilder: (context, index) {
-                                          return ProductItem(
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
+                              SizedBox(
+                                  //height: _getController.height.value * 0.38,
+                                  height: 330.h,
+                                  width: _getController.width.value,
+                                  child: ListView.builder(
+                                      padding: EdgeInsets.only(left: _getController.width.value * 0.04),
+                                      itemCount: _getController.productModel.value.data!.result!.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return ProductItem(
+                                          imageUrl: _getController.productModel.value.data!.result![index].image,
+                                          title: _getController.productModel.value.data!.result![index].name,
+                                          price: _getController.productModel.value.data!.result![index].price.toString(),
+                                          function: () {
+                                            _getController.page.value = 1;
+                                            _getController.productModelLength.value = 0;
+                                            _getController.clearProductDetailModel();
+                                            _getController.clearProductDetailList();
+                                            Get.to(() => DetailPage(
+                                              slug: _getController.productModel.value.data!.result![index].slug!,
+                                              pageIndex: 0,
+                                            ));
+                                          },
+                                          id: _getController.productModel.value.data!.result![index].sId,
+                                          deck: _getController.productModel.value.data!.result![index].name,
+                                          count: _getController.productModel.value.data!.result![index].count
+                                      );
+                                    })),
+                            if (_getController.menuModel.value.data != null)
+                              ChildItem(title: 'Audio kitoblar'.tr, function: (){
+                                _getController.page.value = 1;
+                                _getController.productModelLength.value = 0;
+                                _getController.clearProductModel();
+                                Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: true));
+                              }),
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
+                              SizedBox(
+                                //height: _getController.height.value * 0.38,
+                                  height: 330.h,
+                                  width: _getController.width.value,
+                                  child: ListView.builder(
+                                      padding: EdgeInsets.only(left: _getController.width.value * 0.04),
+                                      itemCount: _getController.productModel.value.data!.result!.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return ProductItem(
                                             imageUrl: _getController.productModel.value.data!.result![index].image,
                                             title: _getController.productModel.value.data!.result![index].name,
                                             price: _getController.productModel.value.data!.result![index].price.toString(),
@@ -405,8 +306,8 @@ class HomePage extends StatelessWidget {
                                             id: _getController.productModel.value.data!.result![index].sId,
                                             deck: _getController.productModel.value.data!.result![index].name,
                                             count: _getController.productModel.value.data!.result![index].count
-                                          );
-                                        })),*/
+                                        );
+                                      })),
                             if (_getController.menuModel.value.data != null)
                               SizedBox(height: _getController.height.value * 0.02),
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
@@ -414,7 +315,7 @@ class HomePage extends StatelessWidget {
                             else
                               SkeletonChildItem(),
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
-                            Container(
+                              Container(
                               height: _getController.height.value * 0.23,
                               margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.02),
                               width: _getController.width.value,
@@ -483,8 +384,187 @@ class HomePage extends StatelessWidget {
                                       },
                                       index: 0
                                   ),
-                            if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
-                              SizedBox(height: _getController.height.value * 0.03)
+                            //if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
+                             // SizedBox(height: _getController.height.value * 0.03),
+
+                            if (_getController.menuModel.value.data != null)
+                              SizedBox(height: _getController.height.value * 0.025),
+
+                            if (_getController.menuModel.value.data != null)
+                              ChildItem(title: '${'Top'.tr} ${'Kitoblar'.tr}', function: (){
+                                _getController.page.value = 1;
+                                _getController.productModelLength.value = 0;
+                                _getController.clearProductModel();
+                                Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: true));
+                              }),
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
+                              Container(
+                                  margin: EdgeInsets.only(top: 5.h, bottom: 25.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                  height: _getController.height.value * 0.155,
+                                  width: _getController.width.value,
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.onBackground),
+                                  child: Stack(
+                                      children: [
+                                        Positioned(
+                                            left: 0,
+                                            width: _getController.width.value * 0.6,
+                                            height: _getController.height.value * 0.155,
+                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(16.r), bottomLeft: Radius.circular(16.r)), color: AppColors.primaryColor))
+                                        ),
+                                        Positioned(
+                                            right: 0,
+                                            width: _getController.width.value * 0.42,
+                                            height: _getController.height.value * 0.155,
+                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(16.r), bottomRight: Radius.circular(16.r)), image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![0].image!), fit: BoxFit.cover))
+                                            )
+                                        ),
+                                        Positioned(
+                                          left: _getController.width.value * 0.47,
+                                          width: _getController.width.value * 0.1,
+                                          height: _getController.height.value * 0.155,
+                                          child: Image.asset('assets/images/rectangle.png', fit: BoxFit.fill),
+                                        ),
+                                        Positioned(
+                                            width: _getController.width.value * 0.96,
+                                            height: _getController.height.value * 0.155,
+                                            //child: Image.asset('assets/images/frame.png', fit: BoxFit.fill),
+                                            child: Center(
+                                                child: Container(
+                                                    margin: EdgeInsets.only(left: _getController.width.value * 0.08),
+                                                    decoration: BoxDecoration(image: DecorationImage(image: Image.asset('assets/images/frame.png').image, fit: BoxFit.none)),
+                                                    child: Center(child: Text('1', style: TextStyle(fontSize: _getController.width.value * 0.035, fontWeight: FontWeight.w600, color: AppColors.element)))
+                                                )
+                                            )
+                                        ),
+                                        Positioned(
+                                            left: _getController.width.value * 0.03,
+                                            height: _getController.height.value * 0.155,
+                                            child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(height: 20.h),
+                                                  SizedBox(width: _getController.width.value * 0.44, child: Text(maxLines: 1, overflow: TextOverflow.ellipsis, _getController.productModel.value.data!.result![0].name!, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.white)))
+                                                ]
+                                            )
+                                        )
+                                      ]
+                                  )
+                              ),
+
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
+                              for (var i in _getController.productModel.value.data!.result!.sublist(1, 3))
+                                Container(
+                                    margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.01),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.background,
+                                        boxShadow: [
+                                          BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                              offset: const Offset(1, 2),
+                                              blurRadius: 3,
+                                              spreadRadius: 1)]
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        if (i.image != null)
+                                          SizedBox(
+                                              width: _getController.width.value * 0.2,
+                                              height: _getController.height.value * 0.09,
+                                              child: Stack(
+                                                  children: [
+                                                    Positioned(
+                                                      left: 0,
+                                                      width: _getController.width.value * 0.2,
+                                                      height: _getController.height.value * 0.09,
+                                                      child: SizedBox(
+                                                          width: _getController.width.value * 0.2,
+                                                          height: _getController.height.value * 0.09,
+                                                          child: Image.asset('assets/images/rectangle.png', fit: BoxFit.none)
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                        right: 0,
+                                                        width: _getController.width.value * 0.2,
+                                                        height: _getController.height.value * 0.09,
+                                                        child: Center(
+                                                            child: Container(
+                                                                padding: EdgeInsets.all(_getController.height.value * 0.01),
+                                                                child: Image.asset('assets/images/frame.png', fit: BoxFit.cover)
+                                                            )
+                                                        )
+                                                    ),
+                                                    Positioned(
+                                                        width: _getController.width.value * 0.2,
+                                                        height: _getController.height.value * 0.086,
+                                                        child: Center(
+                                                            child: Text(
+                                                                '${_getController.productModel.value.data!.result!.indexOf(i) + 1}',
+                                                                style: TextStyle(
+                                                                    fontSize: _getController.width.value * 0.03,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    color: AppColors.element
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                  ]
+                                              )
+                                          ),
+                                        Expanded(
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    i.name.toString(),
+                                                    style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                                SizedBox(height: _getController.height.value * 0.01),
+                                                Text(
+                                                  i.sale.toString(),
+                                                  style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),
+                                                )
+                                              ],
+                                            ))
+                                      ],
+                                    )
+                                ),
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
+                              SizedBox(height: _getController.height.value * 0.01),
+
+                            if (_getController.menuModel.value.data != null)
+                              ChildItem(title: 'Do‘kon mahsulotlari'.tr, function: (){
+                                _getController.page.value = 1;
+                                _getController.productModelLength.value = 0;
+                                _getController.clearProductModel();
+                                Get.to(() => CatDetailPage(title: 'Do‘kon mahsulotlari'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: true));
+                              }),
+                            if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
+                              SizedBox(
+                              //height: _getController.height.value * 0.38,
+                                height: 330.h,
+                                width: _getController.width.value,
+                                child: ListView.builder(
+                                    padding: EdgeInsets.only(left: _getController.width.value * 0.04),
+                                    itemCount: _getController.productModel.value.data!.result!.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return ProductItem(
+                                          imageUrl: _getController.productModel.value.data!.result![index].image,
+                                          title: _getController.productModel.value.data!.result![index].name,
+                                          price: _getController.productModel.value.data!.result![index].price.toString(),
+                                          function: () {
+                                            _getController.page.value = 1;
+                                            _getController.productModelLength.value = 0;
+                                            _getController.clearProductDetailModel();
+                                            _getController.clearProductDetailList();
+                                            Get.to(() => DetailPage(
+                                              slug: _getController.productModel.value.data!.result![index].slug!,
+                                              pageIndex: 0,
+                                            ));
+                                          },
+                                          id: _getController.productModel.value.data!.result![index].sId,
+                                          deck: _getController.productModel.value.data!.result![index].name,
+                                          count: _getController.productModel.value.data!.result![index].count
+                                      );
+                                    })),
                           ]
                         )
                       )

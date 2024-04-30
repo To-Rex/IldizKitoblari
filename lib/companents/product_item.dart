@@ -96,16 +96,22 @@ class _ProductItemState extends State<ProductItem> {
                   ),
                 ]
             ),
-            Expanded(child: Container(
+            Container(
                 margin: EdgeInsets.only(top: 10.sp),
-                width: 190.sp,
+                height: 30.h,
+                width: 190.w,
                 child: ElevatedButton(
                     onPressed: () {},
-                    style:
-                    ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, padding: EdgeInsets.zero, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-                    child: Text('Xarid'.tr, style: TextStyle(fontSize: 18.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600))
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryColor2,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+                    child: Text('Xarid'.tr, style: TextStyle(fontSize: 18.sp,
+                        color: Theme.of(context).colorScheme.background,
+                        fontWeight: FontWeight.w600)
+                    )
                 )
-            ))
+            )
           ]
         )
       )
