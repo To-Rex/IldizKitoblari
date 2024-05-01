@@ -21,68 +21,6 @@ class CatDetailPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
-
-  void showBottomSheet1(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      showDragHandle: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
-      ),
-      builder: (context) {
-        return Container(
-          height: _getController.height.value * 0.4,
-          padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03),
-          child: Obx(() => _getController.filters.isNotEmpty
-              ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: _getController.width.value * 0.03, width: _getController.width.value),
-                Text('Saralash'.tr, style: TextStyle(fontSize: _getController.width.value * 0.055, fontWeight: FontWeight.w600)),
-                SizedBox(height: _getController.width.value * 0.03),
-                for (int i = 0; i < _getController.filters.length; i++)
-                  Column(
-                      children: [
-                        GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              _getController.changeFilterIndex(i);
-                              //Navigator.pop(context);
-                            },
-                            child: Row(
-                                children: [
-                                  if (_getController.filters[i])
-                                    Container(
-                                        margin: EdgeInsets.only(right: _getController.width.value * 0.02),
-                                        width: _getController.width.value * 0.015,
-                                        height: _getController.width.value * 0.015,
-                                        decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(100))
-                                    ),
-                                  Text(i == 0 ? 'Nomi (A - Z)' : i == 1 ? 'Nomi (Z - A)' : i == 2 ? 'Avval arzonlari' : i == 3 ?'Avval qimmatlari' : i == 4 ? 'Yangisidan boshlab' : 'Top mahsulotdan boshlab',
-                                      style: TextStyle(
-                                          fontSize: _getController.width.value * 0.045,
-                                          fontWeight: FontWeight.w500,
-                                          color: _getController.filters[i] ? AppColors.primaryColor : Colors.black
-                                      )
-                                  )
-                                ]
-                            )
-                        ),
-                        SizedBox(height: _getController.width.value * 0.02),
-                        if (i == 1 || i == 3)
-                          const Divider()
-                      ]
-                  )
-              ]
-          )
-              : const SizedBox()
-          )
-        );
-      }
-    );
-  }
-
   void showBottomSheet(BuildContext context) {
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
@@ -103,7 +41,7 @@ class CatDetailPage extends StatelessWidget {
                             height: _getController.width.value * 0.01,
                             width: _getController.width.value,
                             margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.42),
-                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3), borderRadius: BorderRadius.circular(100)),
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
                           ),
                           SizedBox(height: _getController.width.value * 0.08, width: _getController.width.value),
                           Text('Saralash'.tr, style: TextStyle(fontSize: _getController.width.value * 0.055, fontWeight: FontWeight.w600)),
@@ -117,18 +55,20 @@ class CatDetailPage extends StatelessWidget {
                                         _getController.changeFilterIndex(i);
                                         setState(() {
                                           if (!parent) {
-                                            ApiController().getProduct(
-                                                1,
-                                                menuSlug,
-                                                false,
+                                            ApiController().getProduct(1, menuSlug, false,
                                                 _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
                                                 _getController.filters[4] == true ? true : null,
                                                 _getController.filters[5] == true ? true : null,
                                                 _getController.filters[0] == true ? 1 : -1
                                             );
                                           } else {
-                                            ApiController().getSelectProduct(1, menuSlug, false);
-                                            print('suuuuuu111111');
+                                            //ApiController().getSelectProduct(1, menuSlug, false);
+                                            ApiController().getSelectProduct(1, menuSlug, false,
+                                                _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
+                                                _getController.filters[4] == true ? true : null,
+                                                _getController.filters[5] == true ? true : null,
+                                                _getController.filters[0] == true ? 1 : -1
+                                            );
                                           }
                                         });
                                       },
@@ -169,18 +109,17 @@ class CatDetailPage extends StatelessWidget {
     _getController.filters.add(false);
     _getController.filters.add(false);
     _getController.filters.add(false);
-   /* _getController.filters.addAll(
-        List.generate(6, (index) => false)
-    );*/
+
     print('maaaaaaaaa${_getController.filters.length}');
 
     if (!parent) {
       ApiController().getProduct(1, menuSlug, false,null,null,null,null);
       print('suuuuuu');
     } else {
-      ApiController().getSelectProduct(1, menuSlug, false);
+      ApiController().getSelectProduct(1, menuSlug, false,null,null,null,null);
       print('suuuuuu111111');
     }
+
     return Scaffold(
         appBar: AppBar(
             title: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),
@@ -196,25 +135,26 @@ class CatDetailPage extends StatelessWidget {
           children: [
             Padding(
                 padding: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
-                child: Row(children: [
-                  Expanded(
-                      child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
-                  InkWell(
-                      onTap: () {showBottomSheet(context);},
-                      child: Container(
+                child: Row(
+                    children: [
+                      Expanded(child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
+                      InkWell(
+                          onTap: () {showBottomSheet(context);},
+                          child: Container(
                           width: _getController.width.value * 0.05,
                           height: _getController.width.value * 0.05,
                           decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,),
                           child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
-                  IconButton(
-                    onPressed: () {_getController.addPage();ApiController().getProduct(_getController.page.value, menuSlug, true,null,null,null,null);},
-                    icon: Icon(
-                      TablerIcons.adjustments_horizontal,
-                      size: _getController.width.value * 0.06,
-                      color: Theme.of(context).colorScheme.onBackground,
-                    )
-                  )
-                ])
+                      IconButton(
+                          onPressed: () {_getController.addPage();ApiController().getProduct(_getController.page.value, menuSlug, true,null,null,null,null);},
+                          icon: Icon(
+                            TablerIcons.adjustments_horizontal,
+                            size: _getController.width.value * 0.06,
+                            color: Theme.of(context).colorScheme.onBackground,
+                          )
+                      )
+                    ]
+                )
             ),
             if (_getController.productModelLength.value == 0)
               Expanded(
@@ -255,9 +195,19 @@ class CatDetailPage extends StatelessWidget {
                         ),
                       onLoading: () async {
                         if (!parent) {
-                          ApiController().getProduct(_getController.page.value + 1, menuSlug, true,null,null,null,null).then((value) => _refreshController.loadComplete());
+                          ApiController().getProduct(_getController.page.value + 1, menuSlug, true,
+                              _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
+                              _getController.filters[4] == true ? true : null,
+                              _getController.filters[5] == true ? true : null,
+                              _getController.filters[0] == true ? 1 : -1
+                          ).then((value) => _refreshController.loadComplete());
                         } else {
-                          ApiController().getSelectProduct(_getController.page.value + 1, menuSlug, true).then((value) => _refreshController.loadComplete());}
+                          ApiController().getSelectProduct(_getController.page.value + 1, menuSlug, true,
+                              _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
+                              _getController.filters[4] == true ? true : null,
+                              _getController.filters[5] == true ? true : null,
+                              _getController.filters[0] == true ? 1 : -1
+                          ).then((value) => _refreshController.loadComplete());}
                         },
                       onRefresh: () async {
                         _getController.page.value = 1;
@@ -267,7 +217,7 @@ class CatDetailPage extends StatelessWidget {
                           _getController.page.value = 1;
                           _getController.productModelLength.value = 0;
                           _getController.clearProductModel();
-                          ApiController().getSelectProduct(1, menuSlug, false).then((value) => _refreshController.refreshCompleted());}
+                          ApiController().getSelectProduct(1, menuSlug, false,null,null,null,null).then((value) => _refreshController.refreshCompleted());}
                         },
                       physics: const BouncingScrollPhysics(),
                       controller: _refreshController,

@@ -71,8 +71,6 @@ class ApiController extends GetxController {
   }
 
   //show dialog connectivity
-
-  //show dialog connectivity
   void showDialogConnectivity(context) {
     showDialog(
       context: context,
@@ -336,9 +334,10 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getSelectProduct(page, menuSlug,bool add) async {
+  Future<void> getSelectProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
     debugPrint('getProduct: $page, $menuSlug');
-    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug'),
+    //var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug'),
+    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },
@@ -571,4 +570,5 @@ class ApiController extends GetxController {
       }
     }
   }
+
 }

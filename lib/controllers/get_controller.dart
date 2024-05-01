@@ -38,7 +38,7 @@ class GetController extends GetxController {
   var passwordCheck = false.obs;
   var editCheck = false.obs;
   var image = ''.obs;
-  List filters = <bool>[false,false,false,false,false,false,].obs;
+  List filters = <bool>[false,false,false,false,false,false].obs;
   //filters update index
   void changeFilterIndex(index){
     if (index == 0) {
