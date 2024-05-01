@@ -22,35 +22,60 @@ class AccountPage extends StatelessWidget {
   ];
 
   updateLanguage(Locale locale){
-    Get.back();
     Get.updateLocale(locale);
   }
 
-  buildLanguageDialog(BuildContext context){
-    showDialog(context: context,
-        builder: (builder){
-          return AlertDialog(
-            title: const Text('Choose Your Language'),
-            content: SizedBox(
-              width: double.maxFinite,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: locale.length,
-                  itemBuilder: (context, index){
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        child: Text(locale[index]['name']),
-                        onTap: (){
-                          updateLanguage(locale[index]['locale']);
-                        }
+  void showLanguageBottomSheet(BuildContext context) {
+    Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        enableDrag: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                  width: _getController.width.value,
+                  height: _getController.height.value * 0.45,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.background,
+                      borderRadius: BorderRadius.horizontal(right: Radius.circular(10.r),left: Radius.circular(10.r))
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: _getController.width.value * 0.03, width: _getController.width.value),
+                      Container(
+                          height: _getController.width.value * 0.01,
+                          width: _getController.width.value * 0.1,
+                          margin: EdgeInsets.only(top: _getController.width.value * 0.01, bottom: _getController.width.value * 0.06),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
+                      ),
+                      ListView.builder(
+                          itemCount: locale.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index){
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04),
+                                    child: InkWell(
+                                        onTap: (){updateLanguage(locale[index]['locale']);},
+                                        child: Text(locale[index]['name'], style: TextStyle(color: locale[index]['locale'] == Get.locale ? AppColors.primaryColor : Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))
+                                    )
+                                ),
+                                if (index != locale.length - 1)
+                                  Padding(
+                                      padding: EdgeInsets.only(left: _getController.width.value * 0.05, right: _getController.width.value * 0.05),
+                                      child: Divider(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))
+                                  )
+                              ]
+                            );
+                          }
                       )
-                    );
-                  }
-              )
-            )
-          );
-        }
+                    ]
+                  )
+              );
+            })
     );
   }
 
@@ -181,7 +206,8 @@ class AccountPage extends StatelessWidget {
                                   icon: 'assets/icon/globe.svg',
                                   subTitle: 'uz_UZ' == Get.locale.toString() ? 'O\'zbekcha' : 'oz_OZ' == Get.locale.toString() ? 'Ўзбекча' : 'Русский',
                                   onTap: () {
-                                    buildLanguageDialog(context);
+                                    //buildLanguageDialog(context);
+                                    showLanguageBottomSheet(context);
                                   }
                               ),
                               AccItem(
