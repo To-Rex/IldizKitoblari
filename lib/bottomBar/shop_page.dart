@@ -104,9 +104,7 @@ class ShopPage extends StatelessWidget {
                                         height: 200.h,
                                         top: 58.w,
                                         left: 15.sp,
-                                        child: Text('Do\'kon'.tr, style: TextStyle(
-                                            color: Theme.of(context).colorScheme.surface,
-                                            fontSize: 27.sp, fontWeight: FontWeight.bold))
+                                        child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: 27.sp, fontWeight: FontWeight.bold))
                                     ),
                                     Positioned(
                                         top: 61.h, left: 0, right: 0,
@@ -162,12 +160,12 @@ class ShopPage extends StatelessWidget {
                                                               _getController.clearProductDetailList();
                                                               Get.to(() => DetailPage(
                                                                 slug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!,
-                                                                pageIndex: 0,
+                                                                pageIndex: 0
                                                               ));
                                                               },
                                                             id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
                                                             deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name,
-                                                            count: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].count,
+                                                            count: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].count
                                                           );
                                                         }))
                                                 ]
@@ -188,9 +186,8 @@ class ShopPage extends StatelessWidget {
                                                       children: List.generate(6, (index) {return SkeletonItem();})
                                                   )
                                               )
-                                            ],
+                                            ]
                                           )
-
                                       ]
                                   )
                               )

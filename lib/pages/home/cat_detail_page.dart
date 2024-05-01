@@ -160,8 +160,6 @@ class CatDetailPage extends StatelessWidget {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     _getController.filters.clear();
@@ -194,138 +192,114 @@ class CatDetailPage extends StatelessWidget {
                 Get.back();
               },
             )),
-        body: Obx(
-          () => Column(
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
-                  child: Row(children: [
-                    Expanded(
-                        child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
-                    InkWell(
-                        onTap: () {
-                          showBottomSheet(context);
-                        },
-                        child: Container(
-                            width: _getController.width.value * 0.05,
-                            height: _getController.width.value * 0.05,
-                            decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,),
-                            child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
-                    IconButton(
-                      onPressed: () {
-                        _getController.addPage();
-                        ApiController().getProduct(_getController.page.value, menuSlug, true,null,null,null,null);
-                      },
-                      icon: Icon(
-                        TablerIcons.adjustments_horizontal,
-                        size: _getController.width.value * 0.06,
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
-                    ),
-                  ])),
-              if (_getController.productModelLength.value == 0)
-                Expanded(
-                    child: GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        childAspectRatio: 0.71,
-                        children: List.generate(8, (index) {
-                          return SkeletonItem();
-                        }))),
-              if (_getController.productModelLength.value != 0)
-                Expanded(
-                    child: SmartRefresher(
-                        enablePullDown: true,
-                        enablePullUp: true,
-                        header: const ClassicHeader(),
-                        footer: CustomFooter(
-                          builder: (BuildContext context, LoadStatus? mode) {
-                            Widget body;
-                            if (mode == LoadStatus.idle) {
-                              body = const SizedBox();
-                            } else if (mode == LoadStatus.loading) {
-                              body = const CircularProgressIndicator(
-                                  color: Colors.blue,
-                                  backgroundColor: Colors.white,
-                                  strokeWidth: 2);
-                            } else if (mode == LoadStatus.failed) {
-                              body = const Text("Ex nimadir xato ketdi",
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.red));
-                            } else if (mode == LoadStatus.canLoading) {
-                              body = const SizedBox();
-                            } else {
-                              body = const Text("Ma`lumotlar yangilandi",
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.black));
-                            }
-                            return SizedBox(
-                              height: _getController.height.value * 0.1,
-                              child: Center(child: body),
-                            );
-                          },
+        body: Obx(() => Column(
+          children: [
+            Padding(
+                padding: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
+                child: Row(children: [
+                  Expanded(
+                      child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
+                  InkWell(
+                      onTap: () {showBottomSheet(context);},
+                      child: Container(
+                          width: _getController.width.value * 0.05,
+                          height: _getController.width.value * 0.05,
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,),
+                          child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
+                  IconButton(
+                    onPressed: () {_getController.addPage();ApiController().getProduct(_getController.page.value, menuSlug, true,null,null,null,null);},
+                    icon: Icon(
+                      TablerIcons.adjustments_horizontal,
+                      size: _getController.width.value * 0.06,
+                      color: Theme.of(context).colorScheme.onBackground,
+                    )
+                  )
+                ])
+            ),
+            if (_getController.productModelLength.value == 0)
+              Expanded(
+                  child: GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      childAspectRatio: 0.71,
+                      children: List.generate(8, (index) {
+                        return SkeletonItem();
+                      })
+                  )
+              ),
+            if (_getController.productModelLength.value != 0)
+              Expanded(
+                  child: SmartRefresher(
+                      enablePullDown: true,
+                      enablePullUp: true,
+                      header: const ClassicHeader(),
+                      footer: CustomFooter(
+                        builder: (BuildContext context, LoadStatus? mode) {
+                          Widget body;
+                          if (mode == LoadStatus.idle) {
+                            body = const SizedBox();
+                          } else if (mode == LoadStatus.loading) {
+                            body = const CircularProgressIndicator(
+                                color: Colors.blue,
+                                backgroundColor: Colors.white,
+                                strokeWidth: 2);
+                          } else if (mode == LoadStatus.failed) {
+                            body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
+                          } else if (mode == LoadStatus.canLoading) {body = const SizedBox();
+                          } else {body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));}
+                          return SizedBox(
+                            height: _getController.height.value * 0.1,
+                            child: Center(child: body));
+                          }
                         ),
-                        onLoading: () async {
-                          if (!parent) {
-                            //page, menuSlug,bool add,
-                            // int price,bool newProduct, bool famous,name
-                            ApiController().getProduct(_getController.page.value + 1, menuSlug, true,null,null,null,null)
-                                .then((value) =>
-                                    _refreshController.loadComplete());
-                          } else {
-                            ApiController()
-                                .getSelectProduct(_getController.page.value + 1,
-                                    menuSlug, true)
-                                .then((value) =>
-                                    _refreshController.loadComplete());
-                          }
+                      onLoading: () async {
+                        if (!parent) {
+                          ApiController().getProduct(_getController.page.value + 1, menuSlug, true,null,null,null,null).then((value) => _refreshController.loadComplete());
+                        } else {
+                          ApiController().getSelectProduct(_getController.page.value + 1, menuSlug, true).then((value) => _refreshController.loadComplete());}
                         },
-                        onRefresh: () async {
+                      onRefresh: () async {
+                        _getController.page.value = 1;
+                        if (!parent) {
+                          ApiController().getProduct(1, menuSlug, false,null,null,null,null).then((value) => _refreshController.refreshCompleted());
+                        } else {
                           _getController.page.value = 1;
-                          if (!parent) {
-                            ApiController().getProduct(1, menuSlug, false,null,null,null,null).then(
-                                (value) =>
-                                    _refreshController.refreshCompleted());
-                          } else {
-                            _getController.page.value = 1;
-                            _getController.productModelLength.value = 0;
-                            _getController.clearProductModel();
-                            ApiController()
-                                .getSelectProduct(1, menuSlug, false)
-                                .then((value) =>
-                                    _refreshController.refreshCompleted());
-                          }
+                          _getController.productModelLength.value = 0;
+                          _getController.clearProductModel();
+                          ApiController().getSelectProduct(1, menuSlug, false).then((value) => _refreshController.refreshCompleted());}
                         },
-                        physics: const BouncingScrollPhysics(),
-                        controller: _refreshController,
-                        child: GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.07,
-                              mainAxisExtent: _getController.height.value * 0.38,
-                              mainAxisSpacing: _getController.height.value * 0.015,
-                              crossAxisSpacing: _getController.width.value * 0.03,
-                            ),
-                            padding: EdgeInsets.only(left: _getController.width.value * 0.025, right: _getController.width.value * 0.025, bottom: _getController.height.value * 0.02),
-                            itemCount: _getController.productModelLength.value,
-                            itemBuilder: (context, index) {
-                              return ProductItem(
-                                id: _getController.productModel.value.data!.result![index].sId!,
-                                title: _getController.productModel.value.data!.result![index].name!,
-                                deck: _getController.productModel.value.data!.result![index].slug!,
-                                price: _getController.productModel.value.data!.result![index].price!.toString(),
-                                imageUrl: _getController.productModel.value.data!.result![index].image ?? '',
-                                count: _getController.productModel.value.data!.result![index].count ?? 0,
-                                function: () {
-                                  _getController.clearProductDetailModel();
-                                  _getController.clearProductDetailList();
-                                  Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));
-                                },
-                              );
-                            })))
-            ],
-          ),
-        ));
+                      physics: const BouncingScrollPhysics(),
+                      controller: _refreshController,
+                      child: GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.07,
+                            mainAxisExtent: _getController.height.value * 0.38,
+                            mainAxisSpacing: _getController.height.value * 0.015,
+                            crossAxisSpacing: _getController.width.value * 0.03,
+                          ),
+                          padding: EdgeInsets.only(left: _getController.width.value * 0.025, right: _getController.width.value * 0.025, bottom: _getController.height.value * 0.02),
+                          itemCount: _getController.productModelLength.value,
+                          itemBuilder: (context, index) {
+                            return ProductItem(
+                              id: _getController.productModel.value.data!.result![index].sId!,
+                              title: _getController.productModel.value.data!.result![index].name!,
+                              deck: _getController.productModel.value.data!.result![index].slug!,
+                              price: _getController.productModel.value.data!.result![index].price!.toString(),
+                              imageUrl: _getController.productModel.value.data!.result![index].image ?? '',
+                              count: _getController.productModel.value.data!.result![index].count ?? 0,
+                              function: () {
+                                _getController.clearProductDetailModel();
+                                _getController.clearProductDetailList();
+                                Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));},
+                            );
+                          })
+                  )
+              )
+            ]
+          )
+        )
+    );
   }
 }
