@@ -159,7 +159,6 @@ class AccountPage extends StatelessWidget {
                                       )
                                   )
                               ),
-                              //SizedBox(height: _getController.width.value * 0.025),
                               SizedBox(height: 9.h),
                               AccItem(
                                   title: 'Mualliflar'.tr,
