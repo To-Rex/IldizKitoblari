@@ -42,7 +42,6 @@ class AccountPage extends StatelessWidget {
                       child: GestureDetector(
                         child: Text(locale[index]['name']),
                         onTap: (){
-                          print(locale[index]['locale']);
                           updateLanguage(locale[index]['locale']);
                         }
                       )
@@ -66,7 +65,6 @@ class AccountPage extends StatelessWidget {
                 child: Obx(() => Column(
                     children: [
                       SizedBox(
-                          //height: _getController.height.value * 0.12,
                           height: 112.h,
                           width: _getController.width.value,
                           child: Stack(
@@ -77,14 +75,13 @@ class AccountPage extends StatelessWidget {
                                     top: _getController.height.value * 0.062,
                                     left: _getController.width.value * 0.03,
                                     child: Text('Sahifam'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
-                                ),
+                                )
                               ]
                           )
                       ),
                       Container(
                           width: _getController.width.value,
-                          //padding: EdgeInsets.only(top: 10.h),
-                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                           child: Column(
                             children: [
                               Row(
@@ -113,7 +110,7 @@ class AccountPage extends StatelessWidget {
                                           ]
                                       )
                                   )
-                                ],
+                                ]
                               ),
                               SizedBox(
                                   width: _getController.width.value * 0.92,
@@ -230,12 +227,11 @@ class AccountPage extends StatelessWidget {
                                   }
                               ),
                               SizedBox(height: _getController.width.value * 0.1)
-                            ],
+                            ]
                           )
                       )
                     ]
-                )
-                )
+                ))
             )
         )
     );
