@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/resource/colors.dart';
@@ -41,6 +42,7 @@ class AccountPage extends StatelessWidget {
                       child: GestureDetector(
                         child: Text(locale[index]['name']),
                         onTap: (){
+                          print(locale[index]['locale']);
                           updateLanguage(locale[index]['locale']);
                         }
                       )
@@ -64,7 +66,8 @@ class AccountPage extends StatelessWidget {
                 child: Obx(() => Column(
                     children: [
                       SizedBox(
-                          height: _getController.height.value * 0.12,
+                          //height: _getController.height.value * 0.12,
+                          height: 112.h,
                           width: _getController.width.value,
                           child: Stack(
                               children: [
@@ -80,7 +83,7 @@ class AccountPage extends StatelessWidget {
                       ),
                       Container(
                           width: _getController.width.value,
-                          padding: EdgeInsets.only(top: _getController.height.value * 0.01),
+                          //padding: EdgeInsets.only(top: 10.h),
                           decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)),),
                           child: Column(
                             children: [
@@ -122,8 +125,8 @@ class AccountPage extends StatelessWidget {
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColors.primaryColor3,
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
+                                            borderRadius: BorderRadius.circular(10.r)
+                                        )
                                       ),
                                       child: Text('Profilni tahrirlash'.tr,
                                           style: TextStyle(
@@ -134,7 +137,8 @@ class AccountPage extends StatelessWidget {
                                       )
                                   )
                               ),
-                              SizedBox(height: _getController.width.value * 0.025),
+                              //SizedBox(height: _getController.width.value * 0.025),
+                              SizedBox(height: 9.h),
                               AccItem(
                                   title: 'Mualliflar'.tr,
                                   icon: 'assets/icon/copyRight.svg',
@@ -178,8 +182,7 @@ class AccountPage extends StatelessWidget {
                               AccItem(
                                   title: 'Tilni o\'zgartirish'.tr,
                                   icon: 'assets/icon/globe.svg',
-                                  //get locale
-                                  subTitle: Get.locale!.languageCode == 'en' ? 'English' : Get.locale!.languageCode == 'ru' ? 'Russian' : 'O\'zbekcha',
+                                  subTitle: 'uz_UZ' == Get.locale.toString() ? 'O\'zbekcha' : 'oz_OZ' == Get.locale.toString() ? 'Ўзбекча' : 'Русский',
                                   onTap: () {
                                     buildLanguageDialog(context);
                                   }
