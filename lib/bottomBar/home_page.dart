@@ -1,12 +1,7 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/home/category_page.dart';
@@ -15,7 +10,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../companents/author_item.dart';
 import '../companents/child_item.dart';
 import '../companents/product_item.dart';
-import '../companents/scleton_item.dart';
 import '../companents/search_fild.dart';
 import '../companents/skleton_child_item.dart';
 import '../controllers/get_controller.dart';
@@ -101,7 +95,6 @@ class HomePage extends StatelessWidget {
                   child: Obx(() => Column(
                     children: [
                       SizedBox(
-                        //height: _getController.height.value * 0.14,
                         height: 130.h,
                         child: Stack(
                           children: [
@@ -118,7 +111,6 @@ class HomePage extends StatelessWidget {
                             if (_getController.bannerModel.value.data != null)
                               Container(
                                 margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
-                                //height: 159.h,
                                 height: _getController.height.value * 0.17,
                                 width: _getController.width.value,
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Theme.of(context).colorScheme.background),
@@ -391,122 +383,148 @@ class HomePage extends StatelessWidget {
                                 Get.to(() => CatDetailPage(title: 'Kitoblar'.tr, menuSlug: _getController.menuModel.value.data!.result![0].slug!, parent: true));
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
-                              Container(
-                                  margin: EdgeInsets.only(top: 8.h, bottom: 15.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                  height: _getController.height.value * 0.158,
-                                  width: _getController.width.value,
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.onBackground),
-                                  child: Stack(
-                                      children: [
-                                        Positioned(
-                                            left: 0,
-                                            width: _getController.width.value * 0.6,
+                              InkWell(
+                                onTap: () {
+                                  _getController.page.value = 1;
+                                  _getController.productModelLength.value = 0;
+                                  _getController.clearProductDetailModel();
+                                  _getController.clearProductDetailList();
+                                  Get.to(() => DetailPage(
+                                      slug: _getController.productModel.value.data!.result![0].slug!,
+                                      pageIndex: 0
+                                  ));
+                                },
+                                child: Container(
+                                    margin: EdgeInsets.only(top: 8.h, bottom: 15.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                    height: _getController.height.value * 0.158,
+                                    width: _getController.width.value,
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.onBackground),
+                                    child: Stack(
+                                        children: [
+                                          Positioned(
+                                              left: 0,
+                                              width: _getController.width.value * 0.6,
+                                              height: _getController.height.value * 0.158,
+                                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), bottomLeft: Radius.circular(10.r)), color: AppColors.primaryColor))
+                                          ),
+                                          Positioned(
+                                              right: 0,
+                                              width: _getController.width.value * 0.42,
+                                              height: _getController.height.value * 0.158,
+                                              child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(10.r), bottomRight: Radius.circular(10.r)), image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![0].image!), fit: BoxFit.cover))
+                                              )
+                                          ),
+                                          Positioned(
+                                            left: _getController.width.value * 0.47,
+                                            width: _getController.width.value * 0.1,
                                             height: _getController.height.value * 0.158,
-                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), bottomLeft: Radius.circular(10.r)), color: AppColors.primaryColor))
-                                        ),
-                                        Positioned(
-                                            right: 0,
-                                            width: _getController.width.value * 0.42,
-                                            height: _getController.height.value * 0.158,
-                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(10.r), bottomRight: Radius.circular(10.r)), image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![0].image!), fit: BoxFit.cover))
-                                            )
-                                        ),
-                                        Positioned(
-                                          left: _getController.width.value * 0.47,
-                                          width: _getController.width.value * 0.1,
-                                          height: _getController.height.value * 0.158,
-                                          child: Image.asset('assets/images/rectangle.png', fit: BoxFit.fill),
-                                        ),
-                                        Positioned(
-                                            width: _getController.width.value * 0.96,
-                                            height: _getController.height.value * 0.158,
-                                            child: Center(
-                                                child: Container(
-                                                    margin: EdgeInsets.only(left: _getController.width.value * 0.08),
-                                                    decoration: BoxDecoration(image: DecorationImage(image: Image.asset('assets/images/frame.png').image, fit: BoxFit.none)),
-                                                    child: Center(child: Text('1', style: TextStyle(fontSize: _getController.width.value * 0.035, fontWeight: FontWeight.w600, color: AppColors.element)))
-                                                )
-                                            )
-                                        ),
-                                        Positioned(
-                                            left: _getController.width.value * 0.03,
-                                            height: _getController.height.value * 0.158,
-                                            child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(height: 20.h),
-                                                  SizedBox(width: _getController.width.value * 0.44, child: Text(maxLines: 1, overflow: TextOverflow.ellipsis, _getController.productModel.value.data!.result![0].name!, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.white)))
-                                                ]
-                                            )
-                                        )
-                                      ]
-                                  )
+                                            child: Image.asset('assets/images/rectangle.png', fit: BoxFit.fill),
+                                          ),
+                                          Positioned(
+                                              width: _getController.width.value * 0.96,
+                                              height: _getController.height.value * 0.158,
+                                              child: Center(
+                                                  child: Container(
+                                                      margin: EdgeInsets.only(left: _getController.width.value * 0.08),
+                                                      decoration: BoxDecoration(image: DecorationImage(image: Image.asset('assets/images/frame.png').image, fit: BoxFit.none)),
+                                                      child: Center(child: Text('1', style: TextStyle(fontSize: _getController.width.value * 0.035, fontWeight: FontWeight.w600, color: AppColors.element)))
+                                                  )
+                                              )
+                                          ),
+                                          Positioned(
+                                              left: _getController.width.value * 0.03,
+                                              height: _getController.height.value * 0.158,
+                                              child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(height: 20.h),
+                                                    SizedBox(width: _getController.width.value * 0.44, child: Text(maxLines: 1, overflow: TextOverflow.ellipsis, _getController.productModel.value.data!.result![0].name!, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: Colors.white)))
+                                                  ]
+                                              )
+                                          )
+                                        ]
+                                    )
+                                )
                               ),
+
 
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
                               for (var i in _getController.productModel.value.data!.result!.sublist(1, 3))
-                                Container(
-                                    margin: EdgeInsets.only(
-                                        left: _getController.width.value * 0.03,
-                                        right: _getController.width.value * 0.03,
-                                        bottom: _getController.height.value * 0.015),
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.background, boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), offset: const Offset(1, 2), blurRadius: 3, spreadRadius: 1)]),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (i.image != null)
-                                          SizedBox(
-                                              width: _getController.width.value * 0.2,
-                                              height: _getController.height.value * 0.095,
-                                              child: Stack(
-                                                  children: [
-                                                    Positioned(
-                                                      left: 0,
-                                                      width: _getController.width.value * 0.2,
-                                                      height: _getController.height.value * 0.09,
-                                                      child: SizedBox(
-                                                          width: _getController.width.value * 0.2,
-                                                          height: _getController.height.value * 0.09,
-                                                          child: Image.asset('assets/images/rectangle.png', fit: BoxFit.none)
-                                                      ),
-                                                    ),
-                                                    Positioned(
-                                                        right: 0,
+                                InkWell(
+                                  onTap: () {
+                                    _getController.page.value = 1;
+                                    _getController.productModelLength.value = 0;
+                                    _getController.clearProductDetailModel();
+                                    _getController.clearProductDetailList();
+                                    Get.to(() => DetailPage(
+                                        slug: _getController.productModel.value.data!.result![_getController.productModel.value.data!.result!.indexOf(i)].slug!,
+                                        pageIndex: 0
+                                    ));
+                                  },
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          left: _getController.width.value * 0.03,
+                                          right: _getController.width.value * 0.03,
+                                          bottom: _getController.height.value * 0.015),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.background, boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), offset: const Offset(1, 2), blurRadius: 3, spreadRadius: 1)]),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (i.image != null)
+                                            SizedBox(
+                                                width: _getController.width.value * 0.2,
+                                                height: _getController.height.value * 0.095,
+                                                child: Stack(
+                                                    children: [
+                                                      Positioned(
+                                                        left: 0,
                                                         width: _getController.width.value * 0.2,
                                                         height: _getController.height.value * 0.09,
-                                                        child: Center(
-                                                            child: Container(
-                                                                padding: EdgeInsets.all(_getController.height.value * 0.01),
-                                                                child: Image.asset('assets/images/frame.png', fit: BoxFit.cover)
-                                                            )
-                                                        )
-                                                    ),
-                                                    Positioned(
-                                                        width: _getController.width.value * 0.2,
-                                                        height: _getController.height.value * 0.086,
-                                                        child: Center(
-                                                            child: Text(
-                                                                '${_getController.productModel.value.data!.result!.indexOf(i) + 1}',
-                                                                style: TextStyle(
-                                                                    fontSize: _getController.width.value * 0.03,
-                                                                    fontWeight: FontWeight.w600,
-                                                                    color: AppColors.element
-                                                                )
-                                                            )
-                                                        )
-                                                    )
-                                                  ]
-                                              )
-                                          ),
-                                        Expanded(
+                                                        child: SizedBox(
+                                                            width: _getController.width.value * 0.2,
+                                                            height: _getController.height.value * 0.09,
+                                                            child: Image.asset('assets/images/rectangle.png', fit: BoxFit.none)
+                                                        ),
+                                                      ),
+                                                      Positioned(
+                                                          right: 0,
+                                                          width: _getController.width.value * 0.2,
+                                                          height: _getController.height.value * 0.09,
+                                                          child: Center(
+                                                              child: Container(
+                                                                  padding: EdgeInsets.all(_getController.height.value * 0.01),
+                                                                  child: Image.asset('assets/images/frame.png', fit: BoxFit.cover)
+                                                              )
+                                                          )
+                                                      ),
+                                                      Positioned(
+                                                          width: _getController.width.value * 0.2,
+                                                          height: _getController.height.value * 0.086,
+                                                          child: Center(
+                                                              child: Text(
+                                                                  '${_getController.productModel.value.data!.result!.indexOf(i) + 1}',
+                                                                  style: TextStyle(
+                                                                      fontSize: _getController.width.value * 0.03,
+                                                                      fontWeight: FontWeight.w600,
+                                                                      color: AppColors.element
+                                                                  )
+                                                              )
+                                                          )
+                                                      )
+                                                    ]
+                                                )
+                                            ),
+                                          Expanded(
                                             child: Text(
                                                 i.name.toString(),
                                                 style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                        )
-                                      ],
-                                    )
+                                          )
+                                        ],
+                                      )
+                                  )
                                 ),
+
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
                               SizedBox(height: _getController.height.value * 0.01),
 
@@ -519,33 +537,33 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               SizedBox(
-                              //height: _getController.height.value * 0.38,
-                                height: 330.h,
-                                width: _getController.width.value,
-                                child: ListView.builder(
-                                    padding: EdgeInsets.only(left: _getController.width.value * 0.04),
-                                    itemCount: _getController.productModel.value.data!.result!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return ProductItem(
-                                          imageUrl: _getController.productModel.value.data!.result![index].image,
-                                          title: _getController.productModel.value.data!.result![index].name,
-                                          price: _getController.productModel.value.data!.result![index].price.toString(),
-                                          function: () {
-                                            _getController.page.value = 1;
-                                            _getController.productModelLength.value = 0;
-                                            _getController.clearProductDetailModel();
-                                            _getController.clearProductDetailList();
-                                            Get.to(() => DetailPage(
-                                              slug: _getController.productModel.value.data!.result![index].slug!,
-                                              pageIndex: 0,
-                                            ));
-                                          },
-                                          id: _getController.productModel.value.data!.result![index].sId,
-                                          deck: _getController.productModel.value.data!.result![index].name,
-                                          count: _getController.productModel.value.data!.result![index].count
-                                      );
-                                    })),
+                                  height: 330.h,
+                                  width: _getController.width.value,
+                                  child: ListView.builder(
+                                      padding: EdgeInsets.only(left: _getController.width.value * 0.04),
+                                      itemCount: _getController.productModel.value.data!.result!.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return ProductItem(
+                                            imageUrl: _getController.productModel.value.data!.result![index].image,
+                                            title: _getController.productModel.value.data!.result![index].name,
+                                            price: _getController.productModel.value.data!.result![index].price.toString(),
+                                            function: () {
+                                              _getController.page.value = 1;
+                                              _getController.productModelLength.value = 0;
+                                              _getController.clearProductDetailModel();
+                                              _getController.clearProductDetailList();
+                                              Get.to(() => DetailPage(
+                                                slug: _getController.productModel.value.data!.result![index].slug!,
+                                                pageIndex: 0
+                                              ));
+                                              },
+                                            id: _getController.productModel.value.data!.result![index].sId,
+                                            deck: _getController.productModel.value.data!.result![index].name,
+                                            count: _getController.productModel.value.data!.result![index].count
+                                        );
+                                      })
+                              )
                           ]
                         )
                       )
