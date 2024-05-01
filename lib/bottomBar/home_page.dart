@@ -446,8 +446,6 @@ class HomePage extends StatelessWidget {
                                     )
                                 )
                               ),
-
-
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
                               for (var i in _getController.productModel.value.data!.result!.sublist(1, 3))
                                 InkWell(
@@ -524,10 +522,8 @@ class HomePage extends StatelessWidget {
                                       )
                                   )
                                 ),
-
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
                               SizedBox(height: _getController.height.value * 0.01),
-
                             if (_getController.menuModel.value.data != null)
                               ChildItem(title: 'Do‘kon mahsulotlari'.tr, function: (){
                                 _getController.page.value = 1;
