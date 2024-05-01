@@ -112,10 +112,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Container(
                         width: _getController.width.value,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.background,
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))
-                        ),
+                        decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                         child:Column(
                           children: [
                             if (_getController.bannerModel.value.data != null)
@@ -384,12 +381,8 @@ class HomePage extends StatelessWidget {
                                       },
                                       index: 0
                                   ),
-                            //if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
-                             // SizedBox(height: _getController.height.value * 0.03),
-
                             if (_getController.menuModel.value.data != null)
-                              SizedBox(height: _getController.height.value * 0.025),
-
+                              SizedBox(height: _getController.height.value * 0.015),
                             if (_getController.menuModel.value.data != null)
                               ChildItem(title: '${'Top'.tr} ${'Kitoblar'.tr}', function: (){
                                 _getController.page.value = 1;
@@ -399,35 +392,34 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               Container(
-                                  margin: EdgeInsets.only(top: 5.h, bottom: 25.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                  height: _getController.height.value * 0.155,
+                                  margin: EdgeInsets.only(top: 8.h, bottom: 15.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                  height: _getController.height.value * 0.158,
                                   width: _getController.width.value,
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.onBackground),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.onBackground),
                                   child: Stack(
                                       children: [
                                         Positioned(
                                             left: 0,
                                             width: _getController.width.value * 0.6,
-                                            height: _getController.height.value * 0.155,
-                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(16.r), bottomLeft: Radius.circular(16.r)), color: AppColors.primaryColor))
+                                            height: _getController.height.value * 0.158,
+                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), bottomLeft: Radius.circular(10.r)), color: AppColors.primaryColor))
                                         ),
                                         Positioned(
                                             right: 0,
                                             width: _getController.width.value * 0.42,
-                                            height: _getController.height.value * 0.155,
-                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(16.r), bottomRight: Radius.circular(16.r)), image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![0].image!), fit: BoxFit.cover))
+                                            height: _getController.height.value * 0.158,
+                                            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(10.r), bottomRight: Radius.circular(10.r)), image: DecorationImage(image: NetworkImage(_getController.productModel.value.data!.result![0].image!), fit: BoxFit.cover))
                                             )
                                         ),
                                         Positioned(
                                           left: _getController.width.value * 0.47,
                                           width: _getController.width.value * 0.1,
-                                          height: _getController.height.value * 0.155,
+                                          height: _getController.height.value * 0.158,
                                           child: Image.asset('assets/images/rectangle.png', fit: BoxFit.fill),
                                         ),
                                         Positioned(
                                             width: _getController.width.value * 0.96,
-                                            height: _getController.height.value * 0.155,
-                                            //child: Image.asset('assets/images/frame.png', fit: BoxFit.fill),
+                                            height: _getController.height.value * 0.158,
                                             child: Center(
                                                 child: Container(
                                                     margin: EdgeInsets.only(left: _getController.width.value * 0.08),
@@ -438,7 +430,7 @@ class HomePage extends StatelessWidget {
                                         ),
                                         Positioned(
                                             left: _getController.width.value * 0.03,
-                                            height: _getController.height.value * 0.155,
+                                            height: _getController.height.value * 0.158,
                                             child: Column(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
@@ -454,21 +446,19 @@ class HomePage extends StatelessWidget {
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty && _getController.productModel.value.data!.result!.length > 3)
                               for (var i in _getController.productModel.value.data!.result!.sublist(1, 3))
                                 Container(
-                                    margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.01),
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Theme.of(context).colorScheme.background,
-                                        boxShadow: [
-                                          BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                              offset: const Offset(1, 2),
-                                              blurRadius: 3,
-                                              spreadRadius: 1)]
-                                    ),
+                                    margin: EdgeInsets.only(
+                                        left: _getController.width.value * 0.03,
+                                        right: _getController.width.value * 0.03,
+                                        bottom: _getController.height.value * 0.015),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.background, boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), offset: const Offset(1, 2), blurRadius: 3, spreadRadius: 1)]),
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         if (i.image != null)
                                           SizedBox(
                                               width: _getController.width.value * 0.2,
-                                              height: _getController.height.value * 0.09,
+                                              height: _getController.height.value * 0.095,
                                               child: Stack(
                                                   children: [
                                                     Positioned(
@@ -510,19 +500,10 @@ class HomePage extends StatelessWidget {
                                               )
                                           ),
                                         Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                    i.name.toString(),
-                                                    style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                                SizedBox(height: _getController.height.value * 0.01),
-                                                Text(
-                                                  i.sale.toString(),
-                                                  style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),
-                                                )
-                                              ],
-                                            ))
+                                            child: Text(
+                                                i.name.toString(),
+                                                style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                        )
                                       ],
                                     )
                                 ),
