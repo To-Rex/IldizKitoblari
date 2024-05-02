@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -111,14 +112,10 @@ class CatDetailPage extends StatelessWidget {
     _getController.filters.add(false);
     _getController.filters.add(false);
 
-    print('maaaaaaaaa${_getController.filters.length}');
-
     if (!parent) {
       ApiController().getProduct(1, menuSlug, false,null,null,null,null);
-      print('suuuuuu');
     } else {
       ApiController().getSelectProduct(1, menuSlug, false,null,null,null,null);
-      print('suuuuuu111111');
     }
 
     return Scaffold(
@@ -181,24 +178,24 @@ class CatDetailPage extends StatelessWidget {
                       enablePullUp: true,
                       header: const ClassicHeader(),
                       footer: CustomFooter(
-                        builder: (BuildContext context, LoadStatus? mode) {
-                          Widget body;
-                          if (mode == LoadStatus.idle) {
-                            body = const SizedBox();
-                          } else if (mode == LoadStatus.loading) {
-                            body = const CircularProgressIndicator(
-                                color: Colors.blue,
-                                backgroundColor: Colors.white,
-                                strokeWidth: 2);
-                          } else if (mode == LoadStatus.failed) {
-                            body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-                          } else if (mode == LoadStatus.canLoading) {body = const SizedBox();
-                          } else {body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));}
-                          return SizedBox(
-                            height: _getController.height.value * 0.1,
-                            child: Center(child: body));
+                          builder: (BuildContext context, LoadStatus? mode) {
+                            Widget body;
+                            if (mode == LoadStatus.idle) {
+                              body = const SizedBox();
+                            } else if (mode == LoadStatus.loading) {
+                              body = const CircularProgressIndicator(
+                                  color: Colors.blue,
+                                  backgroundColor: Colors.white,
+                                  strokeWidth: 2);
+                            } else if (mode == LoadStatus.failed) {
+                              body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
+                            } else if (mode == LoadStatus.canLoading) {body = const SizedBox();
+                            } else {body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));}
+                            return SizedBox(
+                                height: _getController.height.value * 0.1,
+                                child: Center(child: body));
                           }
-                        ),
+                      ),
                       onLoading: () async {
                         if (!parent) {
                           ApiController().getProduct(_getController.page.value + 1, menuSlug, true,
@@ -214,7 +211,7 @@ class CatDetailPage extends StatelessWidget {
                               _getController.filters[5] == true ? true : null,
                               _getController.filters[0] == true ? 1 : -1
                           ).then((value) => _refreshController.loadComplete());}
-                        },
+                      },
                       onRefresh: () async {
                         _getController.page.value = 1;
                         if (!parent) {
@@ -224,33 +221,36 @@ class CatDetailPage extends StatelessWidget {
                           _getController.productModelLength.value = 0;
                           _getController.clearProductModel();
                           ApiController().getSelectProduct(1, menuSlug, false,null,null,null,null).then((value) => _refreshController.refreshCompleted());}
-                        },
+                      },
                       physics: const BouncingScrollPhysics(),
                       controller: _refreshController,
-                      child: GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.07,
-                            mainAxisExtent: _getController.height.value * 0.38,
-                            mainAxisSpacing: _getController.height.value * 0.015,
-                            crossAxisSpacing: _getController.width.value * 0.03,
-                          ),
-                          padding: EdgeInsets.only(left: _getController.width.value * 0.025, right: _getController.width.value * 0.025, bottom: _getController.height.value * 0.02),
-                          itemCount: _getController.productModelLength.value,
-                          itemBuilder: (context, index) {
-                            return ProductItem(
-                              id: _getController.productModel.value.data!.result![index].sId!,
-                              title: _getController.productModel.value.data!.result![index].name!,
-                              deck: _getController.productModel.value.data!.result![index].slug!,
-                              price: _getController.productModel.value.data!.result![index].price!.toString(),
-                              imageUrl: _getController.productModel.value.data!.result![index].image ?? '',
-                              count: _getController.productModel.value.data!.result![index].count ?? 0,
-                              function: () {
-                                _getController.clearProductDetailModel();
-                                _getController.clearProductDetailList();
-                                Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));},
-                            );
-                          })
+                      child: Container(
+                        margin: EdgeInsets.only(left: _getController.width.value * 0.04),
+                        child: GridView.builder(
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.07,
+                              //mainAxisExtent: _getController.height.value * 0.38,
+                              mainAxisExtent: 330.h,
+                              mainAxisSpacing: _getController.height.value * 0.018,
+                              crossAxisSpacing: _getController.width.value * 0.03,
+                            ),
+                            itemCount: _getController.productModelLength.value,
+                            itemBuilder: (context, index) {
+                              return ProductItem(
+                                id: _getController.productModel.value.data!.result![index].sId!,
+                                title: _getController.productModel.value.data!.result![index].name!,
+                                deck: _getController.productModel.value.data!.result![index].slug!,
+                                price: _getController.productModel.value.data!.result![index].price!.toString(),
+                                imageUrl: _getController.productModel.value.data!.result![index].image ?? '',
+                                count: _getController.productModel.value.data!.result![index].count ?? 0,
+                                function: () {
+                                  _getController.clearProductDetailModel();
+                                  _getController.clearProductDetailList();
+                                  Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));},
+                              );
+                            })
+                      )
                   )
               )
             ]
