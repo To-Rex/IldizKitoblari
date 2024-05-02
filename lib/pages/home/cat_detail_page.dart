@@ -4,6 +4,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ildiz/controllers/api_controller.dart';
+import 'package:ildiz/pages/shop/filter_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/product_item.dart';
 import '../../companents/scleton_item.dart';
@@ -146,7 +147,12 @@ class CatDetailPage extends StatelessWidget {
                           decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,),
                           child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
                       IconButton(
-                          onPressed: () {_getController.addPage();ApiController().getProduct(_getController.page.value, menuSlug, true,null,null,null,null);},
+                          onPressed: () {
+                            //_getController.addPage();ApiController().getProduct(_getController.page.value, menuSlug, true,null,null,null,null);
+                            Get.to(() => FilterPage(),
+                                transition: Transition.topLevel
+                            );
+                          },
                           icon: Icon(
                             TablerIcons.adjustments_horizontal,
                             size: _getController.width.value * 0.06,
