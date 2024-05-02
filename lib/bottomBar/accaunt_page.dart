@@ -21,9 +21,7 @@ class AccountPage extends StatelessWidget {
     {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
   ];
 
-  updateLanguage(Locale locale){
-    Get.updateLocale(locale);
-  }
+  updateLanguage(Locale locale){Get.updateLocale(locale);}
 
   void showLanguageBottomSheet(BuildContext context) {
     Get.bottomSheet(
