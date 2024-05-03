@@ -311,8 +311,10 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
-    debugPrint('product: $page, \n $menuSlug,\n $add,\n $price,\n $newProduct,\n $famous,\n $name');
-    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}'),
+
+    //var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}'),
+    //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&menu_slug=badiiy-kitoblar&start_price=1000&end_price=100000
+    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.filtersObj[0]==''?'':'&start_price=${_getController.filtersObj[0]}'}${_getController.filtersObj[1]==''?'':'&end_price=${_getController.filtersObj[1]}'}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },
@@ -337,7 +339,7 @@ class ApiController extends GetxController {
   Future<void> getSelectProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
     debugPrint('getProduct: $page, $menuSlug');
     //var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug'),
-    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}'),
+    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.filtersObj[0].value==''?'60000':'&start_price=${_getController.filtersObj[0].value}'}${_getController.filtersObj[1].value==''?'':'&end_price=${_getController.filtersObj[1].value}'}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },

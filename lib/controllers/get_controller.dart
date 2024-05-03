@@ -39,7 +39,8 @@ class GetController extends GetxController {
   var editCheck = false.obs;
   var image = ''.obs;
   List filters = <bool>[false,false,false,false,false,false].obs;
-  //filters update index
+  List filtersObj = ['','',[]].obs;
+
   void changeFilterIndex(index){
     if (index == 0) {
       filters[0] = !filters[0];
@@ -60,6 +61,13 @@ class GetController extends GetxController {
       filters[5] = !filters[5];
       filters[4] = false;
     }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    filtersObj.add('');
+    filtersObj.add('');
   }
 
   void setHeightWidth(BuildContext context) {
