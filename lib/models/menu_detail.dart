@@ -1,3 +1,5 @@
+import 'menu_options.dart';
+
 class MenuDetailModel {
   String? message;
   bool? status;
@@ -177,3 +179,4 @@ class OptionId {
     return data;
   }
 }
+

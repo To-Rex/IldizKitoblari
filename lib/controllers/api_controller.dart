@@ -12,6 +12,7 @@ import '../models/banner_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
+import '../models/menu_options.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
@@ -48,6 +49,8 @@ class ApiController extends GetxController {
   static const String _authorDetail = '$_baseUrl/api/v1/author/';
   //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&value_id[]=643a5f49590e7e6f7fb931cc
   static const String _authorProduct = '$_baseUrl/api/v1/product/list';
+  //https://ildizkitoblari.uz/api/v1/options/select/list?page=1&option_id=643a5ed8590e7e6f7fb931c6&menu_slug=badiiy-kitoblar&limit=10
+  static const String _getMenuOptions = '$_baseUrl/api/v1/options/select/list';
 
 
   //show toast message
@@ -307,6 +310,48 @@ class ApiController extends GetxController {
       _getController.changeMenuDetailModel(MenuDetailModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getMenuOption(page,menuIndex,slug,limit,add) async {
+    List optionIdList;
+    optionIdList = _getController.menuDetailModel.value.data!.options!.map((e) => e.optionId?.sId).toList();
+    for (int i = 0; i < _getController.menuModel.value.data!.result![menuIndex].children!.length; i++) {
+      if (optionIdList[i] == null) continue;
+      var response = await get(Uri.parse('$_getMenuOptions?page=$page&option_id=${optionIdList[i]}&menu_slug=$slug&limit=$limit'),
+        headers: {
+          'Accept-Language': Get.locale!.languageCode,
+        },
+      );
+      debugPrint('menu: ${response.body}');
+      debugPrint('========================================optionIdList================================: ${'$_getMenuOptions?page=$page&option_id=${optionIdList[i]}&menu_slug=${_getController.menuModel.value.data!.result![menuIndex].children![i].slug}&limit=$limit'}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        if (add==false) {
+          _getController.clearMenuOptionsModelList();
+          _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
+        } else{
+          _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
+        }
+      }
+    }
+  }
+
+  Future<void> getMenuOptions(page,optionId,slug,limit,add) async {
+    //https://ildizkitoblari.uz/api/v1/options/select/list?page=1&option_id=643a5ed8590e7e6f7fb931c6&menu_slug=badiiy-kitoblar&limit=10
+    debugPrint('====${_getMenuOptions}?page=$page&option_id=$optionId&menu_slug=$slug&limit=$limit');
+    var response = await get(Uri.parse('$_getMenuOptions?page=$page&option_id=$optionId&menu_slug=$slug&limit=$limit'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    debugPrint('menu: ${response.body}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (add==false) {
+        _getController.clearMenuOptionsModelList();
+        _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
+      } else{
+        _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
+      }
     }
   }
 

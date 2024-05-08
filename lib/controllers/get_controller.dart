@@ -17,6 +17,7 @@ import '../models/banner_model.dart';
 import '../models/login_model.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
+import '../models/menu_options.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
@@ -119,6 +120,26 @@ class GetController extends GetxController {
   var productModelList = <ProductModel>[].obs;
   var authorDetailModelList = <AuthorDetailModel>[].obs;
   var authorDetailProductModelList = <ProductModel>[].obs;
+  var menuOptionsModel = MenuOptionsModel().obs;
+  var menuOptionsModelList = <MenuOptionsModel>[].obs;
+
+  //add menuOptionsModelList
+  void addMenuOptionsModelList(MenuOptionsModel menuOptionsModel) {
+    menuOptionsModelList.add(menuOptionsModel);
+  }
+
+  //clear menuOptionsModelList
+  void clearMenuOptionsModelList() {
+    if (menuOptionsModelList.isNotEmpty) {
+      menuOptionsModelList.clear();
+    }
+  }
+
+  void removeMenuOptionsModelList(int index) {
+    if (menuOptionsModelList.isNotEmpty&&menuOptionsModelList.length>=index){
+      menuOptionsModelList.removeRange(index, menuOptionsModelList.length);
+    }
+  }
 
   void changeMenuDetailModel(MenuDetailModel menuDetailModel) {
     this.menuDetailModel.value = menuDetailModel;
@@ -150,7 +171,6 @@ class GetController extends GetxController {
   void addAuthorDetailModelList(AuthorDetailModel authorDetailModel) {
     authorDetailModelList.add(authorDetailModel);
   }
-
 
   //clear authorDetailModelList
   void clearAuthorDetailModelList() {
