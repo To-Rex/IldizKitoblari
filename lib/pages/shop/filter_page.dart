@@ -274,7 +274,11 @@ class FilterPage extends StatelessWidget{
                       //button
                       Container(
                           width: _getController.width.value,
-                          padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.03, vertical: _getController.height.value * 0.01),
+                          padding: EdgeInsets.only(
+                              left: _getController.width.value * 0.03,
+                              right: _getController.width.value * 0.01,
+                              top: _getController.height.value * 0.05,
+                              bottom: _getController.height.value * 0.01),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
