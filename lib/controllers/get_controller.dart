@@ -57,7 +57,6 @@ class GetController extends GetxController {
   }
 
   void changeGenreListSelect(int value){
-    //filterGenre[0] = value;
     if (filterGenre[0] == null) {
       filterGenre[0] = value;
     } else if (filterGenre[0] == value) {
