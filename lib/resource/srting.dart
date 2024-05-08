@@ -29,6 +29,7 @@ class LocaleString extends Translations{
       'Tasdiqlash' : 'Подтвердить',
       'Parolni tiklash':'Сбросить пароль',
       'SMS kodni yuborish':'Отправить SMS код',
+      'Filterlarni o\'chirish':'Фильтры',
 
       //validation
       'Xatolik':'Ошибка',
@@ -138,6 +139,7 @@ class LocaleString extends Translations{
       'Tasdiqlash' : 'Tasdiqlash',
       'Parolni tiklash':'Parolni tiklash',
       'SMS kodni yuborish':'SMS kodni yuborish',
+      'Filterlarni o\'chirish':'Filterlarni o\'chirish',
 
       //validation
       'Xatolik':'Xatolik',
@@ -245,6 +247,7 @@ class LocaleString extends Translations{
       'Tasdiqlash' : 'Тасдиқлаш',
       'Parolni tiklash':'Паролни тиклаш',
       'SMS kodni yuborish':'SMS кодни юбориш',
+      'Filterlarni o\'chirish':'Филтерларни ўчириш',
 
       //validation
       'Xatolik':'Хатолик',

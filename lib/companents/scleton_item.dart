@@ -57,7 +57,7 @@ class _ProductItemState extends State<SkeletonItem> {
                 SizedBox(height: 5.h),
                 Container(
                     margin: EdgeInsets.only(top: 2.h, left:  2.w, right:  2.w, bottom:  2.h),
-                    height: 30.h,
+                    height: 10.h,
                     width: 180.h,
                     child: ElevatedButton(
                         onPressed: () {},

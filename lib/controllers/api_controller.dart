@@ -10,6 +10,7 @@ import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
 import '../models/me_models.dart';
+import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
@@ -35,6 +36,7 @@ class ApiController extends GetxController {
 
   //home
   static const String _menu = '$_baseUrl/api/v1/menu/mobile/list';
+  static const String _menuDetail = '$_baseUrl/api/v1/menu/';
   static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6';
   static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
   static const String _productDetail = '$_baseUrl/api/v1/product/';
@@ -291,6 +293,23 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> getMenuDetail(slug) async {
+    print('=======================================================================================================================)');
+    print('${_menuDetail}$slug');
+    var response = await get(Uri.parse('$_menuDetail$slug'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    debugPrint('menu: ${response.body}');
+    if (response.statusCode == 200) {
+      _getController.clearMenuDetailModel();
+      _getController.changeMenuDetailModel(MenuDetailModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
   Future<void> getBanner(page, type) async {
     var response = await get(Uri.parse('$_banner&page=$page&type=$type'),
       headers: {
@@ -339,7 +358,7 @@ class ApiController extends GetxController {
   Future<void> getSelectProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
     debugPrint('getProduct: $page, $menuSlug');
     //var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug'),
-    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.filtersObj[0].value==''?'60000':'&start_price=${_getController.filtersObj[0].value}'}${_getController.filtersObj[1].value==''?'':'&end_price=${_getController.filtersObj[1].value}'}'),
+    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },
@@ -572,5 +591,6 @@ class ApiController extends GetxController {
       }
     }
   }
+
 
 }

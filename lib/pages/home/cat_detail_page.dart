@@ -17,8 +17,9 @@ class CatDetailPage extends StatelessWidget {
   var title;
   var menuSlug;
   var parent;
+  var menuIndex;
 
-  CatDetailPage({super.key, required this.title, required this.menuSlug, required this.parent});
+  CatDetailPage({super.key, required this.title, required this.menuSlug, required this.parent, required this.menuIndex});
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
@@ -137,7 +138,9 @@ class CatDetailPage extends StatelessWidget {
                     children: [
                       Expanded(child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
                       InkWell(
-                          onTap: () {showBottomSheet(context);},
+                          onTap: () {
+                            showBottomSheet(context);
+                          },
                           child: Container(
                           width: _getController.width.value * 0.05,
                           height: _getController.width.value * 0.05,
@@ -145,10 +148,7 @@ class CatDetailPage extends StatelessWidget {
                           child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
                       IconButton(
                           onPressed: () {
-                            //_getController.addPage();ApiController().getProduct(_getController.page.value, menuSlug, true,null,null,null,null);
-                            Get.to(() => FilterPage(),
-                                transition: Transition.topLevel
-                            );
+                            Get.to(() => FilterPage(menuIndex: menuIndex), transition: Transition.topLevel);
                           },
                           icon: Icon(
                             TablerIcons.adjustments_horizontal,
@@ -230,7 +230,6 @@ class CatDetailPage extends StatelessWidget {
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               childAspectRatio: 0.07,
-                              //mainAxisExtent: _getController.height.value * 0.38,
                               mainAxisExtent: 330.h,
                               mainAxisSpacing: _getController.height.value * 0.018,
                               crossAxisSpacing: _getController.width.value * 0.03,

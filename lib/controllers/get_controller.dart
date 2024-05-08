@@ -15,6 +15,7 @@ import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
 import '../models/login_model.dart';
+import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
@@ -112,12 +113,22 @@ class GetController extends GetxController {
   var productDetailModel = ProductDetailModel().obs;
   var productRate = ProductRate().obs;
   var authorModel = AuthorModel().obs;
+  var menuDetailModel = MenuDetailModel().obs;
   var productDetailList = <ProductDetailModel>[].obs;
   var productRateList = <ProductRate>[].obs;
   var productModelList = <ProductModel>[].obs;
   var authorDetailModelList = <AuthorDetailModel>[].obs;
   var authorDetailProductModelList = <ProductModel>[].obs;
 
+  void changeMenuDetailModel(MenuDetailModel menuDetailModel) {
+    this.menuDetailModel.value = menuDetailModel;
+  }
+
+  void clearMenuDetailModel() {
+    if (menuDetailModel.value.data != null) {
+      menuDetailModel.value = MenuDetailModel();
+    }
+  }
 
   //add authorDetailProductModelList to authorDetailProductModelList
   void addAuthorDetailProductModelList(ProductModel productModel) {

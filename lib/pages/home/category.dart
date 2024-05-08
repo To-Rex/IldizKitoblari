@@ -36,7 +36,12 @@ class Category extends StatelessWidget {
                       _getController.menuModel.value.data!.result![index].title!.uz!,
                           () {
                         if (_getController.menuModel.value.data!.result![index].children == null) {
-                          Get.to(() => CatDetailPage(title: _getController.menuModel.value.data!.result![index].title!.uz!, menuSlug: _getController.menuModel.value.data!.result![index].slug!, parent: false));
+                          Get.to(() => CatDetailPage(
+                            title: _getController.menuModel.value.data!.result![index].title!.uz!,
+                            menuSlug: _getController.menuModel.value.data!.result![index].slug!,
+                            parent: false,
+                            menuIndex: _getController.menuModel.value.data!.result!.indexOf(_getController.menuModel.value.data!.result![index]),
+                          ));
                         }else {
                           Get.to(() => CategoryPage(menuIndex: _getController.menuModel.value.data!.result!.indexOf(_getController.menuModel.value.data!.result![index])));
                         }
