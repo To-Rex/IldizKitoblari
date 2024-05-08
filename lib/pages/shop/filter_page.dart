@@ -19,7 +19,10 @@ class FilterPage extends StatelessWidget{
     if (_getController.menuModel.value.data!.result![menuIndex].children != null) {
       _getController.clearMenuOptionsModelList();
       _getController.filtersListSelect.clear();
-      ApiController().getMenuDetail('${_getController.menuModel.value.data!.result![menuIndex].children?[0].slug}').then((value) => {ApiController().getMenuOption(1, menuIndex, _getController.menuModel.value.data!.result![menuIndex].children?[0].slug, 10, true)});
+      ApiController().getMenuDetail('${_getController.menuModel.value.data!.result![menuIndex].children?[0].slug}').then((value) => {
+        _getController.filterGenre.add(null),
+        ApiController().getMenuOption(1, menuIndex, _getController.menuModel.value.data!.result![menuIndex].children?[0].slug, 10, true)
+      });
     }
   }
   @override
@@ -110,9 +113,9 @@ class FilterPage extends StatelessWidget{
                         WrapChip(
                           title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),
                           function: (int value) {
-
+                            _getController.changeGenreListSelect(value);
                           },
-                          select: 0
+                          select: _getController.filterGenre[0]
                         ),
                       Container(
                           margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),

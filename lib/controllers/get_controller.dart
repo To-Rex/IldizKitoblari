@@ -43,6 +43,7 @@ class GetController extends GetxController {
   List filters = <bool>[false,false,false,false,false,false].obs;
   List filtersObj = ['','',[]].obs;
   List filtersListSelect = [].obs;
+  List filterGenre = [].obs;
 
 
   void changeFilterListSelect(int index,int value){
@@ -53,6 +54,10 @@ class GetController extends GetxController {
     } else {
       filtersListSelect[index] = value;
     }
+  }
+
+  void changeGenreListSelect(int value){
+    filterGenre[0] = value;
   }
 
   void changeFilterIndex(index){
@@ -83,6 +88,7 @@ class GetController extends GetxController {
         filtersListSelect[i] = null;
       }
     }
+    filterGenre[0] = null;
     filtersObj[0] = '';
     filtersObj[1] = '';
     filtersObj[2] = [];
