@@ -103,11 +103,7 @@ class FilterPage extends StatelessWidget{
                 physics: const BouncingScrollPhysics(),
                 child: Obx(() => Column(
                     children: [
-                      Container(
-                          width: double.infinity,
-                          margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04),
-                          child: Text('Janrlar', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))
-                      ),
+                      Container(width: double.infinity, margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04), child: Text('Janrlar', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))),
                       Container(margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04)),
                       if (_getController.menuModel.value.data != null)
                         WrapChip(
@@ -117,71 +113,54 @@ class FilterPage extends StatelessWidget{
                           },
                           select: _getController.filterGenre[0]
                         ),
-                      Container(
-                          margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
-                          child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))
-                      ),
-                      Container(
-                          width: double.infinity,
-                          margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.01),
-                          child: Text('Narx', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))
-                      ),
-                      Row(
-                          children: [
-                            Expanded(
-                                child: Container(
-                                    margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
-                                    child: TextField(
-                                        decoration: InputDecoration(
-                                          fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                          filled: true,
-                                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                          contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.height.value * 0.008),
-                                          hintText: '0 dan'.tr,
-                                          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
-                                        )
-                                    )
-                                )
-                            ),
-                            Expanded(
-                                child: Container(
-                                    margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
-                                    child: TextField(
-                                        decoration: InputDecoration(
-                                          fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                          filled: true,
-                                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                          contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.height.value * 0.008),
-                                          hintText: '0 gacha'.tr,
-                                          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400),
-                                        )
+                      Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
+                      Container(width: double.infinity, margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.01), child: Text('Narx', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))),
+                      Row(children: [
+                        Expanded(
+                            child: Container(
+                                margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
+                                child: TextField(
+                                    decoration: InputDecoration(
+                                        fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                                        filled: true,
+                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                        contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.height.value * 0.008),
+                                        hintText: '0 dan'.tr,
+                                        hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
                                     )
                                 )
                             )
-                          ]
-                      ),
+                        ),
+                        Expanded(
+                            child: Container(
+                                margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
+                                child: TextField(
+                                    decoration: InputDecoration(
+                                      fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                                      filled: true,
+                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.height.value * 0.008),
+                                      hintText: '0 gacha'.tr,
+                                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400),
+                                    )
+                                )
+                            )
+                        )
+                      ]),
                       SizedBox(height: _getController.height.value * 0.01),
-                      Container(
-                          margin: EdgeInsets.only(top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.02,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
-                          child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))
-                      ),
+                      Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.02,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
                       if (_getController.menuDetailModel.value.data != null && _getController.menuOptionsModelList.isNotEmpty)
                       for (var i = 0; i < _getController.menuDetailModel.value.data!.options!.length; i++)
-                          Column(
-                              children: [
-                                if (_getController.menuDetailModel.value.data!.options != null && _getController.menuOptionsModelList[i].data != null)
-                                  Container(
-                                      width: _getController.width.value,
-                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
-                                      child: Text(
-                                        'uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.ru! : '' : '',
-                                        style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500),
-                                      )
-                                  ),
+                          Column(children: [
+                            if (_getController.menuDetailModel.value.data!.options != null && _getController.menuOptionsModelList[i].data != null)
+                              Container(
+                                  width: _getController.width.value,
+                                  padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
+                                  child: Text('uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.ru! : '' : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500))),
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 3)
                                   WrapChip(
                                       title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),
@@ -211,9 +190,7 @@ class FilterPage extends StatelessWidget{
                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01, top: _getController.height.value * 0.05, bottom: _getController.height.value * 0.01),
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
-                              onPressed: () {
-                                Get.back();
-                                },
+                              onPressed: () {Get.back();},
                               child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 20.sp, fontWeight: FontWeight.w500)))
                       )
                     ]
