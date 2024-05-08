@@ -19,6 +19,7 @@ class FilterPage extends StatelessWidget{
   Widget build(BuildContext context) {
     if (_getController.menuModel.value.data!.result![menuIndex].children != null) {
       _getController.clearMenuOptionsModelList();
+      _getController.filtersListSelect.clear();
       ApiController().getMenuDetail('${_getController.menuModel.value.data!.result![menuIndex].children?[0].slug}').then((value) => {ApiController().getMenuOption(1, menuIndex, _getController.menuModel.value.data!.result![menuIndex].children?[0].slug, 10, true)});
     }
     return Scaffold(
@@ -125,7 +126,8 @@ class FilterPage extends StatelessWidget{
                         ),*/
                         WrapChip(
                           title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),
-                          function: () {}
+                          function: (int value) {  },
+                          select: 0
                         ),
                       Container(
                           margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
@@ -221,7 +223,11 @@ class FilterPage extends StatelessWidget{
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 3)
                                   WrapChip(
                                     title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),
-                                    function: () {}
+                                    function: (int value) {
+                                      _getController.changeFilterListSelect(i,int.parse('$value'));
+                                    },
+                                    select: _getController.filtersListSelect[i],
+                                    //select: null
                                   ),
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 1)
                                   Container(

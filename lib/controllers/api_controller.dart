@@ -331,6 +331,7 @@ class ApiController extends GetxController {
           _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
         } else{
           _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
+          _getController.filtersListSelect.add(null);
         }
       }
     }

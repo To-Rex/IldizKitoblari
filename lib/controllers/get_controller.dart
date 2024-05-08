@@ -42,6 +42,18 @@ class GetController extends GetxController {
   var image = ''.obs;
   List filters = <bool>[false,false,false,false,false,false].obs;
   List filtersObj = ['','',[]].obs;
+  List filtersListSelect = [].obs;
+
+
+  void changeFilterListSelect(int index,int value){
+    if (filtersListSelect[index] == null) {
+      filtersListSelect[index] = value;
+    } else if (filtersListSelect[index] == value) {
+      filtersListSelect[index] = null;
+    } else {
+      filtersListSelect[index] = value;
+    }
+  }
 
   void changeFilterIndex(index){
     if (index == 0) {
