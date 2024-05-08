@@ -77,6 +77,17 @@ class GetController extends GetxController {
     }
   }
 
+  void clearFilters() {
+    for (int i = 0; i < filtersListSelect.length; i++) {
+      if (filtersListSelect[i] != null) {
+        filtersListSelect[i] = null;
+      }
+    }
+    filtersObj[0] = '';
+    filtersObj[1] = '';
+    filtersObj[2] = [];
+  }
+
   @override
   void onInit() {
     super.onInit();

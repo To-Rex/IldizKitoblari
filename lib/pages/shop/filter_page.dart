@@ -15,13 +15,16 @@ class FilterPage extends StatelessWidget{
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
-  @override
-  Widget build(BuildContext context) {
+  void getData(){
     if (_getController.menuModel.value.data!.result![menuIndex].children != null) {
       _getController.clearMenuOptionsModelList();
       _getController.filtersListSelect.clear();
       ApiController().getMenuDetail('${_getController.menuModel.value.data!.result![menuIndex].children?[0].slug}').then((value) => {ApiController().getMenuOption(1, menuIndex, _getController.menuModel.value.data!.result![menuIndex].children?[0].slug, 10, true)});
     }
+  }
+  @override
+  Widget build(BuildContext context) {
+    getData();
     return Scaffold(
         appBar: AppBar(
             title: Text('Filter'.tr, style: TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w500)),
@@ -34,7 +37,11 @@ class FilterPage extends StatelessWidget{
                 }
             ),
             actions: [
-              Text('Filterlarni o\'chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 18.sp, fontWeight: FontWeight.w500)),
+              TextButton(
+                  onPressed: () {
+                    _getController.clearFilters();
+                  },
+                  child: Text('Filterlarni o\'chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 18.sp, fontWeight: FontWeight.w500))),
               SizedBox(width: 10.sp)
             ]
         ),
@@ -226,8 +233,8 @@ class FilterPage extends StatelessWidget{
                                     function: (int value) {
                                       _getController.changeFilterListSelect(i,int.parse('$value'));
                                     },
-                                    select: _getController.filtersListSelect[i],
-                                    //select: null
+                                   //select: _getController.filtersListSelect[i]
+                                    select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[i] : null
                                   ),
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 1)
                                   Container(
