@@ -123,7 +123,7 @@ class FilterPage1 extends StatelessWidget{
                                 ]
                             )
                         ),*/
-                        WrapChip(title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),),
+                        //WrapChip(title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),),
                       Container(
                           margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
                           child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))
@@ -216,9 +216,7 @@ class FilterPage1 extends StatelessWidget{
                                       )
                                   ),*/
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 3)
-                                  WrapChip(
-                                    title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),
-                                  ),
+                                  //WrapChip(title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),),
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 1)
                                   Container(
                                       margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),

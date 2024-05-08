@@ -6,8 +6,9 @@ import '../resource/colors.dart';
 
 class WrapChip extends StatelessWidget {
   List title;
+  Function function;
 
-  WrapChip({super.key, required this.title});
+  WrapChip({super.key, required this.title, required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,9 @@ class WrapChip extends StatelessWidget {
                 )*/
               for (var i in title)
                 InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      function();
+                    },
                     child: Chip(
                         visualDensity: VisualDensity.compact,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),

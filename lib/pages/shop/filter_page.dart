@@ -123,7 +123,10 @@ class FilterPage extends StatelessWidget{
                                 ]
                             )
                         ),*/
-                        WrapChip(title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),),
+                        WrapChip(
+                          title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),
+                          function: () {}
+                        ),
                       Container(
                           margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
                           child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))
@@ -218,6 +221,7 @@ class FilterPage extends StatelessWidget{
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 3)
                                   WrapChip(
                                     title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),
+                                    function: () {}
                                   ),
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 1)
                                   Container(
