@@ -107,33 +107,11 @@ class FilterPage extends StatelessWidget{
                       ),
                       Container(margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04)),
                       if (_getController.menuModel.value.data != null)
-                        /*Container(
-                            width: _getController.width.value,
-                            padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
-                            child: Wrap(
-                                spacing: _getController.width.value * 0.02,
-                                runSpacing: _getController.height.value * 0.006,
-                                children: [
-                                  for (var i in _getController.menuModel.value.data!.result![menuIndex].children!)
-                                    InkWell(
-                                        onTap: () {},
-                                        child: Chip(
-                                          visualDensity: VisualDensity.compact,
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-                                          label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
-                                          padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.008),
-                                          labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
-                                          side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
-                                          backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                          labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
-                                        )
-                                    )
-                                ]
-                            )
-                        ),*/
                         WrapChip(
                           title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),
-                          function: (int value) {  },
+                          function: (int value) {
+
+                          },
                           select: 0
                         ),
                       Container(
@@ -192,7 +170,7 @@ class FilterPage extends StatelessWidget{
                       for (var i = 0; i < _getController.menuDetailModel.value.data!.options!.length; i++)
                           Column(
                               children: [
-                                //if (_getController.menuDetailModel.value.data!.options != null && _getController.menuOptionsModelList[i].data != null)
+                                if (_getController.menuDetailModel.value.data!.options != null && _getController.menuOptionsModelList[i].data != null)
                                   Container(
                                       width: _getController.width.value,
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
@@ -201,40 +179,11 @@ class FilterPage extends StatelessWidget{
                                         style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500),
                                       )
                                   ),
-                                /*if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 3)
-                                  Container(
-                                      width: _getController.width.value,
-                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
-                                      child: Wrap(
-                                          spacing: _getController.width.value * 0.02,
-                                          runSpacing: _getController.height.value * 0.006,
-                                          children: [
-                                            for (int index = 0; index < _getController.menuOptionsModelList[i].data!.result!.length; index++)
-                                              InkWell(
-                                                  onTap: () {},
-                                                  child: Chip(
-                                                    visualDensity: VisualDensity.compact,
-                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-                                                    //label: Text('uz_UZ' == Get.locale.toString() ? i.optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? i.optionId!.name!.oz! : i.optionId!.name!.ru!),
-                                                    label: Text(_getController.menuOptionsModelList[i].data!.result![index].name!.uz!),
-                                                    padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.008),
-                                                    labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
-                                                    side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
-                                                    backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                                    labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 16.sp, fontWeight: FontWeight.w400),
-                                                  )
-                                              )
-                                          ]
-                                      )
-                                  ),*/
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 3)
                                   WrapChip(
-                                    title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),
-                                    function: (int value) {
-                                      _getController.changeFilterListSelect(i,int.parse('$value'));
-                                    },
-                                   //select: _getController.filtersListSelect[i]
-                                    select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[i] : null
+                                      title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),
+                                      function: (int value) {_getController.changeFilterListSelect(i,int.parse('$value'));},
+                                      select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[i] : null
                                   ),
                                 if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 1)
                                   Container(
@@ -258,11 +207,11 @@ class FilterPage extends StatelessWidget{
                           width: _getController.width.value,
                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01, top: _getController.height.value * 0.05, bottom: _getController.height.value * 0.01),
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
-                            onPressed: () {
-                              Get.back();
-                            },
-                            child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 20.sp, fontWeight: FontWeight.w500)))
+                              style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
+                              onPressed: () {
+                                Get.back();
+                                },
+                              child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 20.sp, fontWeight: FontWeight.w500)))
                       )
                     ]
                 ))
