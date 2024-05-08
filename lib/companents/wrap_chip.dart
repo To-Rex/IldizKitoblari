@@ -16,7 +16,12 @@ class WrapChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: Get.width,
-        padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.01),
+        padding: EdgeInsets.only(
+            left: Get.width * 0.03,
+            right: Get.width * 0.01,
+            top: Get.height * 0.02,
+            bottom: Get.height * 0.02
+        ),
         child: Wrap(
             spacing: Get.width * 0.02,
             runSpacing: Get.height * 0.006,
@@ -26,17 +31,22 @@ class WrapChip extends StatelessWidget {
                     onTap: () {
                       function(title.indexOf(i));
                     },
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
                     child: Chip(
                         visualDensity: VisualDensity.compact,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-                        label: Text(i),
+                        label: Text(i, style: TextStyle(color: title.indexOf(i) == select ? AppColors.white : Theme.of(context).brightness == Brightness.dark ? AppColors.white : AppColors.black, fontSize: 17.sp, fontWeight: FontWeight.w400)),
                         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.008),
                         labelPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
                         side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
-                        //backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                        backgroundColor: select != null
-                            ? title.indexOf(i) == select ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.surface
-                            : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                        deleteIcon: title.indexOf(i) == select ? Icon(Icons.close, color: title.indexOf(i) == select ? AppColors.white : Theme.of(context).colorScheme.onBackground, size: 17.sp) : null,
+                        deleteIconColor: title.indexOf(i) == select ? Theme.of(context).colorScheme.onBackground : null,
+                        deleteButtonTooltipMessage: title.indexOf(i) == select ? 'Selected' : null,
+                        onDeleted: title.indexOf(i) == select ? () {
+                          function(title.indexOf(i));
+                        } : null,
+                        backgroundColor: select != null ? title.indexOf(i) == select ? AppColors.primaryColor : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2) : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                         labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
                     )
                 )
