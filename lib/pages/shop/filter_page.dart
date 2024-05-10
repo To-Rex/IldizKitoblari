@@ -20,11 +20,13 @@ class FilterPage extends StatelessWidget{
       _getController.clearMenuOptionsModelList();
       _getController.filtersListSelect.clear();
       ApiController().getMenuDetail('${_getController.menuModel.value.data!.result![menuIndex].children?[0].slug}').then((value) => {
+        _getController.filterGenre.clear(),
         _getController.filterGenre.add(null),
         ApiController().getMenuOption(1, menuIndex, _getController.menuModel.value.data!.result![menuIndex].children?[0].slug, 10, true)
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     getData();
@@ -107,11 +109,11 @@ class FilterPage extends StatelessWidget{
                       Container(margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04)),
                       if (_getController.menuModel.value.data != null)
                         WrapChip(
-                          title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),
-                          function: (int value) {
-                            _getController.changeGenreListSelect(value);
-                          },
-                          select: _getController.filterGenre[0]
+                            title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),
+                            function: (int value) {
+                              _getController.changeGenreListSelect(value);
+                            },
+                            select: _getController.filterGenre[0]
                         ),
                       Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
                       Container(width: double.infinity, margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.01), child: Text('Narx', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))),
@@ -152,22 +154,28 @@ class FilterPage extends StatelessWidget{
                         )
                       ]),
                       SizedBox(height: _getController.height.value * 0.01),
-                      Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.02,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
-                      if (_getController.menuDetailModel.value.data != null && _getController.menuOptionsModelList.isNotEmpty)
-                      for (var i = 0; i < _getController.menuDetailModel.value.data!.options!.length; i++)
-                          Column(children: [
-                            if (_getController.menuDetailModel.value.data!.options != null && _getController.menuOptionsModelList[i].data != null)
-                              Container(
-                                  width: _getController.width.value,
-                                  padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
-                                  child: Text('uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![i].optionId!.name!.ru! : '' : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500))),
-                                if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 3)
+                      if ( _getController.menuModel.value.data != null && _getController.menuDetailModel.value.data != null)
+                        Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.02,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
+                      //if (_getController.loading.value == false)
+                      if (_getController.filtersListSelect.isNotEmpty &&_getController.menuOptionsModelList.isNotEmpty &&_getController.menuDetailModel.value.data!.options != null)
+                        for (var index = 0; index < _getController.menuDetailModel.value.data!.options!.length; index++)
+                          Column(
+                              children: [
+                                if (_getController.menuOptionsModelList.length > index && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
+                                  Container(
+                                      width: _getController.width.value,
+                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
+                                      child: Text('uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.ru! : '' : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500))),
+                                //if (_getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
+                                if (_getController.menuOptionsModelList.length > index && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
                                   WrapChip(
-                                      title: _getController.menuOptionsModelList[i].data!.result!.map((e) => e.name!.uz!).toList(),
-                                      function: (int value) {_getController.changeFilterListSelect(i,int.parse('$value'));},
-                                      select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[i] : null
+                                    //title: _getController.menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList(),
+                                      title: _getController.getMenuOptionsModelListData(index),
+                                      function: (int value) {_getController.changeFilterListSelect(index,int.parse('$value'));},
+                                      select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null
+                                    //select: _getController.filtersListSelect[index]
                                   ),
-                                if (_getController.menuOptionsModelList[i].data != null && _getController.menuDetailModel.value.data!.options![i].optionId!.type == 1)
+                                if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1)
                                   Container(
                                       margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                       child: TextField(

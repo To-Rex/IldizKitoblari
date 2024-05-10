@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -313,25 +314,25 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getMenuOption(page,menuIndex,slug,limit,add) async {
-    List optionIdList;
+  Future<void> getMenuOption(page, menuIndex, slug, limit, add) async {
+    List optionIdList = [];
+
     optionIdList = _getController.menuDetailModel.value.data!.options!.map((e) => e.optionId?.sId).toList();
-    for (int i = 0; i < _getController.menuModel.value.data!.result![menuIndex].children!.length; i++) {
-      if (optionIdList[i] == null) continue;
-      var response = await get(Uri.parse('$_getMenuOptions?page=$page&option_id=${optionIdList[i]}&menu_slug=$slug&limit=$limit'),
-        headers: {
-          'Accept-Language': Get.locale!.languageCode,
-        },
-      );
-      debugPrint('menu: ${response.body}');
-      debugPrint('========================================optionIdList================================: ${'$_getMenuOptions?page=$page&option_id=${optionIdList[i]}&menu_slug=${_getController.menuModel.value.data!.result![menuIndex].children![i].slug}&limit=$limit'}');
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        if (add==false) {
-          _getController.clearMenuOptionsModelList();
+    for (var _ in optionIdList) {
+      _getController.addFilterListSelect(null);
+    }
+    int childrenLength = _getController.menuModel.value.data!.result![menuIndex].children!.length;
+    for (int i = 0; i < childrenLength; i++) {
+      if (i < optionIdList.length) {
+        var response = await get(Uri.parse('$_getMenuOptions?page=$page&option_id=${optionIdList[i]}&menu_slug=$slug&limit=$limit'),
+          headers: {'Accept-Language': Get.locale!.languageCode},
+        );
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          if (!add) {
+            _getController.clearMenuOptionsModelList();
+            _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
+          }
           _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
-        } else{
-          _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
-          _getController.filtersListSelect.add(null);
         }
       }
     }

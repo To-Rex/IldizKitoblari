@@ -43,8 +43,11 @@ class GetController extends GetxController {
   List filters = <bool>[false,false,false,false,false,false].obs;
   List filtersObj = ['','',[]].obs;
   List filtersListSelect = [].obs;
-  List filterGenre = [].obs;
+  List filterGenre = [null].obs;
 
+  void addFilterListSelect(value){
+    filtersListSelect.add(null);
+  }
 
   void changeFilterListSelect(int index,int value){
     if (filtersListSelect[index] == null) {
@@ -158,12 +161,19 @@ class GetController extends GetxController {
   var menuOptionsModel = MenuOptionsModel().obs;
   var menuOptionsModelList = <MenuOptionsModel>[].obs;
 
-  //add menuOptionsModelList
+  List<String> getMenuOptionsModelListData(int index) {
+    //_getController.menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList(),
+    if (menuOptionsModelList[index].data!.result!.isNotEmpty) {
+      return menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList();
+    } else {
+      return [];
+    }
+  }
+
   void addMenuOptionsModelList(MenuOptionsModel menuOptionsModel) {
     menuOptionsModelList.add(menuOptionsModel);
   }
 
-  //clear menuOptionsModelList
   void clearMenuOptionsModelList() {
     if (menuOptionsModelList.isNotEmpty) {
       menuOptionsModelList.clear();
@@ -186,12 +196,10 @@ class GetController extends GetxController {
     }
   }
 
-  //add authorDetailProductModelList to authorDetailProductModelList
   void addAuthorDetailProductModelList(ProductModel productModel) {
     authorDetailProductModelList.add(productModel);
   }
 
-  //clear authorDetailProductModelList
   void clearAuthorDetailProductModelList() {
     authorDetailProductModelList.clear();
   }
@@ -202,27 +210,22 @@ class GetController extends GetxController {
     }
   }
 
-  //add authorDetailModelList to authorDetailModelList
   void addAuthorDetailModelList(AuthorDetailModel authorDetailModel) {
     authorDetailModelList.add(authorDetailModel);
   }
 
-  //clear authorDetailModelList
   void clearAuthorDetailModelList() {
     authorDetailModelList.clear();
   }
 
-  //changeAuthorDetailProductModelList
   void changeAuthorDetailProductModelList(int index, ProductModel productModel) {
     authorDetailProductModelList[index] = productModel;
   }
 
-  //add productModel to productModel list
   void addProductModelList(ProductModel productModel) {
     productModelList.add(productModel);
   }
 
-  //clear productModelList
   void clearProductModelList() {
     productModelList.clear();
   }
