@@ -156,24 +156,20 @@ class FilterPage extends StatelessWidget{
                       SizedBox(height: _getController.height.value * 0.01),
                       if ( _getController.menuModel.value.data != null && _getController.menuDetailModel.value.data != null)
                         Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.02,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
-                      //if (_getController.loading.value == false)
                       if (_getController.filtersListSelect.isNotEmpty &&_getController.menuOptionsModelList.isNotEmpty &&_getController.menuDetailModel.value.data!.options != null)
                         for (var index = 0; index < _getController.menuDetailModel.value.data!.options!.length; index++)
                           Column(
                               children: [
-                                if (_getController.menuOptionsModelList.length > index && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
+                                if (_getController.menuOptionsModelList.length > index)
                                   Container(
                                       width: _getController.width.value,
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
                                       child: Text('uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.ru! : '' : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500))),
-                                //if (_getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
                                   WrapChip(
-                                    //title: _getController.menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList(),
                                       title: _getController.getMenuOptionsModelListData(index),
                                       function: (int value) {_getController.changeFilterListSelect(index,int.parse('$value'));},
                                       select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null
-                                    //select: _getController.filtersListSelect[index]
                                   ),
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1)
                                   Container(
