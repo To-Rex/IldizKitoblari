@@ -20,8 +20,6 @@ class FilterPage extends StatelessWidget{
       _getController.clearMenuOptionsModelList();
       _getController.filtersListSelect.clear();
       ApiController().getMenuDetail('${_getController.menuModel.value.data!.result![menuIndex].children?[0].slug}').then((value) => {
-        _getController.filterGenre.clear(),
-        _getController.filterGenre.add(null),
         ApiController().getMenuOption(1, menuIndex, _getController.menuModel.value.data!.result![menuIndex].children?[0].slug, 10, true)
       });
     }
@@ -29,6 +27,8 @@ class FilterPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    _getController.filterGenre.clear();
+    _getController.filterGenre.add(null);
     getData();
     return Scaffold(
         appBar: AppBar(

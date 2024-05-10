@@ -43,7 +43,7 @@ class GetController extends GetxController {
   List filters = <bool>[false,false,false,false,false,false].obs;
   List filtersObj = ['','',[]].obs;
   List filtersListSelect = [].obs;
-  List filterGenre = [null].obs;
+  List filterGenre = [].obs;
 
   void addFilterListSelect(value){
     filtersListSelect.add(null);
