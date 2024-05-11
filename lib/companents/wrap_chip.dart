@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../controllers/get_controller.dart';
+import '../models/menu_model.dart';
 import '../resource/colors.dart';
 
 class WrapChip extends StatelessWidget {
@@ -9,8 +12,10 @@ class WrapChip extends StatelessWidget {
   final Function(int) function;
   var select;
   bool more;
+  var icon;
+  final GetController _getController = Get.put(GetController());
 
-  WrapChip({super.key, required this.title, required this.function, required this.select, this.more = false});
+  WrapChip({super.key, required this.title, required this.function, required this.select, this.more = false, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +45,10 @@ class WrapChip extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.008),
                         labelPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
                         side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
-                        deleteIcon: title.indexOf(i) == select ? Icon(Icons.close, color: title.indexOf(i) == select ? AppColors.white : Theme.of(context).colorScheme.onBackground, size: 17.sp) : null,
+                        deleteIcon: title.indexOf(i) == select && icon != null ? Icon(icon, color: title.indexOf(i) == select ? AppColors.white : Theme.of(context).colorScheme.onBackground, size: 17.sp) : null,
                         deleteIconColor: title.indexOf(i) == select ? Theme.of(context).colorScheme.onBackground : null,
                         deleteButtonTooltipMessage: title.indexOf(i) == select ? 'Selected' : null,
-                        onDeleted: title.indexOf(i) == select ? () {
+                        onDeleted: title.indexOf(i) == select && icon != null ? () {
                           function(title.indexOf(i));
                         } : null,
                         backgroundColor: select != null ? title.indexOf(i) == select ? AppColors.primaryColor : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2) : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),

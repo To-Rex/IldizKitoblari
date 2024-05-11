@@ -5,6 +5,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/resource/colors.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../companents/wrap_chip.dart';
+import '../../companents/wrap_chip_genre.dart';
 import '../../controllers/get_controller.dart';
 
 
@@ -29,6 +30,7 @@ class FilterPage extends StatelessWidget{
   Widget build(BuildContext context) {
     _getController.filterGenre.clear();
     _getController.filterGenre.add(null);
+    _getController.genreIndex.value = 0;
     getData();
     return Scaffold(
         appBar: AppBar(
@@ -108,12 +110,15 @@ class FilterPage extends StatelessWidget{
                       Container(width: double.infinity, margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04), child: Text('Janrlar', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))),
                       Container(margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04)),
                       if (_getController.menuModel.value.data != null)
-                        WrapChip(
-                            title: _getController.menuModel.value.data!.result![menuIndex].children!.map((e) => e.title!.uz!).toList(),
+                        WrapChipGenre(
                             function: (int value) {
-                              _getController.changeGenreListSelect(value);
+                              if (_getController.genreIndex.value == 1) {
+                                _getController.changeGenreListSelect(value);
+                              }
+                              print('==$menuIndex');
                             },
-                            select: _getController.filterGenre[0]
+                            select: _getController.genreIndex.value==0 ? null : _getController.filterGenre[menuIndex],
+                            icon: Icons.keyboard_arrow_down_outlined,
                         ),
                       Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
                       Container(width: double.infinity, margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.01), child: Text('Narx', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))),
@@ -169,7 +174,9 @@ class FilterPage extends StatelessWidget{
                                   WrapChip(
                                       title: _getController.getMenuOptionsModelListData(index),
                                       function: (int value) {_getController.changeFilterListSelect(index,int.parse('$value'));},
-                                      select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null
+                                      select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null,
+                                    icon: Icons.close,
+                                    more: false
                                   ),
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1)
                                   Container(
