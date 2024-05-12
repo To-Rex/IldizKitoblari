@@ -185,10 +185,11 @@ class FilterPage extends StatelessWidget{
                                     icon: Icons.close,
                                     more: true
                                   ),
-                                if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1)
+                                if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1 && _getController.textControllers.isNotEmpty)
                                   Container(
                                       margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                       child: TextField(
+                                          controller: _getController.textControllers[0],
                                           decoration: InputDecoration(
                                             fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                             filled: true,

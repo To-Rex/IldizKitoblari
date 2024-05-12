@@ -50,7 +50,7 @@ class WrapChip extends StatelessWidget {
                         labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
                     )
                 ),
-              if (more)
+              /*if (more)
                 InkWell(
                     onTap: () {},
                     highlightColor: Colors.transparent,
@@ -69,8 +69,8 @@ class WrapChip extends StatelessWidget {
                         backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                         labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
                     )
-                ),
-              /*if (more)
+                ),*/
+              if (more)
                 InkWell(
                     onTap: () {},
                     highlightColor: Colors.transparent,
@@ -81,24 +81,21 @@ class WrapChip extends StatelessWidget {
                       margin: EdgeInsets.only(top: Get.height * 0.01),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.r),
-                          //color: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2)
-                          color: AppColors.primaryColor
+                          color: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2)
+                          //color: AppColors.primaryColor
                       ),
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('Ko\'proq ko\'rsatish', style: TextStyle(color: Theme.of(context).colorScheme.background,
-                                fontSize: 17.sp, fontWeight: FontWeight.w400)),
-                            Icon(Icons.keyboard_arrow_down_outlined,
-                                color: Theme.of(context).colorScheme.background,
-                                size: 25.sp)
+                            Text('Ko\'proq ko\'rsatish', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)),
+                            Icon(Icons.keyboard_arrow_down_outlined, color: Theme.of(context).colorScheme.onBackground, size: 25.sp)
                           ],
                         )
                       )
                     )
-                )*/
+                )
             ]
         )
     );
