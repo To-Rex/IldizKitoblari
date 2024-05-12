@@ -215,7 +215,6 @@ class FilterPage extends StatelessWidget{
                                 var text ='';
                                 for (var index = 0; index < _getController.textControllers.length; index++) {
                                   print(_getController.textControllers[index].text != '' ? _getController.textControllers[index].text.toString() : '');
-                                  //print(_getController.textControllers.length);
                                   text = '$text${_getController.textControllers[index].text}';
                                 }
                                 print(text);
