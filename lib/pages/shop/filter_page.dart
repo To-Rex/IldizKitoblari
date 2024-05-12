@@ -114,10 +114,12 @@ class FilterPage extends StatelessWidget{
                             function: (int value) {
                               if (_getController.genreIndex.value == 1) {
                                 _getController.changeGenreListSelect(value);
+                                print('${_getController.filterGenre}');
+                              } else if (_getController.genreIndex.value == 2) {
+                                _getController.changeGenreListSelect(value);
                               }
-                              print('==$menuIndex');
                             },
-                            select: _getController.genreIndex.value==0 ? null : _getController.filterGenre[menuIndex],
+                            select: _getController.genreIndex.value == 0 ? null : _getController.filterGenre[menuIndex],
                             icon: Icons.keyboard_arrow_down_outlined,
                         ),
                       Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),

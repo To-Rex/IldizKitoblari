@@ -46,6 +46,7 @@ class GetController extends GetxController {
   List filterGenre = [].obs;
   var genreIndex = 0.obs;
   var genreIndexSub = 0.obs;
+  var genreIndexSubSub = 0.obs;
 
   void addFilterListSelect(value){
     filtersListSelect.add(null);

@@ -25,13 +25,16 @@ class WrapChipGenre extends StatelessWidget {
             spacing: Get.width * 0.02,
             runSpacing: Get.height * 0.006,
             children: [
-              if (_getController.genreIndex.value == 1)
+              if (_getController.genreIndex.value == 1 || _getController.genreIndex.value == 2)
                 InkWell(
                     onTap: () {
                       if (_getController.genreIndex.value == 1) {
                         _getController.genreIndex.value = 0;
+                      } else {
+                        _getController.genreIndex.value = 1;
+                        select = null;
                       }
-                      function(0);
+                      _getController.filterGenre[0]= null;
                     },
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -80,6 +83,12 @@ class WrapChipGenre extends StatelessWidget {
                       onTap: () {
                         select = null;
                         function(_getController.menuModel.value.data!.result![_getController.genreIndexSub.value].children!.indexOf(i));
+                        if (i.children != null) {
+                          _getController.genreIndex.value = 2;
+                          _getController.genreIndexSubSub.value = _getController.menuModel.value.data!.result![_getController.genreIndexSub.value].children!.indexOf(i);
+                          _getController.filterGenre[0]= null;
+                        }
+                        print(_getController.genreIndexSubSub.value);
                         },
                       highlightColor: Colors.transparent,
                       splashColor: Colors.transparent,
@@ -95,6 +104,28 @@ class WrapChipGenre extends StatelessWidget {
                           onDeleted: i.children == null ? null : () {},
                           side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
                           backgroundColor: select != null ?  _getController.genreIndex.value != 1 || _getController.menuModel.value.data!.result![_getController.genreIndexSub.value].children!.indexOf(i) == select
+                              ? AppColors.primaryColor : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2) : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                          labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
+                      )
+                  ),
+              if (_getController.genreIndex.value == 2 && _getController.genreIndexSub.value != null && _getController.genreIndexSubSub.value != null)
+                for (var i in _getController.menuModel.value.data!.result![_getController.genreIndexSub.value].children![_getController.genreIndexSubSub.value].children!)
+                  InkWell(
+                      onTap: () {
+                        select = null;
+                        function(_getController.menuModel.value.data!.result![_getController.genreIndexSub.value].children![_getController.genreIndexSubSub.value].children!.indexOf(i));
+                        print(_getController.genreIndexSubSub.value);
+                      },
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      child: Chip(
+                          visualDensity: VisualDensity.compact,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+                          label: Text(i.title!.uz.toString(), style: TextStyle(color: select != null ?  _getController.genreIndex.value != 2 ||  _getController.menuModel.value.data!.result![_getController.genreIndexSub.value].children![_getController.genreIndexSubSub.value].children!.indexOf(i) == select ? AppColors.white : AppColors.black : AppColors.black, fontSize: 17.sp, fontWeight: FontWeight.w400)),
+                          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.008),
+                          labelPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
+                          side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
+                          backgroundColor: select != null ?  _getController.genreIndex.value != 2 || _getController.menuModel.value.data!.result![_getController.genreIndexSub.value].children![_getController.genreIndexSubSub.value].children!.indexOf(i) == select
                               ? AppColors.primaryColor : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2) : Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                           labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
                       )
