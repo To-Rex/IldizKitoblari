@@ -458,8 +458,14 @@ class GetController extends GetxController {
 
   void clearControllers() {
     if (textControllers.isNotEmpty) {
+      //controlIndex = 0;
       textControllers.clear();
     }
   }
 
+  /*int controlIndex = 0;
+  TextEditingController getTextControllers() {
+    controlIndex++;
+    return textControllers[controlIndex - 1];
+  }*/
 }

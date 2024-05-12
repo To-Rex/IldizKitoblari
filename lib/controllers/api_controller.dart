@@ -328,9 +328,10 @@ class ApiController extends GetxController {
           headers: {'Accept-Language': Get.locale!.languageCode},
         );
         if (response.statusCode == 200 || response.statusCode == 201) {
-          if (_getController.menuDetailModel.value.data!.options![i].optionId!.type == 1){
+          _getController.addTextControllers();
+          /*if (_getController.menuDetailModel.value.data!.options![i].optionId!.type == 1){
             _getController.addTextControllers();
-          }
+          }*/
           if (!add) {
             _getController.clearMenuOptionsModelList();
             _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));

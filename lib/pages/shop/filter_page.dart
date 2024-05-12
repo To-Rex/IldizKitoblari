@@ -189,7 +189,7 @@ class FilterPage extends StatelessWidget{
                                   Container(
                                       margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                       child: TextField(
-                                          controller: _getController.textControllers[0],
+                                          controller: _getController.textControllers.length > index ? _getController.textControllers[index] : null,
                                           decoration: InputDecoration(
                                             fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                             filled: true,
@@ -209,7 +209,17 @@ class FilterPage extends StatelessWidget{
                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01, top: _getController.height.value * 0.05, bottom: _getController.height.value * 0.01),
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
-                              onPressed: () {Get.back();},
+                              onPressed: () {
+                                //Get.back();
+                                //_getController.textControllers
+                                var text ='';
+                                for (var index = 0; index < _getController.textControllers.length; index++) {
+                                  print(_getController.textControllers[index].text);
+                                  print(_getController.textControllers.length);
+                                  text = text + _getController.textControllers[index].text;
+                                }
+                                print(text);
+                              },
                               child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 20.sp, fontWeight: FontWeight.w500)))
                       )
                     ]
