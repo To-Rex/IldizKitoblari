@@ -446,7 +446,20 @@ class GetController extends GetxController {
   final TextEditingController commentController = TextEditingController();
   final TextEditingController ratingController = TextEditingController();
 
+  //list text fild controllers
+  final List<TextEditingController> textControllers = [];
+
   final RefreshController refreshController = RefreshController(initialRefresh: false);
   final SwiperController swiperController = SwiperController();
+
+  void addTextControllers() {
+    textControllers.add(TextEditingController());
+  }
+
+  void clearControllers() {
+    if (textControllers.isNotEmpty) {
+      textControllers.clear();
+    }
+  }
 
 }

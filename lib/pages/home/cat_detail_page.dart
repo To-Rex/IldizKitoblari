@@ -148,7 +148,8 @@ class CatDetailPage extends StatelessWidget {
                           child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
                       IconButton(
                           onPressed: () {
-                            Get.to(() => FilterPage(menuIndex: menuIndex), transition: Transition.topLevel);
+                            Get.to(() => FilterPage(
+                                menuIndex: menuIndex, menuSlug: menuSlug), transition: Transition.topLevel);
                           },
                           icon: Icon(
                             TablerIcons.adjustments_horizontal,

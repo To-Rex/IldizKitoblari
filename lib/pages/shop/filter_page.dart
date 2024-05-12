@@ -11,7 +11,8 @@ import '../../controllers/get_controller.dart';
 
 class FilterPage extends StatelessWidget{
   int menuIndex;
-  FilterPage({super.key, required this.menuIndex});
+  var menuSlug;
+  FilterPage({super.key, required this.menuIndex, required this.menuSlug});
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
@@ -20,8 +21,10 @@ class FilterPage extends StatelessWidget{
     if (_getController.menuModel.value.data!.result![menuIndex].children != null) {
       _getController.clearMenuOptionsModelList();
       _getController.filtersListSelect.clear();
-      ApiController().getMenuDetail('${_getController.menuModel.value.data!.result![menuIndex].children?[0].slug}').then((value) => {
-        ApiController().getMenuOption(1, menuIndex, _getController.menuModel.value.data!.result![menuIndex].children?[0].slug, 10, true)
+      _getController.clearControllers();
+      ApiController().getMenuDetail('$menuSlug').then((value) => {
+        ApiController().getMenuOption(1, menuIndex, menuSlug
+            , 10, true)
       });
     }
   }
@@ -47,6 +50,8 @@ class FilterPage extends StatelessWidget{
               TextButton(
                   onPressed: () {
                     _getController.clearFilters();
+                    debugPrint(_getController.textControllers.length.toString());
+                    debugPrint(menuSlug.toString());
                   },
                   child: Text('Filterlarni o\'chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 18.sp, fontWeight: FontWeight.w500))),
               SizedBox(width: 10.sp)
@@ -178,7 +183,7 @@ class FilterPage extends StatelessWidget{
                                       function: (int value) {_getController.changeFilterListSelect(index,int.parse('$value'));},
                                       select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null,
                                     icon: Icons.close,
-                                    more: false
+                                    more: true
                                   ),
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1)
                                   Container(

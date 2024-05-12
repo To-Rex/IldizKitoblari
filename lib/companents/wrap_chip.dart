@@ -21,12 +21,7 @@ class WrapChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: Get.width,
-        padding: EdgeInsets.only(
-            left: Get.width * 0.03,
-            right: Get.width * 0.01,
-            top: Get.height * 0.02,
-            bottom: Get.height * 0.02
-        ),
+        padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03, top: Get.height * 0.02, bottom: Get.height * 0.02),
         child: Wrap(
             spacing: Get.width * 0.02,
             runSpacing: Get.height * 0.006,
@@ -63,18 +58,47 @@ class WrapChip extends StatelessWidget {
                     child: Chip(
                         visualDensity: VisualDensity.compact,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-                        label: Text('Ko\'proq', style: TextStyle(color: AppColors.white, fontSize: 17.sp, fontWeight: FontWeight.w400)),
+                        label: Text('Ko\'proq', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)),
                         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.008),
-                        deleteIcon: Icon(Icons.keyboard_arrow_down_outlined, color: AppColors.white, size: 25.sp),
+                        deleteIcon: Icon(Icons.keyboard_arrow_down_outlined, color: Theme.of(context).colorScheme.onBackground, size: 25.sp),
                         deleteIconColor: AppColors.white,
                         deleteButtonTooltipMessage: 'Selected',
                         onDeleted: () {},
                         labelPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
                         side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
-                        backgroundColor: AppColors.primaryColor,
+                        backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                         labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
                     )
-                )
+                ),
+              /*if (more)
+                InkWell(
+                    onTap: () {},
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    child: Container(
+                      width: Get.width,
+                      height: Get.height * 0.045,
+                      margin: EdgeInsets.only(top: Get.height * 0.01),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.r),
+                          //color: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2)
+                          color: AppColors.primaryColor
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Ko\'proq ko\'rsatish', style: TextStyle(color: Theme.of(context).colorScheme.background,
+                                fontSize: 17.sp, fontWeight: FontWeight.w400)),
+                            Icon(Icons.keyboard_arrow_down_outlined,
+                                color: Theme.of(context).colorScheme.background,
+                                size: 25.sp)
+                          ],
+                        )
+                      )
+                    )
+                )*/
             ]
         )
     );
