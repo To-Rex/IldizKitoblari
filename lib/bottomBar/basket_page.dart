@@ -13,13 +13,6 @@ class BasketPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
   late TabController _tabController;
 
-  void _getData() {
-
-  }
-
-  void _onLoading() async {
-
-  }
   @override
   Widget build(BuildContext context) {
     _tabController = TabController(length: 2, vsync: Navigator.of(context));
@@ -153,6 +146,7 @@ class BasketPage extends StatelessWidget {
                                                             )
                                                         ),
                                                         Column(
+
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
                                                               Text(_getController.basketModel.value.data!.result![index].name!.uz!),
