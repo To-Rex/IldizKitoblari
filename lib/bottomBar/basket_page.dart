@@ -57,18 +57,10 @@ class BasketPage extends StatelessWidget {
                                   child: Container(
                                     constraints: BoxConstraints.expand(height:  Get.height * 0.06),
                                     margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
-                                    padding: EdgeInsets.all(Get.width * 0.015),
+                                    padding: EdgeInsets.all(Get.width * 0.01),
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
                                       borderRadius: BorderRadius.circular(15),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.2),
-                                          spreadRadius: 2,
-                                          blurRadius: 2,
-                                          offset: const Offset(0, 2) // changes position of shadow
-                                        )
-                                      ]
                                     ),
                                     child: TabBar(
                                       onTap: (index) {},
@@ -78,12 +70,20 @@ class BasketPage extends StatelessWidget {
                                       labelStyle: TextStyle(
                                         fontSize: Get.width * 0.04,
                                         fontWeight: FontWeight.w500,
-                                        color: Colors.white
+                                        color: Theme.of(context).colorScheme.onBackground
                                       ),
-                                      unselectedLabelColor: Colors.blue, // Unselected text color
+                                      unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
                                       indicator: BoxDecoration(
-                                        color: Colors.blue, // Background color for the selected tab
-                                        borderRadius: BorderRadius.circular(10)
+                                        color: Theme.of(context).colorScheme.background,
+                                        borderRadius: BorderRadius.circular(11),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.3),
+                                            spreadRadius: 2,
+                                            blurRadius: 2,
+                                            offset: const Offset(0, 2)
+                                          )
+                                        ]
                                       ),
                                       tabs: [
                                         Tab(
@@ -117,6 +117,26 @@ class BasketPage extends StatelessWidget {
                                       ]
                                     )
                                   )
+                                ),
+                                SizedBox(
+                                    width: Get.width,
+                                    child: TabBarView(
+                                      controller: _tabController,
+                                      children: [
+                                        Column(
+                                            children: [
+                                              Text('test', style: TextStyle(fontSize: _getController.width.value * 0.04)),
+                                            ]),
+                                        const Column(
+                                            children: [
+                                              Expanded(child: Text('test')),
+                                              Center(
+                                                child: Text('test')
+                                              )
+                                            ]
+                                        )
+                                      ],
+                                    )
                                 ),
                                 SizedBox(height: _getController.width.value * 0.1)
                               ]
