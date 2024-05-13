@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,7 +10,7 @@ import '../resource/colors.dart';
 class BasketPage extends StatelessWidget {
   BasketPage({super.key});
   final GetController _getController = Get.put(GetController());
-
+  late TabController _tabController;
 
   void _getData() {
 
@@ -20,6 +21,7 @@ class BasketPage extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
+    _tabController = TabController(length: 2, vsync: Navigator.of(context));
     return Scaffold(
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -48,6 +50,74 @@ class BasketPage extends StatelessWidget {
                           decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                           child: Column(
                               children: [
+                                Container(
+                                  width: Get.width,
+                                  height: Get.height * 0.055,
+                                  margin: EdgeInsets.only(top: Get.height * 0.02),
+                                  child: Container(
+                                    constraints: BoxConstraints.expand(height:  Get.height * 0.06),
+                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
+                                    padding: EdgeInsets.all(Get.width * 0.015),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(15),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.2),
+                                          spreadRadius: 2,
+                                          blurRadius: 2,
+                                          offset: const Offset(0, 2) // changes position of shadow
+                                        )
+                                      ]
+                                    ),
+                                    child: TabBar(
+                                      onTap: (index) {},
+                                      indicatorSize: TabBarIndicatorSize.tab,
+                                      dividerColor: Colors.transparent,
+                                      controller: _tabController,
+                                      labelStyle: TextStyle(
+                                        fontSize: Get.width * 0.04,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white
+                                      ),
+                                      unselectedLabelColor: Colors.blue, // Unselected text color
+                                      indicator: BoxDecoration(
+                                        color: Colors.blue, // Background color for the selected tab
+                                        borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      tabs: [
+                                        Tab(
+                                          child: SizedBox(
+                                            width: Get.width * 0.6,
+                                            child: Center(
+                                              child: Text(
+                                                'Do\'kon'.tr,
+                                                style: TextStyle(
+                                                  fontSize: Get.width * 0.04,
+                                                  fontWeight: FontWeight.w500
+                                                )
+                                              )
+                                            )
+                                          )
+                                        ),
+                                        Tab(
+                                          child: SizedBox(
+                                            width: Get.width * 0.6,
+                                            child: Center(
+                                              child: Text(
+                                                'Kutubxona'.tr,
+                                                style: TextStyle(
+                                                  fontSize: Get.width * 0.04,
+                                                  fontWeight: FontWeight.w500
+                                                )
+                                              )
+                                            )
+                                          )
+                                        )
+                                      ]
+                                    )
+                                  )
+                                ),
                                 SizedBox(height: _getController.width.value * 0.1)
                               ]
                           )
@@ -56,8 +126,9 @@ class BasketPage extends StatelessWidget {
                 ))
             )
         ),
+
         bottomNavigationBar: BottomAppBar(
-          height: _getController.height.value * 0.09,
+          height: 70.h,
           surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
           elevation: 20,
           shadowColor: Theme.of(context).colorScheme.secondary,
@@ -72,8 +143,8 @@ class BasketPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Jami miqdor:'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                            Text('25 000 so\'m'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
+                            Text('Jami miqdor:'.tr, style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                            Text('25 000 so\'m'.tr, style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
                           ],
                         )
                     ),
