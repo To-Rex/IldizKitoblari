@@ -52,6 +52,8 @@ class ApiController extends GetxController {
   static const String _authorProduct = '$_baseUrl/api/v1/product/list';
   //https://ildizkitoblari.uz/api/v1/options/select/list?page=1&option_id=643a5ed8590e7e6f7fb931c6&menu_slug=badiiy-kitoblar&limit=10
   static const String _getMenuOptions = '$_baseUrl/api/v1/options/select/list';
+  //https://ildizkitoblari.uz/api/v1/cart/list
+  static const String _getCart = '$_baseUrl/api/v1/cart/list';
 
 
   //show toast message
@@ -638,6 +640,19 @@ class ApiController extends GetxController {
         _getController.addItemPage();
       }
     }
+  }
+
+  //basket
+  //------------------------------------------------------------------------------------------------
+
+  Future<void> getBasket() async {
+    var response = await post(Uri.parse('$_getCart'),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      },
+    );
+    debugPrint('basket: ${response.body}');
   }
 
 }

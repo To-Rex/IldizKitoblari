@@ -32,7 +32,7 @@ class BasketPage extends StatelessWidget {
                     children: [
                       SizedBox(
                           height: 112.h,
-                          width: _getController.width.value,
+                          width: double.infinity,
                           child: Stack(
                               children: [
                                 Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
@@ -46,7 +46,7 @@ class BasketPage extends StatelessWidget {
                           )
                       ),
                       Container(
-                          width: _getController.width.value,
+                          width: double.infinity,
                           decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                           child: Column(
                               children: [
@@ -119,26 +119,24 @@ class BasketPage extends StatelessWidget {
                                   )
                                 ),
                                 SizedBox(
-                                    width: Get.width,
-                                    child: TabBarView(
-                                      controller: _tabController,
-                                      children: [
-                                        Column(
-                                            children: [
-                                              Text('test', style: TextStyle(fontSize: _getController.width.value * 0.04)),
-                                            ]),
-                                        const Column(
-                                            children: [
-                                              Expanded(child: Text('test')),
-                                              Center(
-                                                child: Text('test')
-                                              )
-                                            ]
-                                        )
-                                      ],
-                                    )
-                                ),
-                                SizedBox(height: _getController.width.value * 0.1)
+                                  width: Get.width,
+                                  height: Get.height,
+                                  child: TabBarView(
+                                    controller: _tabController,
+                                    children: [
+                                      Column(
+                                          children: [
+                                            Text('ddssdd'),
+                                          ]
+                                      ),
+                                      Container(
+                                        width: Get.width,
+                                        height: Get.height * 0.6,
+                                        color: Theme.of(context).colorScheme.error
+                                      )
+                                    ]
+                                  )
+                                )
                               ]
                           )
                       )
