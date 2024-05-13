@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
@@ -22,6 +23,7 @@ class BasketPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _tabController = TabController(length: 2, vsync: Navigator.of(context));
+    ApiController().getBasket();
     return Scaffold(
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -126,7 +128,43 @@ class BasketPage extends StatelessWidget {
                                     children: [
                                       Column(
                                           children: [
-                                            Text('ddssdd'),
+                                            SizedBox(
+                                              height: Get.height,
+                                              width: Get.width,
+                                              child: ListView.builder(
+                                                  itemCount: _getController.basketModel.value.data!.result!.length,
+                                                  itemBuilder: (context, index){
+                                                    return Row(
+                                                      children: [
+                                                        //checkbox
+                                                        Checkbox(
+                                                          value: false,
+                                                          onChanged: (value) {},
+                                                        ),
+                                                        //image and text
+                                                        Container(
+                                                            width: Get.width * 0.3,
+                                                            height: Get.height * 0.15,
+                                                            margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
+                                                            decoration: BoxDecoration(
+                                                                image: DecorationImage(
+                                                                  image: NetworkImage(_getController.basketModel.value.data!.result![index].image!),
+                                                                )
+                                                            )
+                                                        ),
+                                                        Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text(_getController.basketModel.value.data!.result![index].name!.uz!),
+                                                              Text(_getController.basketModel.value.data!.result![index].price.toString()),
+                                                            ]
+                                                        )
+                                                      ],
+                                                    );
+                                                  }
+                                              )
+                                            )
+
                                           ]
                                       ),
                                       Container(

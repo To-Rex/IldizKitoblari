@@ -14,6 +14,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
+import '../models/basket_model.dart';
 import '../models/login_model.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
@@ -163,6 +164,17 @@ class GetController extends GetxController {
   var authorDetailProductModelList = <ProductModel>[].obs;
   var menuOptionsModel = MenuOptionsModel().obs;
   var menuOptionsModelList = <MenuOptionsModel>[].obs;
+  var basketModel = BasketModel().obs;
+
+  void changeBasketModel(BasketModel basketModel) {
+    this.basketModel.value = basketModel;
+  }
+
+  void clearBasketModel() {
+    basketModel.value = BasketModel();
+  }
+
+
 
   List<String> getMenuOptionsModelListData(int index) {
     //_getController.menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList(),

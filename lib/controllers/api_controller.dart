@@ -10,6 +10,7 @@ import 'package:ildiz/models/login_model.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
+import '../models/basket_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
@@ -652,7 +653,14 @@ class ApiController extends GetxController {
         'Authorization': 'Bearer ${GetStorage().read('token')}',
       },
     );
+    debugPrint('token: ${GetStorage().read('token')}');
     debugPrint('basket: ${response.body}');
+    if (response.statusCode == 200) {
+      _getController.clearBasketModel();
+      _getController.changeBasketModel(BasketModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
   }
 
 }
