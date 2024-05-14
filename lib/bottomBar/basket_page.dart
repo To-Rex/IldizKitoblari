@@ -208,8 +208,8 @@ class BasketPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('Jami miqdor:'.tr, style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                            Text('25 000 so\'m'.tr, style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
-                          ],
+                            Text('${_getController.getPrice()} ${'so‘m'.tr}', style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
+                          ]
                         )
                     ),
                     SizedBox(
@@ -232,8 +232,7 @@ class BasketPage extends StatelessWidget {
                       )
                   ]
               )
-          ),
-          ),
+          ))
         )
     );
   }

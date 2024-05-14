@@ -183,8 +183,6 @@ class GetController extends GetxController {
     basketModel.value = BasketModel();
   }
 
-
-
   List<String> getMenuOptionsModelListData(int index) {
     //_getController.menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList(),
     if (menuOptionsModelList[index].data!.result!.isNotEmpty) {
@@ -475,12 +473,25 @@ class GetController extends GetxController {
   late TabController tabController;
 
   double calculateTotalHeight() {
-    if (basketModel.value != null && basketModel.value.data != null && basketModel.value.data!.result != null) {
+    if (basketModel.value.data != null && basketModel.value.data!.result != null) {
       return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.085;
     } else {
       return Get.height;
     }
+  }
 
+  String getPrice() {
+    if (basketModel.value.data != null && basketModel.value.data?.result != null) {
+      int total = 0;
+      for (var item in basketModel.value.data!.result!) {
+        if (item.price != null) {
+          total += item.price!;
+        }
+      }
+      return total.toString();
+    } else {
+      return '';
+    }
   }
 
   void addTextControllers() {
