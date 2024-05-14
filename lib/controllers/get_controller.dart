@@ -463,6 +463,11 @@ class GetController extends GetxController {
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);
   final SwiperController swiperController = SwiperController();
+  late TabController tabController;
+
+  double calculateTotalHeight() {
+    return basketModel.value.data!.result!.length * Get.height * 0.15;
+  }
 
   void addTextControllers() {
     textControllers.add(TextEditingController());

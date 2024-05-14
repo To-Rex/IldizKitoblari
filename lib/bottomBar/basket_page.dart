@@ -1,182 +1,196 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../companents/basket/list_shop.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
 class BasketPage extends StatelessWidget {
   BasketPage({super.key});
   final GetController _getController = Get.put(GetController());
-  late TabController _tabController;
+
+  final RefreshController _refreshController = RefreshController();
 
   @override
   Widget build(BuildContext context) {
-    _tabController = TabController(length: 2, vsync: Navigator.of(context));
+    _getController.tabController = TabController(length: 2, vsync: Navigator.of(context));
     ApiController().getBasket();
     return Scaffold(
-        body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Container(
-                width: _getController.width.value,
-                decoration: const BoxDecoration(color: AppColors.backgroundApp),
-                child: Obx(() => Column(
-                    children: [
-                      SizedBox(
-                          height: 112.h,
-                          width: double.infinity,
-                          child: Stack(
-                              children: [
-                                Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                                Positioned(
-                                    height: _getController.height.value * 0.2,
-                                    top: _getController.height.value * 0.062,
-                                    left: _getController.width.value * 0.03,
-                                    child: Text('Savatcha'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
-                                )
-                              ]
-                          )
-                      ),
-                      Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
-                          child: Column(
-                              children: [
-                                Container(
-                                  width: Get.width,
-                                  height: Get.height * 0.055,
-                                  margin: EdgeInsets.only(top: Get.height * 0.02),
-                                  child: Container(
-                                    constraints: BoxConstraints.expand(height:  Get.height * 0.06),
-                                    margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
-                                    padding: EdgeInsets.all(Get.width * 0.01),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: TabBar(
-                                      onTap: (index) {},
-                                      indicatorSize: TabBarIndicatorSize.tab,
-                                      dividerColor: Colors.transparent,
-                                      controller: _tabController,
-                                      labelStyle: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.w500,
-                                        color: Theme.of(context).colorScheme.onBackground
-                                      ),
-                                      unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-                                      indicator: BoxDecoration(
-                                        color: Theme.of(context).colorScheme.background,
-                                        borderRadius: BorderRadius.circular(11),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.3),
-                                            spreadRadius: 2,
-                                            blurRadius: 2,
-                                            offset: const Offset(0, 2)
-                                          )
-                                        ]
-                                      ),
-                                      tabs: [
-                                        Tab(
-                                          child: SizedBox(
-                                            width: Get.width * 0.6,
-                                            child: Center(
-                                              child: Text(
-                                                'Do\'kon'.tr,
-                                                style: TextStyle(
-                                                  fontSize: Get.width * 0.04,
-                                                  fontWeight: FontWeight.w500
-                                                )
-                                              )
-                                            )
-                                          )
-                                        ),
-                                        Tab(
-                                          child: SizedBox(
-                                            width: Get.width * 0.6,
-                                            child: Center(
-                                              child: Text(
-                                                'Kutubxona'.tr,
-                                                style: TextStyle(
-                                                  fontSize: Get.width * 0.04,
-                                                  fontWeight: FontWeight.w500
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                      ]
-                                    )
+        body: SmartRefresher(
+          enablePullDown: true,
+          enablePullUp: true,
+          header: CustomHeader(
+            builder: (BuildContext context, RefreshStatus? mode) {
+              Widget body;
+              if (mode == RefreshStatus.idle) {
+                body = const Text("Ma`lumotlarni yangilash uchun tashlang");
+              } else if (mode == RefreshStatus.refreshing) {
+                body = const CircularProgressIndicator(
+                  color: Colors.blue,
+                  backgroundColor: Colors.white,
+                  strokeWidth: 2,
+                );
+              } else if (mode == RefreshStatus.failed) {
+                body = const Text("Ex nimadir xato ketdi",
+                    style: TextStyle(fontSize: 14, color: Colors.red));
+              } else if (mode == RefreshStatus.canRefresh) {
+                body = const Text("Ma`lumotlarni yangilash uchun tashlang");
+              } else {
+                body = const Text("Ma`lumotlar yangilandi");
+              }
+              return SizedBox(
+                height: _getController.height.value * 0.1,
+                child: Center(child: body),
+              );
+            },
+          ),
+          footer: CustomFooter(
+            builder: (BuildContext context, LoadStatus? mode) {
+              Widget body;
+              if (mode == LoadStatus.idle) {
+                body = const SizedBox();
+              } else if (mode == LoadStatus.loading) {
+                body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+              } else if (mode == LoadStatus.failed) {
+                body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
+              } else if (mode == LoadStatus.canLoading) {
+                body = const SizedBox();
+              } else {
+                body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));
+              }
+              return SizedBox(
+                height: _getController.height.value * 0.1,
+                child: Center(child: body),
+              );
+            },
+          ),
+          onLoading: () async {_refreshController.loadComplete();},
+          onRefresh: () async {_refreshController.refreshCompleted();},
+          controller: _refreshController,
+          child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Container(
+                  width: _getController.width.value,
+                  decoration: const BoxDecoration(color: AppColors.backgroundApp),
+                  child: Obx(() => Column(
+                      children: [
+                        SizedBox(
+                            height: 112.h,
+                            width: double.infinity,
+                            child: Stack(
+                                children: [
+                                  Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
+                                  Positioned(
+                                      height: _getController.height.value * 0.2,
+                                      top: _getController.height.value * 0.062,
+                                      left: _getController.width.value * 0.03,
+                                      child: Text('Savatcha'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
                                   )
-                                ),
-                                SizedBox(
-                                  width: Get.width,
-                                  height: Get.height,
-                                  child: TabBarView(
-                                    controller: _tabController,
-                                    children: [
-                                      Column(
-                                          children: [
-                                            SizedBox(
-                                              height: Get.height,
-                                              width: Get.width,
-                                              child: ListView.builder(
-                                                  itemCount: _getController.basketModel.value.data!.result!.length,
-                                                  itemBuilder: (context, index){
-                                                    return Row(
-                                                      children: [
-                                                        //checkbox
-                                                        Checkbox(
-                                                          value: false,
-                                                          onChanged: (value) {},
-                                                        ),
-                                                        //image and text
-                                                        Container(
-                                                            width: Get.width * 0.3,
-                                                            height: Get.height * 0.15,
-                                                            margin: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
-                                                            decoration: BoxDecoration(
-                                                                image: DecorationImage(
-                                                                  image: NetworkImage(_getController.basketModel.value.data!.result![index].image!),
+                                ]
+                            )
+                        ),
+                        Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
+                            child: Column(
+                                children: [
+                                  Container(
+                                      width: Get.width,
+                                      height: Get.height * 0.055,
+                                      margin: EdgeInsets.only(top: Get.height * 0.02),
+                                      child: Container(
+                                          constraints: BoxConstraints.expand(height:  Get.height * 0.06),
+                                          margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
+                                          padding: EdgeInsets.all(Get.width * 0.01),
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                                            borderRadius: BorderRadius.circular(15),
+                                          ),
+                                          child: TabBar(
+                                              onTap: (index) {
+                                                _getController.tabController.animateTo(index);
+                                                _getController.tabController.index = index;
+                                                print('index: $index');
+                                              },
+                                              indicatorSize: TabBarIndicatorSize.tab,
+                                              dividerColor: Colors.transparent,
+                                              controller: _getController.tabController,
+                                              labelStyle: TextStyle(
+                                                  fontSize: Get.width * 0.04,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Theme.of(context).colorScheme.onBackground
+                                              ),
+                                              unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                                              indicator: BoxDecoration(
+                                                  color: Theme.of(context).colorScheme.background,
+                                                  borderRadius: BorderRadius.circular(11),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        color: Colors.grey.withOpacity(0.3),
+                                                        spreadRadius: 2,
+                                                        blurRadius: 2,
+                                                        offset: const Offset(0, 2)
+                                                    )
+                                                  ]
+                                              ),
+                                              tabs: [
+                                                Tab(
+                                                    child: SizedBox(
+                                                        width: Get.width * 0.6,
+                                                        child: Center(
+                                                            child: Text(
+                                                                'Do\'kon'.tr,
+                                                                style: TextStyle(
+                                                                    fontSize: Get.width * 0.04,
+                                                                    fontWeight: FontWeight.w500
                                                                 )
                                                             )
-                                                        ),
-                                                        Column(
-
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: [
-                                                              Text(_getController.basketModel.value.data!.result![index].name!.uz!),
-                                                              Text(_getController.basketModel.value.data!.result![index].price.toString()),
-                                                            ]
                                                         )
-                                                      ],
-                                                    );
-                                                  }
-                                              )
-                                            )
-
-                                          ]
-                                      ),
-                                      Container(
-                                        width: Get.width,
-                                        height: Get.height * 0.6,
-                                        color: Theme.of(context).colorScheme.error
+                                                    )
+                                                ),
+                                                Tab(
+                                                    child: SizedBox(
+                                                        width: Get.width * 0.6,
+                                                        child: Center(
+                                                            child: Text(
+                                                                'Kutubxona'.tr,
+                                                                style: TextStyle(
+                                                                    fontSize: Get.width * 0.04,
+                                                                    fontWeight: FontWeight.w500
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                              ]
+                                          )
                                       )
-                                    ]
+                                  ),
+                                  SizedBox(
+                                    height: _getController.calculateTotalHeight(),
+                                    child: TabBarView(
+                                        controller: _getController.tabController,
+                                        children: [
+                                          ListShop(),
+                                          Text('Kutubxonaga kirish'.tr)
+                                        ]
+                                    )
                                   )
-                                )
-                              ]
-                          )
-                      )
-                    ]
-                ))
-            )
-        ),
 
+                                ]
+                            )
+                        )
+                      ]
+                  ))
+              )
+          )
+      ),
         bottomNavigationBar: BottomAppBar(
           height: 70.h,
           surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
