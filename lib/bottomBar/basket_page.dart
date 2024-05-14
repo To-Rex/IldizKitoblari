@@ -182,7 +182,6 @@ class BasketPage extends StatelessWidget {
                                         ]
                                     )
                                   )
-
                                 ]
                             )
                         )
