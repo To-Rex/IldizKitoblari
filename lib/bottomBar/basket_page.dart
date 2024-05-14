@@ -190,48 +190,51 @@ class BasketPage extends StatelessWidget {
               )
           )
         ),
-        bottomNavigationBar: BottomAppBar(
-          height: 70.h,
-          surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
-          elevation: 20,
-          shadowColor: Theme.of(context).colorScheme.secondary,
-          color: Theme.of(context).colorScheme.background,
-          child: Obx(() => Container(
-              margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        child: Column(
+        bottomNavigationBar: Obx(() => _getController.basketModel.value.data != null && _getController.basketModel.value.data!.result != null && _getController.basketModel.value.data!.result!.isNotEmpty
+            ? BottomAppBar(
+        height: 70.h,
+        surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
+        elevation: 20,
+        shadowColor: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.background,
+        child: Obx(() => Container(
+            margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                      child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('Jami miqdor:'.tr, style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
                             Text('${_getController.getPrice()} ${'so‘m'.tr}', style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
                           ]
-                        )
-                    ),
-                    SizedBox(
-                          width: _getController.width.value * 0.35,
-                          height: _getController.height.value * 0.06,
-                          child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                              child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
-                          )),
-                    Container(
-                          width: _getController.width.value * 0.13,
-                          height: _getController.height.value * 0.06,
-                          margin: EdgeInsets.only(left: _getController.width.value * 0.02),
-                          child: IconButton(
-                              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                              icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.07),
-                              onPressed: () {}
-                          )
                       )
-                  ]
-              )
-          ))
+                  ),
+                  SizedBox(
+                      width: _getController.width.value * 0.35,
+                      height: _getController.height.value * 0.06,
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                          child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
+                      )),
+                  Container(
+                      width: _getController.width.value * 0.13,
+                      height: _getController.height.value * 0.06,
+                      margin: EdgeInsets.only(left: _getController.width.value * 0.02),
+                      child: IconButton(
+                          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                          icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.07),
+                          onPressed: () {}
+                      )
+                  )
+                ]
+            )
+        ))
+    )
+            : const SizedBox()
         )
     );
   }

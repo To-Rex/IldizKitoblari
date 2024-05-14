@@ -473,11 +473,17 @@ class GetController extends GetxController {
   late TabController tabController;
 
   double calculateTotalHeight() {
-    if (basketModel.value.data != null && basketModel.value.data!.result != null) {
-      return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.085;
+
+    if (tabController.index == 0) {
+      if (basketModel.value.data != null && basketModel.value.data!.result != null && basketModel.value.data!.result!.isNotEmpty) {
+        return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.085;
+      } else {
+        return Get.height * 0.7;
+      }
     } else {
-      return Get.height;
+      return Get.height * 0.7;
     }
+
   }
 
   String getPrice() {
