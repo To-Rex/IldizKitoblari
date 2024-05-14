@@ -27,6 +27,7 @@ class GetController extends GetxController {
   var height = 0.0.obs;
   var width = 0.0.obs;
   var fullName = 'Dilshodjon Haydarov'.obs;
+  var onLoading = false.obs;
   var check = false.obs;
   var widgetOptions = <Widget>[];
   var index = 0.obs;
@@ -48,6 +49,14 @@ class GetController extends GetxController {
   var genreIndex = 0.obs;
   var genreIndexSub = 0.obs;
   var genreIndexSubSub = 0.obs;
+
+  void onLoad() {
+    onLoading.value = true;
+  }
+
+  void offLoad() {
+    onLoading.value = false;
+  }
 
   void addFilterListSelect(value){
     filtersListSelect.add(null);
@@ -466,7 +475,12 @@ class GetController extends GetxController {
   late TabController tabController;
 
   double calculateTotalHeight() {
-    return basketModel.value.data!.result!.length * Get.height * 0.15;
+    if (basketModel.value != null && basketModel.value.data != null && basketModel.value.data!.result != null) {
+      return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.085;
+    } else {
+      return Get.height;
+    }
+
   }
 
   void addTextControllers() {
