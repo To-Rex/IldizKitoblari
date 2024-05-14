@@ -178,7 +178,7 @@ class BasketPage extends StatelessWidget {
                                         controller: _getController.tabController,
                                         children: [
                                           ListShop(),
-                                          Text('Kutubxonaga kirish'.tr)
+                                          Expanded(child: Center(child: Text('Kutubxona'.tr)))
                                         ]
                                     )
                                   )
