@@ -189,7 +189,7 @@ class BasketPage extends StatelessWidget {
                   ))
               )
           )
-      ),
+        ),
         bottomNavigationBar: BottomAppBar(
           height: 70.h,
           surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
