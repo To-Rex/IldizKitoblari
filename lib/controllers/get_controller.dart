@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ildiz/bottomBar/accaunt_page.dart';
 import 'package:ildiz/bottomBar/basket_page.dart';
 import 'package:ildiz/bottomBar/home_page.dart';
@@ -14,6 +15,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
+import '../models/basket/cart_create.dart';
 import '../models/basket_model.dart';
 import '../models/login_model.dart';
 import '../models/menu_detail.dart';
@@ -174,10 +176,39 @@ class GetController extends GetxController {
   var menuOptionsModel = MenuOptionsModel().obs;
   var menuOptionsModelList = <MenuOptionsModel>[].obs;
   var basketModel = BasketModel().obs;
+  var cartCreate = CartCreate().obs;
+  List<CartCreate> listCartCreate = <CartCreate>[].obs;
 
   void changeBasketModel(BasketModel basketModel) {
     this.basketModel.value = basketModel;
+    listCartCreate.clear();
+    GetStorage().remove('cart');
+    basketModel.data?.result?.forEach((item) {
+      listCartCreate.add(CartCreate(
+        count: item.count,
+        sId: item.sId,
+        type: 'active',
+        user: meModel.value.data?.result?.sId ?? '',
+      ));
+    });
+    GetStorage().write('cart', listCartCreate);
   }
+/*
+  void changeBasketModel(BasketModel basketModel) {
+    this.basketModel.value = basketModel;
+    //clear local cart
+    listCartCreate = [];
+    GetStorage().remove('cart');
+    for(var item in basketModel.data!.result!){
+      listCartCreate.add(CartCreate(
+        count: item.count,
+        sId: item.sId,
+        type: 'active',
+        user: meModel.value.data!.result?.sId ?? '',
+      ));
+    }
+    GetStorage().write('cart', listCartCreate);
+  }*/
 
   void clearBasketModel() {
     basketModel.value = BasketModel();
@@ -473,7 +504,6 @@ class GetController extends GetxController {
   late TabController tabController;
 
   double calculateTotalHeight() {
-
     if (tabController.index == 0) {
       if (basketModel.value.data != null && basketModel.value.data!.result != null && basketModel.value.data!.result!.isNotEmpty) {
         return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.085;
