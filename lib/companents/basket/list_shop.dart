@@ -65,8 +65,11 @@ class ListShop extends StatelessWidget {
                                     IconButton(
                                         color: Theme.of(context).colorScheme.onBackground,
                                         onPressed: () {
-                                          ApiController().addToBasket('${_getController.basketModel.value.data!.result![i].cartCount! + 1}', _getController.basketModel.value.data!.result![i].productId!);
-                                        },
+                                          if (_getController.basketModel.value.data!.result![i].count! >= _getController.basketModel.value.data!.result![i].cartCount!) {
+                                            ApiController().addToBasket('${_getController.basketModel.value.data!.result![i].cartCount! + 1}', _getController.basketModel.value.data!.result![i].productId!);
+                                          } else {
+                                            ApiController().showToast(context, 'Error', 'The number of products in the basket cannot be less than 1', true, 2);
+                                          }},
                                         icon: Icon(TablerIcons.plus, color: Theme.of(context).colorScheme.onBackground, size: Get.height * 0.025)),
                                   ],
                                 ),

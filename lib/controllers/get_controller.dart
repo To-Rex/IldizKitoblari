@@ -8,7 +8,6 @@ import 'package:ildiz/bottomBar/basket_page.dart';
 import 'package:ildiz/bottomBar/home_page.dart';
 import 'package:ildiz/bottomBar/library_page.dart';
 import 'package:ildiz/bottomBar/shop_page.dart';
-import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/models/me_models.dart';
 import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -193,22 +192,6 @@ class GetController extends GetxController {
     });
     GetStorage().write('cart', listCartCreate);
   }
-/*
-  void changeBasketModel(BasketModel basketModel) {
-    this.basketModel.value = basketModel;
-    //clear local cart
-    listCartCreate = [];
-    GetStorage().remove('cart');
-    for(var item in basketModel.data!.result!){
-      listCartCreate.add(CartCreate(
-        count: item.count,
-        sId: item.sId,
-        type: 'active',
-        user: meModel.value.data!.result?.sId ?? '',
-      ));
-    }
-    GetStorage().write('cart', listCartCreate);
-  }*/
 
   void clearBasketModel() {
     basketModel.value = BasketModel();
