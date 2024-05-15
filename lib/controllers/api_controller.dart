@@ -661,6 +661,10 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.clearBasketModel();
       _getController.changeBasketModel(BasketModel.fromJson(jsonDecode(response.body)));
+      //foreach checkBoxCardList.add false
+      _getController.basketModel.value.data?.result?.forEach((element) {
+        _getController.checkBoxCardList.add(false);
+      });
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

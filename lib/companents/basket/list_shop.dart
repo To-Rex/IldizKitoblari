@@ -18,8 +18,13 @@ class ListShop extends StatelessWidget {
     return Obx(() => Column(children: [
           if (_getController.basketModel.value.data != null && _getController.basketModel.value.data!.result != null && _getController.basketModel.value.data!.result!.isNotEmpty)
             Row(children: [
-              Checkbox(value: false, onChanged: (value) {
-                _getController.clearBasketModel();
+              Checkbox(
+                  //value: _getController.allCheckBoxCard.value,
+                  //if checkBoxCardList all element == true
+                  value: _getController.allCheckBoxCard.value,
+                  onChanged: (value) {
+                    _getController.allCheckBoxCard.value = value!;
+                    _getController.changeAllCheckBoxCardList();
               }),
               Text('${'Barchasini tanlash'.tr} (${_getController.basketModel.value.data!.result!.length}) ')
             ]),
@@ -31,7 +36,11 @@ class ListShop extends StatelessWidget {
           if (_getController.basketModel.value.data != null && _getController.basketModel.value.data!.result != null && _getController.basketModel.value.data!.result!.isNotEmpty)
             for (int i = 0; i < _getController.basketModel.value.data!.result!.length; i++)
               Row(children: [
-                Checkbox(value: false, onChanged: (value) {}),
+                Checkbox(
+                    value: _getController.checkBoxCardList[i],
+                    onChanged: (value) {
+                      _getController.changeCheckBoxCardList(i);
+                    }),
                 Container(
                     width: Get.width * 0.3,
                     height: Get.height * 0.15,

@@ -50,6 +50,27 @@ class GetController extends GetxController {
   var genreIndex = 0.obs;
   var genreIndexSub = 0.obs;
   var genreIndexSubSub = 0.obs;
+  var checkBoxCardList = <bool>[].obs;
+  var allCheckBoxCard = false.obs;
+
+  void changeCheckBoxCardList(int i) {
+    if (allCheckBoxCard.value) {
+      allCheckBoxCard.value = false;
+    }
+    checkBoxCardList[i] = !checkBoxCardList[i];
+  }
+
+  void changeAllCheckBoxCardList() {
+    if (allCheckBoxCard.value) {
+      for (int i = 0; i < checkBoxCardList.length; i++) {
+        checkBoxCardList[i] = true;
+      }
+    } else {
+      for (int i = 0; i < checkBoxCardList.length; i++) {
+        checkBoxCardList[i] = false;
+      }
+    }
+  }
 
   void onLoad() {
     onLoading.value = true;
@@ -487,29 +508,31 @@ class GetController extends GetxController {
   late TabController tabController;
 
   double calculateTotalHeight() {
-    if (tabController.index == 0) {
-      if (basketModel.value.data != null && basketModel.value.data!.result != null && basketModel.value.data!.result!.isNotEmpty) {
-        return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.085;
-      } else {
-        return Get.height * 0.7;
-      }
+    if (basketModel.value.data != null && basketModel.value.data!.result != null && basketModel.value.data!.result!.isNotEmpty) {
+      return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.085;
     } else {
       return Get.height * 0.7;
     }
-
   }
 
   String getPrice() {
-    if (basketModel.value.data != null && basketModel.value.data?.result != null) {
-      int total = 0;
+    int total = 0;
+    if (allCheckBoxCard.value && basketModel.value.data != null && basketModel.value.data?.result != null) {
       for (var item in basketModel.value.data!.result!) {
         if (item.price != null) {
           total += item.price!;
         }
       }
       return total.toString();
+    } else if (!allCheckBoxCard.value &&basketModel.value.data != null && basketModel.value.data?.result != null) {
+      for (int i = 0; i < checkBoxCardList.length; i++) {
+        if (checkBoxCardList[i] && basketModel.value.data!.result![i].price != null) {
+          total += basketModel.value.data!.result![i].price!;
+        }
+      }
+      return total.toString();
     } else {
-      return '';
+      return '0';
     }
   }
 
@@ -522,4 +545,5 @@ class GetController extends GetxController {
       textControllers.clear();
     }
   }
+
 }

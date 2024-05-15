@@ -182,7 +182,7 @@ class BasketPage extends StatelessWidget {
                                         controller: _getController.tabController,
                                         children: [
                                           ListShop(),
-                                          Expanded(child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr)))
+                                          Center(child: Text('Ma‘lumotlar yo‘q!'.tr))
                                         ]
                                     )
                                   )
@@ -220,8 +220,7 @@ class BasketPage extends StatelessWidget {
                       width: _getController.width.value * 0.35,
                       height: _getController.height.value * 0.06,
                       child: ElevatedButton(
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                           child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
                       )),
