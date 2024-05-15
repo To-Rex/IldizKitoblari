@@ -186,7 +186,7 @@ class GetController extends GetxController {
     basketModel.data?.result?.forEach((item) {
       listCartCreate.add(CartCreate(
         count: item.count,
-        sId: item.sId,
+        product: item.productId,
         type: 'active',
         user: meModel.value.data?.result?.sId ?? '',
       ));

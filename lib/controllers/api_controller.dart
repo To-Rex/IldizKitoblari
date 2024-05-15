@@ -10,6 +10,7 @@ import 'package:ildiz/models/login_model.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
+import '../models/basket/cart_create.dart';
 import '../models/basket_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_detail.dart';
@@ -55,6 +56,8 @@ class ApiController extends GetxController {
   static const String _getMenuOptions = '$_baseUrl/api/v1/options/select/list';
   //https://ildizkitoblari.uz/api/v1/cart/list
   static const String _getCart = '$_baseUrl/api/v1/cart/list';
+  //https://ildizkitoblari.uz/api/v1/user/cart/create
+  static const String _addCart = '$_baseUrl/api/v1/user/cart/create';
 
 
   //show toast message
@@ -647,7 +650,7 @@ class ApiController extends GetxController {
   //------------------------------------------------------------------------------------------------
 
   Future<void> getBasket() async {
-    var response = await post(Uri.parse('$_getCart'),
+    var response = await post(Uri.parse(_getCart),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
         'Authorization': 'Bearer ${GetStorage().read('token')}',
@@ -663,4 +666,24 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> addToBasket(String count, String productId) async {
+    var response = await post(Uri.parse(_addCart),
+        headers: {
+          'Accept-Language': Get.locale!.languageCode,
+          'Authorization': 'Bearer ${GetStorage().read('token')}',
+        },
+        body: {
+          "count": count,
+          "product": productId,
+          "type": "active",
+          "user": _getController.meModel.value.data?.result?.sId
+        }
+    );
+    debugPrint('basket: ${response.body}');
+    if (response.statusCode == 200) {
+      getBasket();
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
 }
