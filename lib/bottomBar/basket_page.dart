@@ -125,53 +125,18 @@ class BasketPage extends StatelessWidget {
                                               indicatorSize: TabBarIndicatorSize.tab,
                                               dividerColor: Colors.transparent,
                                               controller: _getController.tabController,
-                                              labelStyle: TextStyle(
-                                                  fontSize: Get.width * 0.04,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Theme.of(context).colorScheme.onBackground
-                                              ),
+                                              labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 18.sp, fontWeight: FontWeight.w500),
                                               unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
                                               indicator: BoxDecoration(
                                                   color: Theme.of(context).colorScheme.background,
                                                   borderRadius: BorderRadius.circular(11),
                                                   boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.grey.withOpacity(0.3),
-                                                        spreadRadius: 2,
-                                                        blurRadius: 2,
-                                                        offset: const Offset(0, 2)
-                                                    )
+                                                    BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))
                                                   ]
                                               ),
                                               tabs: [
-                                                Tab(
-                                                    child: SizedBox(
-                                                        width: Get.width * 0.6,
-                                                        child: Center(
-                                                            child: Text(
-                                                                'Do\'kon'.tr,
-                                                                style: TextStyle(
-                                                                    fontSize: Get.width * 0.04,
-                                                                    fontWeight: FontWeight.w500
-                                                                )
-                                                            )
-                                                        )
-                                                    )
-                                                ),
-                                                Tab(
-                                                    child: SizedBox(
-                                                        width: Get.width * 0.6,
-                                                        child: Center(
-                                                            child: Text(
-                                                                'Kutubxona'.tr,
-                                                                style: TextStyle(
-                                                                    fontSize: Get.width * 0.04,
-                                                                    fontWeight: FontWeight.w500
-                                                                )
-                                                            )
-                                                        )
-                                                    )
-                                                )
+                                                Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Do\'kon'.tr)))),
+                                                Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Kutubxona'.tr))))
                                               ]
                                           )
                                       )
