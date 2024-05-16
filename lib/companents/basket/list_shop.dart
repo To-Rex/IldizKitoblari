@@ -20,6 +20,7 @@ class ListShop extends StatelessWidget {
             Row(children: [
               Checkbox(
                   value: _getController.allCheckBoxCard.value,
+                  activeColor: AppColors.primaryColor,
                   onChanged: (value) {
                     _getController.allCheckBoxCard.value = value!;
                     _getController.changeAllCheckBoxCardList();
@@ -36,6 +37,7 @@ class ListShop extends StatelessWidget {
               Row(children: [
                 Checkbox(
                     value: _getController.checkBoxCardList[i],
+                    activeColor: AppColors.primaryColor,
                     onChanged: (value) {
                       _getController.changeCheckBoxCardList(i);
                     }),

@@ -111,6 +111,9 @@ class LocaleString extends Translations{
       'O‘chirish':'Удалить',
       'Saqlash':'Сохранить',
       'so‘m':'сум',
+      'Xaridni boshlash' : 'Начать покупку',
+      'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Добавить книги в корзину для оформления заказа.',
+      'Savat bo‘sh':'Корзина пуста',
     },
     'uz_UZ':{
       'Dilshodjon Haydarov':'Dilshodjon Haydarov',
@@ -220,6 +223,9 @@ class LocaleString extends Translations{
       'O‘chirish':'O‘chirish',
       'Saqlash':'Saqlash',
       'so‘m':'so‘m',
+      'Xaridni boshlash':'Xaridni boshlash',
+      'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.',
+      'Savat bo‘sh':'Savat bo‘sh',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -328,6 +334,9 @@ class LocaleString extends Translations{
       'O‘chirish':'Очириш',
       'Saqlash':'Сақлаш',
       'so‘m':'сўм',
+      'Xaridni boshlash':'Харидни бошлаш',
+      'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Саватга маҳсулотларни қўшиш учун харид қилишни бошланг.',
+      'Savat bo‘sh':'Сават бўш',
     }
   };
 

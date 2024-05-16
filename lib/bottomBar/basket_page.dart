@@ -153,7 +153,41 @@ class BasketPage extends StatelessWidget {
                                     child: TabBarView(
                                         controller: _getController.tabController,
                                         children: [
-                                          ListShop(),
+                                          if (_getController.basketModel.value.data?.result?.isNotEmpty == true)
+                                            ListShop()
+                                          else
+                                            Center(child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                //Savat bo‘sh
+                                                Text('Savat bo‘sh'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
+                                                SizedBox(height: _getController.height.value * 0.01),
+                                                SizedBox(
+                                                  width: _getController.width.value * 0.65,
+                                                  child: Text(
+                                                    textAlign: TextAlign.center,
+                                                      'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.'.tr, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400))
+                                                ),
+                                                SizedBox(height: _getController.height.value * 0.01),
+                                                SizedBox(
+                                                  width: _getController.width.value * 0.45,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: AppColors.primaryColor,
+                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))
+                                                    ),
+                                                    onPressed: () {
+                                                      _getController.index.value = 1;
+                                                    },
+                                                    child: Text('Xaridni boshlash'.tr, style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16.sp)
+                                                    )
+                                                  )
+                                                )
+                                              ],
+                                            )),
                                           Center(child: Text('Ma‘lumotlar yo‘q!'.tr))
                                         ]
                                     )
