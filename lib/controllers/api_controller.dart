@@ -11,7 +11,7 @@ import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
 import '../models/basket/cart_create.dart';
-import '../models/basket_model.dart';
+import '../models/basket/basket_model.dart';
 import '../models/me_models.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';

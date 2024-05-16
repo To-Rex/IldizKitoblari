@@ -9,7 +9,7 @@ import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/models/basket/cart_create.dart';
-import 'package:ildiz/models/basket_model.dart';
+import 'package:ildiz/models/basket/basket_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../companents/basket/list_shop.dart';
 import '../controllers/get_controller.dart';
