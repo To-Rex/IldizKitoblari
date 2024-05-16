@@ -130,7 +130,6 @@ class BasketPage extends StatelessWidget {
                                               onTap: (index) {
                                                 _getController.tabController.animateTo(index);
                                                 _getController.tabController.index = index;
-                                                print('index: $index');
                                               },
                                               indicatorSize: TabBarIndicatorSize.tab,
                                               dividerColor: Colors.transparent,
@@ -140,9 +139,7 @@ class BasketPage extends StatelessWidget {
                                               indicator: BoxDecoration(
                                                   color: Theme.of(context).colorScheme.background,
                                                   borderRadius: BorderRadius.circular(11),
-                                                  boxShadow: [
-                                                    BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))
-                                                  ]
+                                                  boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]
                                               ),
                                               tabs: [
                                                 Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Do\'kon'.tr)))),
