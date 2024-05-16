@@ -148,7 +148,7 @@ class CatDetailPage extends StatelessWidget {
                           child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
                       IconButton(
                           onPressed: () {
-                            Get.to(() => FilterPage(menuIndex: menuIndex, menuSlug: menuSlug), fullscreenDialog: true, transition: Transition.cupertino);
+                            Get.to(() => FilterPage(menuIndex: menuIndex, menuSlug: menuSlug,parent: parent), fullscreenDialog: true, transition: Transition.cupertino);
                           },
                           icon: Icon(TablerIcons.adjustments_horizontal, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground)
                       )
@@ -216,7 +216,8 @@ class CatDetailPage extends StatelessWidget {
                           _getController.page.value = 1;
                           _getController.productModelLength.value = 0;
                           _getController.clearProductModel();
-                          ApiController().getSelectProduct(1, menuSlug, false,null,null,null,null).then((value) => _refreshController.refreshCompleted());}
+                          ApiController().getSelectProduct(1, menuSlug, false,null,null,null,null).then((value) => _refreshController.refreshCompleted());
+                        }
                       },
                       physics: const BouncingScrollPhysics(),
                       controller: _refreshController,

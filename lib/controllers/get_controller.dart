@@ -515,8 +515,9 @@ class GetController extends GetxController {
   final TextEditingController searchController = TextEditingController();
   final TextEditingController commentController = TextEditingController();
   final TextEditingController ratingController = TextEditingController();
+  final TextEditingController startPriceController = TextEditingController();
+  final TextEditingController endPriceController = TextEditingController();
 
-  //list text fild controllers
   final List<TextEditingController> textControllers = [];
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);

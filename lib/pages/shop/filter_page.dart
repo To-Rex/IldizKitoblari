@@ -12,7 +12,8 @@ import '../../controllers/get_controller.dart';
 class FilterPage extends StatelessWidget{
   int menuIndex;
   var menuSlug;
-  FilterPage({super.key, required this.menuIndex, required this.menuSlug});
+  var parent;
+  FilterPage({super.key, required this.menuIndex, required this.menuSlug, this.parent});
 
   final GetController _getController = Get.put(GetController());
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
@@ -134,6 +135,7 @@ class FilterPage extends StatelessWidget{
                             child: Container(
                                 margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
                                 child: TextField(
+                                    controller: _getController.startPriceController,
                                     decoration: InputDecoration(
                                         fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                         filled: true,
@@ -151,6 +153,7 @@ class FilterPage extends StatelessWidget{
                             child: Container(
                                 margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04),
                                 child: TextField(
+                                    controller: _getController.endPriceController,
                                     decoration: InputDecoration(
                                       fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                       filled: true,
@@ -210,14 +213,30 @@ class FilterPage extends StatelessWidget{
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
                               onPressed: () {
-                                //Get.back();
+                                /*//Get.back();
                                 //_getController.textControllers
                                 var text ='';
                                 for (var index = 0; index < _getController.textControllers.length; index++) {
                                   print(_getController.textControllers[index].text != '' ? _getController.textControllers[index].text.toString() : '');
                                   text = '$text${_getController.textControllers[index].text}';
                                 }
-                                print(text);
+                                print(text);*/
+                                _getController.page.value = 0;
+                                if (!parent) {
+                                  ApiController().getProduct(_getController.page.value + 1, menuSlug, true,
+                                      _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
+                                      _getController.filters[4] == true ? true : null,
+                                      _getController.filters[5] == true ? true : null,
+                                      _getController.filters[0] == true ? 1 : -1
+                                  ).then((value) => _refreshController.loadComplete());
+                                } else {
+                                  ApiController().getSelectProduct(_getController.page.value + 1, menuSlug, true,
+                                      _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
+                                      _getController.filters[4] == true ? true : null,
+                                      _getController.filters[5] == true ? true : null,
+                                      _getController.filters[0] == true ? 1 : -1
+                                  ).then((value) => _refreshController.loadComplete());}
+                                Get.back();
                               },
                               child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 20.sp, fontWeight: FontWeight.w500)))
                       )
