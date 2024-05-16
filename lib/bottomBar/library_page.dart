@@ -13,6 +13,7 @@ class LibraryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getController.tabController = TabController(length: 2, vsync: Navigator.of(context));
     return Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(

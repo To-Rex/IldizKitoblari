@@ -8,6 +8,7 @@ import 'package:ildiz/bottomBar/basket_page.dart';
 import 'package:ildiz/bottomBar/home_page.dart';
 import 'package:ildiz/bottomBar/library_page.dart';
 import 'package:ildiz/bottomBar/shop_page.dart';
+import 'package:ildiz/models/basket/get_price.dart';
 import 'package:ildiz/models/me_models.dart';
 import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -205,6 +206,11 @@ class GetController extends GetxController {
   var basketModel = BasketModel().obs;
   var cartCreate = CartCreate().obs;
   List<CartCreate> listCartCreate = <CartCreate>[].obs;
+  var getPriceModel = GetPrice().obs;
+
+  void changeGetPrice(GetPrice getPrice) {
+    getPriceModel.value = getPrice;
+  }
 
   void changeBasketModel(BasketModel basketModel) {
     this.basketModel.value = basketModel;
@@ -212,14 +218,14 @@ class GetController extends GetxController {
     GetStorage().remove('cart');
     basketModel.data?.result?.forEach((item) {
       listCartCreate.add(CartCreate(
-        count: item.count,
-        product: item.productId,
+        sId: item.productId,
+        count: item.cartCount,
+        //product: item.productId,
         type: 'active',
-        user: meModel.value.data?.result?.sId ?? '',
+        //user: meModel.value.data?.result?.sId ?? '',
       ));
     });
     GetStorage().write('cart', listCartCreate);
-    debugPrint('cart: ${GetStorage().read('cart')}');
   }
 
   void clearBasketModel() {

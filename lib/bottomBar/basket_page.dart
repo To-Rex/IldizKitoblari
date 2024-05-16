@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,6 +24,11 @@ class BasketPage extends StatelessWidget {
       _getController.allCheckBoxCard.value = true,
       _getController.changeAllCheckBoxCardList()
     });
+    //var data = "${jsonEncode(_getController.listCartCreate).toString().replaceAll('"', '\\"')}";
+    var data = jsonEncode(_getController.listCartCreate).toString();
+    ApiController().getTotalBasketPrice(data);
+    //ApiController().getTotalBasketPrice("[{\"_id\":\"66268d3b468ced1826193159\",\"count\":1,\"type\":\"active\"},{\"_id\":\"66268ff5468ced1826193bce\",\"count\":1,\"type\":\"active\"}]");
+    /////////////////////////////////////[{\"_id\":\"66268d3b468ced1826193159\",\"count\":1,\"type\":\"active\"},{\"_id\":\"66268ff5468ced1826193bce\",\"count\":1,\"type\":\"active\"}]
     return Scaffold(
         body: SmartRefresher(
           enablePullDown: true,
@@ -174,7 +181,8 @@ class BasketPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('Jami miqdor:'.tr, style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                            Text('${_getController.getPrice()} ${'so‘m'.tr}', style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
+                            Text('${_getController.getPriceModel.value.data?.totalPrice} '
+                                '${'so‘m'.tr}', style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
                           ]
                       )
                   ),

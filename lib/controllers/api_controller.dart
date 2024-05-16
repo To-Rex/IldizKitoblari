@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,8 +9,8 @@ import 'package:ildiz/models/login_model.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
-import '../models/basket/cart_create.dart';
 import '../models/basket/basket_model.dart';
+import '../models/basket/get_price.dart';
 import '../models/me_models.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
@@ -27,38 +26,35 @@ import 'get_controller.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
-  static const String _baseUrl = 'https://ildizkitoblari.uz';
+  static const String _baseUrl = 'https://ildizkitoblari.uz/api/v1';
   //static const String _baseUrl = 'http://192.168.100.10:5001';
 
   //auth
-  static const String _login = '$_baseUrl/api/v1/auth/login';
-  static const String _check = '$_baseUrl/api/v1/user/check';
-  static const String _otp = '$_baseUrl/api/v1/otp';
-  static const String _create = '$_baseUrl/api/v1/user/create';
-  static const String _me = '$_baseUrl/api/v1/user/me';
-  static const String _checkOtp = '$_baseUrl/api/v1/otp/check';
-  static const String _passwordUpdate = '$_baseUrl/api/v1/user/password-update';
+  static const String _login = '$_baseUrl/auth/login';
+  static const String _check = '$_baseUrl/user/check';
+  static const String _otp = '$_baseUrl/otp';
+  static const String _create = '$_baseUrl/user/create';
+  static const String _me = '$_baseUrl/user/me';
+  static const String _checkOtp = '$_baseUrl/otp/check';
+  static const String _passwordUpdate = '$_baseUrl/user/password-update';
 
   //home
-  static const String _menu = '$_baseUrl/api/v1/menu/mobile/list';
-  static const String _menuDetail = '$_baseUrl/api/v1/menu/';
-  static const String _banner = '$_baseUrl/api/v1/banner/list?limit=6';
-  static const String _product = '$_baseUrl/api/v1/product/list?limit=12';
-  static const String _productDetail = '$_baseUrl/api/v1/product/';
-  static const String _productRate = '$_baseUrl/api/v1/product/rate/';
-  static const String _quotation = '$_baseUrl/api/v1/banner/quotation/list';
-  static const String _update = '$_baseUrl/api/v1/user/update';
-  static const String _comment = '$_baseUrl/api/v1/product/comment/create';
-  static const String _authors = '$_baseUrl/api/v1/author/list';
-  static const String _authorDetail = '$_baseUrl/api/v1/author/';
-  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&value_id[]=643a5f49590e7e6f7fb931cc
-  static const String _authorProduct = '$_baseUrl/api/v1/product/list';
-  //https://ildizkitoblari.uz/api/v1/options/select/list?page=1&option_id=643a5ed8590e7e6f7fb931c6&menu_slug=badiiy-kitoblar&limit=10
-  static const String _getMenuOptions = '$_baseUrl/api/v1/options/select/list';
-  //https://ildizkitoblari.uz/api/v1/cart/list
-  static const String _getCart = '$_baseUrl/api/v1/cart/list';
-  //https://ildizkitoblari.uz/api/v1/user/cart/create
-  static const String _addCart = '$_baseUrl/api/v1/user/cart/create';
+  static const String _menu = '$_baseUrl/menu/mobile/list';
+  static const String _menuDetail = '$_baseUrl/menu/';
+  static const String _banner = '$_baseUrl/banner/list?limit=6';
+  static const String _product = '$_baseUrl/product/list?limit=12';
+  static const String _productDetail = '$_baseUrl/product/';
+  static const String _productRate = '$_baseUrl/product/rate/';
+  static const String _quotation = '$_baseUrl/banner/quotation/list';
+  static const String _update = '$_baseUrl/user/update';
+  static const String _comment = '$_baseUrl/product/comment/create';
+  static const String _authors = '$_baseUrl/author/list';
+  static const String _authorDetail = '$_baseUrl/author/';
+  static const String _authorProduct = '$_baseUrl/product/list';
+  static const String _getMenuOptions = '$_baseUrl/options/select/list';
+  static const String _getCart = '$_baseUrl/cart/list';
+  static const String _addCart = '$_baseUrl/user/cart/create';
+  static const String _totalPrice = '$_baseUrl/cart/total-price';
 
 
   //show toast message
@@ -433,8 +429,6 @@ class ApiController extends GetxController {
     }
   }
 
-  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&famous=true
-  //get top product
   Future<void> getTopProduct(page,bool add) async {
     var response = await get(Uri.parse('$_product&page=$page&famous=true'),
       headers: {
@@ -657,12 +651,9 @@ class ApiController extends GetxController {
         'Authorization': 'Bearer ${GetStorage().read('token')}',
       },
     );
-    debugPrint('token: ${GetStorage().read('token')}');
-    debugPrint('basket: ${response.body}');
     if (response.statusCode == 200) {
       _getController.clearBasketModel();
       _getController.changeBasketModel(BasketModel.fromJson(jsonDecode(response.body)));
-      //foreach checkBoxCardList.add false
       _getController.basketModel.value.data?.result?.forEach((element) {
         _getController.checkBoxCardList.add(false);
       });
@@ -684,9 +675,30 @@ class ApiController extends GetxController {
           "user": _getController.meModel.value.data?.result?.sId
         }
     );
-    debugPrint('basket: ${response.body}');
     if (response.statusCode == 200) {
       getBasket();
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+    }
+  }
+
+  Future<void> getTotalBasketPrice(String data) async {
+    print('=======================================================================================================================)');
+    print(data);
+    var response = await post(Uri.parse(_totalPrice),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      },
+      //body: {"products": data},
+      body: {
+        "products": data,
+      },
+    );
+    debugPrint('totalBasketPrice: ${response.body}');
+    debugPrint('totalBasketPrice: ${response.statusCode}');
+    if (response.statusCode == 200) {
+      _getController.changeGetPrice(GetPrice.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
