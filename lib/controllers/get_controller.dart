@@ -53,11 +53,18 @@ class GetController extends GetxController {
   var checkBoxCardList = <bool>[].obs;
   var allCheckBoxCard = false.obs;
 
-  void changeCheckBoxCardList(int i) {
-    if (allCheckBoxCard.value) {
+  /*void changeCheckBoxCardList(int i) {
+    *//*if (allCheckBoxCard.value) {
       allCheckBoxCard.value = false;
-    }
+    }*//*
+    //if checkBoxCardList all elements == true => allCheckBoxCard.value = true
     checkBoxCardList[i] = !checkBoxCardList[i];
+  }*/
+
+  void changeCheckBoxCardList(int i) {
+    checkBoxCardList[i] = !checkBoxCardList[i];
+    bool allChecked = checkBoxCardList.every((element) => element);
+    allCheckBoxCard.value = allChecked;
   }
 
   void changeAllCheckBoxCardList() {
@@ -530,7 +537,7 @@ class GetController extends GetxController {
           total += basketModel.value.data!.result![i].price!;
         }
       }
-      return total.toString();
+      return total.toString() == '0' ? '0' : total.toString();
     } else {
       return '0';
     }

@@ -18,7 +18,10 @@ class BasketPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _getController.tabController = TabController(length: 2, vsync: Navigator.of(context));
-    ApiController().getBasket();
+    ApiController().getBasket().then((value) => {
+      _getController.allCheckBoxCard.value = true,
+      _getController.changeAllCheckBoxCardList()
+    });
     return Scaffold(
         body: SmartRefresher(
           enablePullDown: true,
