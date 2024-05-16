@@ -27,8 +27,6 @@ class BasketPage extends StatelessWidget {
     //var data = "${jsonEncode(_getController.listCartCreate).toString().replaceAll('"', '\\"')}";
     var data = jsonEncode(_getController.listCartCreate).toString();
     ApiController().getTotalBasketPrice(data);
-    //ApiController().getTotalBasketPrice("[{\"_id\":\"66268d3b468ced1826193159\",\"count\":1,\"type\":\"active\"},{\"_id\":\"66268ff5468ced1826193bce\",\"count\":1,\"type\":\"active\"}]");
-    /////////////////////////////////////[{\"_id\":\"66268d3b468ced1826193159\",\"count\":1,\"type\":\"active\"},{\"_id\":\"66268ff5468ced1826193bce\",\"count\":1,\"type\":\"active\"}]
     return Scaffold(
         body: SmartRefresher(
           enablePullDown: true,
