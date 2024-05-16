@@ -654,9 +654,15 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.clearBasketModel();
       _getController.changeBasketModel(BasketModel.fromJson(jsonDecode(response.body)));
-      _getController.basketModel.value.data?.result?.forEach((element) {
-        _getController.checkBoxCardList.add(false);
-      });
+      if (_getController.allCheckBoxCard.value) {
+        _getController.basketModel.value.data?.result?.forEach((element) {
+          _getController.checkBoxCardList.add(true);
+        });
+      } else {
+        _getController.basketModel.value.data?.result?.forEach((element) {
+          _getController.checkBoxCardList.add(false);
+        });
+      }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }

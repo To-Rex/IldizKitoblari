@@ -223,8 +223,10 @@ class GetController extends GetxController {
       ));
     });
     GetStorage().write('cart', listCartCreate);
-    var data = jsonEncode(listCartCreate).toString();
-    ApiController().getTotalBasketPrice(data);
+    if (allCheckBoxCard.value) {
+      var data = jsonEncode(listCartCreate).toString();
+      ApiController().getTotalBasketPrice(data);
+    }
   }
 
   void clearBasketModel() {

@@ -169,7 +169,7 @@ class BasketPage extends StatelessWidget {
               )
           )
         ),
-        bottomNavigationBar: Obx(() => _getController.basketModel.value.data != null && _getController.basketModel.value.data!.result != null && _getController.basketModel.value.data!.result!.isNotEmpty
+        bottomNavigationBar: Obx(() => _getController.basketModel.value.data != null && _getController.basketModel.value.data!.result != null && _getController.basketModel.value.data!.result!.isNotEmpty && _getController.checkBoxCardList.contains(true)
             ? BottomAppBar(
         height: 70.h,
         surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
