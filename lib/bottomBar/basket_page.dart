@@ -75,8 +75,17 @@ class BasketPage extends StatelessWidget {
               );
             },
           ),
-          onLoading: () async {_refreshController.loadComplete();},
-          onRefresh: () async {_refreshController.refreshCompleted();},
+          onLoading: () async {
+            _getController.clearBasketModel();
+            _refreshController.loadComplete();},
+          onRefresh: () async {
+            _getController.clearBasketModel();
+            ApiController().getBasket().then((value) => {
+              _getController.allCheckBoxCard.value = true,
+              _getController.changeAllCheckBoxCardList(),
+              _refreshController.refreshCompleted()
+            });
+          },
           controller: _refreshController,
           child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
