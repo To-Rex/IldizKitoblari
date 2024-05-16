@@ -28,6 +28,7 @@ import 'get_controller.dart';
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
   static const String _baseUrl = 'https://ildizkitoblari.uz';
+  //static const String _baseUrl = 'http://192.168.100.10:5001';
 
   //auth
   static const String _login = '$_baseUrl/api/v1/auth/login';
@@ -670,7 +671,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> addToBasket(String count, String productId) async {
+  Future<void> addToBasket(String count, String productId, String type) async {
     var response = await post(Uri.parse(_addCart),
         headers: {
           'Accept-Language': Get.locale!.languageCode,
@@ -679,7 +680,7 @@ class ApiController extends GetxController {
         body: {
           "count": count,
           "product": productId,
-          "type": "active",
+          "type": type,
           "user": _getController.meModel.value.data?.result?.sId
         }
     );
@@ -690,4 +691,5 @@ class ApiController extends GetxController {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
+
 }

@@ -212,6 +212,7 @@ class GetController extends GetxController {
       ));
     });
     GetStorage().write('cart', listCartCreate);
+    debugPrint('cart: ${GetStorage().read('cart')}');
   }
 
   void clearBasketModel() {
@@ -219,7 +220,6 @@ class GetController extends GetxController {
   }
 
   List<String> getMenuOptionsModelListData(int index) {
-    //_getController.menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList(),
     if (menuOptionsModelList[index].data!.result!.isNotEmpty) {
       return menuOptionsModelList[index].data!.result!.map((e) => e.name!.uz!).toList();
     } else {

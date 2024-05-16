@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:text_scroll/text_scroll.dart';
 import '../controllers/get_controller.dart';
@@ -101,7 +102,11 @@ class _ProductItemState extends State<ProductItem> {
                 height: 30.h,
                 width: 190.w,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //ApiController().addToBasket(count, productId)
+                      ApiController().addToBasket('1', widget.id.toString(),'active'
+                      ).then((value) => widget.function());
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryColor2,
                         shadowColor: Colors.transparent,
