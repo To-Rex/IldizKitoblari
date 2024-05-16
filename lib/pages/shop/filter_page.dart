@@ -24,8 +24,7 @@ class FilterPage extends StatelessWidget{
       _getController.filtersListSelect.clear();
       _getController.clearControllers();
       ApiController().getMenuDetail('$menuSlug').then((value) => {
-        ApiController().getMenuOption(1, menuIndex, menuSlug
-            , 10, true)
+        ApiController().getMenuOption(1, menuIndex, menuSlug, 10, true)
       });
     }
   }
@@ -187,7 +186,9 @@ class FilterPage extends StatelessWidget{
                                       function: (int value) {_getController.changeFilterListSelect(index,int.parse('$value'));},
                                       select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null,
                                       icon: Icons.close,
-                                      more: _getController.menuOptionsModelList[index].data!.count! > _getController.menuOptionsModelList[index].data!.result!.length ? true : false
+                                      more: _getController.menuOptionsModelList[index].data!.count! > _getController.menuOptionsModelList[index].data!.result!.length ? true : false,
+                                      optionId: _getController.menuDetailModel.value.data!.options![index].optionId!.sId,
+                                      menuSlug: menuSlug
                                   ),
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1 && _getController.textControllers.isNotEmpty)
                                   Container(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 
 import '../controllers/get_controller.dart';
 import '../models/menu_model.dart';
@@ -14,9 +15,11 @@ class WrapChip extends StatelessWidget {
   var select;
   bool more;
   var icon;
+  var optionId;
+  var menuSlug;
   final GetController _getController = Get.put(GetController());
 
-  WrapChip({super.key, required this.index,required this.title, required this.function, required this.select, this.more = false, required this.icon});
+  WrapChip({super.key, required this.index,required this.title, required this.function, required this.select, this.more = false, required this.icon, required this.optionId, required this.menuSlug});
 
   @override
   Widget build(BuildContext context) {
@@ -51,31 +54,13 @@ class WrapChip extends StatelessWidget {
                         labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
                     )
                 ),
-              /*if (more)
-                InkWell(
-                    onTap: () {},
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    child: Chip(
-                        visualDensity: VisualDensity.compact,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-                        label: Text('Ko\'proq', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)),
-                        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.01, vertical: Get.height * 0.008),
-                        deleteIcon: Icon(Icons.keyboard_arrow_down_outlined, color: Theme.of(context).colorScheme.onBackground, size: 25.sp),
-                        deleteIconColor: AppColors.white,
-                        deleteButtonTooltipMessage: 'Selected',
-                        onDeleted: () {},
-                        labelPadding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
-                        side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
-                        backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                        labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
-                    )
-                ),*/
               if (more)
                 InkWell(
                     onTap: () {
                       function(title.length);
-                      print('title.length: ${title.length}');
+                      _getController.changeFiltersPage(index);
+                      ApiController().getMenuOptions(_getController.filtersPage[index], optionId, menuSlug, 10, true, index);
+                      print('filtersPage: ${_getController.filtersPage}');
                     },
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
@@ -83,11 +68,7 @@ class WrapChip extends StatelessWidget {
                       width: Get.width,
                       height: Get.height * 0.045,
                       margin: EdgeInsets.only(top: Get.height * 0.01),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.r),
-                          color: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2)
-                          //color: AppColors.primaryColor
-                      ),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2)),
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

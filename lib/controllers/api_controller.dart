@@ -319,11 +319,8 @@ class ApiController extends GetxController {
 
   Future<void> getMenuOption(page, menuIndex, slug, limit, add) async {
     List optionIdList = [];
-
     optionIdList = _getController.menuDetailModel.value.data!.options!.map((e) => e.optionId?.sId).toList();
-    for (var _ in optionIdList) {
-      _getController.addFilterListSelect(null);
-    }
+    for (var _ in optionIdList) {_getController.addFilterListSelect(null);}
     int childrenLength = _getController.menuModel.value.data!.result![menuIndex].children!.length;
     for (int i = 0; i < childrenLength; i++) {
       if (i < optionIdList.length) {
@@ -342,22 +339,16 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getMenuOptions(page,optionId,slug,limit,add) async {
-    //https://ildizkitoblari.uz/api/v1/options/select/list?page=1&option_id=643a5ed8590e7e6f7fb931c6&menu_slug=badiiy-kitoblar&limit=10
-    debugPrint('====${_getMenuOptions}?page=$page&option_id=$optionId&menu_slug=$slug&limit=$limit');
+  Future<void> getMenuOptions(page,optionId,slug,limit,add,index) async {
+    debugPrint('====$_getMenuOptions?page=$page&option_id=$optionId&menu_slug=$slug&limit=$limit');
     var response = await get(Uri.parse('$_getMenuOptions?page=$page&option_id=$optionId&menu_slug=$slug&limit=$limit'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },
     );
     debugPrint('menu: ${response.body}');
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      if (add==false) {
-        _getController.clearMenuOptionsModelList();
-        _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
-      } else{
-        _getController.addMenuOptionsModelList(MenuOptionsModel.fromJson(jsonDecode(response.body)));
-      }
+    if (response.statusCode == 200) {
+      _getController.addMenuOptionsModelListDetail(index, MenuOptionsModel.fromJson(jsonDecode(response.body)));
     }
   }
 

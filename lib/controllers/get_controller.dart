@@ -50,6 +50,7 @@ class GetController extends GetxController {
   List filtersObj = ['','',[]].obs;
   List filtersListSelect = [].obs;
   List filterGenre = [].obs;
+  List filtersPage = [].obs;
   var genreIndex = 0.obs;
   var genreIndexSub = 0.obs;
   var genreIndexSubSub = 0.obs;
@@ -244,7 +245,20 @@ class GetController extends GetxController {
   }
 
   void addMenuOptionsModelList(MenuOptionsModel menuOptionsModel) {
+    filtersPage.clear();
     menuOptionsModelList.add(menuOptionsModel);
+    for (int i = 0; i < menuOptionsModelList.length; i++) {
+      filtersPage.add(1);
+    }
+  }
+
+  void addMenuOptionsModelListDetail(index, MenuOptionsModel menuOptionsModel) {
+    menuOptionsModelList[index].data!.result!.addAll(menuOptionsModel.data!.result!);
+  }
+
+  //filtersPage change index count
+  void changeFiltersPage(int index) {
+    filtersPage[index] = filtersPage[index] + 1;
   }
 
   void clearMenuOptionsModelList() {
