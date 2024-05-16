@@ -75,8 +75,7 @@ class ListShop extends StatelessWidget {
                                             ApiController().addToBasket('${_getController.basketModel.value.data!.result![i].cartCount! - 1}', _getController.basketModel.value.data!.result![i].productId!, 'active');
                                           } else {
                                             ApiController().addToBasket('0', _getController.basketModel.value.data!.result![i].productId!,'deleted');
-                                          }
-                                        },
+                                          }},
                                         icon: Icon(TablerIcons.minus, color: Theme.of(context).colorScheme.onBackground, size: Get.height * 0.025)),
                                     Text(_getController.basketModel.value.data!.result![i].cartCount.toString()),
                                     IconButton(
