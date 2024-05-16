@@ -182,6 +182,7 @@ class FilterPage extends StatelessWidget{
                                       child: Text('uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.ru! : '' : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500))),
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
                                   WrapChip(
+                                      index: index,
                                       title: _getController.getMenuOptionsModelListData(index),
                                       function: (int value) {_getController.changeFilterListSelect(index,int.parse('$value'));},
                                       select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null,

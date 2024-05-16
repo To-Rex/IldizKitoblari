@@ -8,6 +8,7 @@ import '../models/menu_model.dart';
 import '../resource/colors.dart';
 
 class WrapChip extends StatelessWidget {
+  var index;
   List title;
   final Function(int) function;
   var select;
@@ -15,7 +16,7 @@ class WrapChip extends StatelessWidget {
   var icon;
   final GetController _getController = Get.put(GetController());
 
-  WrapChip({super.key, required this.title, required this.function, required this.select, this.more = false, required this.icon});
+  WrapChip({super.key, required this.index,required this.title, required this.function, required this.select, this.more = false, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,10 @@ class WrapChip extends StatelessWidget {
                 ),*/
               if (more)
                 InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      function(title.length);
+                      print('title.length: ${title.length}');
+                    },
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
                     child: Container(
