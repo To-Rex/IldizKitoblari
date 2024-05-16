@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ import '../models/menu_options.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
+import 'api_controller.dart';
 
 class GetController extends GetxController {
   var height = 0.0.obs;
@@ -54,18 +56,13 @@ class GetController extends GetxController {
   var checkBoxCardList = <bool>[].obs;
   var allCheckBoxCard = false.obs;
 
-  /*void changeCheckBoxCardList(int i) {
-    *//*if (allCheckBoxCard.value) {
-      allCheckBoxCard.value = false;
-    }*//*
-    //if checkBoxCardList all elements == true => allCheckBoxCard.value = true
-    checkBoxCardList[i] = !checkBoxCardList[i];
-  }*/
+
 
   void changeCheckBoxCardList(int i) {
     checkBoxCardList[i] = !checkBoxCardList[i];
     bool allChecked = checkBoxCardList.every((element) => element);
     allCheckBoxCard.value = allChecked;
+    ApiController().getTotalBasketPrice(jsonEncode(checkBoxCardList.asMap().entries.where((entry) => entry.value).map((entry) => listCartCreate[entry.key]).toList()));
   }
 
   void changeAllCheckBoxCardList() {
@@ -78,6 +75,8 @@ class GetController extends GetxController {
         checkBoxCardList[i] = false;
       }
     }
+    ApiController().getTotalBasketPrice(jsonEncode(checkBoxCardList.asMap().entries.where((entry) => entry.value).map((entry) => listCartCreate[entry.key]).toList()));
+
   }
 
   void onLoad() {
@@ -220,16 +219,18 @@ class GetController extends GetxController {
       listCartCreate.add(CartCreate(
         sId: item.productId,
         count: item.cartCount,
-        //product: item.productId,
         type: 'active',
-        //user: meModel.value.data?.result?.sId ?? '',
       ));
     });
     GetStorage().write('cart', listCartCreate);
+    var data = jsonEncode(listCartCreate).toString();
+    ApiController().getTotalBasketPrice(data);
   }
 
   void clearBasketModel() {
     basketModel.value = BasketModel();
+    listCartCreate.clear();
+    checkBoxCardList.clear();
   }
 
   List<String> getMenuOptionsModelListData(int index) {

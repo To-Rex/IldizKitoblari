@@ -25,8 +25,7 @@ class BasketPage extends StatelessWidget {
       _getController.changeAllCheckBoxCardList()
     });
     //var data = "${jsonEncode(_getController.listCartCreate).toString().replaceAll('"', '\\"')}";
-    var data = jsonEncode(_getController.listCartCreate).toString();
-    ApiController().getTotalBasketPrice(data);
+
     return Scaffold(
         body: SmartRefresher(
           enablePullDown: true,
