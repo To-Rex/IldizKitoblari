@@ -185,8 +185,8 @@ class FilterPage extends StatelessWidget{
                                       title: _getController.getMenuOptionsModelListData(index),
                                       function: (int value) {_getController.changeFilterListSelect(index,int.parse('$value'));},
                                       select: _getController.filtersListSelect.isNotEmpty ? _getController.filtersListSelect[index] : null,
-                                    icon: Icons.close,
-                                    more: true
+                                      icon: Icons.close,
+                                      more: _getController.menuOptionsModelList[index].data!.count! > _getController.menuOptionsModelList[index].data!.result!.length ? true : false
                                   ),
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuOptionsModelList[index].data != null && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 1 && _getController.textControllers.isNotEmpty)
                                   Container(
