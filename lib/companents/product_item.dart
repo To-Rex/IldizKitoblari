@@ -36,7 +36,7 @@ class _ProductItemState extends State<ProductItem> {
         widget.function();
       },
       child: Container(
-        margin: EdgeInsets.only(top: 5.sp, right: 12.sp),
+        margin: EdgeInsets.only(top: 5.sp, right: 15.sp),
         width: 185.sp,
         child: Obx(() => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,12 +85,16 @@ class _ProductItemState extends State<ProductItem> {
                     width: 190.w,
                     child: ElevatedButton(
                         onPressed: () {
-                          print(widget.id.toString());
-                          //ApiController().addToBasket('1', widget.id.toString(),'active').then((value) => ApiController().getBasket());
                           ApiController().addToBasket('1', widget.id.toString(),'active');
                         },
                         style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-                        child: Text('Savatga qo‘shish'.tr, style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600))
+                        child: TextScroll(
+                            'Savatga qo‘shish'.tr,
+                            style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600),
+                            mode: TextScrollMode.endless,
+                            pauseBetween: const Duration(milliseconds: 10000),
+                            selectable: true,
+                            delayBefore: const Duration(milliseconds: 10000))
                     )
                 )
               else
