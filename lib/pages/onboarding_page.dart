@@ -58,7 +58,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
       body: Stack(
         children: [
           Positioned(
-              left: -w * 0.2,
+              left: -w * 0.55,
               top: 0,
               child: Column(
                 children: [
@@ -69,7 +69,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               )
           ),
           Positioned(
-              left: w * 0.9,
+              left: w * 0.78,
               bottom: 0,
               child: Column(
                 children: [
@@ -80,7 +80,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               )
           ),
           Positioned(
-              right: w * 0.9,
+              right: w * 0.78,
               top: 0,
               child: Column(
                 children: [
@@ -91,7 +91,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               )
           ),
           Positioned(
-              right: -w * 0.2,
+              right: -w * 0.55,
               bottom: 0,
               child: Column(
                 children: [
@@ -119,7 +119,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
           ),
 
           Positioned(
-              bottom: _getController.height.value * 0.296,
+              bottom: _getController.height.value * 0.297,
               right: w * 0.3,
               left: w * 0.3,
               child: Center(
@@ -134,9 +134,9 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               )
           ),
           Positioned(
-            bottom: h * 0.25,
-              right: w * 0.3,
-              left: w * 0.3,
+            bottom: h * 0.255,
+            right: w * 0.3,
+            left: w * 0.3,
             child: Text('Sevimli janrlaringizni o\'rganing'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -175,7 +175,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
           ),
           //button
           Positioned(
-              bottom: _getController.height.value * 0.12,
+              bottom: _getController.height.value * 0.125,
               height: _getController.height.value * 0.06,
               right: w * 0.15,
               left: w * 0.15,
@@ -235,28 +235,28 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
 
   Widget _buildAnimatedContainer(String imagePath, int direction, double height) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width / 4.103,
+      height: MediaQuery.of(context).size.height * 1.6,
+      width: MediaQuery.of(context).size.width / 3.59,
       child: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
           return Transform.translate(
-            offset: Offset(0, _animation.value * height * 2  * (direction == 0 ? 1 : -1)),
+            offset: Offset(0, _animation.value * height * 2.2  * (direction == 0 ? 1 : -1)),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.5,
-              //23% of the screen width
-              width: MediaQuery.of(context).size.width * 0.23,
+              width: MediaQuery.of(context).size.width / 3.9,
+              margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.013),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(imagePath),
-                  //fit: BoxFit.scaleDown,
-                  fit: _animation.value < 0.5 ? BoxFit.scaleDown : BoxFit.scaleDown,
-                ),
+                  fit: BoxFit.fitWidth
+                  //fit: _animation.value < 0.5 ? BoxFit.scaleDown : BoxFit.scaleDown,
+                )
               ),
-            ),
+              //child: Image.asset(imagePath, fit: BoxFit.fitWidth),
+            )
           );
-        },
-      ),
+        }
+      )
     );
   }
 }
