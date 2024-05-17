@@ -115,6 +115,8 @@ class ApiController extends GetxController {
         debugPrint('token: ${_getController.loginModel.value.data!.token}');
         GetStorage().write('token', _getController.loginModel.value.data!.token);
         if (GetStorage().read('token') != null) {
+          _getController.phoneController.clear();
+          _getController.passwordController.clear();
           Get.offAll(SamplePage());
         }
       } else {
