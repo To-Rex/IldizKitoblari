@@ -14,7 +14,6 @@ import '../resource/colors.dart';
 class BasketPage extends StatelessWidget {
   BasketPage({super.key});
   final GetController _getController = Get.put(GetController());
-
   final RefreshController _refreshController = RefreshController();
 
   @override
@@ -24,8 +23,6 @@ class BasketPage extends StatelessWidget {
       _getController.allCheckBoxCard.value = true,
       _getController.changeAllCheckBoxCardList()
     });
-    //var data = "${jsonEncode(_getController.listCartCreate).toString().replaceAll('"', '\\"')}";
-
     return Scaffold(
         body: SmartRefresher(
           enablePullDown: true,
