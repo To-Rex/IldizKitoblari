@@ -372,7 +372,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
-    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}'),
+    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFilds()}'),
       headers: {'Accept-Language': Get.locale!.languageCode},
     );
     debugPrint('product: ${response.body}');
@@ -392,7 +392,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSelectProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
-    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}'),
+    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFilds()}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },

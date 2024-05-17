@@ -577,4 +577,32 @@ class GetController extends GetxController {
     }
   }
 
+  String getFilterTextFilds() {
+    String params = '';
+    print('${textControllers.length}');
+    for (int index = 0; textControllers.length > index; index++) {
+      if (textControllers[index].text != '') {
+        params = '$params&value[]=${textControllers[index].text}';
+      }
+    }
+    if (params.isNotEmpty) {
+      return params;
+    } else {
+      return '';
+    }
+  }
+
+  String getFilterTextSelect() {
+    String params = '';
+    for (int index = 0; filtersListSelect.length > index; index++) {
+      if (filtersListSelect[index] != null && filtersListSelect[index] != -1) {
+        params = '$params&value_id[]=${menuOptionsModelList[index].data!.result![filtersListSelect[index]].sId}';
+      }
+    }
+    if (params.isNotEmpty) {
+      return params;
+    } else {
+      return '';
+    }
+  }
 }

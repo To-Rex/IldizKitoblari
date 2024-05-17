@@ -31,6 +31,7 @@ class FilterPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    _getController.textControllers.clear();
     _getController.filterGenre.clear();
     _getController.filterGenre.add(null);
     _getController.genreIndex.value = 0;
@@ -215,14 +216,7 @@ class FilterPage extends StatelessWidget{
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
                               onPressed: () {
-                                /*//Get.back();
-                                //_getController.textControllers
-                                var text ='';
-                                for (var index = 0; index < _getController.textControllers.length; index++) {
-                                  print(_getController.textControllers[index].text != '' ? _getController.textControllers[index].text.toString() : '');
-                                  text = '$text${_getController.textControllers[index].text}';
-                                }
-                                print(text);*/
+                                _getController.productModel.value.data!.result!.clear();
                                 _getController.page.value = 0;
                                 if (!parent) {
                                   ApiController().getProduct(_getController.page.value + 1, menuSlug, true,
