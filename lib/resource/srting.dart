@@ -116,6 +116,9 @@ class LocaleString extends Translations{
       'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Добавить книги в корзину для оформления заказа.',
       'Savat bo‘sh':'Корзина пуста',
       'Savatga qo‘shish':'Добавить в корзину',
+      'Yetkazib berish manzili':'Адрес доставки',
+      'To‘lov turi':'Тип оплаты',
+      'Buyurtmani tasdiqlash':'Подтвердить заказ',
 
     },
     'uz_UZ':{
@@ -231,6 +234,9 @@ class LocaleString extends Translations{
       'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.',
       'Savat bo‘sh':'Savat bo‘sh',
       'Savatga qo‘shish':'Savatga qo‘shish',
+      'Yetkazib berish manzili':'Yetkazib berish manzili',
+      'To‘lov turi':'To‘lov turi',
+      'Buyurtmani tasdiqlash':'Buyurtmani tasdiqlash',
 
     },
     'oz_OZ':{
@@ -344,8 +350,10 @@ class LocaleString extends Translations{
       'Xaridni boshlash':'Харидни бошлаш',
       'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Саватга маҳсулотларни қўшиш учун харид қилишни бошланг.',
       'Savat bo‘sh':'Сават бўш',
-      'Savatga qo‘shish':'Саватга қўшиш'
-
+      'Savatga qo‘shish':'Саватга қўшиш',
+      'Yetkazib berish manzili':'Етказиб бериш манзили',
+      'To‘lov turi':'Тўлов тури',
+      'Buyurtmani tasdiqlash':'Буюртмани тасдиқлаш',
     }
   };
 
