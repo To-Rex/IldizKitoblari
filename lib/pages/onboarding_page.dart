@@ -137,7 +137,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
             bottom: h * 0.255,
             right: w * 0.3,
             left: w * 0.3,
-            child: Text('Sevimli janrlaringizni o\'rganing'.tr,
+            child: Text('Sevimli janrlaringizni o‘rganing'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: _getController.width.value * 0.045,
@@ -189,7 +189,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                     borderRadius: BorderRadius.circular(12),
                   )
                 ),
-                child: Text('Ro\'yxatdan o\'tish'.tr,
+                child: Text('Ro‘yxatdan o‘tish'.tr,
                     style: TextStyle(
                       fontSize: _getController.width.value * 0.04,
                       color: AppColors.white,
@@ -206,7 +206,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Ro\'yxatdan o\'tganmisiz?'.tr,
+                  Text('Ro‘yxatdan o‘tganmisiz?'.tr,
                       style: TextStyle(
                         fontSize: w * 0.17,
                         color: AppColors.white,
