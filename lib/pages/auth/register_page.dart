@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/auth/login_page.dart';
-import 'package:ildiz/pages/auth/verify_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import '../../companents/appbar_sheets.dart';
 import '../../companents/text_fild_auth.dart';
@@ -13,7 +11,7 @@ import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
 
 class RegisterPage extends StatelessWidget {
-  RegisterPage({Key? key}) : super(key: key);
+  RegisterPage({super.key});
 
   final GetController _getController = Get.put(GetController());
 
@@ -48,7 +46,7 @@ class RegisterPage extends StatelessWidget {
                 child: Column(
                   children: [
                     AppBarSheets(
-                      title: 'Ro\'yxatdan o\'tish'.tr,
+                      title: 'Ro‘yxatdan o‘tish'.tr,
                     ),
                     TextFildHints(
                       hintText: 'f.i.sh'.tr,
@@ -149,7 +147,7 @@ class RegisterPage extends StatelessWidget {
                                 return;
                               }
                               if (_getController.passwordController.text.length < 6) {
-                                ApiController().showToast(context, 'Xatolik', 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak!', true,2);
+                                ApiController().showToast(context, 'Xatolik', 'Parol kamida 6 ta belgidan iborat bo‘lishi kerak!', true,2);
                                 return;
                               }
                               if (!_getController.check.value) {
@@ -166,7 +164,7 @@ class RegisterPage extends StatelessWidget {
                                 backgroundColor: AppColors.primaryColor,
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                             ),
-                            child: Text('Ro\'yxatdan o\'tish'.tr,
+                            child: Text('Ro‘yxatdan o‘tish'.tr,
                                 style: TextStyle(
                                   fontSize: _getController.width.value * 0.04,
                                   color: AppColors.white,
@@ -180,7 +178,7 @@ class RegisterPage extends StatelessWidget {
                       children: [
                         const Spacer(),
                         Text(
-                          'Ro\'yxatdan o\'tganmisiz?'.tr,
+                          'Ro‘yxatdan o‘tganmisiz?'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,
                             fontSize: _getController.width.value * 0.04,
