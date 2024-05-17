@@ -9,6 +9,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../companents/basket/list_shop.dart';
 import '../controllers/get_controller.dart';
+import '../pages/order/order_cauntry_page.dart';
 import '../resource/colors.dart';
 
 class BasketPage extends StatelessWidget {
@@ -201,7 +202,9 @@ class BasketPage extends StatelessWidget {
                           width: _getController.width.value * 0.35,
                           height: _getController.height.value * 0.06,
                           child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => OrderCountryPage(), transition: Transition.native);
+                              },
                               style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                               child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
                           )
