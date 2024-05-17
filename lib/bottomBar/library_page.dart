@@ -24,49 +24,14 @@ class LibraryPage extends StatelessWidget {
               child: Obx(() => Stack(
                   fit: StackFit.loose,
                   children: [
+                    Positioned(height: _getController.height.value * 0.24, top: 0, left: 0, right: 0, child: SizedBox(child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, width: _getController.width.value, height: _getController.height.value * 0.3))),
+                    Positioned(height: _getController.height.value * 0.2, top: _getController.height.value * 0.062, left: _getController.width.value * 0.03, child: Text('Kutubxona'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))),
+                    Positioned(height: _getController.height.value * 0.2, top: _getController.height.value * 0.02, left: 0, right: 0, child: SearchFields(onChanged: (String value) {})),
                     Positioned(
-                        height: _getController.height.value * 0.24,
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        child: SizedBox(
-                          child: SvgPicture.asset('assets/svgImages/shap.svg',
-                              fit: BoxFit.fitWidth,
-                              width: _getController.width.value,
-                              height: _getController.height.value * 0.3),
-                        )),
-                    Positioned(
-                        height: _getController.height.value * 0.2,
-                        top: _getController.height.value * 0.062,
-                        left: _getController.width.value * 0.03,
-                        child: Text('Kutubxona'.tr,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.surface,
-                                fontSize: _getController.width.value * 0.061,
-                                fontWeight: FontWeight.bold
-                            )
-                        )
-                    ),
-                    Positioned(
-                        height: _getController.height.value * 0.2,
-                        top: _getController.height.value * 0.02,
-                        left: 0,
-                        right: 0,
-                        child: SearchFields(onChanged: (String ) {  },)
-                    ),
-                    Positioned(
-                        width: _getController.width.value,
-                        top: _getController.height.value * 0.19,
-                        bottom: 0,
+                        width: _getController.width.value, top: _getController.height.value * 0.19, bottom: 0,
                         child: Container(
                             width: _getController.width.value,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(16),
-                                topRight: Radius.circular(16),
-                              ),
-                            ),
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
                             child: Column(
                               children: [
                                 Container(
@@ -77,21 +42,14 @@ class LibraryPage extends StatelessWidget {
                                         constraints: BoxConstraints.expand(height:  Get.height * 0.06),
                                         margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
                                         padding: EdgeInsets.all(Get.width * 0.01),
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                          borderRadius: BorderRadius.circular(15),
-                                        ),
+                                        decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
                                         child: TabBar(
                                             indicatorSize: TabBarIndicatorSize.tab,
                                             dividerColor: Colors.transparent,
                                             controller: _getController.tabController,
                                             labelStyle: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),
                                             unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-                                            indicator: BoxDecoration(
-                                                color: Theme.of(context).colorScheme.background,
-                                                borderRadius: BorderRadius.circular(11),
-                                                boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]
-                                            ),
+                                            indicator: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
                                             tabs: [
                                               Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Elektron kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500))))),
                                               Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Audio kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500)))))
