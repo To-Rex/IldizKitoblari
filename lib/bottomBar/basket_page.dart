@@ -122,10 +122,7 @@ class BasketPage extends StatelessWidget {
                                           constraints: BoxConstraints.expand(height:  Get.height * 0.06),
                                           margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
                                           padding: EdgeInsets.all(Get.width * 0.01),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
-                                            borderRadius: BorderRadius.circular(15),
-                                          ),
+                                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
                                           child: TabBar(
                                               onTap: (index) {
                                                 _getController.tabController.animateTo(index);
@@ -136,11 +133,7 @@ class BasketPage extends StatelessWidget {
                                               controller: _getController.tabController,
                                               labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 18.sp, fontWeight: FontWeight.w500),
                                               unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-                                              indicator: BoxDecoration(
-                                                  color: Theme.of(context).colorScheme.background,
-                                                  borderRadius: BorderRadius.circular(11),
-                                                  boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]
-                                              ),
+                                              indicator: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
                                               tabs: [
                                                 Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Do\'kon'.tr)))),
                                                 Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Kutubxona'.tr))))
