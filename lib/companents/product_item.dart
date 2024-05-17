@@ -85,7 +85,7 @@ class _ProductItemState extends State<ProductItem> {
                         ApiController().addToBasket('1', widget.id.toString(),'active').then((value) => widget.function());
                       },
                       style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-                      child: Text('Xarid'.tr, style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600))
+                      child: Text('Xarid'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600))
                   )
               ),
               if (!_getController.checkCardId(widget.id))
@@ -98,13 +98,7 @@ class _ProductItemState extends State<ProductItem> {
                           ApiController().addToBasket('1', widget.id.toString(),'active');
                         },
                         style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-                        child: TextScroll(
-                            'Savatga qo‘shish'.tr,
-                            style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600),
-                            mode: TextScrollMode.endless,
-                            pauseBetween: const Duration(milliseconds: 10000),
-                            selectable: true,
-                            delayBefore: const Duration(milliseconds: 10000))
+                        child: Text('Savatga qo‘shish'.tr, maxLines: 1, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600))
                     )
                 )
               else
