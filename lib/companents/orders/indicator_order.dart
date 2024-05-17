@@ -10,7 +10,7 @@ class IndicatorOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.sp, horizontal: Get.width * 0.03),
+      margin: EdgeInsets.symmetric(vertical: Get.width * 0.03),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,

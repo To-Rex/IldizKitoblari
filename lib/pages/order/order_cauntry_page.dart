@@ -14,7 +14,10 @@ class OrderCountryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.94),
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06), onPressed: () {Get.back();},),
         title: Text('Buyurtma'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
         centerTitle: false,
@@ -22,8 +25,24 @@ class OrderCountryPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            IndicatorOrder(
-              index: 3,
+            const IndicatorOrder(index: 0),
+            Container(
+              width: Get.width,
+              height: Get.height * 0.8,
+              margin: EdgeInsets.only(top: 10.sp),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), topRight: Radius.circular(10.r)),
+                  boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), spreadRadius: 1, blurRadius: 5, offset: const Offset(0, 0))]
+              ),
+              padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: Get.width * 0.03),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //Yetkazib berish manzili
+                  Text('Yetkazib berish manzili'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                ],
+              )
             )
           ],
         )
