@@ -25,7 +25,7 @@ class IndicatorOrder extends StatelessWidget {
               Container(
                 width: Get.width * 0.28,
                 margin: EdgeInsets.only(top: 5.sp),
-                child: Text('Yetkazib berish manzili'.tr, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400, color: index == 0 ? AppColors.primaryColor3 : index == 1 || index == 2 ? AppColors.primaryColor2 : AppColors.primaryColor2), textAlign: TextAlign.left)
+                child: Text('Yetkazib berish manzili'.tr, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: index == 0 ? AppColors.primaryColor3 : index == 1 || index == 2 ? AppColors.primaryColor2 : AppColors.primaryColor2), textAlign: TextAlign.left)
               )
             ]
           ),
@@ -39,7 +39,7 @@ class IndicatorOrder extends StatelessWidget {
               Container(
                 width: Get.width * 0.28,
                 margin: EdgeInsets.only(top: 5.sp),
-                child: Text('To‘lov turi'.tr, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400, color: index == 1 ? AppColors.primaryColor3 : index == 0 ? AppColors.grey : index == 2 ? AppColors.primaryColor2 : AppColors.primaryColor2), textAlign: TextAlign.left)
+                child: Text('To‘lov turi'.tr, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: index == 1 ? AppColors.primaryColor3 : index == 0 ? AppColors.grey : index == 2 ? AppColors.primaryColor2 : AppColors.primaryColor2), textAlign: TextAlign.left)
               )
             ]
           ),
@@ -53,7 +53,7 @@ class IndicatorOrder extends StatelessWidget {
               Container(
                 width: Get.width * 0.28,
                 margin: EdgeInsets.only(top: 5.sp),
-                child: Text('Buyurtmani tasdiqlash'.tr, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400, color: index == 2 ? AppColors.primaryColor3 : index == 0 || index == 1 ? AppColors.grey : AppColors.primaryColor2), textAlign: TextAlign.left)
+                child: Text('Buyurtmani tasdiqlash'.tr, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: index == 2 ? AppColors.primaryColor3 : index == 0 || index == 1 ? AppColors.grey : AppColors.primaryColor2), textAlign: TextAlign.left)
               )
             ]
           )

@@ -39,8 +39,7 @@ class OrderCountryPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //Yetkazib berish manzili
-                  Text('Yetkazib berish manzili'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                  Text('Yetkazib berish manzili'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
                 ],
               )
             )
