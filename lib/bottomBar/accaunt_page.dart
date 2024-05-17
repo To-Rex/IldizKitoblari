@@ -247,8 +247,12 @@ class AccountPage extends StatelessWidget {
                                   onTap: () {
                                     showDialog(context: context,
                                         builder: (context) => AlertDialog(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+                                          backgroundColor: Theme.of(context).colorScheme.background,
                                           title: Text('Dasturdan chiqmoqchimisiz?'.tr),
+                                          titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500, fontSize: 19.sp),
                                           content: Text('Dasturdan chiqqaningdan so‘ng login va parolingiz orqali qayta kirishingiz mumkin.'.tr),
+                                          contentTextStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7), fontWeight: FontWeight.w400, fontSize: 16.sp),
                                           actions: [
                                             SizedBox(
                                               child: Row(
@@ -267,7 +271,7 @@ class AccountPage extends StatelessWidget {
                                                           onPressed: () {
                                                             Get.back();
                                                           },
-                                                          child: Text('Orqaga'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500, fontSize: 14.sp))
+                                                          child: Text('Orqaga'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500, fontSize: 16.sp))
                                                       )
                                                   ),
                                                   SizedBox(width: Get.width * 0.03),
@@ -286,7 +290,7 @@ class AccountPage extends StatelessWidget {
                                                             GetStorage().remove('token');
                                                             Get.offAll(const OnboardingPage());
                                                           },
-                                                          child: Text('Chiqish'.tr, style: TextStyle(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 14.sp))
+                                                          child: Text('Chiqish'.tr, style: TextStyle(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 16.sp))
                                                       )
                                                   )
                                                 ],
@@ -296,7 +300,6 @@ class AccountPage extends StatelessWidget {
                                           ]
                                         )
                                     );
-
                                   }
                               ),
                               SizedBox(height: _getController.width.value * 0.1)
