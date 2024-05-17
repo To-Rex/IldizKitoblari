@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -46,7 +47,16 @@ class _ProductItemState extends State<ProductItem> {
                   child: ClipRRect(borderRadius: BorderRadius.circular(4), child: Image.network(widget.imageUrl == null || widget.imageUrl == '' || widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740' : widget.imageUrl!, fit: BoxFit.cover, loadingBuilder: (context, child, loadingProgress) {if (loadingProgress == null) return child;return SizedBox(width: _getController.width.value * 0.44, height: _getController.height.value * 0.205, child: Skeletonizer(child: Container(width: _getController.width.value * 0.44, height: _getController.height.value * 0.205, color: AppColors.grey)));}, errorBuilder: (context, error, stackTrace) {return Text(error.toString());}))
               ),
               SizedBox(height: 10.sp),
-              SizedBox(child: Text(widget.title!, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
+              Container(
+                  margin: EdgeInsets.only(right: 5.sp),
+                  child: TextScroll(
+                      widget.title!,
+                      style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),
+                      mode: TextScrollMode.endless,
+                      pauseBetween: const Duration(milliseconds: 10000),
+                      selectable: true,
+                      delayBefore: const Duration(milliseconds: 10000))
+              ),
               SizedBox(height: 5.sp),
               Expanded(child: Text('${widget.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
               Row(
