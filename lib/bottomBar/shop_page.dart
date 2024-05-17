@@ -145,7 +145,7 @@ class ShopPage extends StatelessWidget {
                                                 }),
                                               if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
                                                 SizedBox(
-                                                    height: 330.h,
+                                                    height: 370.h,
                                                     width: _getController.width.value,
                                                     child: ListView.builder(
                                                         padding: EdgeInsets.only(left: 16.w),

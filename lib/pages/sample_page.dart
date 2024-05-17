@@ -27,7 +27,7 @@ class SamplePage extends StatelessWidget {
     _getController.changeWidgetOptions();
     _connectivity.initialise();
     if (_getController.meModel.value.data == null) {
-      ApiController().me();
+      ApiController().me().then((value) => ApiController().getBasket());
     }
     return Scaffold(
         body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),

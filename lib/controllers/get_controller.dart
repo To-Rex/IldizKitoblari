@@ -224,10 +224,38 @@ class GetController extends GetxController {
       ));
     });
     GetStorage().write('cart', listCartCreate);
-    if (allCheckBoxCard.value) {
+    if (allCheckBoxCard.value && listCartCreate.isNotEmpty) {
       var data = jsonEncode(listCartCreate).toString();
       ApiController().getTotalBasketPrice(data);
     }
+  }
+
+  bool checkCardId(id) {
+    for (var element in listCartCreate) {
+      if (element.sId == id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  String checkCardIdCount(String id) {
+    if (GetStorage().read('cart') == null) return '0';
+    for (final element in jsonDecode(jsonEncode(GetStorage().read('cart')))) {
+      if (element['_id'] == id) {
+        return element['count'].toString();
+      }
+    }
+    return '0';
+  }
+
+  int checkCardIdIndex(String id) {
+    for (var i = 0; i < listCartCreate.length; i++) {
+      if (listCartCreate[i].sId == id) {
+        return i;
+      }
+    }
+    return 0;
   }
 
   void clearBasketModel() {
@@ -369,7 +397,6 @@ class GetController extends GetxController {
     }
   }
 
-  //methods
   void changeLoginModel(LoginModel loginModel) {
     this.loginModel.value = loginModel;
   }
@@ -382,7 +409,6 @@ class GetController extends GetxController {
     this.menuModel.value = menuModel;
   }
 
-  //delete menuModel data result list index
   void deleteMenuModel(int index) {
     if (menuModel.value.data != null && menuModel.value.data!.result != null && menuModel.value.data!.result!.isNotEmpty && index <= menuModel.value.data!.result!.length) {
       menuModel.value.data!.result!.removeAt(index);
@@ -393,14 +419,12 @@ class GetController extends GetxController {
     this.bannerModel.value = bannerModel;
   }
 
-  //clear
   void clearBannerModel() {
     if (bannerModel.value.data != null) {
       bannerModel.value = BannerModel();
     }
   }
 
-  //add banner
   void addBannerModel(BannerModel bannerModel) {
     this.bannerModel.value.data!.result!.addAll(bannerModel.data!.result!);
   }
@@ -409,7 +433,6 @@ class GetController extends GetxController {
     this.productModel.value = productModel;
   }
 
-  //add productModel to productModel list
   void addProductModel(ProductModel productModel) {
     this.productModel.value.data!.result!.addAll(productModel.data!.result!);
   }
@@ -418,25 +441,21 @@ class GetController extends GetxController {
     this.quotesModel.value = quotesModel;
   }
 
-  //add quotes
   void addQuotesModel(QuotesModel quotesModel) {
     this.quotesModel.value.data!.result!.addAll(quotesModel.data!.result!);
   }
 
-  //clear quotes
   void clearQuotesModel() {
     if (quotesModel.value.data != null) {
       quotesModel.value = QuotesModel();
     }
   }
 
-  //authorModel
   void changeAuthorModel(AuthorModel authorModel) {
     this.authorModel.value = authorModel;
     productModelLength.value = authorModel.data!.result!.length;
   }
 
-  //clear authorModel
   void clearAuthorModel() {
     if (authorModel.value.data != null) {
       productModelLength.value = 0;
@@ -444,7 +463,6 @@ class GetController extends GetxController {
     }
   }
 
-  //add authorModel
   void addAuthorModel(AuthorModel authorModel) {
     this.authorModel.value.data!.result!.addAll(authorModel.data!.result!);
     productModelLength.value = productModelLength.value + authorModel.data!.result!.length;
@@ -454,14 +472,12 @@ class GetController extends GetxController {
     this.productDetailModel.value = productDetailModel;
   }
 
-  //clear productDetailModel
   void clearProductDetailModel() {
     if (productDetailModel.value.data != null) {
       productDetailModel.value = ProductDetailModel();
     }
   }
 
-  //clear productModel
   void clearProductModel() {
     if (productModel.value.data != null) {
       productModelLength.value = 0;
@@ -473,7 +489,6 @@ class GetController extends GetxController {
     this.productRate.value = productRate;
   }
 
-  //clear productRate
   void clearProductRate() {
     if (productRate.value.data != null) {
       productRate.value = ProductRate();
@@ -487,12 +502,11 @@ class GetController extends GetxController {
   void addItemPage() {
     itemPage.value++;
   }
-  //productModel length
+
   void changeProductModelLength(int length) {
     productModelLength.value = length;
   }
 
-  //companents
   final countdownDuration = const Duration(minutes: 1, seconds: 59).obs;
   Timer? _timer;
   void startTimer() {const oneSec = Duration(seconds: 1);
@@ -520,7 +534,6 @@ class GetController extends GetxController {
     startTimer();
   }
 
-  //text filds controllers
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController repeatPasswordController = TextEditingController();

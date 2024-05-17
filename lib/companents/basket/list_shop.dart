@@ -54,7 +54,6 @@ class ListShop extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          //Text(_getController.basketModel.value.data!.result![i].name!.uz!),
                           Text('uz_UZ' == Get.locale.toString()
                               ? _getController.basketModel.value.data!.result![i].name!.uz!
                               : 'oz_OZ' == Get.locale.toString()
@@ -65,10 +64,7 @@ class ListShop extends StatelessWidget {
                           Row(
                             children: [
                               InkWell(
-                                child: Text(
-                                  'O‘chirish'.tr,
-                                  style: TextStyle(color: AppColors.red, fontSize: 15.sp, fontWeight: FontWeight.w400),
-                                ),
+                                child: Text('O‘chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 15.sp, fontWeight: FontWeight.w400)),
                                 onTap: () {
                                   ApiController().addToBasket('0', _getController.basketModel.value.data!.result![i].productId!,'deleted');
                                 }

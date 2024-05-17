@@ -114,6 +114,7 @@ class LocaleString extends Translations{
       'Xaridni boshlash' : 'Начать покупку',
       'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Добавить книги в корзину для оформления заказа.',
       'Savat bo‘sh':'Корзина пуста',
+      'Savatga qo‘shish':'Добавить в корзину',
 
     },
     'uz_UZ':{
@@ -227,6 +228,7 @@ class LocaleString extends Translations{
       'Xaridni boshlash':'Xaridni boshlash',
       'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.',
       'Savat bo‘sh':'Savat bo‘sh',
+      'Savatga qo‘shish':'Savatga qo‘shish',
 
     },
     'oz_OZ':{
@@ -339,6 +341,7 @@ class LocaleString extends Translations{
       'Xaridni boshlash':'Харидни бошлаш',
       'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.':'Саватга маҳсулотларни қўшиш учун харид қилишни бошланг.',
       'Savat bo‘sh':'Сават бўш',
+      'Savatga qo‘shish':'Саватга қўшиш'
 
     }
   };

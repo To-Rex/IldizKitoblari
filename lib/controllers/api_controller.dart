@@ -478,7 +478,7 @@ class ApiController extends GetxController {
           'Accept-Language': lang,
         },
       );
-      debugPrint('product: ${response.body}');
+      debugPrint('product1: ${response.body}');
       print('product: ${response.statusCode}');
       if (response.statusCode == 200 || response.statusCode == 201) {
         if (jsonDecode(response.body)['data']['result'].isEmpty) {
@@ -635,7 +635,9 @@ class ApiController extends GetxController {
         'Authorization': 'Bearer ${GetStorage().read('token')}',
       },
     );
-    if (response.statusCode == 200) {
+    debugPrint('basket: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.checkBoxCardList.clear();
       _getController.clearBasketModel();
       _getController.changeBasketModel(BasketModel.fromJson(jsonDecode(response.body)));
       if (_getController.allCheckBoxCard.value) {
@@ -665,7 +667,8 @@ class ApiController extends GetxController {
           "user": _getController.meModel.value.data?.result?.sId
         }
     );
-    if (response.statusCode == 200) {
+    debugPrint('addToBasket: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
       getBasket();
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
@@ -673,25 +676,22 @@ class ApiController extends GetxController {
   }
 
   Future<void> getTotalBasketPrice(String data) async {
-    print('=======================================================================================================================)');
-    print(data);
+    if (data.isEmpty) return;
     var response = await post(Uri.parse(_totalPrice),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
         'Authorization': 'Bearer ${GetStorage().read('token')}',
       },
-      //body: {"products": data},
       body: {
         "products": data,
       },
     );
     debugPrint('totalBasketPrice: ${response.body}');
     debugPrint('totalBasketPrice: ${response.statusCode}');
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.changeGetPrice(GetPrice.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
   }
-
 }

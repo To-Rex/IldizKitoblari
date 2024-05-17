@@ -45,24 +45,16 @@ class HomePage extends StatelessWidget {
                 if (mode == RefreshStatus.idle) {
                   body = const Text("Ma`lumotlarni yangilash uchun tashlang");
                 } else if (mode == RefreshStatus.refreshing) {
-                  body = const CircularProgressIndicator(
-                    color: Colors.blue,
-                    backgroundColor: Colors.white,
-                    strokeWidth: 2,
-                  );
+                  body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
                 } else if (mode == RefreshStatus.failed) {
-                  body = const Text("Ex nimadir xato ketdi",
-                      style: TextStyle(fontSize: 14, color: Colors.red));
+                  body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
                 } else if (mode == RefreshStatus.canRefresh) {
                   body = const Text("Ma`lumotlarni yangilash uchun tashlang");
                 } else {
                   body = const Text("Ma`lumotlar yangilandi");
                 }
-                return SizedBox(
-                  height: _getController.height.value * 0.1,
-                  child: Center(child: body),
-                );
-              },
+                return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
+              }
             ),
             footer: CustomFooter(
               builder: (BuildContext context, LoadStatus? mode) {
@@ -78,11 +70,8 @@ class HomePage extends StatelessWidget {
                 } else {
                   body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));
                 }
-                return SizedBox(
-                  height: _getController.height.value * 0.1,
-                  child: Center(child: body),
-                );
-              },
+                return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
+              }
             ),
             onLoading: () async {_refreshController.loadComplete();},
             onRefresh: () async {_refreshController.refreshCompleted();},
@@ -167,22 +156,12 @@ class HomePage extends StatelessWidget {
                               )
                             else
                               Container(
-                                margin: EdgeInsets.only(
-                                    top: 18.h,
-                                    bottom: 25.h
-                                ),
+                                margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
                                 height: _getController.height.value * 0.173,
                                 width: _getController.width.value,
                                 padding: EdgeInsets.all(_getController.width.value * 0.02),
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-                                child: Skeletonizer(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        image: const DecorationImage(image: AssetImage('assets/images/oo1.png'), fit: BoxFit.fill)
-                                    )
-                                  )
-                                )
+                                child: Skeletonizer(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), image: const DecorationImage(image: AssetImage('assets/images/oo1.png'), fit: BoxFit.fill))))
                               ),
                             if (_getController.menuModel.value.data != null)
                               ChildItem(
@@ -243,8 +222,7 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               SizedBox(
-                                  //height: _getController.height.value * 0.38,
-                                  height: 330.h,
+                                  height: 370.h,
                                   width: _getController.width.value,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.04),
@@ -283,8 +261,7 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               SizedBox(
-                                //height: _getController.height.value * 0.38,
-                                  height: 330.h,
+                                  height: 370.h,
                                   width: _getController.width.value,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.04),
@@ -553,7 +530,7 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               SizedBox(
-                                  height: 330.h,
+                                  height: 370.h,
                                   width: _getController.width.value,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.04),
