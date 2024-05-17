@@ -119,6 +119,9 @@ class LocaleString extends Translations{
       'Yetkazib berish manzili':'Адрес доставки',
       'To‘lov turi':'Тип оплаты',
       'Buyurtmani tasdiqlash':'Подтвердить заказ',
+      'Davlat':'Страна',
+      'Tuman / shahar':'Район / город',
+      'Manzil':'Адрес',
 
     },
     'uz_UZ':{
@@ -237,6 +240,9 @@ class LocaleString extends Translations{
       'Yetkazib berish manzili':'Yetkazib berish manzili',
       'To‘lov turi':'To‘lov turi',
       'Buyurtmani tasdiqlash':'Buyurtmani tasdiqlash',
+      'Davlat':'Davlat',
+      'Tuman / shahar':'Tuman / shahar',
+      'Manzil':'Manzil',
 
     },
     'oz_OZ':{
@@ -354,6 +360,9 @@ class LocaleString extends Translations{
       'Yetkazib berish manzili':'Етказиб бериш манзили',
       'To‘lov turi':'Тўлов тури',
       'Buyurtmani tasdiqlash':'Буюртмани тасдиқлаш',
+      'Davlat':'Давлат',
+      'Tuman / shahar':'Туман / шаҳар',
+      'Manzil':'Манзил',
     }
   };
 

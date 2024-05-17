@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 
 import '../../companents/orders/indicator_order.dart';
 import '../../controllers/get_controller.dart';
@@ -13,6 +14,7 @@ class OrderCountryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ApiController().getCountry();
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.94),
       appBar: AppBar(
@@ -40,6 +42,12 @@ class OrderCountryPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Yetkazib berish manzili'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
+                  SizedBox(height: Get.height * 0.02),
+                  Text('${'Davlat'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+
+
+                  //Text('${'Tuman / shahar'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                  //Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                 ],
               )
             )

@@ -55,6 +55,8 @@ class ApiController extends GetxController {
   static const String _getCart = '$_baseUrl/cart/list';
   static const String _addCart = '$_baseUrl/user/cart/create';
   static const String _totalPrice = '$_baseUrl/cart/total-price';
+  //https://ildizkitoblari.uz/api/v1/catalog/list?type=country
+  static const String _getCountry = '$_baseUrl/catalog/list?type=country';
 
 
   //show toast message
@@ -693,5 +695,18 @@ class ApiController extends GetxController {
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
     }
+  }
+
+  Future<void> getCountry()async{
+    debugPrint(ApiController._getCountry);
+    var response = await get(Uri.parse(_getCountry));
+    debugPrint('basket: ${response.body}');
+    debugPrint('basket: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+
+    } else {
+
+    }
+
   }
 }
