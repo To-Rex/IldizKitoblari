@@ -15,6 +15,7 @@ import '../models/me_models.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
 import '../models/menu_options.dart';
+import '../models/orders/country_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
@@ -129,7 +130,7 @@ class ApiController extends GetxController {
         }
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -151,7 +152,7 @@ class ApiController extends GetxController {
         }
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -172,10 +173,10 @@ class ApiController extends GetxController {
           _getController.resetTimer();
         }
       }else{
-        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -201,11 +202,11 @@ class ApiController extends GetxController {
         if (jsonDecode(response.body)['data']['message'] == 'OTP is wrong!') {
           showToast(Get.context, 'Xatolik', 'Kod noto\'g\'ri!', true, 3);
         }else{
-          showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+          showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
         }
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -220,7 +221,7 @@ class ApiController extends GetxController {
     } else if (response.statusCode == 401) {
       Get.offAll(const OnboardingPage());
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -244,7 +245,7 @@ class ApiController extends GetxController {
       me();
       _getController.image.value = '';
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
 
   }
@@ -260,10 +261,10 @@ class ApiController extends GetxController {
         _getController.fullCheck.value = true;
         _getController.passwordCheck.value = false;
       }else{
-        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -281,10 +282,10 @@ class ApiController extends GetxController {
         _getController.passwordController.clear();
         _getController.codeController.clear();
       }else{
-        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -300,7 +301,7 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.changeMenuModel(MenuModel.fromJson(jsonDecode(response.body)));
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -317,7 +318,7 @@ class ApiController extends GetxController {
       _getController.clearMenuDetailModel();
       _getController.changeMenuDetailModel(MenuDetailModel.fromJson(jsonDecode(response.body)));
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -371,7 +372,7 @@ class ApiController extends GetxController {
         _getController.changeQuotesModel(QuotesModel.fromJson(jsonDecode(response.body)));
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -391,7 +392,7 @@ class ApiController extends GetxController {
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -411,7 +412,7 @@ class ApiController extends GetxController {
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -432,7 +433,7 @@ class ApiController extends GetxController {
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -463,7 +464,7 @@ class ApiController extends GetxController {
         }
       } else {
         _getController.deleteMenuModel(_getController.itemPage.value);
-        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
     }
   }
@@ -498,7 +499,7 @@ class ApiController extends GetxController {
         }
       } else {
         _getController.deleteMenuModel(_getController.itemPage.value);
-        showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
     }
   }
@@ -516,7 +517,7 @@ class ApiController extends GetxController {
       //getProductRate(_getController.productDetailModel.value.data!.sId);
       getProductRate(jsonDecode(response.body)['data']['_id']);
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -533,7 +534,7 @@ class ApiController extends GetxController {
       //_getController.ratingController.text = _getController.productRate.value.data!.result!.average!.toString();
       _getController.ratingController.text = jsonDecode(response.body)['data']['result']['average'].toString();
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -547,7 +548,7 @@ class ApiController extends GetxController {
     if (response.statusCode == 200) {
       _getController.changeQuotesModel(QuotesModel.fromJson(jsonDecode(response.body)));
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -588,7 +589,7 @@ class ApiController extends GetxController {
         _getController.addItemPage();
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -604,7 +605,7 @@ class ApiController extends GetxController {
       print(_getController.authorDetailModelList.length);
       //print(_getController.authorDetailModelList[0].data!.name?.oz);
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -652,7 +653,7 @@ class ApiController extends GetxController {
         });
       }
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -673,7 +674,7 @@ class ApiController extends GetxController {
     if (response.statusCode == 200 || response.statusCode == 201) {
       getBasket();
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
@@ -693,20 +694,17 @@ class ApiController extends GetxController {
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.changeGetPrice(GetPrice.fromJson(jsonDecode(response.body)));
     } else {
-      showToast(Get.context, 'Xatolik', 'Server bilan bog\'lanishda xatolik', true, 3);
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
   Future<void> getCountry()async{
     debugPrint(ApiController._getCountry);
     var response = await get(Uri.parse(_getCountry));
-    debugPrint('basket: ${response.body}');
-    debugPrint('basket: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-
+      _getController.changeCountryModel(CountryModel.fromJson(jsonDecode(response.body)));
     } else {
-
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
-
   }
 }
