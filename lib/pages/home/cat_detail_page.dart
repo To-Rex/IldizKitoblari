@@ -11,6 +11,7 @@ import '../../companents/product_item.dart';
 import '../../companents/scleton_item.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
+import '../shop/filter_page1.dart';
 import 'detail_page.dart';
 
 class CatDetailPage extends StatelessWidget {
@@ -103,6 +104,54 @@ class CatDetailPage extends StatelessWidget {
     );
   }
 
+  void getFilterData(){
+    if (_getController.menuModel.value.data!.result![menuIndex].children != null) {
+      _getController.textControllers.clear();
+      _getController.filterGenre.clear();
+      _getController.filterGenre.add(null);
+      _getController.genreIndex.value = 0;
+      _getController.clearMenuOptionsModelList();
+      _getController.filtersListSelect.clear();
+      _getController.clearControllers();
+      ApiController().getMenuDetail('$menuSlug').then((value) => {
+        ApiController().getMenuOption(1, menuIndex, menuSlug, 10, true)
+      });
+    }
+  }
+
+  void showBottomSheetFilter(BuildContext context) {
+    Get.bottomSheet(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        isScrollControlled: true,
+        enableDrag: true,
+        StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return SizedBox(
+                  height: _getController.height.value * 0.9,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: _getController.width.value * 0.03, width: _getController.width.value),
+                        Container(
+                            height: _getController.width.value * 0.01,
+                            width: _getController.width.value,
+                            margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.42),
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
+                        ),
+                        SizedBox(height: _getController.width.value * 0.03),
+                        SizedBox(
+                            height: _getController.height.value * 0.8,
+                            width: _getController.width.value,
+                            child: FilterPage(menuIndex: menuIndex, menuSlug: menuSlug,parent: parent)
+                        ),
+                      ]
+                  )
+              );
+            })
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _getController.filters.clear();
@@ -118,6 +167,7 @@ class CatDetailPage extends StatelessWidget {
     } else {
       ApiController().getSelectProduct(1, menuSlug, false,null,null,null,null);
     }
+    getFilterData();
 
     return Scaffold(
         appBar: AppBar(
@@ -148,7 +198,8 @@ class CatDetailPage extends StatelessWidget {
                           child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
                       IconButton(
                           onPressed: () {
-                            Get.to(() => FilterPage(menuIndex: menuIndex, menuSlug: menuSlug,parent: parent), fullscreenDialog: true, transition: Transition.cupertino);
+                            Get.to(() => FilterPage1(menuIndex: menuIndex, menuSlug: menuSlug,parent: parent), fullscreenDialog: true, transition: Transition.cupertino);
+                            //showBottomSheetFilter(context);
                           },
                           icon: Icon(TablerIcons.adjustments_horizontal, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground)
                       )
@@ -224,6 +275,8 @@ class CatDetailPage extends StatelessWidget {
                       child: Container(
                         margin: EdgeInsets.only(left: _getController.width.value * 0.04),
                         child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               childAspectRatio: 0.07,
