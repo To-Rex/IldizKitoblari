@@ -171,7 +171,7 @@ class BasketPage extends StatelessWidget {
                                                 ),
                                                 SizedBox(height: _getController.height.value * 0.01),
                                                 SizedBox(
-                                                  width: _getController.width.value * 0.45,
+                                                  width: _getController.width.value * 0.5,
                                                   child: ElevatedButton(
                                                     style: ElevatedButton.styleFrom(
                                                       backgroundColor: AppColors.primaryColor,
@@ -180,9 +180,11 @@ class BasketPage extends StatelessWidget {
                                                     onPressed: () {
                                                       _getController.index.value = 1;
                                                     },
-                                                    child: Text('Xaridni boshlash'.tr, style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 16.sp)
+                                                    child: Center(
+                                                      child: Text('Xaridni boshlash'.tr, style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 16.sp)
+                                                      )
                                                     )
                                                   )
                                                 )
