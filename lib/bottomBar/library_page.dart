@@ -82,49 +82,19 @@ class LibraryPage extends StatelessWidget {
                                           borderRadius: BorderRadius.circular(15),
                                         ),
                                         child: TabBar(
-                                            onTap: (index) {
-                                              _getController.tabController.animateTo(index);
-                                              _getController.tabController.index = index;
-                                              print('index: $index');
-                                            },
                                             indicatorSize: TabBarIndicatorSize.tab,
                                             dividerColor: Colors.transparent,
                                             controller: _getController.tabController,
-                                            labelStyle: TextStyle(
-                                                fontSize: Get.width * 0.04,
-                                                fontWeight: FontWeight.w500,
-                                                color: Theme.of(context).colorScheme.onBackground
-                                            ),
+                                            labelStyle: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),
                                             unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
                                             indicator: BoxDecoration(
                                                 color: Theme.of(context).colorScheme.background,
                                                 borderRadius: BorderRadius.circular(11),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      color: Colors.grey.withOpacity(0.3),
-                                                      spreadRadius: 2,
-                                                      blurRadius: 2,
-                                                      offset: const Offset(0, 2)
-                                                  )
-                                                ]
+                                                boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]
                                             ),
                                             tabs: [
-                                              Tab(
-                                                  child: SizedBox(
-                                                      width: Get.width * 0.6,
-                                                      child: Center(
-                                                          child: Text('Elektron kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500))
-                                                      )
-                                                  )
-                                              ),
-                                              Tab(
-                                                  child: SizedBox(
-                                                      width: Get.width * 0.6,
-                                                      child: Center(
-                                                          child: Text('Audio kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500))
-                                                      )
-                                                  )
-                                              )
+                                              Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Elektron kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500))))),
+                                              Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Audio kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500)))))
                                             ]
                                         )
                                     )
@@ -134,35 +104,19 @@ class LibraryPage extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        //Savat bo‘sh
                                         Text('Savat bo‘sh'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
                                         SizedBox(height: _getController.height.value * 0.01),
-                                        SizedBox(
-                                            width: _getController.width.value * 0.65,
-                                            child: Text(
-                                                textAlign: TextAlign.center,
-                                                'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.'.tr, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400))
-                                        ),
+                                        SizedBox(width: _getController.width.value * 0.65, child: Text(textAlign: TextAlign.center, 'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.'.tr, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400))),
                                         SizedBox(height: _getController.height.value * 0.01),
                                         SizedBox(
                                             width: _getController.width.value * 0.5,
                                             child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    backgroundColor: AppColors.primaryColor,
-                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))
-                                                ),
-                                                onPressed: () {
-                                                  _getController.index.value = 1;
-                                                },
-                                                child: Center(
-                                                    child: Text('Xaridni boshlash'.tr, style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 16.sp)
-                                                    )
-                                                )
+                                                style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
+                                                onPressed: () {_getController.index.value = 1;},
+                                                child: Center(child: Text('Xaridni boshlash'.tr, style: TextStyle(color: Colors.white, fontSize: 16.sp)))
                                             )
                                         )
-                                      ],
+                                      ]
                                     )),
                                 )
                               ]
