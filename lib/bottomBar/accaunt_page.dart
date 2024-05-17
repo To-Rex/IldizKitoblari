@@ -245,8 +245,58 @@ class AccountPage extends StatelessWidget {
                                   subTitle: '',
                                   color: AppColors.red,
                                   onTap: () {
-                                    GetStorage().remove('token');
-                                    Get.offAll(const OnboardingPage());
+                                    showDialog(context: context,
+                                        builder: (context) => AlertDialog(
+                                          title: Text('Dasturdan chiqmoqchimisiz?'.tr),
+                                          content: Text('Dasturdan chiqqaningdan so‘ng login va parolingiz orqali qayta kirishingiz mumkin.'.tr),
+                                          actions: [
+                                            SizedBox(
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              foregroundColor: Colors.transparent,
+                                                              disabledForegroundColor: Colors.transparent,
+                                                              shadowColor: Colors.transparent,
+                                                              surfaceTintColor: Colors.transparent,
+                                                              elevation: 0,
+                                                              backgroundColor: AppColors.grey.withOpacity(0.3),
+                                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))
+                                                          ),
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          child: Text('Orqaga'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500, fontSize: 14.sp))
+                                                      )
+                                                  ),
+                                                  SizedBox(width: Get.width * 0.03),
+                                                  Expanded(
+                                                      child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              foregroundColor: Colors.transparent,
+                                                              disabledForegroundColor: Colors.transparent,
+                                                              shadowColor: Colors.transparent,
+                                                              surfaceTintColor: Colors.transparent,
+                                                              elevation: 0,
+                                                              backgroundColor: AppColors.red,
+                                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))
+                                                          ),
+                                                          onPressed: () {
+                                                            GetStorage().remove('token');
+                                                            Get.offAll(const OnboardingPage());
+                                                          },
+                                                          child: Text('Chiqish'.tr, style: TextStyle(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 14.sp))
+                                                      )
+                                                  )
+                                                ],
+                                              )
+                                            )
+
+                                          ]
+                                        )
+                                    );
+
                                   }
                               ),
                               SizedBox(height: _getController.width.value * 0.1)
@@ -259,5 +309,4 @@ class AccountPage extends StatelessWidget {
         )
     );
   }
-
 }
