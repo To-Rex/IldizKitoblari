@@ -36,23 +36,15 @@ class BasketPage extends StatelessWidget {
               if (mode == RefreshStatus.idle) {
                 body = const Text("Ma`lumotlarni yangilash uchun tashlang");
               } else if (mode == RefreshStatus.refreshing) {
-                body = const CircularProgressIndicator(
-                  color: Colors.blue,
-                  backgroundColor: Colors.white,
-                  strokeWidth: 2,
-                );
+                body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
               } else if (mode == RefreshStatus.failed) {
-                body = const Text("Ex nimadir xato ketdi",
-                    style: TextStyle(fontSize: 14, color: Colors.red));
+                body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
               } else if (mode == RefreshStatus.canRefresh) {
                 body = const Text("Ma`lumotlarni yangilash uchun tashlang");
               } else {
                 body = const Text("Ma`lumotlar yangilandi");
               }
-              return SizedBox(
-                height: _getController.height.value * 0.1,
-                child: Center(child: body),
-              );
+              return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body),);
             },
           ),
           footer: CustomFooter(
@@ -76,7 +68,7 @@ class BasketPage extends StatelessWidget {
             },
           ),
           onLoading: () async {
-            _getController.clearBasketModel();
+            //_getController.clearBasketModel();
             _refreshController.loadComplete();},
           onRefresh: () async {
             _getController.clearBasketModel();
@@ -100,12 +92,7 @@ class BasketPage extends StatelessWidget {
                             child: Stack(
                                 children: [
                                   Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                                  Positioned(
-                                      height: _getController.height.value * 0.2,
-                                      top: _getController.height.value * 0.062,
-                                      left: _getController.width.value * 0.03,
-                                      child: Text('Savatcha'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
-                                  )
+                                  Positioned(height: _getController.height.value * 0.2, top: _getController.height.value * 0.062, left: _getController.width.value * 0.03, child: Text('Savatcha'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold)))
                                 ]
                             )
                         ),
@@ -124,10 +111,6 @@ class BasketPage extends StatelessWidget {
                                           padding: EdgeInsets.all(Get.width * 0.01),
                                           decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
                                           child: TabBar(
-                                              onTap: (index) {
-                                                _getController.tabController.animateTo(index);
-                                                _getController.tabController.index = index;
-                                              },
                                               indicatorSize: TabBarIndicatorSize.tab,
                                               dividerColor: Colors.transparent,
                                               controller: _getController.tabController,
