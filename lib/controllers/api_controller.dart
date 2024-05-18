@@ -702,6 +702,9 @@ class ApiController extends GetxController {
     debugPrint(ApiController._getCountry);
     var response = await get(Uri.parse(_getCountry));
     if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.dropDownOrders.clear();
+      _getController.dropDownOrders.add(0);
+      _getController.dropDownOrders.add(0);
       _getController.changeCountryModel(CountryModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);

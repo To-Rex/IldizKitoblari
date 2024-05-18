@@ -57,7 +57,7 @@ class GetController extends GetxController {
   var genreIndexSubSub = 0.obs;
   var checkBoxCardList = <bool>[].obs;
   var allCheckBoxCard = false.obs;
-
+  List dropDownOrders = <int>[].obs;
 
 
   void changeCheckBoxCardList(int i) {
