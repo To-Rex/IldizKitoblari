@@ -18,6 +18,7 @@ import '../models/menu_model.dart';
 import '../models/menu_options.dart';
 import '../models/orders/country_model.dart';
 import '../models/orders/order_create_model.dart';
+import '../models/orders/order_detail_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
@@ -61,6 +62,7 @@ class ApiController extends GetxController {
   static const String _getCountry = '$_baseUrl/catalog/list?type=country';
   static const String _getRegion = '$_baseUrl/district/list?country=';
   static const String _orderCreate = '$_baseUrl/order/create';
+  static const String _orderDetail = '$_baseUrl/order/';
 
 
   //show toast message
@@ -741,6 +743,23 @@ class ApiController extends GetxController {
     debugPrint('OrderCreate: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.changeOrderCreateModel(OrderCreateModel.fromJson(jsonDecode(response.body)));
+      getOrderDetail();
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
+  Future<void> getOrderDetail() async {
+    var response = await get(Uri.parse('$_orderDetail${_getController.orderCreateModel.value.data?.sId}'),
+      headers: {
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      },
+    );
+    debugPrint('OrderDetail: ${response.body}');
+    debugPrint('OrderDetail: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.clearOrderDetailModel();
+      _getController.changeOrderDetailModel(OrderDetailModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }

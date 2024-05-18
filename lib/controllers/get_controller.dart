@@ -24,6 +24,7 @@ import '../models/menu_model.dart';
 import '../models/menu_options.dart';
 import '../models/orders/country_model.dart';
 import '../models/orders/order_create_model.dart';
+import '../models/orders/order_detail_model.dart';
 import '../models/orders/region_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
@@ -213,6 +214,15 @@ class GetController extends GetxController {
   var getCountryModel = CountryModel().obs;
   var getRegionModel = RegionModel().obs;
   var orderCreateModel = OrderCreateModel().obs;
+  var orderDetailModel = OrderDetailModel().obs;
+
+  void changeOrderDetailModel(OrderDetailModel orderDetail) {
+    orderDetailModel.value = orderDetail;
+  }
+
+  void clearOrderDetailModel() {
+    orderDetailModel.value = OrderDetailModel();
+  }
 
   void changeOrderCreateModel(OrderCreateModel orderCreate) {
     orderCreateModel.value = orderCreate;
