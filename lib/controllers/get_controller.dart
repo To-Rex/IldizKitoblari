@@ -61,6 +61,7 @@ class GetController extends GetxController {
   var checkBoxCardList = <bool>[].obs;
   var allCheckBoxCard = false.obs;
   List dropDownOrders = <int>[].obs;
+  var paymentTypeIndex = 0.obs;
 
 
   void changeCheckBoxCardList(int i) {

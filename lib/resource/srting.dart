@@ -123,6 +123,7 @@ class LocaleString extends Translations{
       'Tuman / shahar':'Район / город',
       'Manzil':'Адрес',
       'Davom etish':'Продолжить',
+      'Orqaga':'Назад',
 
     },
     'uz_UZ':{
@@ -245,6 +246,7 @@ class LocaleString extends Translations{
       'Tuman / shahar':'Tuman / shahar',
       'Manzil':'Manzil',
       'Davom etish':'Davom etish',
+      'Orqaga':'Orqaga',
 
     },
     'oz_OZ':{
@@ -366,6 +368,8 @@ class LocaleString extends Translations{
       'Tuman / shahar':'Туман / шаҳар',
       'Manzil':'Манзил',
       'Davom etish':'Давом этиш',
+      'Orqaga':'Орқага',
+
     }
   };
 

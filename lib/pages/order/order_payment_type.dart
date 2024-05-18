@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import '../../companents/orders/indicator_order.dart';
@@ -42,91 +43,51 @@ class PaymentTypePage extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Yetkazib berish manzili'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
-                      SizedBox(height: Get.height * 0.02),
-                      Text('${'Davlat'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
-                      SizedBox(height: Get.height * 0.01),
-                      if (_getController.getCountryModel.value.data != null && _getController.dropDownOrders[0] != null)
-                        Container(
+                      Text('To‘lov turi'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
+                      InkWell(
+                        onTap: () {
+                          if (_getController.paymentTypeIndex.value == 1) {
+                            _getController.paymentTypeIndex.value = 0;
+                          } else {
+                            _getController.paymentTypeIndex.value = 1;
+                          }
+                        },
+                        child: Container(
                             width: Get.width,
-                            height: Get.height * 0.06,
-                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
+                            height: Get.height * 0.1,
+                            margin: EdgeInsets.only(top: Get.height * 0.02, bottom: Get.height * 0.02),
+                            decoration: BoxDecoration(color: _getController.paymentTypeIndex.value == 1 ? AppColors.primaryColor2.withOpacity(0.2) : Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: _getController.paymentTypeIndex.value == 1 ? AppColors.primaryColor2 : Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
                             padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                            child: DropdownButton<String>(
-                                isExpanded: true,
-                                underline: const SizedBox(),
-                                borderRadius: BorderRadius.circular(10.r),
-                                dropdownColor: Theme.of(context).colorScheme.background,
-                                style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 16.sp, fontWeight: FontWeight.w500),
-                                value: _getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].name?.uz.toString(),
-                                onChanged: (newValue) {
-                                  _getController.getRegionModel.value = RegionModel();
-                                  _getController.dropDownOrders[0] = _getController.getCountryModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
-                                  ApiController().getRegion(_getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].sId.toString());
-                                  //print(_getController.getRegionModel.value.data?.result?.length);
-                                },
-                                items: _getController.getCountryModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList()
+                            child: Row(
+                              children: [
+                                Text('Click'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                                const Spacer(),
+                                Icon(TablerIcons.cash, color: Theme.of(context).colorScheme.onBackground, size: 25.sp)
+                              ],
                             )
                         ),
-                      SizedBox(height: Get.height * 0.02),
-                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
-                        Text('${'Tuman / shahar'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
-                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
-                        SizedBox(height: Get.height * 0.01),
-                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
-                        Container(
-                            width: Get.width,
-                            height: Get.height * 0.06,
-                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
-                            padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                            child: DropdownButton<String>(
-                                isExpanded: true,
-                                underline: const SizedBox(),
-                                borderRadius: BorderRadius.circular(10.r),
-                                dropdownColor: Theme.of(context).colorScheme.background,
-                                style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 16.sp, fontWeight: FontWeight.w500),
-                                value: _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].name?.uz.toString(),
-                                onChanged: (newValue) {
-                                  _getController.dropDownOrders[1] = _getController.getRegionModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
-                                },
-                                items: _getController.getRegionModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList()
-                            )
                       ),
-                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
-                        SizedBox(height: Get.height * 0.01),
-                      Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
-                      SizedBox(height: Get.height * 0.01),
-                      Container(
-                        width: Get.width * 0.95,
-                        height: Get.height * 0.15,
-                        decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
-                        padding: EdgeInsets.only(left: 10.sp, right: 10.sp,  bottom: 10.sp),
-                        child: TextField(
-                          maxLines: 30,
-                          maxLength: 800,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Kiriting'.tr,
-                            hintStyle: TextStyle(
-                              fontSize: 16.sp,
-                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
-                              fontWeight: FontWeight.w500
-                            ),
-                          ),
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                          ),
-                        ),
+                      InkWell(
+                          onTap: () {
+                            if (_getController.paymentTypeIndex.value == 2) {
+                              _getController.paymentTypeIndex.value = 0;
+                            } else {
+                              _getController.paymentTypeIndex.value = 2;
+                            }
+                          },
+                        child: Container(
+                            width: Get.width,
+                            height: Get.height * 0.1,
+                            decoration: BoxDecoration(color: _getController.paymentTypeIndex.value == 2 ? AppColors.primaryColor2.withOpacity(0.2) : Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: _getController.paymentTypeIndex.value == 2 ? AppColors.primaryColor2 : Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
+                            padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                            child: Row(
+                              children: [
+                                Text('Payme'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                                const Spacer(),
+                                Icon(TablerIcons.cash, color: Theme.of(context).colorScheme.onBackground, size: 25.sp)
+                              ],
+                            )
+                        )
                       ),
                     ]
                 )
@@ -142,20 +103,30 @@ class PaymentTypePage extends StatelessWidget {
           shadowColor: Theme.of(context).colorScheme.error,
           color: Theme.of(context).colorScheme.background,
             padding: EdgeInsets.symmetric(vertical: Get.height * 0.016, horizontal: Get.width * 0.03),
-            child: SizedBox(
-              width: Get.width,
-              child: ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
-                onPressed: (){
-                  Get.to(() => OrderConfirmationPage(), transition: Transition.rightToLeft);
-                },
-                child: Text('Davom etish'.tr, style: TextStyle(
-                    fontSize: 16.sp,
-                    color: Theme.of(context).colorScheme.background,
-                    fontWeight: FontWeight.w500)
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: Get.width * 0.45,
+                    child: ElevatedButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.grey.withOpacity(0.5)), elevation: MaterialStateProperty.all(0), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
+                      onPressed: (){Get.back();},
+                      child: Text('Orqaga'.tr, style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500)),
+                    )
                 ),
-              )
-          )
+                SizedBox(
+                    width: Get.width * 0.45,
+                    child: ElevatedButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
+                      onPressed: (){
+                        Get.to(() => OrderConfirmationPage(), transition: Transition.rightToLeft);
+                      },
+                      child: Text('Davom etish'.tr, style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w500))
+                    )
+                )
+              ],
+            )
         )
     );
   }

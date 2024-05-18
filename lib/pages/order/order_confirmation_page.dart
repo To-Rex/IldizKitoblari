@@ -135,24 +135,36 @@ class OrderConfirmationPage extends StatelessWidget {
         )
       ),
         bottomNavigationBar: BottomAppBar(
-          height: _getController.height.value * 0.09,
-          surfaceTintColor: Theme.of(context).colorScheme.background,
-          elevation: 20,
-          shadowColor: Theme.of(context).colorScheme.error,
-          color: Theme.of(context).colorScheme.background,
+            height: _getController.height.value * 0.09,
+            surfaceTintColor: Theme.of(context).colorScheme.background,
+            elevation: 20,
+            shadowColor: Theme.of(context).colorScheme.error,
+            color: Theme.of(context).colorScheme.background,
             padding: EdgeInsets.symmetric(vertical: Get.height * 0.016, horizontal: Get.width * 0.03),
-            child: SizedBox(
-              width: Get.width,
-              child: ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
-                onPressed: (){},
-                child: Text('Davom etish'.tr, style: TextStyle(
-                    fontSize: 16.sp,
-                    color: Theme.of(context).colorScheme.background,
-                    fontWeight: FontWeight.w500)
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: Get.width * 0.45,
+                    child: ElevatedButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.grey.withOpacity(0.5)), elevation: MaterialStateProperty.all(0), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
+                      onPressed: (){Get.back();},
+                      child: Text('Orqaga'.tr, style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500)),
+                    )
                 ),
-              )
-          )
+                SizedBox(
+                    width: Get.width * 0.45,
+                    child: ElevatedButton(
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
+                        onPressed: (){
+                          Get.to(() => OrderConfirmationPage(), transition: Transition.rightToLeft);
+                        },
+                        child: Text('Tasdiqlash'.tr, style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w500))
+                    )
+                )
+              ],
+            )
         )
     );
   }
