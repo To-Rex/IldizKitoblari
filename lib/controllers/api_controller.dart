@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:ildiz/models/login_model.dart';
+import 'package:ildiz/models/orders/region_model.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
@@ -58,6 +59,8 @@ class ApiController extends GetxController {
   static const String _totalPrice = '$_baseUrl/cart/total-price';
   //https://ildizkitoblari.uz/api/v1/catalog/list?type=country
   static const String _getCountry = '$_baseUrl/catalog/list?type=country';
+  //https://ildizkitoblari.uz/api/v1/district/list?country=642f972f3ad67164b7043489
+  static const String _getRegion = '$_baseUrl/district/list?country=';
 
 
   //show toast message
@@ -698,14 +701,26 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getCountry()async{
-    debugPrint(ApiController._getCountry);
+  Future<void> getCountry() async {
+    debugPrint(_getCountry);
     var response = await get(Uri.parse(_getCountry));
     if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.clearRegionModel();
       _getController.dropDownOrders.clear();
       _getController.dropDownOrders.add(0);
       _getController.dropDownOrders.add(0);
       _getController.changeCountryModel(CountryModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
+  Future<void> getRegion(id)async{
+    debugPrint('$_getRegion$id');
+    var response = await get(Uri.parse('$_getRegion$id'));
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      //_getController.clearRegionModel();
+      _getController.changeRegionModel(RegionModel.fromJson(jsonDecode(response.body)));
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }

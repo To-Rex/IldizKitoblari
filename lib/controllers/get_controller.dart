@@ -23,6 +23,7 @@ import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
 import '../models/menu_options.dart';
 import '../models/orders/country_model.dart';
+import '../models/orders/region_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
@@ -208,15 +209,20 @@ class GetController extends GetxController {
   var cartCreate = CartCreate().obs;
   List<CartCreate> listCartCreate = <CartCreate>[].obs;
   var getPriceModel = GetPrice().obs;
-  //CountryModel
   var getCountryModel = CountryModel().obs;
+  var getRegionModel = RegionModel().obs;
 
   void changeCountryModel(CountryModel countryModel) {
     getCountryModel.value = countryModel;
   }
 
-  void clearCountryModel(){
-    getCountryModel.value = CountryModel();
+  void changeRegionModel(RegionModel regionModel) {
+    getRegionModel.value = regionModel;
+  }
+
+  //clear getRegionModel
+  void clearRegionModel() {
+    getRegionModel.value = RegionModel();
   }
 
   void changeGetPrice(GetPrice getPrice) {

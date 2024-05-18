@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import '../../companents/orders/indicator_order.dart';
 import '../../controllers/get_controller.dart';
+import '../../models/orders/region_model.dart';
 
 class OrderCountryPage extends StatelessWidget {
   OrderCountryPage({super.key});
@@ -45,7 +46,7 @@ class OrderCountryPage extends StatelessWidget {
                       SizedBox(height: Get.height * 0.02),
                       Text('${'Davlat'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                       SizedBox(height: Get.height * 0.01),
-                      if (_getController.getCountryModel.value.data != null)
+                      if (_getController.getCountryModel.value.data != null && _getController.dropDownOrders[0] != null)
                         Container(
                             width: Get.width,
                             height: Get.height * 0.06,
@@ -59,7 +60,10 @@ class OrderCountryPage extends StatelessWidget {
                                 style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 16.sp, fontWeight: FontWeight.w500),
                                 value: _getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].name?.uz.toString(),
                                 onChanged: (newValue) {
+                                  _getController.getRegionModel.value = RegionModel();
                                   _getController.dropDownOrders[0] = _getController.getCountryModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
+                                  ApiController().getRegion(_getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].sId.toString());
+                                  //print(_getController.getRegionModel.value.data?.result?.length);
                                 },
                                 items: _getController.getCountryModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
@@ -70,11 +74,36 @@ class OrderCountryPage extends StatelessWidget {
                             )
                         ),
                       SizedBox(height: Get.height * 0.02),
-                      Text('${'Tuman / shahar'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
-                      SizedBox(height: Get.height * 0.01),
+                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
+                        Text('${'Tuman / shahar'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
+                        SizedBox(height: Get.height * 0.01),
+                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
+                        Container(
+                            width: Get.width,
+                            height: Get.height * 0.06,
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
+                            padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                            child: DropdownButton<String>(
+                                isExpanded: true,
+                                underline: const SizedBox(),
+                                borderRadius: BorderRadius.circular(10.r),
+                                dropdownColor: Theme.of(context).colorScheme.background,
+                                style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 16.sp, fontWeight: FontWeight.w500),
+                                value: _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].name?.uz.toString(),
+                                onChanged: (newValue) {
+                                  _getController.dropDownOrders[1] = _getController.getRegionModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
+                                },
+                                items: _getController.getRegionModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList()
+                            )
+                      ),
 
-
-                      //Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                      Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                     ]
                 )
             )
