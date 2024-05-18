@@ -62,7 +62,7 @@ class PaymentTypePage extends StatelessWidget {
                               children: [
                                 Text('Click'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                                 const Spacer(),
-                                Icon(TablerIcons.cash, color: Theme.of(context).colorScheme.onBackground, size: 25.sp)
+                                Image.asset('assets/images/click.png', fit: BoxFit.contain, width: Get.width * 0.2, height: Get.width * 0.11)
                               ],
                             )
                         ),
@@ -84,7 +84,7 @@ class PaymentTypePage extends StatelessWidget {
                               children: [
                                 Text('Payme'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                                 const Spacer(),
-                                Icon(TablerIcons.cash, color: Theme.of(context).colorScheme.onBackground, size: 25.sp)
+                                Image.asset('assets/images/payme.png', fit: BoxFit.contain, width: Get.width * 0.2, height: Get.width * 0.11)
                               ],
                             )
                         )

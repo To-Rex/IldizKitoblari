@@ -124,6 +124,7 @@ class LocaleString extends Translations{
       'Manzil':'Адрес',
       'Davom etish':'Продолжить',
       'Orqaga':'Назад',
+      'Mahsulotlar':'Товары',
 
     },
     'uz_UZ':{
@@ -247,6 +248,7 @@ class LocaleString extends Translations{
       'Manzil':'Manzil',
       'Davom etish':'Davom etish',
       'Orqaga':'Orqaga',
+      'Mahsulotlar':'Mahsulotlar',
 
     },
     'oz_OZ':{
@@ -369,6 +371,7 @@ class LocaleString extends Translations{
       'Manzil':'Манзил',
       'Davom etish':'Давом этиш',
       'Orqaga':'Орқага',
+      'Mahsulotlar':'Маҳсулотлар',
 
     }
   };
