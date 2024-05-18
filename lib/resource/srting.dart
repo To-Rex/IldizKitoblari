@@ -122,6 +122,7 @@ class LocaleString extends Translations{
       'Davlat':'Страна',
       'Tuman / shahar':'Район / город',
       'Manzil':'Адрес',
+      'Davom etish':'Продолжить',
 
     },
     'uz_UZ':{
@@ -243,6 +244,7 @@ class LocaleString extends Translations{
       'Davlat':'Davlat',
       'Tuman / shahar':'Tuman / shahar',
       'Manzil':'Manzil',
+      'Davom etish':'Davom etish',
 
     },
     'oz_OZ':{
@@ -363,6 +365,7 @@ class LocaleString extends Translations{
       'Davlat':'Давлат',
       'Tuman / shahar':'Туман / шаҳар',
       'Manzil':'Манзил',
+      'Davom etish':'Давом этиш',
     }
   };
 

@@ -5,6 +5,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import '../../companents/orders/indicator_order.dart';
 import '../../controllers/get_controller.dart';
 import '../../models/orders/region_model.dart';
+import '../../resource/colors.dart';
 
 class OrderCountryPage extends StatelessWidget {
   OrderCountryPage({super.key});
@@ -17,8 +18,8 @@ class OrderCountryPage extends StatelessWidget {
     ApiController().getCountry();
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.94),
-      body: SingleChildScrollView(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: SingleChildScrollView(
         child: Obx(() => Column(
           children: [
             AppBar(
@@ -102,15 +103,58 @@ class OrderCountryPage extends StatelessWidget {
                               }).toList()
                             )
                       ),
-
+                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
+                        SizedBox(height: Get.height * 0.01),
                       Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                      SizedBox(height: Get.height * 0.01),
+                      Container(
+                        width: Get.width * 0.95,
+                        height: Get.height * 0.15,
+                        decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
+                        padding: EdgeInsets.only(left: 10.sp, right: 10.sp,  bottom: 10.sp),
+                        child: TextField(
+                          maxLines: 30,
+                          maxLength: 800,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Kiriting'.tr,
+                            hintStyle: TextStyle(
+                              fontSize: 16.sp,
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+                              fontWeight: FontWeight.w500
+                            ),
+                          ),
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ),
                     ]
                 )
             )
           ],
         )
         )
-      )
+      ),
+        bottomNavigationBar: BottomAppBar(
+          height: _getController.height.value * 0.09,
+          surfaceTintColor: Theme.of(context).colorScheme.background,
+          elevation: 20,
+          shadowColor: Theme.of(context).colorScheme.onBackground,
+          color: Theme.of(context).colorScheme.background,
+          child: SizedBox(
+              width: Get.width,
+              child: ElevatedButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
+                onPressed: (){},
+                child: Text('Davom etish'.tr, style: TextStyle(
+                    fontSize: 16.sp,
+                    color: Theme.of(context).colorScheme.background,
+                    fontWeight: FontWeight.w500)
+                ),
+              )
+          )
+        )
     );
   }
 }
