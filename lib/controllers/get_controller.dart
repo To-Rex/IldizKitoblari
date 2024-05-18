@@ -23,6 +23,7 @@ import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
 import '../models/menu_options.dart';
 import '../models/orders/country_model.dart';
+import '../models/orders/order_create_model.dart';
 import '../models/orders/region_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
@@ -211,6 +212,15 @@ class GetController extends GetxController {
   var getPriceModel = GetPrice().obs;
   var getCountryModel = CountryModel().obs;
   var getRegionModel = RegionModel().obs;
+  var orderCreateModel = OrderCreateModel().obs;
+
+  void changeOrderCreateModel(OrderCreateModel orderCreate) {
+    orderCreateModel.value = orderCreate;
+  }
+
+  void clearOrderCreateModel() {
+    orderCreateModel.value = OrderCreateModel();
+  }
 
   void changeCountryModel(CountryModel countryModel) {
     getCountryModel.value = countryModel;
@@ -220,7 +230,6 @@ class GetController extends GetxController {
     getRegionModel.value = regionModel;
   }
 
-  //clear getRegionModel
   void clearRegionModel() {
     getRegionModel.value = RegionModel();
   }
@@ -301,7 +310,6 @@ class GetController extends GetxController {
     menuOptionsModelList[index].data!.result!.addAll(menuOptionsModel.data!.result!);
   }
 
-  //filtersPage change index count
   void changeFiltersPage(int index) {
     filtersPage[index] = filtersPage[index] + 1;
   }
@@ -597,6 +605,20 @@ class GetController extends GetxController {
     }
   }
 
+  String getSelectedCard() {
+    if (allCheckBoxCard.value && listCartCreate.isNotEmpty) {
+      var data = jsonEncode(listCartCreate).toString();
+      return data;
+    } else if (!allCheckBoxCard.value && listCartCreate.isNotEmpty) {
+      var data = jsonEncode(checkBoxCardList.asMap().entries.where((entry) => entry.value).map((entry) => listCartCreate[entry.key]).toList()).toString();
+      //"[{\"id\":\"660028e488151412e7a7bd46\",\"count\":1}]"
+      //delete list in item in type = 'active'
+      return data;
+    } else {
+      return '[]';
+    }
+  }
+
   void addTextControllers() {
     textControllers.add(TextEditingController());
   }
@@ -607,7 +629,7 @@ class GetController extends GetxController {
     }
   }
 
-  String getFilterTextFilds() {
+  String getFilterTextFields() {
     String params = '';
     print('${textControllers.length}');
     for (int index = 0; textControllers.length > index; index++) {

@@ -17,6 +17,7 @@ import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
 import '../models/menu_options.dart';
 import '../models/orders/country_model.dart';
+import '../models/orders/order_create_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
@@ -57,10 +58,9 @@ class ApiController extends GetxController {
   static const String _getCart = '$_baseUrl/cart/list';
   static const String _addCart = '$_baseUrl/user/cart/create';
   static const String _totalPrice = '$_baseUrl/cart/total-price';
-  //https://ildizkitoblari.uz/api/v1/catalog/list?type=country
   static const String _getCountry = '$_baseUrl/catalog/list?type=country';
-  //https://ildizkitoblari.uz/api/v1/district/list?country=642f972f3ad67164b7043489
   static const String _getRegion = '$_baseUrl/district/list?country=';
+  static const String _orderCreate = '$_baseUrl/order/create';
 
 
   //show toast message
@@ -380,7 +380,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
-    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFilds()}'),
+    var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFields()}'),
       headers: {'Accept-Language': Get.locale!.languageCode},
     );
     debugPrint('product: ${response.body}');
@@ -400,7 +400,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getSelectProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
-    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFilds()}'),
+    var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFields()}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },
@@ -725,4 +725,25 @@ class ApiController extends GetxController {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
+
+  Future<void> orderCreate() async {
+    print('=======================================================================================================================)');
+    print(jsonEncode(_getController.getSelectedCard().replaceAll(',"type":"active"', '').replaceAll('_id', 'id')));
+    var response = await post(Uri.parse(_orderCreate),
+      headers: {
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      },
+      body: {
+        "products": _getController.getSelectedCard().replaceAll(',"type":"active"', '').replaceAll('_id', 'id'),
+      },
+    );
+    debugPrint('OrderCreate: ${response.body}');
+    debugPrint('OrderCreate: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.changeOrderCreateModel(OrderCreateModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
 }
