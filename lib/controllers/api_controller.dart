@@ -63,6 +63,8 @@ class ApiController extends GetxController {
   static const String _getRegion = '$_baseUrl/district/list?country=';
   static const String _orderCreate = '$_baseUrl/order/create';
   static const String _orderDetail = '$_baseUrl/order/';
+  //https://ildizkitoblari.uz/api/v1/check/delivery/price?district=6515a77566ec7a2fa246d7df&weight=1.181
+  static const String _priceAddDistrict = '$_baseUrl/check/delivery/price';
 
 
   //show toast message
@@ -758,8 +760,26 @@ class ApiController extends GetxController {
     debugPrint('OrderDetail: ${response.body}');
     debugPrint('OrderDetail: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.getWeight();
       _getController.clearOrderDetailModel();
       _getController.changeOrderDetailModel(OrderDetailModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
+  Future<void> getAddPriceDistrict() async {
+    https://ildizkitoblari.uz/api/v1/check/delivery/price?district=6515a77566ec7a2fa246d7df&weight=1.181
+
+    var response = await get(Uri.parse('$_priceAddDistrict'),
+      headers: {
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      },
+    );
+    debugPrint('getPriceDistrict: ${response.body}');
+    debugPrint('getPriceDistrict: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }

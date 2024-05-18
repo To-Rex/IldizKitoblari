@@ -216,6 +216,23 @@ class GetController extends GetxController {
   var orderCreateModel = OrderCreateModel().obs;
   var orderDetailModel = OrderDetailModel().obs;
 
+  String getWeight() {
+    if (orderDetailModel.value.data != null) {
+      double totalWeight = 0;
+
+      for (int i = 0; i < orderDetailModel.value.data!.orderProducts!.length; i++) {
+        totalWeight += orderDetailModel.value.data!.orderProducts![i].orderCount! * orderDetailModel.value.data!.orderProducts![i].product!.weight!;
+        print(orderDetailModel.value.data!.orderProducts![i].orderCount! * orderDetailModel.value.data!.orderProducts![i].product!.weight!);
+      }
+
+      print(totalWeight);
+
+      return totalWeight.toString();
+    } else {
+      return '0';
+    }
+  }
+
   void changeOrderDetailModel(OrderDetailModel orderDetail) {
     orderDetailModel.value = orderDetail;
   }
