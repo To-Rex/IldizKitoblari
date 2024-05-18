@@ -6,10 +6,9 @@ import '../../companents/orders/indicator_order.dart';
 import '../../controllers/get_controller.dart';
 import '../../models/orders/region_model.dart';
 import '../../resource/colors.dart';
-import 'order_payment_type.dart';
 
-class OrderCountryPage extends StatelessWidget {
-  OrderCountryPage({super.key});
+class OrderConfirmationPage extends StatelessWidget {
+  OrderConfirmationPage({super.key});
 
   final GetController _getController = Get.put(GetController());
 
@@ -28,7 +27,7 @@ class OrderCountryPage extends StatelessWidget {
               title: Text('Buyurtma'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
               centerTitle: false,
             ),
-            const IndicatorOrder(index: 0),
+            const IndicatorOrder(index: 2),
             Container(
                 width: Get.width,
                 height: Get.height * 0.8,
@@ -146,10 +145,7 @@ class OrderCountryPage extends StatelessWidget {
               width: Get.width,
               child: ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
-                onPressed: (){
-                  //PaymentTypePage
-                  Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft);
-                },
+                onPressed: (){},
                 child: Text('Davom etish'.tr, style: TextStyle(
                     fontSize: 16.sp,
                     color: Theme.of(context).colorScheme.background,
