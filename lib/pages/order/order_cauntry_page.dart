@@ -147,7 +147,6 @@ class OrderCountryPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                 onPressed: (){
-                  //PaymentTypePage
                   Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft);
                 },
                 child: Text('Davom etish'.tr, style: TextStyle(
