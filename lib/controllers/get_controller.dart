@@ -598,6 +598,7 @@ class GetController extends GetxController {
   final TextEditingController ratingController = TextEditingController();
   final TextEditingController startPriceController = TextEditingController();
   final TextEditingController endPriceController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
 
   final List<TextEditingController> textControllers = [];
 
@@ -686,9 +687,17 @@ class GetController extends GetxController {
   }
 
   String getDistrict() {
-    getRegionModel.value.data!.result![dropDownOrders[1]].sId!;
-    print(getRegionModel.value.data!.result![dropDownOrders[1]].sId!);
+    debugPrint('${getRegionModel.value.data!.result![dropDownOrders[1]].sId}');
     return getRegionModel.value.data!.result![dropDownOrders[1]].sId ?? '';
   }
 
+  String getCountry() {
+    if ( getCountryModel.value.data!.result!.isNotEmpty) {
+      if (getCountryModel.value.data!.result![dropDownOrders[0]].sId != null) {
+        debugPrint('${getCountryModel.value.data!.result![dropDownOrders[0]].sId}');
+        return getCountryModel.value.data!.result![dropDownOrders[0]].sId ?? '';
+      }
+    }
+    return '';
+  }
 }

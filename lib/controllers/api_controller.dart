@@ -64,7 +64,6 @@ class ApiController extends GetxController {
   static const String _getRegion = '$_baseUrl/district/list?country=';
   static const String _orderCreate = '$_baseUrl/order/create';
   static const String _orderDetail = '$_baseUrl/order/';
-  //https://ildizkitoblari.uz/api/v1/check/delivery/price?district=6515a77566ec7a2fa246d7df&weight=1.181
   static const String _priceAddDistrict = '$_baseUrl/check/delivery/price';
 
 
@@ -725,7 +724,7 @@ class ApiController extends GetxController {
     var response = await get(Uri.parse('$_getRegion$id'));
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.changeRegionModel(RegionModel.fromJson(jsonDecode(response.body)));
-      if (_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'district') {
+      if (_getController.getRegionModel.value.data?.result!.length == 1 && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'district') {
         ApiController().getAddPriceDistrict();
       }
     } else {
@@ -772,7 +771,6 @@ class ApiController extends GetxController {
   }
 
   Future<void> getAddPriceDistrict() async {
-    https://ildizkitoblari.uz/api/v1/check/delivery/price?district=6515a77566ec7a2fa246d7df&weight=1.181
     var response = await get(Uri.parse('$_priceAddDistrict?district=${_getController.getDistrict()}&weight=${_getController.getWeight()}'),
       headers: {
         'Authorization': 'Bearer ${GetStorage().read('token')}',
@@ -790,6 +788,41 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> putOrder() async {
+    print('=======================================================================================================================)');
 
+
+    debugPrint('id ${_getController.orderCreateModel.value.data?.sId.toString()}');
+
+    debugPrint(_getController.addressController.text.toString());
+    debugPrint(_getController.getCountry().toString());
+    debugPrint(_getController.deliveryPrice.value.toString());
+    debugPrint(_getController.getDistrict().toString());
+
+
+    if (_getController.orderCreateModel.value.data?.sId.toString() != '') {
+      var body = {
+        "address": _getController.addressController.text.toString(),
+        "country": _getController.getCountry().toString(),
+        "delivery_price": _getController.deliveryPrice.value.toString(),
+        "district": _getController.getDistrict().toString(),
+      };
+      var response = await put(Uri.parse('$_orderDetail${_getController.orderCreateModel.value.data?.sId.toString()}'),
+        headers: {
+          'Authorization': 'Bearer ${GetStorage().read('token')}',
+        },
+        body: body,
+      );
+      debugPrint('putOrder: ${response.body}');
+      debugPrint('putOrder: ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        _getController.changeOrderDetailModel(OrderDetailModel.fromJson(jsonDecode(response.body)));
+        //getOrderDetail();
+      } else {
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+      }
+    }
+
+  }
 
 }
