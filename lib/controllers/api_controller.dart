@@ -724,8 +724,10 @@ class ApiController extends GetxController {
     debugPrint('$_getRegion$id');
     var response = await get(Uri.parse('$_getRegion$id'));
     if (response.statusCode == 200 || response.statusCode == 201) {
-      //_getController.clearRegionModel();
       _getController.changeRegionModel(RegionModel.fromJson(jsonDecode(response.body)));
+      if (_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'district') {
+        ApiController().getAddPriceDistrict();
+      }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }

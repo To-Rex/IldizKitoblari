@@ -63,7 +63,6 @@ class OrderCountryPage extends StatelessWidget {
                                   _getController.getRegionModel.value = RegionModel();
                                   _getController.dropDownOrders[0] = _getController.getCountryModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
                                   ApiController().getRegion(_getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].sId.toString());
-                                  //print(_getController.getRegionModel.value.data?.result?.length);
                                 },
                                 items: _getController.getCountryModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
@@ -123,7 +122,7 @@ class OrderCountryPage extends StatelessWidget {
                                 ? 'uz_UZ' == Get.locale.toString() ?  _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.uz.toString() ?? ''
                                 : 'oz_OZ' == Get.locale.toString() ?  _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.oz.toString() ?? ''
                                 :  _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.ru.toString() ?? ''
-                                : '${_getController.deliveryPrice.value} so\'m',
+                                : '${_getController.deliveryPrice.value} ${'so‘m'.tr}',
                                 style: TextStyle(fontSize: 16.sp, color: AppColors.primaryColor2, fontWeight: FontWeight.w500))),
                       Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                       SizedBox(height: Get.height * 0.01),
