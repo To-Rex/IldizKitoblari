@@ -687,8 +687,13 @@ class GetController extends GetxController {
   }
 
   String getDistrict() {
-    debugPrint('${getRegionModel.value.data!.result![dropDownOrders[1]].sId}');
-    return getRegionModel.value.data!.result![dropDownOrders[1]].sId ?? '';
+    if (getRegionModel.value.data!.result!.isNotEmpty) {
+      if (getRegionModel.value.data!.result![dropDownOrders[1]].sId != null) {
+        debugPrint('${getRegionModel.value.data!.result![dropDownOrders[1]].sId}');
+        return getRegionModel.value.data!.result![dropDownOrders[1]].sId ?? '';
+      }
+    }
+    return '';
   }
 
   String getCountry() {

@@ -169,7 +169,10 @@ class OrderCountryPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                 onPressed: (){
-                  _getController.getCountry();
+                  if (_getController.addressController.text.isEmpty) {
+                    ApiController().showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+                    return;
+                  }
                   ApiController().putOrder().then((value) => Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft));
                   //Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft);
                 },

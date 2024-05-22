@@ -789,23 +789,12 @@ class ApiController extends GetxController {
   }
 
   Future<void> putOrder() async {
-    print('=======================================================================================================================)');
-
-
-    debugPrint('id ${_getController.orderCreateModel.value.data?.sId.toString()}');
-
-    debugPrint(_getController.addressController.text.toString());
-    debugPrint(_getController.getCountry().toString());
-    debugPrint(_getController.deliveryPrice.value.toString());
-    debugPrint(_getController.getDistrict().toString());
-
-
     if (_getController.orderCreateModel.value.data?.sId.toString() != '') {
       var body = {
         "address": _getController.addressController.text.toString(),
-        "country": _getController.getCountry().toString(),
-        "delivery_price": _getController.deliveryPrice.value.toString(),
-        "district": _getController.getDistrict().toString(),
+        "country": _getController.getCountry().toString() == '' ? null : _getController.getCountry().toString(),
+        "delivery_price": _getController.deliveryPrice.value.toString() == '' ? null : _getController.deliveryPrice.value.toString(),
+        "district": _getController.getDistrict().toString() == '' ? null : _getController.getDistrict().toString(),
       };
       var response = await put(Uri.parse('$_orderDetail${_getController.orderCreateModel.value.data?.sId.toString()}'),
         headers: {
@@ -817,12 +806,9 @@ class ApiController extends GetxController {
       debugPrint('putOrder: ${response.statusCode}');
       if (response.statusCode == 200 || response.statusCode == 201) {
         _getController.changeOrderDetailModel(OrderDetailModel.fromJson(jsonDecode(response.body)));
-        //getOrderDetail();
       } else {
         showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
     }
-
   }
-
 }
