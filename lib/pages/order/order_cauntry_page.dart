@@ -104,6 +104,20 @@ class OrderCountryPage extends StatelessWidget {
                       ),
                       if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true)
                         SizedBox(height: Get.height * 0.01),
+                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].name?.uz.toString() != null && _getController.dropDownOrders[1] != null)
+                        SizedBox(height: Get.height * 0.01),
+                      if (_getController.getRegionModel.value.data != null && _getController.dropDownOrders[0] != null && _getController.dropDownOrders[1] != null && _getController.getRegionModel.value.data?.result != null && _getController.getRegionModel.value.data?.result?.isNotEmpty == true && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].name?.uz.toString() != null && _getController.dropDownOrders[1] != null)
+                        Container(
+                            width: Get.width * 0.95,
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
+                            padding: EdgeInsets.only(left: 10.sp, right: 10.sp,  bottom: 10.sp, top: 10.sp),
+                            margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
+                            //child: Text(_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.uz.toString() ?? '', style: TextStyle(fontSize: 16.sp, color: AppColors.primaryColor2, fontWeight: FontWeight.w500))
+                            child: Text(_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'constant' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice == null ? '${'Do‘kondan olib ketishingiz mumkin.'.tr}: '
+                                : _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'constant' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice != null
+                                ? '${_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice.toString()} so\'m '
+                                : _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.uz.toString() ?? '',
+                                style: TextStyle(fontSize: 16.sp, color: AppColors.primaryColor2, fontWeight: FontWeight.w500))),
                       Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                       SizedBox(height: Get.height * 0.01),
                       Container(

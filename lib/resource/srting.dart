@@ -125,6 +125,7 @@ class LocaleString extends Translations{
       'Davom etish':'Продолжить',
       'Orqaga':'Назад',
       'Mahsulotlar':'Товары',
+      'Do‘kondan olib ketishingiz mumkin.':'Вы можете вернуться к магазину.',
 
     },
     'uz_UZ':{
@@ -249,7 +250,7 @@ class LocaleString extends Translations{
       'Davom etish':'Davom etish',
       'Orqaga':'Orqaga',
       'Mahsulotlar':'Mahsulotlar',
-
+      'Do‘kondan olib ketishingiz mumkin.':'Do‘kondan olib ketishingiz mumkin.',
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -372,6 +373,7 @@ class LocaleString extends Translations{
       'Davom etish':'Давом этиш',
       'Orqaga':'Орқага',
       'Mahsulotlar':'Маҳсулотлар',
+      'Do‘kondan olib ketishingiz mumkin.':'Дўкондан олиб кетишингиз мумкин.',
 
     }
   };

@@ -26,7 +26,7 @@ class OrderConfirmationPage extends StatelessWidget {
               surfaceTintColor: Colors.transparent,
               leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06), onPressed: () {Get.back();},),
               title: Text('Buyurtma'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
-              centerTitle: false,
+              centerTitle: false
             ),
             const IndicatorOrder(index: 2),
             Container(
@@ -37,7 +37,6 @@ class OrderConfirmationPage extends StatelessWidget {
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), topRight: Radius.circular(10.r)),
                     boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), spreadRadius: 1, blurRadius: 5, offset: const Offset(0, 0))]
                 ),
-                //padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: Get.width * 0.03),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -61,8 +60,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                     Padding(padding: EdgeInsets.only(top: Get.height * 0.01), child: Divider(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), thickness: 1.sp)),
                                     Text('Jami xizmatlar bilan:',  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8))),
                                     SizedBox(height: 5.sp),
-                                    Text('120 000 so‘m', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold,color: AppColors.primaryColor2)),
-                                  ],
+                                    Text('120 000 so‘m', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold,color: AppColors.primaryColor2))
+                                  ]
                                 )
                             ),
                             Row(
@@ -71,7 +70,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                   Text('(${_getController.listCartCreate.length})'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
                                 ]
                             ),
-                            SizedBox(height: 10.sp),
+                            SizedBox(height: 10.sp)
                           ]
                         )
                       ),
@@ -88,7 +87,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                 width: Get.width * 0.3,
                                 height: Get.height * 0.15,
                                 margin: EdgeInsets.only(right: Get.width * 0.02, bottom: Get.height * 0.015),
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: DecorationImage(image: NetworkImage(_getController.basketModel.value.data!.result![i].image != null || _getController.basketModel.value.data!.result![i].image != '' ? _getController.basketModel.value.data!.result![i].image! : 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740'),))
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: DecorationImage(image: NetworkImage(_getController.basketModel.value.data!.result![i].image != null || _getController.basketModel.value.data!.result![i].image != '' ? _getController.basketModel.value.data!.result![i].image! : 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740')))
                             ),
                             SizedBox(
                                 width: Get.width * 0.5,
@@ -137,19 +136,18 @@ class OrderConfirmationPage extends StatelessWidget {
                                                         ApiController().showToast(context, 'Error', 'The number of products in the basket cannot be less than 1', true, 2);
                                                       }},
                                                     icon: Icon(TablerIcons.plus, color: Theme.of(context).colorScheme.onBackground, size: Get.height * 0.025)),
-                                              ],
-                                            ),
+                                              ]
+                                            )
                                           )
-                                        ],
+                                        ]
                                       )
                                     ]))
                           ])
                     ]
                 )
             )
-          ],
-        )
-        )
+          ]
+        ))
       ),
         bottomNavigationBar: BottomAppBar(
             height: _getController.height.value * 0.09,
@@ -167,7 +165,7 @@ class OrderConfirmationPage extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.grey.withOpacity(0.5)), elevation: MaterialStateProperty.all(0), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                       onPressed: (){Get.back();},
-                      child: Text('Orqaga'.tr, style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500)),
+                      child: Text('Orqaga'.tr, style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500))
                     )
                 ),
                 SizedBox(
@@ -180,7 +178,7 @@ class OrderConfirmationPage extends StatelessWidget {
                         child: Text('Tasdiqlash'.tr, style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w500))
                     )
                 )
-              ],
+              ]
             )
         )
     );
