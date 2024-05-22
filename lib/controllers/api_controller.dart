@@ -17,6 +17,7 @@ import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
 import '../models/menu_options.dart';
 import '../models/orders/country_model.dart';
+import '../models/orders/delivery_price.dart';
 import '../models/orders/order_create_model.dart';
 import '../models/orders/order_detail_model.dart';
 import '../models/product_detail_model.dart';
@@ -770,8 +771,7 @@ class ApiController extends GetxController {
 
   Future<void> getAddPriceDistrict() async {
     https://ildizkitoblari.uz/api/v1/check/delivery/price?district=6515a77566ec7a2fa246d7df&weight=1.181
-
-    var response = await get(Uri.parse('$_priceAddDistrict'),
+    var response = await get(Uri.parse('$_priceAddDistrict?district=${_getController.getDistrict()}&weight=${_getController.getWeight()}'),
       headers: {
         'Authorization': 'Bearer ${GetStorage().read('token')}',
       },
@@ -779,10 +779,15 @@ class ApiController extends GetxController {
     debugPrint('getPriceDistrict: ${response.body}');
     debugPrint('getPriceDistrict: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-
+      _getController.deliveryPrice.value = 'hozzir';
+      print('getPriceDistrict: ${DeliveryPrice.fromJson(jsonDecode(response.body)).data!.price!.value.toString()}');
+      _getController.deliveryPrice.value = DeliveryPrice.fromJson(jsonDecode(response.body)).data!.price!.value.toString();
+      print('getPriceDistrict: ${_getController.deliveryPrice.value}');
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
+
+
 
 }

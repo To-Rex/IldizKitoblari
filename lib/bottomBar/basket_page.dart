@@ -203,6 +203,7 @@ class BasketPage extends StatelessWidget {
                           height: _getController.height.value * 0.06,
                           child: ElevatedButton(
                               onPressed: () {
+                                ApiController().orderCreate();
                                 Get.to(() => OrderCountryPage(), transition: Transition.native);
                               },
                               style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),

@@ -62,6 +62,7 @@ class GetController extends GetxController {
   var allCheckBoxCard = false.obs;
   List dropDownOrders = <int>[].obs;
   var paymentTypeIndex = 0.obs;
+  var deliveryPrice = ''.obs;
 
 
   void changeCheckBoxCardList(int i) {
@@ -220,14 +221,14 @@ class GetController extends GetxController {
   String getWeight() {
     if (orderDetailModel.value.data != null) {
       double totalWeight = 0;
-
       for (int i = 0; i < orderDetailModel.value.data!.orderProducts!.length; i++) {
-        totalWeight += orderDetailModel.value.data!.orderProducts![i].orderCount! * orderDetailModel.value.data!.orderProducts![i].product!.weight!;
-        print(orderDetailModel.value.data!.orderProducts![i].orderCount! * orderDetailModel.value.data!.orderProducts![i].product!.weight!);
+        if (orderDetailModel.value.data!.orderProducts![i].product!.weight != null) {
+          totalWeight += orderDetailModel.value.data!.orderProducts![i].orderCount! * orderDetailModel.value.data!.orderProducts![i].product!.weight!;
+        } else {
+          return 'Xatolikkkkk';
+        }
       }
-
       print(totalWeight);
-
       return totalWeight.toString();
     } else {
       return '0';
@@ -639,8 +640,6 @@ class GetController extends GetxController {
       return data;
     } else if (!allCheckBoxCard.value && listCartCreate.isNotEmpty) {
       var data = jsonEncode(checkBoxCardList.asMap().entries.where((entry) => entry.value).map((entry) => listCartCreate[entry.key]).toList()).toString();
-      //"[{\"id\":\"660028e488151412e7a7bd46\",\"count\":1}]"
-      //delete list in item in type = 'active'
       return data;
     } else {
       return '[]';
@@ -684,6 +683,12 @@ class GetController extends GetxController {
     } else {
       return '';
     }
+  }
+
+  String getDistrict() {
+    getRegionModel.value.data!.result![dropDownOrders[1]].sId!;
+    print(getRegionModel.value.data!.result![dropDownOrders[1]].sId!);
+    return getRegionModel.value.data!.result![dropDownOrders[1]].sId ?? '';
   }
 
 }

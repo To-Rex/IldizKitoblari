@@ -93,6 +93,9 @@ class OrderCountryPage extends StatelessWidget {
                                 value: _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].name?.uz.toString(),
                                 onChanged: (newValue) {
                                   _getController.dropDownOrders[1] = _getController.getRegionModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
+                                  if (_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'district') {
+                                    ApiController().getAddPriceDistrict();
+                                  }
                                 },
                                 items: _getController.getRegionModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
@@ -112,11 +115,15 @@ class OrderCountryPage extends StatelessWidget {
                             decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
                             padding: EdgeInsets.only(left: 10.sp, right: 10.sp,  bottom: 10.sp, top: 10.sp),
                             margin: EdgeInsets.only(bottom: _getController.height.value * 0.01),
-                            //child: Text(_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.uz.toString() ?? '', style: TextStyle(fontSize: 16.sp, color: AppColors.primaryColor2, fontWeight: FontWeight.w500))
-                            child: Text(_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'constant' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice == null ? '${'Do‘kondan olib ketishingiz mumkin.'.tr}: '
-                                : _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'constant' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice != null
+                            child: Text(_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'constant' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() != 'district' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice == null
+                                ? '${'Do‘kondan olib ketishingiz mumkin.'.tr}: '
+                                : _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'constant' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() != 'district' && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice != null
                                 ? '${_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].deliveryPrice.toString()} so\'m '
-                                : _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.uz.toString() ?? '',
+                                : _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() != 'district'
+                                ? 'uz_UZ' == Get.locale.toString() ?  _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.uz.toString() ?? ''
+                                : 'oz_OZ' == Get.locale.toString() ?  _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.oz.toString() ?? ''
+                                :  _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].text?.ru.toString() ?? ''
+                                : '${_getController.deliveryPrice.value} so\'m',
                                 style: TextStyle(fontSize: 16.sp, color: AppColors.primaryColor2, fontWeight: FontWeight.w500))),
                       Text('${'Manzil'.tr}: ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
                       SizedBox(height: Get.height * 0.01),
@@ -161,8 +168,8 @@ class OrderCountryPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                 onPressed: (){
-                  //ApiController().orderCreate();
-                  Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft);
+                  _getController.getDistrict();
+                  //Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft);
                 },
                 child: Text('Davom etish'.tr, style: TextStyle(
                     fontSize: 16.sp,
