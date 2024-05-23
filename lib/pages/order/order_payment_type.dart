@@ -120,7 +120,12 @@ class PaymentTypePage extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                       onPressed: (){
-                        Get.to(() => OrderConfirmationPage(), transition: Transition.rightToLeft);
+                        //_getController.paymentTypeIndex not selected error
+                        if (_getController.paymentTypeIndex.value != 0) {
+                          debugPrint(_getController.paymentTypeIndex.value.toString());
+                          ApiController().putOrderType();
+                          Get.to(() => OrderConfirmationPage(), transition: Transition.rightToLeft);
+                        }
                       },
                       child: Text('Davom etish'.tr, style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w500))
                     )

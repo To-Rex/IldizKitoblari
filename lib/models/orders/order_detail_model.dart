@@ -25,10 +25,10 @@ class OrderDetailModel {
 class Data {
   String? sId;
   int? status;
-  String? deliveryStatus;
+  int? deliveryStatus;
   bool? isLosed;
   int? uid;
-  String? type;
+  int? type;
   int? price;
   int? deliveryPrice;
   String? district;

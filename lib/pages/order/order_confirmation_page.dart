@@ -15,7 +15,8 @@ class OrderConfirmationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ApiController().getCountry();
+    //ApiController().getCountry();
+    ApiController().getOrderDetail();
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background.withOpacity(0.96),
         body: SingleChildScrollView(

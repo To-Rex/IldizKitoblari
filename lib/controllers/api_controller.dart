@@ -760,9 +760,9 @@ class ApiController extends GetxController {
     debugPrint('OrderDetail: ${response.body}');
     debugPrint('OrderDetail: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-      _getController.getWeight();
       _getController.clearOrderDetailModel();
       _getController.changeOrderDetailModel(OrderDetailModel.fromJson(jsonDecode(response.body)));
+      _getController.getWeight();
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
@@ -796,6 +796,28 @@ class ApiController extends GetxController {
         "country": _getController.getCountry().toString() == '' ? null : _getController.getCountry().toString(),
         "delivery_price": _getController.deliveryPrice.value.toString() == '' ? null : _getController.deliveryPrice.value.toString(),
         "district": _getController.getDistrict().toString() == '' ? null : _getController.getDistrict().toString(),
+      };
+      var response = await put(Uri.parse('$_orderDetail${_getController.orderCreateModel.value.data?.sId.toString()}'),
+        headers: {
+          'Authorization': 'Bearer ${GetStorage().read('token')}',
+        },
+        body: body,
+      );
+      debugPrint('putOrder: ${response.body}');
+      debugPrint('putOrder: ${response.statusCode}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        //_getController.changeOrderDetailModel(OrderDetailModel.fromJson(jsonDecode(response.body)));
+        getOrderDetail();
+      } else {
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+      }
+    }
+  }
+
+  Future<void> putOrderType() async {
+    if (_getController.orderCreateModel.value.data?.sId.toString() != '') {
+      var body = {
+        "type": _getController.paymentTypeIndex.value.toString()
       };
       var response = await put(Uri.parse('$_orderDetail${_getController.orderCreateModel.value.data?.sId.toString()}'),
         headers: {
