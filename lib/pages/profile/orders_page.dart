@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/resource/colors.dart';
@@ -29,11 +31,20 @@ class OrdersPage extends StatelessWidget{
                         }
                     )
                 ),
+                SizedBox(height: _getController.height.value * 0.02),
+                Padding(
+                    padding: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
+                    child: Row(
+                        children: [
+                          Expanded(child: Text('Buyurtmalar'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
+                          InkWell(onTap: () {}, child: Container(width: _getController.width.value * 0.05, height: _getController.width.value * 0.05, decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,), child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
+                          SizedBox(width: _getController.width.value * 0.03),
+                        ]
+                    )
+                ),
+                 SizedBox(height: _getController.height.value * 0.02),
                  _getController.orderListModel.value.data == null || _getController.orderListModel.value.data!.result!.isEmpty
-                    ? SizedBox(
-                     width: Get.width,
-                     height: Get.height * 0.9,
-                     child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
+                    ? SizedBox(width: Get.width, height: Get.height * 0.9, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
                     : ListView.separated(
                      physics: const NeverScrollableScrollPhysics(),
                      shrinkWrap: true,
