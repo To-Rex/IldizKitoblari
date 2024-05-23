@@ -839,6 +839,8 @@ class ApiController extends GetxController {
   }
 
   Future<void> getOrderList() async {
+    _getController.clearOrderListModel();
+    _getController.onLoad();
     var response = await get(Uri.parse(_orderList),
       headers: {
         'Authorization': 'Bearer ${GetStorage().read('token')}',
@@ -848,7 +850,9 @@ class ApiController extends GetxController {
     debugPrint('getOrderList: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.changeOrderListModel(OrderListModel.fromJson(jsonDecode(response.body)));
+      _getController.offLoad();
     } else {
+      _getController.offLoad();
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
