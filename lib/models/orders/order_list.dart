@@ -1,11 +1,11 @@
-class OrderList {
+class OrderListModel {
   String? message;
   bool? status;
   Data? data;
 
-  OrderList({this.message, this.status, this.data});
+  OrderListModel({this.message, this.status, this.data});
 
-  OrderList.fromJson(Map<String, dynamic> json) {
+  OrderListModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;

@@ -24,10 +24,6 @@ class OrdersDetailPage extends StatelessWidget{
                           }
                       )
                   ),
-                  SizedBox(
-                    height: Get.height * 2,
-                    width: Get.width,
-                  )
                 ]
             )
         )

@@ -20,6 +20,8 @@ import '../models/orders/country_model.dart';
 import '../models/orders/delivery_price.dart';
 import '../models/orders/order_create_model.dart';
 import '../models/orders/order_detail_model.dart';
+import '../models/orders/order_list.dart';
+import '../models/orders/order_list_detail.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
@@ -64,6 +66,7 @@ class ApiController extends GetxController {
   static const String _getRegion = '$_baseUrl/district/list?country=';
   static const String _orderCreate = '$_baseUrl/order/create';
   static const String _orderDetail = '$_baseUrl/order/';
+  static const String _orderList = '$_baseUrl/order/list';
   static const String _priceAddDistrict = '$_baseUrl/check/delivery/price';
 
 
@@ -835,5 +838,34 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> getOrderList() async {
+    var response = await get(Uri.parse(_orderList),
+      headers: {
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      },
+    );
+    debugPrint('getOrderList: ${response.body}');
+    debugPrint('getOrderList: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.changeOrderListModel(OrderListModel.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
+  Future<void> getOrderListDetail(id) async {
+    var response = await get(Uri.parse('$_orderDetail$id'),
+      headers: {
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      },
+    );
+    debugPrint('getOrderList: ${response.body}');
+    debugPrint('getOrderList: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.changeOrderListDetailModel(OrderListDetail.fromJson(jsonDecode(response.body)));
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
   
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/controllers/api_controller.dart';
 import '../../controllers/get_controller.dart';
 
 class OrdersPage extends StatelessWidget{
@@ -9,6 +10,7 @@ class OrdersPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    ApiController().getOrderList();
     return Scaffold(
         body: SingleChildScrollView(
           child: Column(

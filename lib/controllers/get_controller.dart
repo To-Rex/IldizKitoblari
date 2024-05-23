@@ -220,10 +220,10 @@ class GetController extends GetxController {
   var orderCreateModel = OrderCreateModel().obs;
   var orderDetailModel = OrderDetailModel().obs;
 
-  var orderListModel = OrderList().obs;
+  var orderListModel = OrderListModel().obs;
   var orderListDetailModel = OrderListDetail().obs;
 
-  void changeOrderListModel(OrderList orderList){
+  void changeOrderListModel(OrderListModel orderList){
     orderListModel.value = orderList;
   }
   void changeOrderListDetailModel(OrderListDetail orderListDetail){
@@ -231,7 +231,7 @@ class GetController extends GetxController {
   }
 
   void clearOrderListModel(){
-    orderListModel.value = OrderList();
+    orderListModel.value = OrderListModel();
   }
 
   void clearOrderListDetailModel(){
