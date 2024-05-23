@@ -25,6 +25,8 @@ import '../models/menu_options.dart';
 import '../models/orders/country_model.dart';
 import '../models/orders/order_create_model.dart';
 import '../models/orders/order_detail_model.dart';
+import '../models/orders/order_list.dart';
+import '../models/orders/order_list_detail.dart';
 import '../models/orders/region_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
@@ -217,6 +219,24 @@ class GetController extends GetxController {
   var getRegionModel = RegionModel().obs;
   var orderCreateModel = OrderCreateModel().obs;
   var orderDetailModel = OrderDetailModel().obs;
+
+  var orderListModel = OrderList().obs;
+  var orderListDetailModel = OrderListDetail().obs;
+
+  void changeOrderListModel(OrderList orderList){
+    orderListModel.value = orderList;
+  }
+  void changeOrderListDetailModel(OrderListDetail orderListDetail){
+    orderListDetailModel.value = orderListDetail;
+  }
+
+  void clearOrderListModel(){
+    orderListModel.value = OrderList();
+  }
+
+  void clearOrderListDetailModel(){
+    orderListDetailModel.value = OrderListDetail();
+  }
 
   String getWeight() {
     if (orderDetailModel.value.data != null) {

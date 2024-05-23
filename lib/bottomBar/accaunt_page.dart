@@ -9,6 +9,7 @@ import '../companents/acc_item.dart';
 import '../controllers/get_controller.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/profile/edit_user.dart';
+import '../pages/profile/orders_page.dart';
 
 class AccountPage extends StatelessWidget {
   AccountPage({super.key});
@@ -179,7 +180,8 @@ class AccountPage extends StatelessWidget {
                                   icon: 'assets/icon/shopping-cart.svg',
                                   subTitle: '',
                                   onTap: () {
-                                    Get.toNamed('/myOrders');
+                                    //OrdersPage
+                                    Get.to(OrdersPage());
                                   }
                               ),
                               AccItem(
