@@ -31,8 +31,8 @@ import 'get_controller.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
-  static const String _baseUrl = 'https://ildizkitoblari.uz/api/v1';
-  //static const String _baseUrl = 'http://192.168.100.10:5001';
+  //static const String _baseUrl = 'https://ildizkitoblari.uz/api/v1';
+  static const String _baseUrl = 'http://192.168.100.10:5001/api/v1';
 
   //auth
   static const String _login = '$_baseUrl/auth/login';
@@ -313,8 +313,8 @@ class ApiController extends GetxController {
   }
 
   Future<void> getMenuDetail(slug) async {
-    print('=======================================================================================================================)');
-    print('${_menuDetail}$slug');
+    debugPrint('=======================================================================================================================)');
+    debugPrint('${_menuDetail}$slug');
     var response = await get(Uri.parse('$_menuDetail$slug'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
@@ -454,7 +454,7 @@ class ApiController extends GetxController {
         },
       );
       debugPrint('product: ${response.body}');
-      print('product: ${response.statusCode}');
+      debugPrint('product: ${response.statusCode}');
       if (response.statusCode == 200 || response.statusCode == 201) {
         if (jsonDecode(response.body)['data']['result'].isEmpty) {
           debugPrint('menuSlugssss: ${menuSlug[i]}');
@@ -489,7 +489,7 @@ class ApiController extends GetxController {
         },
       );
       debugPrint('product1: ${response.body}');
-      print('product: ${response.statusCode}');
+      debugPrint('product: ${response.statusCode}');
       if (response.statusCode == 200 || response.statusCode == 201) {
         if (jsonDecode(response.body)['data']['result'].isEmpty) {
           debugPrint('menuSlugssss: ${menuSlug[i]}');
@@ -609,8 +609,6 @@ class ApiController extends GetxController {
     debugPrint('authorDetail: ${response.body}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.addAuthorDetailModel(AuthorDetailModel.fromJson(jsonDecode(response.body)));
-      print(_getController.authorDetailModelList.length);
-      //print(_getController.authorDetailModelList[0].data!.name?.oz);
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
@@ -733,8 +731,8 @@ class ApiController extends GetxController {
   }
 
   Future<void> orderCreate() async {
-    print('=======================================================================================================================)');
-    print(jsonEncode(_getController.getSelectedCard().replaceAll(',"type":"active"', '').replaceAll('_id', 'id')));
+    debugPrint('=======================================================================================================================)');
+    debugPrint(jsonEncode(_getController.getSelectedCard().replaceAll(',"type":"active"', '').replaceAll('_id', 'id')));
     var response = await post(Uri.parse(_orderCreate),
       headers: {
         'Authorization': 'Bearer ${GetStorage().read('token')}',
@@ -779,10 +777,13 @@ class ApiController extends GetxController {
     debugPrint('getPriceDistrict: ${response.body}');
     debugPrint('getPriceDistrict: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-      _getController.deliveryPrice.value = 'hozzir';
-      print('getPriceDistrict: ${DeliveryPrice.fromJson(jsonDecode(response.body)).data!.price!.value.toString()}');
-      _getController.deliveryPrice.value = DeliveryPrice.fromJson(jsonDecode(response.body)).data!.price!.value.toString();
-      print('getPriceDistrict: ${_getController.deliveryPrice.value}');
+      _getController.deliveryPrice.value = '0';
+      if (jsonDecode(response.body)['data'] == '{}'){
+        _getController.deliveryPrice.value = DeliveryPrice.fromJson(jsonDecode(response.body)).data!.price!.value.toString();
+        debugPrint('getPriceDistrict: ${_getController.deliveryPrice.value}');
+      } else{
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+      }
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
