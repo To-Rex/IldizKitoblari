@@ -33,8 +33,8 @@ import 'get_controller.dart';
 
 class ApiController extends GetxController {
   final GetController _getController = Get.put(GetController());
-  //static const String _baseUrl = 'https://ildizkitoblari.uz/api/v1';
-  static const String _baseUrl = 'http://192.168.100.10:5001/api/v1';
+  static const String _baseUrl = 'https://ildizkitoblari.uz/api/v1';
+  //static const String _baseUrl = 'http://192.168.100.10:5001/api/v1';
 
   //auth
   static const String _login = '$_baseUrl/auth/login';
@@ -853,7 +853,7 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getOrderListDetail(id) async {
+  Future<void> getOrderListDetail(id) async{
     var response = await get(Uri.parse('$_orderDetail$id'),
       headers: {
         'Authorization': 'Bearer ${GetStorage().read('token')}',

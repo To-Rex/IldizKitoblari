@@ -57,6 +57,7 @@ class Result {
   String? paymentDate;
   String? createdAt;
 
+
   Result({this.sId, this.status, this.deliveryStatus, this.isClosed, this.uid, this.type, this.price, this.deliveryPrice, this.district, this.city, this.address, this.paymentDate, this.createdAt});
 
   Result.fromJson(Map<String, dynamic> json) {
