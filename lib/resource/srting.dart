@@ -127,6 +127,9 @@ class LocaleString extends Translations{
       'Mahsulotlar':'Товары',
       'Do‘kondan olib ketishingiz mumkin.':'Вы можете вернуться к магазину.',
       'Yetkazib berish narxi':'Стоимость доставки',
+      'Buyurtma raqami':'Номер заказа',
+      'Buyurtma sanasi':'Дата заказа',
+      'To‘lov miqdori':'Количество оплаты',
 
     },
     'uz_UZ':{
@@ -253,6 +256,10 @@ class LocaleString extends Translations{
       'Mahsulotlar':'Mahsulotlar',
       'Do‘kondan olib ketishingiz mumkin.':'Do‘kondan olib ketishingiz mumkin.',
       'Yetkazib berish narxi':'Yetkazib berish narxi',
+      'Buyurtma raqami':'Buyurtma raqami',
+      'Buyurtma sanasi':'Buyurtma sanasi',
+      'To‘lov miqdori':'To‘lov miqdori',
+
     },
     'oz_OZ':{
       'Dilshodjon Haydarov':'Дильшоджон Хайдаров',
@@ -377,6 +384,9 @@ class LocaleString extends Translations{
       'Mahsulotlar':'Маҳсулотлар',
       'Do‘kondan olib ketishingiz mumkin.':'Дўкондан олиб кетишингиз мумкин.',
       'Yetkazib berish narxi':'Етказиб бериш нархи',
+      'Buyurtma raqami':'Буюртма рақами',
+      'Buyurtma sanasi':'Буюртма санаси',
+      'To‘lov miqdori':'Тўлов миқдори',
 
     }
   };

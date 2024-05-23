@@ -89,11 +89,15 @@ class GetController extends GetxController {
   }
 
   void onLoad() {
-    onLoading.value = true;
+    if (!onLoading.value) {
+      onLoading.value = true;
+    }
   }
 
   void offLoad() {
-    onLoading.value = false;
+    if (onLoading.value) {
+      onLoading.value = false;
+    }
   }
 
   void addFilterListSelect(value){
