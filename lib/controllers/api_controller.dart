@@ -778,7 +778,7 @@ class ApiController extends GetxController {
     debugPrint('getPriceDistrict: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.deliveryPrice.value = '0';
-      if (jsonDecode(response.body)['data'] == '{}'){
+      if (jsonDecode(response.body)['data'] != '{}'){
         _getController.deliveryPrice.value = DeliveryPrice.fromJson(jsonDecode(response.body)).data!.price!.value.toString();
         debugPrint('getPriceDistrict: ${_getController.deliveryPrice.value}');
       } else{
