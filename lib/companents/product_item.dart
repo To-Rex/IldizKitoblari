@@ -44,7 +44,7 @@ class _ProductItemState extends State<ProductItem> {
             children: [
               SizedBox(
                   width: 185.sp, height: 190.sp,
-                  child: ClipRRect(borderRadius: BorderRadius.circular(4), child: Image.network(widget.imageUrl == null || widget.imageUrl == '' || widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740' : widget.imageUrl!, fit: BoxFit.cover, loadingBuilder: (context, child, loadingProgress) {if (loadingProgress == null) return child;return SizedBox(width: _getController.width.value * 0.44, height: _getController.height.value * 0.205, child: Skeletonizer(child: Container(width: _getController.width.value * 0.44, height: _getController.height.value * 0.205, color: AppColors.grey)));}, errorBuilder: (context, error, stackTrace) {return Text(error.toString());}))
+                  child: ClipRRect(borderRadius: BorderRadius.circular(4), child: Image.network(widget.imageUrl == null || widget.imageUrl == '' || widget.imageUrl == 'null' || widget.imageUrl == ' ' ? 'https://ildizkitoblari.uz/_ipx/w_300,f_webp/default.png' : widget.imageUrl!, fit: BoxFit.cover, loadingBuilder: (context, child, loadingProgress) {if (loadingProgress == null) return child;return SizedBox(width: _getController.width.value * 0.44, height: _getController.height.value * 0.205, child: Skeletonizer(child: Container(width: _getController.width.value * 0.44, height: _getController.height.value * 0.205, color: AppColors.grey)));}, errorBuilder: (context, error, stackTrace) {return Text(error.toString());}))
               ),
               SizedBox(height: 10.sp),
               Container(
