@@ -177,13 +177,19 @@ class OrderCountryPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                 onPressed: (){
-
-                  /*if (_getController.addressController.text.isEmpty) {
-                    ApiController().showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+                  if (_getController.dropDownOrders[0] == 0) {
+                    ApiController().showToast(Get.context, 'Xatolik', 'Davlatni tanlang!', true, 3);
                     return;
                   }
-                  ApiController().putOrder().then((value) => Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft));*/
-
+                  if (_getController.dropDownOrders[1] == 0) {
+                    ApiController().showToast(Get.context, 'Xatolik', 'Viloyatni tanlang!', true, 3);
+                    return;
+                  }
+                  if (_getController.addressController.text.isEmpty || _getController.addressController.text == '') {
+                    ApiController().showToast(Get.context, 'Xatolik', 'Manzilni kiriting!', true, 3);
+                    return;
+                  }
+                  ApiController().putOrder().then((value) => Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft));
                 },
                 child: Text('Davom etish'.tr, style: TextStyle(
                     fontSize: 16.sp,

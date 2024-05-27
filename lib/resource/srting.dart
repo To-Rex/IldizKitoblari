@@ -53,7 +53,9 @@ class LocaleString extends Translations{
       'Sotuvda mavjud': 'В наличии',
       'Sotuvda mavjud emas': 'Нет в наличии',
       'Ma‘lumotlar yangilandi':'Данные обновлены',
-
+      'Davlatni tanlang!' : 'Выберите страну!',
+      'Viloyatni tanlang!':'Выберите регион!',
+      'Manzilni kiriting!':'Введите адрес!',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -183,6 +185,9 @@ class LocaleString extends Translations{
       'Sotuvda mavjud': 'Sotuvda mavjud',
       'Sotuvda mavjud emas': 'Sotuvda mavjud emas',
       'Ma‘lumotlar yangilandi!':'Ma‘lumotlar yangilandi!',
+      'Davlatni tanlang!': 'Davlatni tanlang!',
+      'Viloyatni tanlang!':'Viloyatni tanlang!',
+      'Manzilni kiriting!':'Manzilni kiriting!',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
@@ -311,6 +316,9 @@ class LocaleString extends Translations{
       'Sotuvda mavjud': 'Сотувда мавжуд',
       'Sotuvda mavjud emas': 'Сотувда мавжуд емас',
       'Ma‘lumotlar yangilandi':'Маълумотлар ўзгартирилди',
+      'Davlatni tanlang!':'Давлатни танланг!',
+      'Viloyatni tanlang!':'Вилоятни танланг!',
+      'Manzilni kiriting!':'Манзилни киритинг!',
 
       //Sample page
       'Kitoblarni izlash':'Китобларни излаш',
