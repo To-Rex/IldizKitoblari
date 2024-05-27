@@ -23,14 +23,14 @@ class CountryModel {
 }
 
 class Data {
-  List<Result>? result;
+  List<ResultCountry>? result;
   Data({this.result});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
-      result = <Result>[];
+      result = <ResultCountry>[];
       json['result'].forEach((v) {
-        result!.add(Result.fromJson(v));
+        result!.add(ResultCountry.fromJson(v));
       });
     }
   }
@@ -44,19 +44,19 @@ class Data {
   }
 }
 
-class Result {
+class ResultCountry {
   String? sId;
-  Name? name;
+  NameCountry? name;
   String? type;
   String? createdAt;
   String? updatedAt;
   int? iV;
 
-  Result({this.sId, this.name, this.type, this.createdAt, this.updatedAt, this.iV});
+  ResultCountry({this.sId, this.name, this.type, this.createdAt, this.updatedAt, this.iV});
 
-  Result.fromJson(Map<String, dynamic> json) {
+  ResultCountry.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    name = json['name'] != null ? Name.fromJson(json['name']) : null;
+    name = json['name'] != null ? NameCountry.fromJson(json['name']) : null;
     type = json['type'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -75,17 +75,23 @@ class Result {
     data['__v'] = iV;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'ResultCountry{sId: $sId, name: $name, type: $type, createdAt: $createdAt, updatedAt: $updatedAt, iV: $iV}';
+  }
+
 }
 
-class Name {
+class NameCountry {
   String? uz;
   String? oz;
   String? en;
   String? ru;
 
-  Name({this.uz, this.oz, this.en, this.ru});
+  NameCountry({this.uz, this.oz, this.en, this.ru});
 
-  Name.fromJson(Map<String, dynamic> json) {
+  NameCountry.fromJson(Map<String, dynamic> json) {
     uz = json['uz'];
     oz = json['oz'];
     en = json['en'];

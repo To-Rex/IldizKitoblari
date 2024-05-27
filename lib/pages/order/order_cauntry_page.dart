@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
+import 'package:ildiz/models/orders/country_model.dart';
 import '../../companents/orders/indicator_order.dart';
 import '../../controllers/get_controller.dart';
 import '../../models/orders/region_model.dart';
@@ -60,10 +61,13 @@ class OrderCountryPage extends StatelessWidget {
                                 style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 16.sp, fontWeight: FontWeight.w500),
                                 value: _getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].name?.uz.toString(),
                                 onChanged: (newValue) {
-                                  _getController.getRegionModel.value = RegionModel();
-                                  print('newValue: $newValue');
-                                  _getController.dropDownOrders[0] = _getController.getCountryModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
-                                  ApiController().getRegion(_getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].sId.toString());
+                                  if (newValue != 'Kiriting'.tr) {
+                                    _getController.getRegionModel.value = RegionModel();
+                                    _getController.dropDownOrders[0] = _getController.getCountryModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
+                                    ApiController().getRegion(_getController.getCountryModel.value.data?.result?[_getController.dropDownOrders[0]].sId.toString());
+                                  } else {
+                                    ApiController().showToast(context, 'Xatolik', 'Manzilni tanlang', false, 3);
+                                  }
                                 },
                                 items: _getController.getCountryModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
@@ -92,9 +96,13 @@ class OrderCountryPage extends StatelessWidget {
                                 style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 16.sp, fontWeight: FontWeight.w500),
                                 value: _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].name?.uz.toString(),
                                 onChanged: (newValue) {
-                                  _getController.dropDownOrders[1] = _getController.getRegionModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
-                                  if (_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'district') {
-                                    ApiController().getAddPriceDistrict();
+                                  if (newValue != 'Kiriting'.tr) {
+                                    _getController.dropDownOrders[1] = _getController.getRegionModel.value.data?.result?.indexWhere((element) => element.name?.uz.toString() == newValue) ?? 0;
+                                    if (_getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'district') {
+                                      ApiController().getAddPriceDistrict();
+                                    }
+                                  } else {
+                                    ApiController().showToast(context, 'Xatolik', 'Manzilni tanlang', false, 3);
                                   }
                                 },
                                 items: _getController.getRegionModel.value.data?.result?.map<String>((country) {return country.name!.uz.toString();}).toList().map<DropdownMenuItem<String>>((String value) {
@@ -169,12 +177,13 @@ class OrderCountryPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                 onPressed: (){
-                  if (_getController.addressController.text.isEmpty) {
+
+                  /*if (_getController.addressController.text.isEmpty) {
                     ApiController().showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
                     return;
                   }
-                  ApiController().putOrder().then((value) => Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft));
-                  //Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft);
+                  ApiController().putOrder().then((value) => Get.to(() => PaymentTypePage(), transition: Transition.rightToLeft));*/
+
                 },
                 child: Text('Davom etish'.tr, style: TextStyle(
                     fontSize: 16.sp,

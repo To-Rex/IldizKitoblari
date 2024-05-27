@@ -715,6 +715,9 @@ class ApiController extends GetxController {
       _getController.dropDownOrders.add(0);
       _getController.dropDownOrders.add(0);
       _getController.changeCountryModel(CountryModel.fromJson(jsonDecode(response.body)));
+      _getController.insertCountryAtStart(
+        ResultCountry(sId: '', createdAt: '', name: NameCountry(en: 'Kiriting'.tr, oz: 'Kiriting'.tr, ru: 'Kiriting'.tr, uz: 'Kiriting'.tr), iV: 0,type: 'country', updatedAt: '')
+      );
     } else {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
@@ -725,6 +728,16 @@ class ApiController extends GetxController {
     var response = await get(Uri.parse('$_getRegion$id'));
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.changeRegionModel(RegionModel.fromJson(jsonDecode(response.body)));
+      _getController.insertRegionAtStart(
+          ResultRegion(
+            sId: '',
+            name: NameRegion(en: 'Kiriting'.tr, oz: 'Kiriting'.tr, ru: 'Kiriting'.tr, uz: 'Kiriting'.tr),
+            country: '',
+            deliveryPrice: null,
+            priceType: 'constant',
+            text: NameRegion(en: 'Kiriting'.tr, oz: 'Kiriting'.tr, ru: 'Kiriting'.tr, uz: 'Kiriting'.tr),
+          )
+      );
       if (_getController.getRegionModel.value.data?.result!.length == 1 && _getController.getRegionModel.value.data?.result![_getController.dropDownOrders[1]].priceType.toString() == 'district') {
         ApiController().getAddPriceDistrict();
       }

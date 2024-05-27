@@ -227,6 +227,19 @@ class GetController extends GetxController {
   var orderListModel = OrderListModel().obs;
   var orderListDetailModel = OrderListDetail().obs;
 
+
+  void insertCountryAtStart(ResultCountry country) {
+    getCountryModel.update((model) {
+      model?.data?.result?.insert(0, country);
+    });
+  }
+
+  void insertRegionAtStart(ResultRegion region) {
+    getRegionModel.update((model) {
+      model?.data?.result?.insert(0, region);
+    });
+  }
+
   void changeOrderListModel(OrderListModel orderList){
     orderListModel.value = orderList;
   }

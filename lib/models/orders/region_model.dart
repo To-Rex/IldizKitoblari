@@ -23,15 +23,15 @@ class RegionModel {
 }
 
 class Data {
-  List<Result>? result;
+  List<ResultRegion>? result;
 
   Data({this.result});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
-      result = <Result>[];
+      result = <ResultRegion>[];
       json['result'].forEach((v) {
-        result!.add(Result.fromJson(v));
+        result!.add(ResultRegion.fromJson(v));
       });
     }
   }
@@ -45,15 +45,15 @@ class Data {
   }
 }
 
-class Result {
+class ResultRegion {
   String? sId;
-  Name? name;
+  NameRegion? name;
   String? country;
   int? deliveryPrice;
-  Name? text;
+  NameRegion? text;
   String? priceType;
 
-  Result(
+  ResultRegion(
       {this.sId,
         this.name,
         this.country,
@@ -61,12 +61,12 @@ class Result {
         this.text,
         this.priceType});
 
-  Result.fromJson(Map<String, dynamic> json) {
+  ResultRegion.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    name = json['name'] != null ? Name.fromJson(json['name']) : null;
+    name = json['name'] != null ? NameRegion.fromJson(json['name']) : null;
     country = json['country'];
     deliveryPrice = json['delivery_price'];
-    text = json['text'] != null ? Name.fromJson(json['text']) : null;
+    text = json['text'] != null ? NameRegion.fromJson(json['text']) : null;
     priceType = json['price_type'];
   }
 
@@ -86,15 +86,15 @@ class Result {
   }
 }
 
-class Name {
+class NameRegion {
   String? uz;
   String? oz;
   String? en;
   String? ru;
 
-  Name({this.uz, this.oz, this.en, this.ru});
+  NameRegion({this.uz, this.oz, this.en, this.ru});
 
-  Name.fromJson(Map<String, dynamic> json) {
+  NameRegion.fromJson(Map<String, dynamic> json) {
     uz = json['uz'];
     oz = json['oz'];
     en = json['en'];
