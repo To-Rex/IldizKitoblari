@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
-import 'package:ildiz/models/orders/country_model.dart';
 import '../../companents/orders/indicator_order.dart';
 import '../../controllers/get_controller.dart';
 import '../../models/orders/region_model.dart';

@@ -37,81 +37,83 @@ class ListShop extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 reverse: true,
-                padding: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
+                padding: EdgeInsets.only( right: Get.width * 0.03),
                 itemCount: _getController.basketModel.value.data!.result!.length,
                 separatorBuilder: (context, index) => SizedBox(height: Get.height * 0.01),
                 itemBuilder: (context, index) {
-                  return  Row(children: [
-                    Checkbox(
-                        value: _getController.checkBoxCardList[index],
-                        activeColor: AppColors.primaryColor,
-                        onChanged: (value) {
-                          _getController.changeCheckBoxCardList(index);
-                        }),
-                    Container(
-                        width: Get.width * 0.3,
-                        height: Get.height * 0.15,
-                        margin: EdgeInsets.only(right: Get.width * 0.02, bottom: Get.height * 0.015),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: DecorationImage(image: NetworkImage(_getController.basketModel.value.data!.result![index].image != null || _getController.basketModel.value.data!.result![index].image != '' ? _getController.basketModel.value.data!.result![index].image! : 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740')))
-                    ),
-                    SizedBox(
-                        width: Get.width * 0.5,
-                        height: Get.height * 0.15,
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text('uz_UZ' == Get.locale.toString()
-                                  ? _getController.basketModel.value.data!.result![index].name!.uz!
-                                  : 'oz_OZ' == Get.locale.toString()
-                                  ? _getController.basketModel.value.data!.result![index].name!.oz!
-                                  : _getController.basketModel.value.data!.result![index].name!.ru!,
-                                  style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 15.sp, fontWeight: FontWeight.w400)),
-                              Text('${_getController.basketModel.value.data!.result![index].price} ${'so‘m'.tr}', style: TextStyle(color: AppColors.primaryColor2, fontSize: 15.sp, fontWeight: FontWeight.bold)),
-                              Row(
+                  return  Row(
+                      children: [
+                        Checkbox(
+                            value: _getController.checkBoxCardList[index],
+                            activeColor: AppColors.primaryColor,
+                            onChanged: (value) {
+                              _getController.changeCheckBoxCardList(index);
+                            }),
+                        Container(
+                            width: Get.width * 0.3,
+                            height: Get.height * 0.15,
+                            margin: EdgeInsets.only(right: Get.width * 0.02, bottom: Get.height * 0.015),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: DecorationImage(image: NetworkImage(_getController.basketModel.value.data!.result![index].image != null || _getController.basketModel.value.data!.result![index].image != '' ? _getController.basketModel.value.data!.result![index].image! : 'https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740')))
+                        ),
+                        SizedBox(
+                            width: Get.width * 0.5,
+                            height: Get.height * 0.15,
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  InkWell(
-                                      child: Text('O‘chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 15.sp, fontWeight: FontWeight.w400)),
-                                      onTap: () {
-                                        ApiController().addToBasket('0', _getController.basketModel.value.data!.result![index].productId!,'deleted');
-                                      }
-                                  ),
-                                  const Spacer(),
-                                  Container(
-                                    height: Get.height * 0.05,
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: AppColors.grey.withOpacity(0.2)),
-                                    child: Row(
-                                      children: [
-                                        IconButton(
-                                            color: Theme.of(context).colorScheme.onBackground,
-                                            onPressed: () {
-                                              if (_getController.basketModel.value.data!.result![index].cartCount! > 1) {
-                                                ApiController().addToBasket('${_getController.basketModel.value.data!.result![index].cartCount! - 1}', _getController.basketModel.value.data!.result![index].productId!, 'active');
-                                              } else {
-                                                ApiController().addToBasket('0', _getController.basketModel.value.data!.result![index].productId!,'deleted');
-                                              }},
-                                            icon: Icon(TablerIcons.minus, color: Theme.of(context).colorScheme.onBackground, size: Get.height * 0.025)),
-                                        Text(_getController.basketModel.value.data!.result![index].cartCount.toString()),
-                                        IconButton(
-                                            color: Theme.of(context).colorScheme.onBackground,
-                                            onPressed: () {
-                                              if (_getController.basketModel.value.data!.result![index].count! >= _getController.basketModel.value.data!.result![index].cartCount!) {
-                                                ApiController().addToBasket('${_getController.basketModel.value.data!.result![index].cartCount! + 1}', _getController.basketModel.value.data!.result![index].productId!, 'active');
-                                              } else {
-                                                ApiController().showToast(context, 'Error', 'The number of products in the basket cannot be less than 1', true, 2);
-                                              }},
-                                            icon: Icon(TablerIcons.plus, color: Theme.of(context).colorScheme.onBackground, size: Get.height * 0.025)),
-                                      ],
-                                    ),
+                                  Text('uz_UZ' == Get.locale.toString()
+                                      ? _getController.basketModel.value.data!.result![index].name!.uz!
+                                      : 'oz_OZ' == Get.locale.toString()
+                                      ? _getController.basketModel.value.data!.result![index].name!.oz!
+                                      : _getController.basketModel.value.data!.result![index].name!.ru!,
+                                      style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 15.sp, fontWeight: FontWeight.w400)),
+                                  Text('${_getController.basketModel.value.data!.result![index].price} ${'so‘m'.tr}', style: TextStyle(color: AppColors.primaryColor2, fontSize: 15.sp, fontWeight: FontWeight.bold)),
+                                  Row(
+                                    children: [
+                                      InkWell(
+                                          child: Text('O‘chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 15.sp, fontWeight: FontWeight.w400)),
+                                          onTap: () {
+                                            ApiController().addToBasket('0', _getController.basketModel.value.data!.result![index].productId!,'deleted');
+                                          }
+                                      ),
+                                      const Spacer(),
+                                      Container(
+                                        height: Get.height * 0.05,
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: AppColors.grey.withOpacity(0.2)),
+                                        child: Row(
+                                          children: [
+                                            IconButton(
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                                onPressed: () {
+                                                  if (_getController.basketModel.value.data!.result![index].cartCount! > 1) {
+                                                    ApiController().addToBasket('${_getController.basketModel.value.data!.result![index].cartCount! - 1}', _getController.basketModel.value.data!.result![index].productId!, 'active');
+                                                  } else {
+                                                    ApiController().addToBasket('0', _getController.basketModel.value.data!.result![index].productId!,'deleted');
+                                                  }},
+                                                icon: Icon(TablerIcons.minus, color: Theme.of(context).colorScheme.onBackground, size: Get.height * 0.025)),
+                                            Text(_getController.basketModel.value.data!.result![index].cartCount.toString()),
+                                            IconButton(
+                                                color: Theme.of(context).colorScheme.onBackground,
+                                                onPressed: () {
+                                                  if (_getController.basketModel.value.data!.result![index].count! >= _getController.basketModel.value.data!.result![index].cartCount!) {
+                                                    ApiController().addToBasket('${_getController.basketModel.value.data!.result![index].cartCount! + 1}', _getController.basketModel.value.data!.result![index].productId!, 'active');
+                                                  } else {
+                                                    ApiController().showToast(context, 'Error', 'The number of products in the basket cannot be less than 1', true, 2);
+                                                  }},
+                                                icon: Icon(TablerIcons.plus, color: Theme.of(context).colorScheme.onBackground, size: Get.height * 0.025)),
+                                          ]
+                                        ),
+                                      )
+                                    ]
                                   )
-                                ],
-                              )
-                            ]))
+                                ]
+                            )
+                        )
                   ]);
                 }
             )
-            //for (int i = 0; i < _getController.basketModel.value.data!.result!.length; i++)
-
-        ]));
+        ]
+    ));
   }
 }
