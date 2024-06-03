@@ -813,6 +813,7 @@ class ApiController extends GetxController {
         "delivery_price": _getController.deliveryPrice.value.toString() == '' ? null : _getController.deliveryPrice.value.toString(),
         "district": _getController.getDistrict().toString() == '' ? null : _getController.getDistrict().toString(),
       };
+      debugPrint('huuuuuuuuu ${'$_orderDetail${_getController.orderCreateModel.value.data?.sId.toString()}'}');
       var response = await put(Uri.parse('$_orderDetail${_getController.orderCreateModel.value.data?.sId.toString()}'),
         headers: {
           'Authorization': 'Bearer ${GetStorage().read('token')}',

@@ -132,6 +132,9 @@ class LocaleString extends Translations{
       'Buyurtma raqami':'Номер заказа',
       'Buyurtma sanasi':'Дата заказа',
       'To‘lov miqdori':'Количество оплаты',
+      'dona':'шт',
+      'Jami xizmatlar bilan':'Общая стоимость услуг',
+      'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!':'Стоимость доставки определяется оператором!',
 
     },
     'uz_UZ':{
@@ -264,6 +267,9 @@ class LocaleString extends Translations{
       'Buyurtma raqami':'Buyurtma raqami',
       'Buyurtma sanasi':'Buyurtma sanasi',
       'To‘lov miqdori':'To‘lov miqdori',
+      'dona':'dona',
+      'Jami xizmatlar bilan':'Jami xizmatlar bilan',
+      'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!':'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!',
 
     },
     'oz_OZ':{
@@ -395,6 +401,9 @@ class LocaleString extends Translations{
       'Buyurtma raqami':'Буюртма рақами',
       'Buyurtma sanasi':'Буюртма санаси',
       'To‘lov miqdori':'Тўлов миқдори',
+      'dona':'дона',
+      'Jami xizmatlar bilan':'Жами хизматлар билан',
+      'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!':'Бу манзилга етказиб бериш нархи оператор томонидан хабар берилади!',
 
     }
   };
