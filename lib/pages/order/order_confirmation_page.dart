@@ -150,10 +150,8 @@ class OrderConfirmationPage extends StatelessWidget {
                     child: ElevatedButton(
                         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                         onPressed: (){
-                         // m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=Aziz Kuchkarov;ac.phone=+998 (93) 556-57-41;a=5000000
                           var data = base64.encode(utf8.encode('m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=${int.parse(_getController.orderDetailModel.value.data!.price.toString()) + int.parse(_getController.orderDetailModel.value.data!.deliveryPrice.toString())}00'));
-                          print('https://checkout.paycom.uz/$data');
-                          print(_getController.meModel.value.data!.result?.phone);
+                          debugPrint('https://checkout.paycom.uz/$data');
                           launchUrl(Uri.parse('https://checkout.paycom.uz/$data'));
                         },
                         child: Text('Tasdiqlash'.tr, style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w500))
