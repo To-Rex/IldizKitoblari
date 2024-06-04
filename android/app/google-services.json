@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "798337947510",
+    "project_id": "ildizdeeplink",
+    "storage_bucket": "ildizdeeplink.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798337947510:android:85b66c6bb697ad64248c57",
+        "android_client_info": {
+          "package_name": "ildizkitoblari.uz.ildiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwz4chR2P_Xm1QVe8aS5Cxm97nkqTcwxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
