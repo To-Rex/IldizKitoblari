@@ -22,31 +22,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*return AdaptiveTheme(
-        debugShowFloatingThemeButton: true,
-        initial: AdaptiveThemeMode.dark,
-        light: ThemeData.light(useMaterial3: true),
-        dark: ThemeData.dark(useMaterial3: true),
-        builder: (theme, darkTheme) => GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Ildiz Kitoblari',
-            theme: theme,
-            translations: LocaleString(),
-            locale: const Locale('uz', 'UZ'),
-            darkTheme: darkTheme,
-            //home: SplashScreen()
-            routes: {
-              '/': (context) => SplashScreen()
-            }));*/
-
     _getController.setHeightWidth(context);
-
     return ScreenUtilInit(
-        designSize: Size(
-            //375, 812
-          _getController.width.value,
-          _getController.height.value,
-        ),
+        designSize: Size(_getController.width.value, _getController.height.value),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
@@ -65,7 +43,8 @@ class MyApp extends StatelessWidget {
                   //home: SplashScreen()
                   routes: {
                     '/': (context) => SplashScreen()
-                  }));
+                  })
+          );
         });
   }
 }
