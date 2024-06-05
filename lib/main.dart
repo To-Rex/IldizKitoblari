@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:ildiz/pages/sample_page.dart';
 import 'package:ildiz/pages/splash_screen.dart';
 import 'package:ildiz/resource/srting.dart';
 import 'controllers/get_controller.dart';
-
 
 main() async {
   await GetStorage.init();
@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
                   darkTheme: darkTheme,
                   //home: SplashScreen()
                   routes: {
-                    '/': (context) => SplashScreen()
+                    '/': (context) => SplashScreen(),
+                    '/ok': (context) => SamplePage()
                   })
           );
         });
