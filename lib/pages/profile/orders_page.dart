@@ -99,13 +99,21 @@ class OrdersPage extends StatelessWidget{
                                          ),
                                          Text(
                                              int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 8 || int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 1
-                                                 ? 'Yangi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 2
-                                                 ? 'Ko‘rib chiqilmoqda' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 3
-                                                 ? 'To‘lov qabul qilindi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 4
-                                                 ? 'To‘lov qabul qilinmadi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 5
-                                                 ? 'To‘lov qilishdagi xatolik' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 6
-                                                 ? 'Qaytarildi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 9
-                                                 ? 'Bekor qilindi' : 'Qabul qilindi'
+                                                 ? 'Yangi'.tr : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 2
+                                                 ? 'Ko‘rib chiqilmoqda'.tr : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 3
+                                                 ? 'To‘lov qabul qilindi'.tr : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 4
+                                                 ? 'To‘lov qabul qilinmadi'.tr : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 5
+                                                 ? 'To‘lov qilishdagi xatolik'.tr : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 6
+                                                 ? 'Qaytarildi'.tr : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 9
+                                                 ? 'Bekor qilindi'.tr : 'Qabul qilindi'.tr,
+                                             style: TextStyle(
+                                               fontSize: _getController.width.value * 0.04,
+                                               fontWeight: FontWeight.w500,
+                                               color: int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 2
+                                                   ? AppColors.element : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 3 || int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 7
+                                                   ? AppColors.primaryColor2 : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 4 || int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 9
+                                                   ? AppColors.red : Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                             )
                                          )
                                        ]
                                    ),

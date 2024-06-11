@@ -135,6 +135,13 @@ class LocaleString extends Translations{
       'dona':'шт',
       'Jami xizmatlar bilan':'Общая стоимость услуг',
       'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!':'Стоимость доставки определяется оператором!',
+      'Yangi':'Новые',
+      'Ko‘rib chiqilmoqda':'На рассмотрении',
+      'To‘lov qabul qilindi':'Оплата подтверждена',
+      'To‘lov qabul qilinmadi':'Оплата не подтверждена',
+      'To‘lov qilishdagi xatolik':'Произошла ошибка при оплате',
+      'Qaytarildi':'Возвращено',
+      'Bekor qilindi':'Отменено',
 
     },
     'uz_UZ':{
@@ -270,6 +277,13 @@ class LocaleString extends Translations{
       'dona':'dona',
       'Jami xizmatlar bilan':'Jami xizmatlar bilan',
       'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!':'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!',
+      'Yangi':'Yangi',
+      'Ko‘rib chiqilmoqda':'Ko‘rib chiqilmoqda',
+      'To‘lov qabul qilindi':'To‘lov qabul qilindi',
+      'To‘lov qabul qilinmadi':'To‘lov qabul qilinmadi',
+      'To‘lov qilishdagi xatolik':'To‘lov qilishdagi xatolik',
+      'Qaytarildi':'Qaytarildi',
+      'Bekor qilindi':'Bekor qilindi',
 
     },
     'oz_OZ':{
@@ -404,6 +418,13 @@ class LocaleString extends Translations{
       'dona':'дона',
       'Jami xizmatlar bilan':'Жами хизматлар билан',
       'Bu manzilga yetkazib berish narxi operator tomonidan xabar beriladi!':'Бу манзилга етказиб бериш нархи оператор томонидан хабар берилади!',
+      'Yangi':'Янги',
+      'Ko‘rib chiqilmoqda':'Кўриб чиқилмоқда',
+      'To‘lov qabul qilindi':'Тўлов қабул қилинди',
+      'To‘lov qabul qilinmadi':'Тўлов қабул қилинмади',
+      'To‘lov qilishdagi xatolik':'Тўлов қилишдаги хатолик',
+      'Qaytarildi':'Қайтарилди',
+      'Bekor qilindi':'Бекор қилинди',
 
     }
   };
