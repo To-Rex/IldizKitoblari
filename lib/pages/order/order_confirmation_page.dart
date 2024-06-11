@@ -9,6 +9,7 @@ import '../../companents/orders/indicator_order.dart';
 import '../../controllers/get_controller.dart';
 import '../../models/orders/region_model.dart';
 import '../../resource/colors.dart';
+import '../../services/uni_services.dart';
 
 class OrderConfirmationPage extends StatelessWidget {
   OrderConfirmationPage({super.key});
@@ -149,11 +150,18 @@ class OrderConfirmationPage extends StatelessWidget {
                     child: ElevatedButton(
                         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.primaryColor2), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)))),
                         onPressed: (){
-                          //m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=Aziz Kuchkarov;ac.phone=+998 (93) 556-57-41;a=5000000;c=https://ildizkitoblari.uz/ok
+                          //m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=Aziz Kuchkarov;ac.phone=+998 (93) 556-57-41;a=5000000;
                           //var data = base64.encode(utf8.encode('m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=${int.parse(_getController.orderDetailModel.value.data!.price.toString()) + int.parse(_getController.orderDetailModel.value.data!.deliveryPrice.toString())}00;c=https://ildizkitoblari.uz/ok'));
-                          var data = base64.encode(utf8.encode('m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=10000;c=https://ildizkitoblari.uz/ok'));
+                          //var data = base64.encode(utf8.encode('m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=10000;'));
+                          //var data = base64.encode(utf8.encode('m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=10000;c=https://encryptpy.onrender.com/api/count'));
+                          var data = base64.encode(utf8.encode('m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=10000;c=https://ildizkitoblari.uz'));
+                          debugPrint('suuuuu:m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=10000;');
                           debugPrint('https://checkout.paycom.uz/$data');
-                          launchUrl(Uri.parse('https://checkout.paycom.uz/$data'));
+                          //debugPrint(ApiController.baseUrl);
+
+                          //launchUrl(Uri.parse('https://checkout.paycom.uz/$data'));
+
+                          Get.to(PaymentPage());
                         },
                         child: Text('Tasdiqlash'.tr, style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w500))
                     )

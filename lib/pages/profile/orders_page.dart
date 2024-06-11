@@ -97,6 +97,16 @@ class OrdersPage extends StatelessWidget{
                                              margin: EdgeInsets.symmetric(horizontal: 5.sp),
                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
                                          ),
+                                         Text(
+                                             int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 8 || int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 1
+                                                 ? 'Yangi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 2
+                                                 ? 'Ko‘rib chiqilmoqda' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 3
+                                                 ? 'To‘lov qabul qilindi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 4
+                                                 ? 'To‘lov qabul qilinmadi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 5
+                                                 ? 'To‘lov qilishdagi xatolik' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 6
+                                                 ? 'Qaytarildi' : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 9
+                                                 ? 'Bekor qilindi' : 'Qabul qilindi'
+                                         )
                                        ]
                                    ),
                                    SizedBox(height: Get.height * 0.01)
