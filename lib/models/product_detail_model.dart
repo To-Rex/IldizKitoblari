@@ -34,6 +34,8 @@ class Data {
   bool? status;
   bool? famous;
   bool? newProduct;
+  String? pdf;
+  int? pdfPrice;
   List<Options>? options;
   Name? content;
   List<SimularProducts>? simularProducts;
@@ -52,6 +54,8 @@ class Data {
         this.status,
         this.famous,
         this.newProduct,
+        this.pdf,
+        this.pdfPrice,
         this.options,
         this.content,
         this.simularProducts,
@@ -70,14 +74,15 @@ class Data {
     status = json['status'];
     famous = json['famous'];
     newProduct = json['new_product'];
+    pdf = json['pdf'];
+    pdfPrice = json['pdf_price'];
     if (json['options'] != null) {
       options = <Options>[];
       json['options'].forEach((v) {
         options!.add(Options.fromJson(v));
       });
     }
-    content =
-    json['content'] != null ? Name.fromJson(json['content']) : null;
+    content = json['content'] != null ? Name.fromJson(json['content']) : null;
     if (json['simular_products'] != null) {
       simularProducts = <SimularProducts>[];
       json['simular_products'].forEach((v) {
@@ -115,6 +120,8 @@ class Data {
     data['status'] = status;
     data['famous'] = famous;
     data['new_product'] = newProduct;
+    data['pdf'] = pdf;
+    data['pdf_price'] = pdfPrice;
     if (options != null) {
       data['options'] = options!.map((v) => v.toJson()).toList();
     }

@@ -179,21 +179,13 @@ class GetController extends GetxController {
     widgetOptions.add(AccountPage());
   }
 
-  void changeIndex(int index) {
-    this.index.value = index;
-  }
+  void changeIndex(int index) {this.index.value = index;}
 
-  void changePage(int page) {
-    this.page.value = page;
-  }
+  void changePage(int page) {this.page.value = page;}
 
-  void changeItemPage(int itemPage) {
-    this.itemPage.value = itemPage;
-  }
+  void changeItemPage(int itemPage) {this.itemPage.value = itemPage;}
 
-  changeImage(String newImage) {
-    image.value = newImage;
-  }
+  changeImage(String newImage) {image.value = newImage;}
 
   var nameController;
 
@@ -228,32 +220,16 @@ class GetController extends GetxController {
   var orderListDetailModel = OrderListDetail().obs;
 
 
-  void insertCountryAtStart(ResultCountry country) {
-    getCountryModel.update((model) {
-      model?.data?.result?.insert(0, country);
-    });
-  }
+  void insertCountryAtStart(ResultCountry country) {getCountryModel.update((model) {model?.data?.result?.insert(0, country);});}
 
-  void insertRegionAtStart(ResultRegion region) {
-    getRegionModel.update((model) {
-      model?.data?.result?.insert(0, region);
-    });
-  }
+  void insertRegionAtStart(ResultRegion region) {getRegionModel.update((model) {model?.data?.result?.insert(0, region);});}
 
-  void changeOrderListModel(OrderListModel orderList){
-    orderListModel.value = orderList;
-  }
-  void changeOrderListDetailModel(OrderListDetail orderListDetail){
-    orderListDetailModel.value = orderListDetail;
-  }
+  void changeOrderListModel(OrderListModel orderList){orderListModel.value = orderList;}
+  void changeOrderListDetailModel(OrderListDetail orderListDetail){orderListDetailModel.value = orderListDetail;}
 
-  void clearOrderListModel(){
-    orderListModel.value = OrderListModel();
-  }
+  void clearOrderListModel(){orderListModel.value = OrderListModel();}
 
-  void clearOrderListDetailModel(){
-    orderListDetailModel.value = OrderListDetail();
-  }
+  void clearOrderListDetailModel(){orderListDetailModel.value = OrderListDetail();}
 
   String getWeight() {
     if (orderDetailModel.value.data != null) {
@@ -386,29 +362,15 @@ class GetController extends GetxController {
     }
   }
 
-  void removeMenuOptionsModelList(int index) {
-    if (menuOptionsModelList.isNotEmpty&&menuOptionsModelList.length>=index){
-      menuOptionsModelList.removeRange(index, menuOptionsModelList.length);
-    }
-  }
+  void removeMenuOptionsModelList(int index) {if (menuOptionsModelList.isNotEmpty&&menuOptionsModelList.length>=index){menuOptionsModelList.removeRange(index, menuOptionsModelList.length);}}
 
-  void changeMenuDetailModel(MenuDetailModel menuDetailModel) {
-    this.menuDetailModel.value = menuDetailModel;
-  }
+  void changeMenuDetailModel(MenuDetailModel menuDetailModel) {this.menuDetailModel.value = menuDetailModel;}
 
-  void clearMenuDetailModel() {
-    if (menuDetailModel.value.data != null) {
-      menuDetailModel.value = MenuDetailModel();
-    }
-  }
+  void clearMenuDetailModel() {if (menuDetailModel.value.data != null) {menuDetailModel.value = MenuDetailModel();}}
 
-  void addAuthorDetailProductModelList(ProductModel productModel) {
-    authorDetailProductModelList.add(productModel);
-  }
+  void addAuthorDetailProductModelList(ProductModel productModel) {authorDetailProductModelList.add(productModel);}
 
-  void clearAuthorDetailProductModelList() {
-    authorDetailProductModelList.clear();
-  }
+  void clearAuthorDetailProductModelList() {authorDetailProductModelList.clear();}
 
   void removeAuthorDetailProductModelList(int index) {
     if (authorDetailProductModelList.isNotEmpty&&authorDetailProductModelList.length>=index){
@@ -416,35 +378,19 @@ class GetController extends GetxController {
     }
   }
 
-  void addAuthorDetailModelList(AuthorDetailModel authorDetailModel) {
-    authorDetailModelList.add(authorDetailModel);
-  }
+  void addAuthorDetailModelList(AuthorDetailModel authorDetailModel) {authorDetailModelList.add(authorDetailModel);}
 
-  void clearAuthorDetailModelList() {
-    authorDetailModelList.clear();
-  }
+  void clearAuthorDetailModelList() {authorDetailModelList.clear();}
 
-  void changeAuthorDetailProductModelList(int index, ProductModel productModel) {
-    authorDetailProductModelList[index] = productModel;
-  }
+  void changeAuthorDetailProductModelList(int index, ProductModel productModel) {authorDetailProductModelList[index] = productModel;}
 
-  void addProductModelList(ProductModel productModel) {
-    productModelList.add(productModel);
-  }
+  void addProductModelList(ProductModel productModel) {productModelList.add(productModel);}
 
-  void clearProductModelList() {
-    productModelList.clear();
-  }
+  void clearProductModelList() {productModelList.clear();}
 
-  void removeProductModelList(int index) {
-    if (productModelList.isNotEmpty&&productModelList.length>=index){
-      productModelList.removeRange(index, productModelList.length);
-    }
-  }
+  void removeProductModelList(int index) {if (productModelList.isNotEmpty&&productModelList.length>=index){productModelList.removeRange(index, productModelList.length);}}
 
-  void addProductDetailModel(ProductDetailModel productDetailModel) {
-    productDetailList.add(productDetailModel);
-  }
+  void addProductDetailModel(ProductDetailModel productDetailModel) {productDetailList.add(productDetailModel);}
 
   void clearProductDetailList() {
     productDetailList.clear();
@@ -458,9 +404,7 @@ class GetController extends GetxController {
     }
   }
 
-  void addProductRate(ProductRate productRate) {
-    productRateList.add(productRate);
-  }
+  void addProductRate(ProductRate productRate) {productRateList.add(productRate);}
 
   void removeProductRate(int index) {
     if (productRateList.isNotEmpty&&productRateList.length>=index){
@@ -468,13 +412,9 @@ class GetController extends GetxController {
     }
   }
 
-  void addAuthorDetailModel(AuthorDetailModel authorDetailModel) {
-    authorDetailModelList.add(authorDetailModel);
-  }
+  void addAuthorDetailModel(AuthorDetailModel authorDetailModel) {authorDetailModelList.add(authorDetailModel);}
 
-  void clearAuthorDetailList() {
-    authorDetailModelList.clear();
-  }
+  void clearAuthorDetailList() {authorDetailModelList.clear();}
 
   void removeAuthorDetailModel(int index) {
     if (authorDetailModelList.isNotEmpty&&authorDetailModelList.length>=index){
@@ -488,17 +428,11 @@ class GetController extends GetxController {
     }
   }
 
-  void changeLoginModel(LoginModel loginModel) {
-    this.loginModel.value = loginModel;
-  }
+  void changeLoginModel(LoginModel loginModel) {this.loginModel.value = loginModel;}
 
-  void changeMeModel(MeModel meModel) {
-    this.meModel.value = meModel;
-  }
+  void changeMeModel(MeModel meModel) {this.meModel.value = meModel;}
 
-  void changeMenuModel(MenuModel menuModel) {
-    this.menuModel.value = menuModel;
-  }
+  void changeMenuModel(MenuModel menuModel) {this.menuModel.value = menuModel;}
 
   void deleteMenuModel(int index) {
     if (menuModel.value.data != null && menuModel.value.data!.result != null && menuModel.value.data!.result!.isNotEmpty && index <= menuModel.value.data!.result!.length) {
@@ -506,9 +440,7 @@ class GetController extends GetxController {
     }
   }
 
-  void changeBannerModel(BannerModel bannerModel) {
-    this.bannerModel.value = bannerModel;
-  }
+  void changeBannerModel(BannerModel bannerModel) {this.bannerModel.value = bannerModel;}
 
   void clearBannerModel() {
     if (bannerModel.value.data != null) {
@@ -516,25 +448,15 @@ class GetController extends GetxController {
     }
   }
 
-  void addBannerModel(BannerModel bannerModel) {
-    this.bannerModel.value.data!.result!.addAll(bannerModel.data!.result!);
-  }
+  void addBannerModel(BannerModel bannerModel) {this.bannerModel.value.data!.result!.addAll(bannerModel.data!.result!);}
 
-  void changeProductModel(ProductModel productModel) {
-    this.productModel.value = productModel;
-  }
+  void changeProductModel(ProductModel productModel) {this.productModel.value = productModel;}
 
-  void addProductModel(ProductModel productModel) {
-    this.productModel.value.data!.result!.addAll(productModel.data!.result!);
-  }
+  void addProductModel(ProductModel productModel) {this.productModel.value.data!.result!.addAll(productModel.data!.result!);}
 
-  void changeQuotesModel(QuotesModel quotesModel) {
-    this.quotesModel.value = quotesModel;
-  }
+  void changeQuotesModel(QuotesModel quotesModel) {this.quotesModel.value = quotesModel;}
 
-  void addQuotesModel(QuotesModel quotesModel) {
-    this.quotesModel.value.data!.result!.addAll(quotesModel.data!.result!);
-  }
+  void addQuotesModel(QuotesModel quotesModel) {this.quotesModel.value.data!.result!.addAll(quotesModel.data!.result!);}
 
   void clearQuotesModel() {
     if (quotesModel.value.data != null) {
@@ -559,9 +481,7 @@ class GetController extends GetxController {
     productModelLength.value = productModelLength.value + authorModel.data!.result!.length;
   }
 
-  void changeProductDetailModel(ProductDetailModel productDetailModel) {
-    this.productDetailModel.value = productDetailModel;
-  }
+  void changeProductDetailModel(ProductDetailModel productDetailModel) {this.productDetailModel.value = productDetailModel;}
 
   void clearProductDetailModel() {
     if (productDetailModel.value.data != null) {
@@ -576,9 +496,7 @@ class GetController extends GetxController {
     }
   }
 
-  void changeProductRate(ProductRate productRate) {
-    this.productRate.value = productRate;
-  }
+  void changeProductRate(ProductRate productRate) {this.productRate.value = productRate;}
 
   void clearProductRate() {
     if (productRate.value.data != null) {
@@ -586,17 +504,11 @@ class GetController extends GetxController {
     }
   }
 
-  void addPage() {
-    page.value++;
-  }
+  void addPage() {page.value++;}
 
-  void addItemPage() {
-    itemPage.value++;
-  }
+  void addItemPage() {itemPage.value++;}
 
-  void changeProductModelLength(int length) {
-    productModelLength.value = length;
-  }
+  void changeProductModelLength(int length) {productModelLength.value = length;}
 
   final countdownDuration = const Duration(minutes: 1, seconds: 59).obs;
   Timer? _timer;
@@ -613,9 +525,7 @@ class GetController extends GetxController {
     );
   }
 
-  void stopTimer() {
-    _timer!.cancel();
-  }
+  void stopTimer() {_timer!.cancel();}
 
   void resetTimer() {
     if (_timer != null) {
@@ -742,4 +652,5 @@ class GetController extends GetxController {
     }
     return '';
   }
+
 }

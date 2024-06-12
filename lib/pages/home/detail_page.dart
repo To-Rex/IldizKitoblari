@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
@@ -162,69 +163,137 @@ class DetailPage extends StatelessWidget {
                                       DetailElement(title: _getController.productDetailList[pageIndex].data?.views.toString() ?? '', subTitle: 'ta ko\'rilgan'.tr, icon: TablerIcons.eye)
                                     ]
                                 ),
-                              Container(
-                                height: _getController.height.value * 0.08,
-                                width: _getController.width.value,
-                                margin: EdgeInsets.only(top: _getController.height.value * 0.025, bottom: _getController.height.value * 0.013),
-                                padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                decoration: BoxDecoration(color: AppColors.primaryColor3.withOpacity(0.15), border: Border.all(color: AppColors.primaryColor3, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Elektron kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground)),
-                                          Text('${_getController.productDetailList[pageIndex].data?.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                                        ]
-                                    )),
-                                    Icon(TablerIcons.book_2, color: AppColors.primaryColor3, size: _getController.width.value * 0.1),
-                                  ],
-                                ),
+                              InkWell(
+                                onTap: () {_getController.paymentTypeIndex.value = 0;},
+                                child: Container(
+                                  height: _getController.height.value * 0.08,
+                                  width: _getController.width.value,
+                                  margin: EdgeInsets.only(top: _getController.height.value * 0.025, bottom: _getController.height.value * 0.013),
+                                  padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                  decoration: BoxDecoration(
+                                      color: _getController.paymentTypeIndex.value == 0 ?AppColors.primaryColor3.withOpacity(0.15): AppColors.grey.withOpacity(0.2),
+                                      border: Border.all(color: _getController.paymentTypeIndex.value == 0 ? AppColors.primaryColor3 : AppColors.grey, width: 1),
+                                      borderRadius: const BorderRadius.all(Radius.circular(8))
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Expanded(child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Qog‘ozli kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground)),
+                                            Text('${_getController.productDetailList[pageIndex].data?.price} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                          ]
+                                      )),
+                                      Icon(TablerIcons.book_2, color: AppColors.primaryColor3, size: _getController.width.value * 0.1),
+                                    ],
+                                  ),
+                                )
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+                                  if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
+                                    InkWell(
+                                      onTap: () {
+                                        _getController.paymentTypeIndex.value = 1;
+                                      },
+                                      child: Container(
+                                          height: _getController.height.value * 0.08,
+                                          width: _getController.width.value * 0.45,
+                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                          decoration: BoxDecoration(
+                                              color: _getController.paymentTypeIndex.value == 1 ?AppColors.primaryColor3.withOpacity(0.15): AppColors.grey.withOpacity(0.2),
+                                              border: Border.all(
+                                                  color: _getController.paymentTypeIndex.value == 1 ? AppColors.primaryColor3 : AppColors.grey,
+                                                  width: 1),
+                                              borderRadius: const BorderRadius.all(Radius.circular(8))
+                                          ),
+                                          child: Row(
+                                              children: [
+                                                Expanded(
+                                                    child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('Elektron kitob'.tr, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                                          Text('${_getController.productDetailList[pageIndex].data?.pdfPrice.toString()} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                                        ]
+                                                    )
+                                                ),
+                                                Icon(TablerIcons.book, color: AppColors.primaryColor3, size: _getController.width.value * 0.06)
+                                              ]
+                                          )
+                                      )
+                                    ),
                                   Container(
                                       height: _getController.height.value * 0.08,
                                       width: _getController.width.value * 0.45,
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                       decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
-                                      child: Row(
+                                      child: Expanded(child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Expanded(child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Elektron kitob'.tr, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                                  Text('16000 so\'m', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                                                ]
-                                            )),
-                                            Icon(TablerIcons.book, color: AppColors.primaryColor3, size: _getController.width.value * 0.06)
+                                            Text('Fragmentni O`qish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
                                           ]
+                                      ))
+                                  )
+
+                                ]
+                              ),
+                              SizedBox(height: 10.h),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                      onTap: () {
+                                        _getController.paymentTypeIndex.value = 2;
+                                      },
+                                      child: Container(
+                                          height: _getController.height.value * 0.08,
+                                          width: _getController.width.value * 0.45,
+                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                          decoration: BoxDecoration(
+                                            //color: AppColors.grey.withOpacity(0.2), || AppColors.primaryColor3.withOpacity(0.15),
+                                              color: _getController.paymentTypeIndex.value == 2 ?AppColors.primaryColor3.withOpacity(0.15): AppColors.grey.withOpacity(0.2),
+                                              border: Border.all(
+                                                //color: AppColors.grey,
+                                                  color: _getController.paymentTypeIndex.value == 2 ? AppColors.primaryColor3 : AppColors.grey,
+                                                  width: 1),
+                                              borderRadius: const BorderRadius.all(Radius.circular(8))
+                                          ),
+                                          child: Row(
+                                              children: [
+                                                Expanded(child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text('Audio kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                                      Text('16000 so\'m', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                                    ]
+                                                )),
+                                                Icon(TablerIcons.headphones, color: AppColors.primaryColor3, size: _getController.width.value * 0.06)
+                                              ]
+                                          )
                                       )
                                   ),
-                                  Container(
-                                      height: _getController.height.value * 0.08,
-                                      width: _getController.width.value * 0.45,
-                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                      decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
-                                      child: Row(
-                                          children: [
-                                            Expanded(child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Audio kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                                  Text('16000 so\'m', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
-                                                ]
-                                            )),
-                                            Icon(TablerIcons.headphones, color: AppColors.primaryColor3, size: _getController.width.value * 0.06)
-                                          ]
-                                      )
-                                  )
-                                ],
+                                  if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
+                                    Container(
+                                        height: _getController.height.value * 0.08,
+                                        width: _getController.width.value * 0.45,
+                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                        decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
+                                        child: Expanded(child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Text('Fragmentni Eshitish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                            ]
+                                        ))
+                                    )
+                                ]
                               )
                             ]
                         )
@@ -265,7 +334,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     DetailChildItem(title: 'Tavsiya etiladi'.tr, function: (){}, check: false),
                     Container(
-                      height: _getController.height.value * 0.37,
+                      height: 370.h,
                       width: _getController.width.value,
                       margin: EdgeInsets.only(top: _getController.height.value * 0.02),
                       child: ListView.builder(
@@ -543,7 +612,15 @@ class DetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (_getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex)
-                    Expanded(child: _getController.productDetailList[pageIndex].data != null ? Text('${_getController.productDetailList[pageIndex].data!.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox())
+                    Expanded(child: _getController.productDetailList[pageIndex].data != null
+                        ? Text(
+                        '${_getController.paymentTypeIndex.value == 0
+                            ? _getController.productDetailList[pageIndex].data!.price
+                            : _getController.paymentTypeIndex.value == 1
+                            ? _getController.productDetailList[pageIndex].data?.pdfPrice.toString()
+                            : _getController.productDetailList[pageIndex].data!.price
+                        } ${'so‘m'.tr}',
+                        style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox())
                   else
                     Expanded(
                         child: Skeletonizer(
