@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -145,7 +146,7 @@ class AuthorDetail extends StatelessWidget {
                     //if (_getController.productModel.value.data != null)
                     if (_getController.authorDetailProductModelList.isNotEmpty)
                       SizedBox(
-                          height: _getController.height.value * 0.38,
+                          height: 370.h,
                           width: _getController.width.value,
                           child: ListView.builder(
                               padding: EdgeInsets.only(left: _getController.width.value * 0.03),

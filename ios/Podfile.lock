@@ -4,6 +4,8 @@ PODS:
   - connectivity (0.0.1):
     - Flutter
     - Reachability
+  - device_info_plus (0.0.1):
+    - Flutter
   - Firebase/CoreOnly (10.27.0):
     - FirebaseCore (= 10.27.0)
   - firebase_core (3.0.0):
@@ -16,6 +18,8 @@ PODS:
   - FirebaseCoreInternal (10.27.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - Flutter (1.0.0)
+  - flutter_pdfview (1.0.2):
+    - Flutter
   - GoogleUtilities/Environment (7.13.3):
     - GoogleUtilities/Privacy
     - PromisesObjC (< 3.0, >= 1.2)
@@ -40,6 +44,8 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - syncfusion_flutter_pdfviewer (0.0.1):
+    - Flutter
   - TOCropViewController (2.6.1)
   - url_launcher_ios (0.0.1):
     - Flutter
@@ -49,13 +55,16 @@ PODS:
 DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
@@ -74,10 +83,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/app_links/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  flutter_pdfview:
+    :path: ".symlinks/plugins/flutter_pdfview/ios"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker_ios:
@@ -88,6 +101,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  syncfusion_flutter_pdfviewer:
+    :path: ".symlinks/plugins/syncfusion_flutter_pdfviewer/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   webview_flutter_wkwebview:
@@ -96,11 +111,13 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   app_links: e70ca16b4b0f88253b3b3660200d4a10b4ea9795
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   Firebase: 26b040b20866a55f55eb3611b9fcf3ae64816b86
   firebase_core: 5926464bbb028fef87d2443369b73ada2a8a3608
   FirebaseCore: a2b95ae4ce7c83ceecfbbbe3b6f1cddc7415a808
   FirebaseCoreInternal: 4b297a2d56063dbea2c1d0d04222d44a8d058862
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
   image_cropper: a3291c624a953049bc6a02e1f8c8ceb162a24b25
   image_picker_ios: b545a5f16c0fa88e3ecbbce3ed4de45567a8ec18
@@ -109,6 +126,7 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
+  syncfusion_flutter_pdfviewer: bb9998884b864cfedf72628df3503bdf57e397c0
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
   webview_flutter_wkwebview: be0f0d33777f1bfd0c9fdcb594786704dbf65f36

@@ -55,7 +55,8 @@ class _ProductItemState extends State<ProductItem> {
                       delayBefore: const Duration(milliseconds: 10000))
               ),
               SizedBox(height: 5.sp),
-              Expanded(child: Text('${widget.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
+              //Expanded(child: Text('${widget.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
+              Expanded(child: Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
               Row(
                   children: [
                     InkWell(

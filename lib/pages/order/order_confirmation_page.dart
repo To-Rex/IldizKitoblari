@@ -158,10 +158,9 @@ class OrderConfirmationPage extends StatelessWidget {
                           debugPrint('suuuuu:m=664c890b70ee2ef365a80e85;ac.order_id=TESTORDER;ac.full_name=${_getController.meModel.value.data!.result?.fullName};ac.phone=${_getController.meModel.value.data!.result?.phone};a=10000;');
                           debugPrint('https://checkout.paycom.uz/$data');
                           //debugPrint(ApiController.baseUrl);
+                          launchUrl(Uri.parse('https://checkout.paycom.uz/$data'));
 
-                          //launchUrl(Uri.parse('https://checkout.paycom.uz/$data'));
-
-                          Get.to(PaymentPage());
+                          //Get.to(PaymentPage());
                         },
                         child: Text('Tasdiqlash'.tr, style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w500))
                     )

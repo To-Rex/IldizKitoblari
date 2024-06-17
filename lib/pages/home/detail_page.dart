@@ -17,6 +17,8 @@ import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../shop/book_page.dart';
+
 class DetailPage extends StatelessWidget {
   String slug;
   int pageIndex;
@@ -227,20 +229,28 @@ class DetailPage extends StatelessWidget {
                                           )
                                       )
                                     ),
-                                  Container(
-                                      height: _getController.height.value * 0.08,
-                                      width: _getController.width.value * 0.45,
-                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                      decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
-                                      child: Expanded(child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Text('Fragmentni O`qish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                          ]
-                                      ))
+                                  InkWell(
+                                    onTap: () {
+                                      Get.to(() => BookPage(
+                                          url: _getController.productDetailList[pageIndex].data!.pdf!,
+                                         //title: _getController.productDetailList[pageIndex].data!.name!,
+                                          title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!,
+                                      ));
+                                    },
+                                      child: Container(
+                                          height: _getController.height.value * 0.08,
+                                          width: _getController.width.value * 0.45,
+                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                          decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
+                                          child: Expanded(child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Text('Fragmentni O`qish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                              ]
+                                          ))
+                                      )
                                   )
-
                                 ]
                               ),
                               SizedBox(height: 10.h),
