@@ -113,9 +113,7 @@ class ShopPage extends StatelessWidget {
                               width: _getController.width.value,
                               child: Stack(
                                   children: [
-                                    Positioned(child: SizedBox(
-                                        width: _getController.width.value,
-                                        child: SvgPicture.asset('assets/svgImages/shap.svg',fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
+                                    Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg',fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
                                     Positioned(
                                         height: 200.h,
                                         top: 58.w,
@@ -143,7 +141,7 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
-                                    if (_getController.shopDataModel.value.data != null && _getController.onLoading.value)
+                                    if (_getController.shopDataModel.value.data == null && _getController.onLoading.value)
                                       for (var category in _getController.shopDataModel.value.data!.result!)
                                         Column(
                                             children: [
@@ -194,22 +192,22 @@ class ShopPage extends StatelessWidget {
                                             ]
                                         )
                                     else
-                                      if (_getController.onLoading.value == false)
+                                      if (_getController.onLoading.value != false)
                                         Column(
                                             children: [
                                               SizedBox(height: 10.sp),
                                               SizedBox(
-                                                  height: _getController.height.value * 1.1,
-                                                  width: _getController.width.value,
-                                                  child: GridView.count(
-                                                      crossAxisCount: 2,
-                                                      shrinkWrap: true,
-                                                      physics: const NeverScrollableScrollPhysics(),
-                                                      childAspectRatio: 0.61.h,
-                                                      padding: EdgeInsets.all(5.sp),
-                                                      mainAxisSpacing: 15.sp,
-                                                      children: List.generate(6, (index) {return SkeletonItem();})
-                                                  )
+                                                height: ScreenUtil().screenHeight * 1.1,
+                                                width: ScreenUtil().screenWidth,
+                                                child: GridView.count(
+                                                  crossAxisCount: 2,
+                                                  shrinkWrap: true,
+                                                  physics: const NeverScrollableScrollPhysics(),
+                                                  childAspectRatio: ScreenUtil().screenWidth / (ScreenUtil().screenHeight * 0.8),
+                                                  padding: EdgeInsets.all(5.sp),
+                                                  mainAxisSpacing: 15.sp,
+                                                  children: List.generate(6, (index) => SkeletonItem()), // Replace SkeletonItem with your actual widget
+                                                ),
                                               )
                                             ]
                                         )

@@ -24,10 +24,7 @@ class LibraryPage extends StatelessWidget {
             fit: StackFit.loose,
             children: [
               Positioned(
-                height: _getController.height.value * 0.24,
-                top: 0,
-                left: 0,
-                right: 0,
+                height: _getController.height.value * 0.24, top: 0, left: 0, right: 0,
                 child: SizedBox(
                   child: SvgPicture.asset(
                     'assets/svgImages/shap.svg',

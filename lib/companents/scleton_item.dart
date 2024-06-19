@@ -22,43 +22,46 @@ class _ProductItemState extends State<SkeletonItem> {
   Widget build(BuildContext context) {
     return Skeletonizer(
         child: Container(
-            width: 190.w,
-            height: 370.h,
-            margin: EdgeInsets.only(right: 12.w,left: 12.w),
+            width: Get.width * 0.45,
+            height: Get.height * 0.15,
+            margin: EdgeInsets.only(right: Get.width * 0.03, left: Get.width * 0.03),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: AppColors.grey.withOpacity(0.2)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    width: 185.w,
-                    height: 160.h,
+                    //width: 185.w,
+                    width: Get.width * 0.45,
+                    height: Get.height * 0.2,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColors.grey.withOpacity(0.2))
                 ),
                 Row(
                   children: [
                     Expanded(child: Text('Muvaffaqiyatli'.tr)),
                     Icon(Icons.ice_skating, size: 10.sp),
-                    SizedBox(width: 5.w),
+                    SizedBox(width: Get.width * 0.01),
                   ],
                 ),
                 Row(
                   children: [
                     Icon(Icons.ice_skating, size: 10.sp),
-                    SizedBox(width: 5.w),
+                    SizedBox(width: Get.width * 0.01),
                     Expanded(child: Text('Muvaffaqiyatli'.tr))
                   ],
                 ),
                 Container(
                   width: _getController.width.value,
-                  padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                  margin: EdgeInsets.only(right: 5.w, left: 5.w, top: 5.h),
+                  //padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                  padding: EdgeInsets.only(left: Get.width * 0.01, right:Get.width * 0.01),
+                  //margin: EdgeInsets.only(right: 5.w, left: 5.w, top: 5.h),
+                  margin: EdgeInsets.only(right: Get.width * 0.01, left: Get.width * 0.01, top: Get.height * 0.01),
                   child: Text('Xatolik'.tr),
                 ),
                 SizedBox(height: 5.h),
                 Container(
                     margin: EdgeInsets.only(top: 2.h, left:  2.w, right:  2.w, bottom:  2.h),
-                    height: 30.h,
-                    width: 180.h,
+                    height: Get.height * 0.035,
+                    width: Get.width * 0.45,
                     child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -73,11 +76,11 @@ class _ProductItemState extends State<SkeletonItem> {
                         )
                     )
                 ),
-                SizedBox(height: 5.h),
                 Container(
-                    margin: EdgeInsets.only(top: 2.h, left:  2.w, right:  2.w, bottom:  2.h),
-                    height: 30.h,
-                    width: 180.h,
+                    //margin: EdgeInsets.only(top: 2.h, left:  2.w, right:  2.w, bottom:  2.h),
+                    margin: EdgeInsets.only(top: Get.height * 0.01, left:  Get.width * 0.01, right:  Get.width * 0.01),
+                    height: Get.height * 0.035,
+                    width: Get.width * 0.45,
                     child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
