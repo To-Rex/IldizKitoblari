@@ -201,16 +201,16 @@ class AccountPage extends StatelessWidget {
                                   }
                               ),
                               AccItem(
-                                  title: 'Tilni o\'zgartirish'.tr,
+                                  title: 'Tilni o‘zgartirish'.tr,
                                   icon: 'assets/icon/globe.svg',
-                                  subTitle: 'uz_UZ' == Get.locale.toString() ? 'O\'zbekcha' : 'oz_OZ' == Get.locale.toString() ? 'Ўзбекча' : 'Русский',
+                                  subTitle: 'uz_UZ' == Get.locale.toString() ? 'O‘zbekcha' : 'oz_OZ' == Get.locale.toString() ? 'Ўзбекча' : 'Русский',
                                   onTap: () {
                                     //buildLanguageDialog(context);
                                     showLanguageBottomSheet(context);
                                   }
                               ),
                               AccItem(
-                                  title: 'O\'qish turi'.tr,
+                                  title: 'O‘qish turi'.tr,
                                   icon: 'assets/icon/overview.svg',
                                   subTitle: '',
                                   onTap: () {
@@ -234,7 +234,7 @@ class AccountPage extends StatelessWidget {
                                   }
                               ),
                               AccItem(
-                                  title: 'Biz bilan bog\'lanish'.tr,
+                                  title: 'Biz bilan bog‘lanish'.tr,
                                   icon: 'assets/icon/contact.svg',
                                   subTitle: '',
                                   onTap: () {

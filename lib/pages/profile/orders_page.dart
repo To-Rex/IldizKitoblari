@@ -90,7 +90,7 @@ class OrdersPage extends StatelessWidget{
                                    Divider(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1)),
                                    Row(
                                        children: [
-                                         Text('${int.parse(_getController.orderListModel.value.data!.result![index].price.toString()) + int.parse(_getController.orderListModel.value.data!.result![index].deliveryPrice.toString())}${' so’m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.05, color: AppColors.primaryColor2, fontWeight: FontWeight.w500)),
+                                         Text('${int.parse(_getController.orderListModel.value.data!.result![index].price.toString()) + int.parse(_getController.orderListModel.value.data!.result![index].deliveryPrice.toString())} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.05, color: AppColors.primaryColor2, fontWeight: FontWeight.w500)),
                                          Container(
                                              width: 6.sp,
                                              height: 6.sp,

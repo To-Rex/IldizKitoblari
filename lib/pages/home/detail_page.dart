@@ -9,7 +9,6 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../../companents/bottombar_icons.dart';
 import '../../companents/detail_child_item.dart';
 import '../../companents/detail_element.dart';
 import '../../companents/product_item.dart';
@@ -74,10 +73,10 @@ class DetailPage extends StatelessWidget {
                   children: [
                     AppBar(
                       surfaceTintColor: Colors.transparent,
-                      leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065), onPressed: () {Navigator.pop(context);}),
+                      leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {Navigator.pop(context);}),
                       actions: [
-                        IconButton(icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065), onPressed: () {}),
-                        IconButton(icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065), onPressed: () {})],
+                        IconButton(icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {}),
+                        IconButton(icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {})],
                     ),
                     if (_getController.productDetailList[pageIndex].data?.images != null)
                       Container(
@@ -88,7 +87,7 @@ class DetailPage extends StatelessWidget {
                               onIndexChanged: (index) {_getController.fullIndex.value = index;},
                               onTap: (index) {
                                 Get.to(() => Container(
-                                    color: Theme.of(context).colorScheme.background,
+                                    color: Theme.of(context).colorScheme.surface,
                                     width: _getController.width.value,
                                     height: _getController.height.value,
                                     child: PhotoViewGallery(
@@ -162,7 +161,7 @@ class DetailPage extends StatelessWidget {
                                             subTitle: '', icon: Icons.star),
                                       if (_getController.productRateList.length > pageIndex)
                                         DetailElement(title: _getController.productRateList[pageIndex].data!.result!.total.toString(), subTitle: 'ta izoh'.tr, icon: TablerIcons.message_circle),
-                                      DetailElement(title: _getController.productDetailList[pageIndex].data?.views.toString() ?? '', subTitle: 'ta ko\'rilgan'.tr, icon: TablerIcons.eye)
+                                      DetailElement(title: _getController.productDetailList[pageIndex].data?.views.toString() ?? '', subTitle: 'ta ko‘rilgan'.tr, icon: TablerIcons.eye)
                                     ]
                                 ),
                               InkWell(
@@ -184,8 +183,8 @@ class DetailPage extends StatelessWidget {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Qog‘ozli kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground)),
-                                            Text('${_getController.productDetailList[pageIndex].data?.price} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                            Text('Qog‘ozli kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onSurface)),
+                                            Text('${_getController.productDetailList[pageIndex].data?.price} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
                                           ]
                                       )),
                                       Icon(TablerIcons.book_2, color: AppColors.primaryColor3, size: _getController.width.value * 0.1),
@@ -219,8 +218,8 @@ class DetailPage extends StatelessWidget {
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Text('Elektron kitob'.tr, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                                          Text('${_getController.productDetailList[pageIndex].data?.pdfPrice.toString()} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                                          Text('Elektron kitob'.tr, maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
+                                                          Text('${_getController.productDetailList[pageIndex].data?.pdfPrice.toString()} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
                                                         ]
                                                     )
                                                 ),
@@ -246,7 +245,7 @@ class DetailPage extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
-                                                Text('Fragmentni O`qish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                                Text('Fragmentni O`qish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
                                               ]
                                           ))
                                       )
@@ -280,8 +279,8 @@ class DetailPage extends StatelessWidget {
                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      Text('Audio kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
-                                                      Text('16000 so\'m', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                                                      Text('Audio kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
+                                                      Text('16000 so‘m', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
                                                     ]
                                                 )),
                                                 Icon(TablerIcons.headphones, color: AppColors.primaryColor3, size: _getController.width.value * 0.06)
@@ -299,7 +298,7 @@ class DetailPage extends StatelessWidget {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
-                                              Text('Fragmentni Eshitish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                              Text('Fragmentni Eshitish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
                                             ]
                                         ))
                                     )
@@ -321,9 +320,9 @@ class DetailPage extends StatelessWidget {
                                       margin: EdgeInsets.only(bottom: _getController.height.value * 0.011),
                                       child: Row(
                                           children: [
-                                            LimitedBox(maxWidth: _getController.width.value * 0.25, child: Text(maxLines: 1, textAlign: TextAlign.start, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)),),),
-                                            Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))),
-                                            LimitedBox(maxWidth: _getController.width.value * 0.7, child: Text(maxLines: 1, textAlign: TextAlign.end, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.uz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.ru ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.oz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),)
+                                            LimitedBox(maxWidth: _getController.width.value * 0.25, child: Text(maxLines: 1, textAlign: TextAlign.start, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6)),),),
+                                            Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))),
+                                            LimitedBox(maxWidth: _getController.width.value * 0.7, child: Text(maxLines: 1, textAlign: TextAlign.end, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.uz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.ru ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.oz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),)
                                           ]
                                       )
                                   ),
@@ -338,7 +337,7 @@ class DetailPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if ('uz_UZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.oz != '')
-                                Html(style: {'p': Style(fontSize: FontSize(_getController.width.value * 0.04), fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground)},data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.oz ?? '' : '',)
+                                Html(style: {'p': Style(fontSize: FontSize(_getController.width.value * 0.04), fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface)},data: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.ru ?? '' : 'oz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.content?.oz ?? '' : '',)
                             ]
                         )
                     ),
@@ -387,11 +386,10 @@ class DetailPage extends StatelessWidget {
                                     itemCount: 5,
                                     itemSize: _getController.width.value * 0.07,
                                     itemPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01),
-                                    unratedColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+                                    unratedColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
                                     itemBuilder: (context, _) =>
                                     const Icon(TablerIcons.star_filled, color: AppColors.primaryColor),
                                     onRatingUpdate: (rating) {
-                                      print(rating);
                                       _getController.ratingController.text = rating.toString();
                                     }
                                 ),
@@ -402,19 +400,19 @@ class DetailPage extends StatelessWidget {
                                   width: _getController.width.value,
                                   padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                   decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.background,
+                                      color: Theme.of(context).colorScheme.surface,
                                       borderRadius: const BorderRadius.all(Radius.circular(12)),
-                                      border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1)
+                                      border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), width: 1)
                                   ),
                                   child: TextField(
                                       minLines: 1,
                                       maxLines: 3,
                                       controller: _getController.commentController,
-                                      style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),
+                                      style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface),
                                       decoration: InputDecoration(
                                           hintText: 'Kiriting'.tr,
-                                          labelStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
-                                          hintStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
+                                          labelStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)),
+                                          hintStyle: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)),
                                           border: InputBorder.none
                                       )
                                   )
@@ -426,7 +424,7 @@ class DetailPage extends StatelessWidget {
                                   child: ElevatedButton(
                                       onPressed: () {
                                         if (_getController.commentController.text.isEmpty) {
-                                          ApiController().showToast(context, 'Xatolik', 'Ma\'lumotlar yo\'q!', true, 3);
+                                          ApiController().showToast(context, 'Xatolik', 'Ma‘lumotlar yo‘q!', true, 3);
                                         } else {
                                           ApiController().createComment(
                                               _getController.commentController.text,
@@ -444,7 +442,7 @@ class DetailPage extends StatelessWidget {
                                           backgroundColor: AppColors.primaryColor,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                                       ),
-                                      child: Text('Jo\'natish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.background)))
+                                      child: Text('Jo‘natish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.surface)))
                               ),
                             ]
                         )
@@ -460,7 +458,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                   margin: EdgeInsets.only(bottom: _getController.height.value * 0.02),
                                   padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02, top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.01),
-                                  decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.1), borderRadius: const BorderRadius.all(Radius.circular(8)), border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1)),
+                                  decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.1), borderRadius: const BorderRadius.all(Radius.circular(8)), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), width: 1)),
                                   child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -482,7 +480,7 @@ class DetailPage extends StatelessWidget {
                                                 height: _getController.width.value * 0.12,
                                                 margin: EdgeInsets.only(right: _getController.width.value * 0.03),
                                                 decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.primaryColor),
-                                                child: Icon(Icons.person, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.06),
+                                                child: Icon(Icons.person, color: Theme.of(context).colorScheme.surface, size: _getController.width.value * 0.06),
                                               ),
                                             Expanded(
                                                 child: Text(
@@ -490,7 +488,7 @@ class DetailPage extends StatelessWidget {
                                                     style: TextStyle(
                                                         fontSize: _getController.width.value * 0.04,
                                                         fontWeight: FontWeight.w500,
-                                                        color: Theme.of(context).colorScheme.onBackground)
+                                                        color: Theme.of(context).colorScheme.onSurface)
                                                 )
                                             )
                                           ],
@@ -515,7 +513,7 @@ class DetailPage extends StatelessWidget {
                                               Expanded(child: Text(
                                                   DateTime.parse(_getController.productDetailList[pageIndex].data?.comments![i].createdAt ?? '').toString().substring(0, 10),
                                                   maxLines: 1,
-                                                  style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5))
+                                                  style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
                                               ))
                                             ]
                                         ),
@@ -525,7 +523,7 @@ class DetailPage extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: _getController.width.value * 0.04,
                                                 fontWeight: FontWeight.w400,
-                                                color: Theme.of(context).colorScheme.onBackground
+                                                color: Theme.of(context).colorScheme.onSurface
                                             )
                                         )
                                       ]
@@ -539,7 +537,7 @@ class DetailPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: AppColors.grey.withOpacity(0.1),
                           borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                          border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), width: 1),
                         ),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -547,10 +545,10 @@ class DetailPage extends StatelessWidget {
                             children: [
                               Icon(
                                 TablerIcons.message_circle_cancel,
-                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                                 size: _getController.width.value * 0.1,
                               ),
-                              Text('Izohlar yo\'q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5)))
+                              Text('Izohlar yo‘q'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
                             ]
                         )
                     ),
@@ -561,16 +559,16 @@ class DetailPage extends StatelessWidget {
                     AppBar(
                       surfaceTintColor: Colors.transparent,
                       leading: IconButton(
-                          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
+                          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065),
                           onPressed: () {Navigator.pop(context);}
                       ),
                       actions: [
                         IconButton(
-                            icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
+                            icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065),
                             onPressed: () {}
                         ),
                         IconButton(
-                            icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.065),
+                            icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065),
                             onPressed: () {}
                         )],
                     ),
@@ -593,7 +591,7 @@ class DetailPage extends StatelessWidget {
                                   height: _getController.height.value * 0.06,
                                   decoration: BoxDecoration(
                                       borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                      border: Border.all(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2), width: 1),
+                                      border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2), width: 1),
                                       image: const DecorationImage(image:NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740'), fit: BoxFit.cover)
                                   )
                               )
@@ -602,7 +600,7 @@ class DetailPage extends StatelessWidget {
                           SizedBox(height: _getController.height.value * 0.01),
                           Padding(
                               padding: EdgeInsets.only(left: _getController.width.value * 0.03),
-                              child: Text('hello'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground))
+                              child: Text('hello'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface))
                           )
                         ]
                     )
@@ -615,7 +613,7 @@ class DetailPage extends StatelessWidget {
           surfaceTintColor: Theme.of(context).colorScheme.onSecondary,
           elevation: 20,
           shadowColor: Theme.of(context).colorScheme.secondary,
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           child: Obx(() => Container(
             margin: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
             child: Row(
@@ -630,12 +628,12 @@ class DetailPage extends StatelessWidget {
                             ? _getController.productDetailList[pageIndex].data?.pdfPrice.toString()
                             : _getController.productDetailList[pageIndex].data!.price
                         } ${'so‘m'.tr}',
-                        style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)) : const SizedBox())
+                        style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onSurface)) : const SizedBox())
                   else
                     Expanded(
                         child: Skeletonizer(
                           child: Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Theme.of(context).colorScheme.background),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Theme.of(context).colorScheme.surface),
                             child: Text('hello'.tr),
                           )
                         )
@@ -647,7 +645,7 @@ class DetailPage extends StatelessWidget {
                       child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                          child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
+                          child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.surface))
                       ))
                   else
                     SizedBox(
@@ -657,7 +655,7 @@ class DetailPage extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                            child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.background))
+                            child: Text('Xarid'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.surface))
                         )
                       )
                     ),
@@ -668,7 +666,7 @@ class DetailPage extends StatelessWidget {
                       margin: EdgeInsets.only(left: _getController.width.value * 0.02),
                       child: IconButton(
                           style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                          icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.07),
+                          icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.surface, size: _getController.width.value * 0.07),
                           onPressed: () {}
                       )
                   )
@@ -680,7 +678,7 @@ class DetailPage extends StatelessWidget {
                           margin: EdgeInsets.only(left: _getController.width.value * 0.02),
                           child: IconButton(
                               style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                              icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.background, size: _getController.width.value * 0.07),
+                              icon: Icon(TablerIcons.shopping_bag, color: Theme.of(context).colorScheme.surface, size: _getController.width.value * 0.07),
                               onPressed: () {}
                           )
                       )

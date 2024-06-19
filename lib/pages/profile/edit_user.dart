@@ -38,7 +38,7 @@ class EditUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shaxsiy ma\'lumotlar'.tr),
+        title: Text('Shaxsiy ma‘lumotlar'.tr),
         centerTitle: false,
         toolbarTextStyle: TextStyle(fontSize: _getController.width.value * 0.048, fontWeight: FontWeight.w600),
         surfaceTintColor: Colors.transparent,
@@ -56,7 +56,7 @@ class EditUser extends StatelessWidget {
                   children: [
                     Icon(Icons.person, color: AppColors.primaryColor, size: _getController.width.value * 0.06),
                     SizedBox(width: _getController.width.value * 0.02),
-                    Text('Shaxsiy ma\'lumotlar'.tr, style: TextStyle(color: AppColors.primaryColor, fontSize: _getController.width.value * 0.04)),
+                    Text('Shaxsiy ma‘lumotlar'.tr, style: TextStyle(color: AppColors.primaryColor, fontSize: _getController.width.value * 0.04)),
                     SizedBox(width: _getController.width.value * 0.02),
                   ]
                 )
@@ -78,7 +78,7 @@ class EditUser extends StatelessWidget {
                   children: [
                     Icon(Icons.logout, color: AppColors.secondaryColor, size: _getController.width.value * 0.06),
                     SizedBox(width: _getController.width.value * 0.02),
-                    Text('Chiqish'.tr, style: TextStyle(color: AppColors.secondaryColor, fontSize: _getController.width.value * 0.04)),
+                    Text('Ilovadan chiqish'.tr, style: TextStyle(color: AppColors.secondaryColor, fontSize: _getController.width.value * 0.04)),
                     SizedBox(width: _getController.width.value * 0.02),
                   ]
                 )
@@ -92,7 +92,6 @@ class EditUser extends StatelessWidget {
           children: [
             Row(
               children: [
-
                 Container(
                   padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                   child: Stack(
