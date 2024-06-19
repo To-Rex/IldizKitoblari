@@ -49,7 +49,7 @@ class LibraryPage extends StatelessWidget {
                                             controller: _getController.tabController,
                                             labelStyle: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground),
                                             unselectedLabelColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
-                                            indicator: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
+                                            indicator: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.surface.withOpacity(0.1), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
                                             tabs: [
                                               Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Elektron kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500))))),
                                               Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Audio kitoblar'.tr, style: TextStyle(fontSize: Get.width * 0.04, fontWeight: FontWeight.w500)))))

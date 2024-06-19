@@ -22,25 +22,27 @@ class SearchFields extends StatelessWidget {
             child: Container(
               height: 52.sp,
               padding: EdgeInsets.only(right: 5.sp),
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.circular(13)),
               child: TextField(
                 controller: _getController.searchController,
                 onChanged: onChanged,
-                  textInputAction: TextInputAction.search,
-                  onSubmitted: (onChanged),
-                  decoration: InputDecoration(
-                  hintText: 'Kitoblarni izlash'.tr,
-                  hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), fontSize: 18.sp),
-                  prefixIcon: Padding(padding: EdgeInsets.all(12.sp), child: SvgPicture.asset('assets/icon/search.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface.withOpacity(0.6), BlendMode.srcIn))),
-                  suffixIcon: _getController.searchController.text.isNotEmpty ? IconButton(
-                    onPressed: () {
-                      _getController.searchController.clear();
-                      onChanged('');
-                    },
-                    icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6), size: 18.sp),
-                  ) : null,
-                  border: InputBorder.none
-                ),
+                textInputAction: TextInputAction.search,
+                onSubmitted: (onChanged),
+                decoration: InputDecoration(
+                    filled: true,
+                    isDense: true,
+                    border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(13)),
+                    fillColor: Theme.of(context).colorScheme.surface,
+                    hintText: 'Kitoblarni izlash'.tr,
+                    hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), fontSize: 18.sp),
+                    prefixIcon: Padding(padding: EdgeInsets.all(12.sp), child: SvgPicture.asset('assets/icon/search.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface.withOpacity(0.6), BlendMode.srcIn))),
+                    suffixIcon: _getController.searchController.text.isNotEmpty ? IconButton(
+                      onPressed: () {
+                        _getController.searchController.clear();
+                        onChanged('');
+                        },
+                      icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6), size: 15.sp),
+                    ) : const SizedBox(height: 0, width: 0)
+                )
               )
             )
           ),
@@ -49,9 +51,9 @@ class SearchFields extends StatelessWidget {
             height: 52.sp,
             width: 52.sp,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.background.withOpacity(0.2),
+              color: Theme.of(context).colorScheme.surface.withOpacity(0.2),
               borderRadius: BorderRadius.circular(13),
-              border: Border.all(color: Theme.of(context).colorScheme.background.withOpacity(0.2))
+              border: Border.all(color: Theme.of(context).colorScheme.surface.withOpacity(0.2))
             ),
             child: Center(
               child: SvgPicture.asset(
