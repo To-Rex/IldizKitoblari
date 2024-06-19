@@ -11,7 +11,6 @@ class SearchFields extends StatelessWidget {
   SearchFields({super.key, required this.onChanged});
 
   final GetController _getController = Get.put(GetController());
-
   @override
   Widget build(BuildContext context) {
     return Container(
