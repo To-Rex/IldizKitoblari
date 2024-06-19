@@ -22,6 +22,7 @@ class ShopPage extends StatelessWidget {
 
   void _getData() {
     _getController.clearBannerModel();
+    _getController.onLoad();
     if(_getController.onLoading.value) {
       ApiController().getBanner(1,1).then((value) {
         _getController.changeItemPage(0);
@@ -32,7 +33,6 @@ class ShopPage extends StatelessWidget {
         }
       });
     }
-
   }
 
   void _onLoading() async {
@@ -122,7 +122,7 @@ class ShopPage extends StatelessWidget {
                                         height: 200.h,
                                         top: 58.w,
                                         left: 15.sp,
-                                        child: Text('Do\'kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: 27.sp, fontWeight: FontWeight.bold))
+                                        child: Text('Do‘kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 27.sp, fontWeight: FontWeight.bold))
                                     ),
                                     Positioned(
                                         top: 61.h, left: 0, right: 0,
