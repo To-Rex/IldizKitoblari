@@ -23,7 +23,6 @@ class ShopPage extends StatelessWidget {
   void _getData() {
     _getController.clearBannerModel();
     ApiController().getBanner(1,1).then((value) {
-      _getController.clearProductModelList();
       _getController.changeItemPage(0);
       if (_getController.menuModel.value.data != null) {
         ApiController().getShopMenu().then((value) => _getController.refreshController.refreshCompleted());
@@ -48,7 +47,6 @@ class ShopPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _getController.clearProductModelList();
     _getController.changeItemPage(0);
     _getController.clearBannerModel();
     _getData();
@@ -139,7 +137,6 @@ class ShopPage extends StatelessWidget {
                                             _getData();
                                           }
                                           if (value.isNotEmpty && _getController.menuModel.value.data != null && value.length >= 3 ) {
-                                            _getController.clearProductModelList();
                                             _getController.changeItemPage(0);
                                             _getData();
                                           }

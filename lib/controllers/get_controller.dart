@@ -203,7 +203,6 @@ class GetController extends GetxController {
   var menuDetailModel = MenuDetailModel().obs;
   var productDetailList = <ProductDetailModel>[].obs;
   var productRateList = <ProductRate>[].obs;
-  var productModelList = <ProductModel>[].obs;
   var authorDetailModelList = <AuthorDetailModel>[].obs;
   var authorDetailProductModelList = <ProductModel>[].obs;
   var menuOptionsModel = MenuOptionsModel().obs;
@@ -406,12 +405,6 @@ class GetController extends GetxController {
   void clearAuthorDetailModelList() {authorDetailModelList.clear();}
 
   void changeAuthorDetailProductModelList(int index, ProductModel productModel) {authorDetailProductModelList[index] = productModel;}
-
-  void addProductModelList(ProductModel productModel) {productModelList.add(productModel);}
-
-  void clearProductModelList() {productModelList.clear();}
-
-  void removeProductModelList(int index) {if (productModelList.isNotEmpty&&productModelList.length>=index){productModelList.removeRange(index, productModelList.length);}}
 
   void addProductDetailModel(ProductDetailModel productDetailModel) {productDetailList.add(productDetailModel);}
 
