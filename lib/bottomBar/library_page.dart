@@ -13,7 +13,6 @@ class LibraryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Initialize TabController with context.vsync for smooth animations
     _getController.tabController = TabController(length: 2, vsync: Navigator.of(context) as TickerProvider);
 
     return Scaffold(
@@ -34,7 +33,7 @@ class LibraryPage extends StatelessWidget {
                     'assets/svgImages/shap.svg',
                     fit: BoxFit.fitWidth,
                     width: _getController.width.value,
-                    height: _getController.height.value * 0.3,
+                    height: _getController.height.value * 0.3
                   )
                 )
               ),
@@ -47,7 +46,7 @@ class LibraryPage extends StatelessWidget {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.surface,
                     fontSize: _getController.width.value * 0.061,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.bold
                   )
                 )
               ),
@@ -59,8 +58,8 @@ class LibraryPage extends StatelessWidget {
                 child: SearchFields(
                   onChanged: (String value) {
                     // Implement your search logic here
-                  },
-                ),
+                  }
+                )
               ),
               Positioned(
                 width: _getController.width.value,
@@ -72,8 +71,8 @@ class LibraryPage extends StatelessWidget {
                     color: Theme.of(context).colorScheme.surface,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
-                    ),
+                      topRight: Radius.circular(16)
+                    )
                   ),
                   child: Column(
                     children: [
@@ -87,7 +86,7 @@ class LibraryPage extends StatelessWidget {
                           padding: EdgeInsets.all(Get.width * 0.01),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15)
                           ),
                           child: TabBar(
                             indicatorSize: TabBarIndicatorSize.tab,
@@ -107,7 +106,7 @@ class LibraryPage extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
                                   spreadRadius: 2,
                                   blurRadius: 2,
-                                  offset: const Offset(0, 2),
+                                  offset: const Offset(0, 2)
                                 )
                               ]
                             ),
@@ -120,7 +119,7 @@ class LibraryPage extends StatelessWidget {
                                       'Elektron kitoblar'.tr,
                                       style: TextStyle(
                                         fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w500
                                       )
                                     )
                                   )
@@ -134,7 +133,7 @@ class LibraryPage extends StatelessWidget {
                                       'Audio kitoblar'.tr,
                                       style: TextStyle(
                                         fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w500
                                       )
                                     )
                                   )
@@ -152,7 +151,7 @@ class LibraryPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Savat bo‘sh'.tr,
-                                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
+                                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)
                               ),
                               SizedBox(height: _getController.height.value * 0.01),
                               SizedBox(
@@ -160,8 +159,8 @@ class LibraryPage extends StatelessWidget {
                                 child: Text(
                                   'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.'.tr,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400),
-                                ),
+                                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400)
+                                )
                               ),
                               SizedBox(height: _getController.height.value * 0.01),
                               SizedBox(
@@ -169,7 +168,7 @@ class LibraryPage extends StatelessWidget {
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: AppColors.primaryColor,
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))
                                   ),
                                   onPressed: () {
                                     _getController.index.value = 1;
