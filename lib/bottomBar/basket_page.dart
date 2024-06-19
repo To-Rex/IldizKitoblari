@@ -134,7 +134,6 @@ class BasketPage extends StatelessWidget {
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
-                                                //Savat bo‘sh
                                                 Text('Savat bo‘sh'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
                                                 SizedBox(height: _getController.height.value * 0.01),
                                                 SizedBox(

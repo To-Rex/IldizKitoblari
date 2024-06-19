@@ -318,23 +318,32 @@ class ApiController extends GetxController {
 
   Future<void> getShopMenu() async {
     _getController.clearShopDataModel();
-    var response = await get(Uri.parse(_menu),
-      headers: {
-        'Accept-Language': Get.locale!.languageCode,
-      },
-    );
-    if (response.statusCode == 200) {
-      _getController.changeShopDataModel(ShopDataModel.fromJson(jsonDecode(response.body)));
-      for(var i in _getController.shopDataModel.value.data!.result!){
-        try {
-          debugPrint('menu: ${i.slug}');
-          getShopMenuProduct(i.slug,_getController.shopDataModel.value.data!.result!.indexOf(i));
-        } catch (e) {
-          debugPrint('menu: $e');
-          continue;
+    try {
+      _getController.offLoad();
+      var response = await get(Uri.parse(_menu),
+        headers: {
+          'Accept-Language': Get.locale!.languageCode,
+        },
+      );
+      if (response.statusCode == 200) {
+        _getController.changeShopDataModel(ShopDataModel.fromJson(jsonDecode(response.body)));
+        for(var i in _getController.shopDataModel.value.data!.result!){
+          try {
+            debugPrint('menu: ${i.slug}');
+            getShopMenuProduct(i.slug,_getController.shopDataModel.value.data!.result!.indexOf(i));
+          } catch (e) {
+            debugPrint('menu: $e');
+            continue;
+          }
         }
+        _getController.onLoad();
+      } else {
+        _getController.onLoad();
+        _getController.refreshController.refreshCompleted();
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
-    } else {
+    } catch (e) {
+      _getController.onLoad();
       _getController.refreshController.refreshCompleted();
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }

@@ -200,11 +200,13 @@ class ShopPage extends StatelessWidget {
                                                               deck: category.shopProductModel!.data!.result![index].name,
                                                               count: category.shopProductModel!.data!.result![index].count
                                                           );
-                                                        }))
+                                                        })
+                                                )
                                             ]
                                         )
                                     else
-                                          Column(
+                                      if (_getController.onLoading.value == false)
+                                        Column(
                                             children: [
                                               SizedBox(height: 10.sp),
                                               SizedBox(
@@ -221,7 +223,9 @@ class ShopPage extends StatelessWidget {
                                                   )
                                               )
                                             ]
-                                          )
+                                        )
+                                      else
+                                        SizedBox(width: Get.width, height: Get.height * 0.8, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
                                       ]
                                   )
                               )
