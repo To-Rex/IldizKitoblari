@@ -327,16 +327,20 @@ class ApiController extends GetxController {
       );
       if (response.statusCode == 200) {
         _getController.changeShopDataModel(ShopDataModel.fromJson(jsonDecode(response.body)));
-        for(var i in _getController.shopDataModel.value.data!.result!){
+        List<Future<void>> futures = [];
+        for(var i in _getController.shopDataModel.value.data!.result!.reversed){
           try {
             debugPrint('menu: ${i.slug}');
-            getShopMenuProduct(i.slug,_getController.shopDataModel.value.data!.result!.indexOf(i));
+            futures.add(getShopMenuProduct(i.slug,_getController.shopDataModel.value.data!.result!.indexOf(i)));
           } catch (e) {
             debugPrint('menu: $e');
             continue;
           }
         }
+        await Future.wait(futures);
+        futures.clear();
         _getController.onLoad();
+        _getController.refreshController.refreshCompleted();
       } else {
         _getController.onLoad();
         _getController.refreshController.refreshCompleted();

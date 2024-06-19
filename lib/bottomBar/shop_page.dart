@@ -26,7 +26,6 @@ class ShopPage extends StatelessWidget {
       _getController.changeItemPage(0);
       if (_getController.menuModel.value.data != null) {
         ApiController().getShopMenu().then((value) => _getController.refreshController.refreshCompleted());
-        /*ApiController().getItemsProductSearch(1, true,_getController.searchController.text);*/
       } else {
         _getController.refreshController.refreshCompleted();
       }
@@ -151,7 +150,7 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
-                                    if (_getController.shopDataModel.value.data != null)
+                                    if (_getController.shopDataModel.value.data != null && _getController.onLoading.value)
                                       for (var category in _getController.shopDataModel.value.data!.result!)
                                         Column(
                                             children: [
