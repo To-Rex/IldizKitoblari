@@ -22,26 +22,22 @@ class ShopPage extends StatelessWidget {
 
   void _getData() {
     _getController.clearBannerModel();
-    ApiController().getBanner(1,1).then((value) {
-      _getController.changeItemPage(0);
-      if (_getController.menuModel.value.data != null) {
-        ApiController().getShopMenu().then((value) => _getController.refreshController.refreshCompleted());
-      } else {
-        _getController.refreshController.refreshCompleted();
-      }
-    });
+    if(_getController.onLoading.value) {
+      ApiController().getBanner(1,1).then((value) {
+        _getController.changeItemPage(0);
+        if (_getController.menuModel.value.data != null) {
+          ApiController().getShopMenu().then((value) => _getController.refreshController.refreshCompleted());
+        } else {
+          _getController.refreshController.refreshCompleted();
+        }
+      });
+    }
+
   }
 
   void _onLoading() async {
     _getController.refreshController.refreshCompleted();
     _getController.refreshController.loadComplete();
-    /*if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value && _getController.searchController.text.isEmpty) {
-      ApiController().getItemsProductSearch(1,  true,_getController.searchController.text).then((value) =>
-          _getController.refreshController.loadComplete()
-      );
-    } else {
-      _getController.refreshController.loadComplete();
-    }*/
   }
 
   @override
@@ -121,8 +117,7 @@ class ShopPage extends StatelessWidget {
                                   children: [
                                     Positioned(child: SizedBox(
                                         width: _getController.width.value,
-                                        child: SvgPicture.asset('assets/svgImages/shap.svg',fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))
-                                    ),
+                                        child: SvgPicture.asset('assets/svgImages/shap.svg',fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
                                     Positioned(
                                         height: 200.h,
                                         top: 58.w,

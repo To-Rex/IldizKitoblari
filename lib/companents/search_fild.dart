@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 
 import '../controllers/get_controller.dart';
@@ -31,8 +32,15 @@ class SearchFields extends StatelessWidget {
                   hintText: 'Kitoblarni izlash'.tr,
                   hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), fontSize: 18.sp),
                   prefixIcon: Padding(padding: EdgeInsets.all(12.sp), child: SvgPicture.asset('assets/icon/search.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface.withOpacity(0.6), BlendMode.srcIn))),
+                  suffixIcon: _getController.searchController.text.isNotEmpty ? IconButton(
+                    onPressed: () {
+                      _getController.searchController.clear();
+                      onChanged('');
+                    },
+                    icon: Icon(TablerIcons.x, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6), size: 18.sp),
+                  ) : null,
                   border: InputBorder.none
-                )
+                ),
               )
             )
           ),
