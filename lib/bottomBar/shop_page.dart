@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import '../companents/child_item.dart';
 import '../companents/product_item.dart';
 import '../companents/scleton_item.dart';
@@ -21,25 +22,28 @@ class ShopPage extends StatelessWidget {
 
   void _getData() {
     _getController.clearBannerModel();
-    ApiController().getBanner(1,1);
-    _getController.clearProductModelList();
-    _getController.changeItemPage(0);
-    if (_getController.menuModel.value.data != null) {
-      ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
-      _getController.refreshController.refreshCompleted();
-    } else {
-      _getController.refreshController.refreshCompleted();
-    }
+    ApiController().getBanner(1,1).then((value) {
+      _getController.clearProductModelList();
+      _getController.changeItemPage(0);
+      if (_getController.menuModel.value.data != null) {
+        ApiController().getShopMenu().then((value) => _getController.refreshController.refreshCompleted());
+        /*ApiController().getItemsProductSearch(1, true,_getController.searchController.text);*/
+      } else {
+        _getController.refreshController.refreshCompleted();
+      }
+    });
   }
 
   void _onLoading() async {
-    if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value && _getController.searchController.text.isEmpty) {
+    _getController.refreshController.refreshCompleted();
+    _getController.refreshController.loadComplete();
+    /*if (_getController.menuModel.value.data!.result!.length > _getController.itemPage.value && _getController.searchController.text.isEmpty) {
       ApiController().getItemsProductSearch(1,  true,_getController.searchController.text).then((value) =>
           _getController.refreshController.loadComplete()
       );
     } else {
       _getController.refreshController.loadComplete();
-    }
+    }*/
   }
 
   @override
@@ -53,7 +57,31 @@ class ShopPage extends StatelessWidget {
             enablePullDown: true,
             enablePullUp: true,
             physics: const BouncingScrollPhysics(),
-            header: const ClassicHeader(),
+            header: CustomHeader(
+              builder: (context, mode) {
+                print(mode);
+                Widget body;
+                if (mode == LoadStatus.idle) {
+                  body = const SizedBox();
+                } else if (mode == LoadStatus.loading) {
+                  body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                } else if (mode == LoadStatus.failed) {
+                  body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
+                } else if (mode == LoadStatus.canLoading) {
+                  body = const SizedBox();
+                } else if ( mode == LoadStatus.noMore) {
+                  _getController.refreshController.loadComplete();
+                  body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
+                } else {
+                  _getController.refreshController.loadComplete();
+                  body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
+                }
+                return SizedBox(
+                  height: _getController.height.value * 0.1,
+                  child: Center(child: body),
+                );
+              },
+            ),
             footer: CustomFooter(
               builder: (BuildContext context, LoadStatus? mode) {
                 print(mode);
@@ -67,11 +95,9 @@ class ShopPage extends StatelessWidget {
                 } else if (mode == LoadStatus.canLoading) {
                   body = const SizedBox();
                 } else if ( mode == LoadStatus.noMore) {
-                  //_refreshController.loadComplete();
                   _getController.refreshController.loadComplete();
                     body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
                 } else {
-                  //_refreshController.loadComplete();
                   _getController.refreshController.loadComplete();
                   body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
                 }
@@ -115,7 +141,7 @@ class ShopPage extends StatelessWidget {
                                           if (value.isNotEmpty && _getController.menuModel.value.data != null && value.length >= 3 ) {
                                             _getController.clearProductModelList();
                                             _getController.changeItemPage(0);
-                                            ApiController().getItemsProductSearch(1, true,_getController.searchController.text);
+                                            _getData();
                                           }
                                         })
                                     )
@@ -128,52 +154,56 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
-                                    if (_getController.menuModel.value.data != null && _getController.productModelList.isNotEmpty)
-                                      for (var i in _getController.menuModel.value.data!.result!.length > _getController.itemPage.value ? _getController.menuModel.value.data!.result!.sublist(0, _getController.itemPage.value) : _getController.menuModel.value.data!.result!)
+                                    if (_getController.shopDataModel.value.data != null)
+                                      for (var category in _getController.shopDataModel.value.data!.result!)
                                         Column(
                                             children: [
-                                              if (i.children != null && _getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
-                                                ChildItem(title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, function: (){
-                                                  _getController.page.value = 1;
-                                                  _getController.productModelLength.value = 0;
-                                                  _getController.clearProductModel();
-                                                  Get.to(() => CatDetailPage(
-                                                      title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!, menuSlug: i.slug!,
-                                                      parent: true,
-                                                      menuIndex: _getController.menuModel.value.data!.result!.indexOf(i)
-                                                  ));
-                                                }),
-                                              if (_getController.productModelList.isNotEmpty || _getController.menuModel.value.data!.result!.indexOf(i) == 0)
+                                              if (category.children != null && category.productCount! >= 2 && category.shopProductModel != null && category.shopProductModel!.data != null&& category.shopProductModel!.data!.result!.length > 2)
+                                                ChildItem(
+                                                  title: 'uz_UZ' == Get.locale.toString() ? category.title!.uz! : 'oz_OZ' == Get.locale.toString() ? category.title!.oz! : category.title!.ru!,
+                                                  function: () {
+                                                    _getController.page.value = 1;
+                                                    _getController.productModelLength.value = 0;
+                                                    _getController.clearProductModel();
+                                                    Get.to(() => CatDetailPage(
+                                                        title: 'uz_UZ' == Get.locale.toString() ? category.title!.uz! : 'oz_OZ' == Get.locale.toString() ? category.title!.oz! : category.title!.ru!, menuSlug: category.slug!,
+                                                        parent: true,
+                                                        menuIndex: _getController.shopDataModel.value.data!.result!.indexOf(category),
+                                                    ));
+                                                  }
+                                                ),
+                                              if (category.children != null && category.productCount! >= 2 && category.shopProductModel != null && category.shopProductModel!.data != null&& category.shopProductModel!.data!.result!.isNotEmpty)
                                                 SizedBox(
                                                     height: 370.h,
                                                     width: _getController.width.value,
                                                     child: ListView.builder(
                                                         padding: EdgeInsets.only(left: 16.w),
-                                                        itemCount: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result!.length,
+                                                        itemCount: category.shopProductModel != null && category.shopProductModel!.data != null ? category.shopProductModel!.data!.result!.length : 0,
                                                         scrollDirection: Axis.horizontal,
                                                         itemBuilder: (context, index) {
                                                           return ProductItem(
-                                                            imageUrl: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].image!,
-                                                            title: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name!,
-                                                            price: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].price.toString(),
-                                                            function: () {
-                                                              _getController.page.value = 1;
-                                                              _getController.productModelLength.value = 0;
-                                                              _getController.clearProductModel();
-                                                              _getController.clearProductDetailModel();
-                                                              _getController.clearProductDetailList();
-                                                              Get.to(() => DetailPage(
-                                                                slug: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].slug!,
-                                                                pageIndex: 0
-                                                              ));
+                                                              imageUrl: category.shopProductModel!.data!.result![index].image!,
+                                                              title: category.shopProductModel!.data!.result![index].name!,
+                                                              price: category.shopProductModel!.data!.result![index].price.toString(),
+                                                              function: () {
+                                                                _getController.page.value = 1;
+                                                                _getController.productModelLength.value = 0;
+                                                                _getController.clearProductModel();
+                                                                _getController.clearProductDetailModel();
+                                                                _getController.clearProductDetailList();
+                                                                Get.to(() => DetailPage(
+                                                                    slug: category.shopProductModel!.data!.result![index].slug!,
+                                                                    pageIndex: 0
+                                                                ));
                                                               },
-                                                            id: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].sId,
-                                                            deck: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].name,
-                                                            count: _getController.productModelList[_getController.menuModel.value.data!.result!.indexOf(i)].data!.result![index].count
+                                                              id: category.shopProductModel!.data!.result![index].sId,
+                                                              deck: category.shopProductModel!.data!.result![index].name,
+                                                              count: category.shopProductModel!.data!.result![index].count
                                                           );
                                                         }))
-                                                ]
-                                        ) else
+                                            ]
+                                        )
+                                    else
                                           Column(
                                             children: [
                                               SizedBox(height: 10.sp),

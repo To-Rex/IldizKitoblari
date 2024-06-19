@@ -26,6 +26,7 @@ class SearchFields extends StatelessWidget {
                 controller: _getController.searchController,
                 onChanged: onChanged,
                   textInputAction: TextInputAction.search,
+                  onSubmitted: (onChanged),
                   decoration: InputDecoration(
                   hintText: 'Kitoblarni izlash'.tr,
                   hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), fontSize: 18.sp),

@@ -31,6 +31,7 @@ import '../models/orders/region_model.dart';
 import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
+import '../models/shop/shop_data_model.dart';
 import 'api_controller.dart';
 
 class GetController extends GetxController {
@@ -218,6 +219,28 @@ class GetController extends GetxController {
 
   var orderListModel = OrderListModel().obs;
   var orderListDetailModel = OrderListDetail().obs;
+
+  //ShopDataModel
+  var shopDataModel = ShopDataModel().obs;
+
+  void changeShopDataModel(ShopDataModel newShopDataModel) {shopDataModel.value = newShopDataModel;}
+
+  void changeShopDataProductModel(ShopProductModel newShopProductModel, int index) {
+    // Ensure the index is valid
+    if (shopDataModel.value.data != null && shopDataModel.value.data!.result != null) {
+      shopDataModel.update((model) {
+        model?.data?.result?[index].shopProductModel = newShopProductModel;
+      });
+    }
+  }
+
+  void clearShopDataModel() {shopDataModel.value = ShopDataModel();}
+
+  void removeShopDataModelMenu(index) {
+    if (shopDataModel.value.data != null && shopDataModel.value.data!.result != null) {
+      shopDataModel.value.data!.result?.removeAt(index);
+    }
+  }
 
 
   void insertCountryAtStart(ResultCountry country) {getCountryModel.update((model) {model?.data?.result?.insert(0, country);});}

@@ -43,45 +43,59 @@ class SamplePage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BottomBarIcons(
-                  icon: 'assets/icon/home.svg',
-                  title: 'Asosiy'.tr,
+                InkWell(
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(0);
                   },
-                  isSelected: _getController.index.value == 0,
+                  child: BottomBarIcons(
+                    icon: 'assets/icon/home.svg',
+                    title: 'Asosiy'.tr,
+                    isSelected: _getController.index.value == 0
+                  )
                 ),
-                BottomBarIcons(
-                  icon: 'assets/icon/shop.svg',
-                  title: 'Do\'kon'.tr,
-                  onTap: () {
-                    _onItemTapped(1);
-                  },
-                  isSelected: _getController.index.value == 1,
+
+                InkWell(
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                    onTap: () {_onItemTapped(1);},
+                  child: BottomBarIcons(
+                    icon: 'assets/icon/shop.svg',
+                    title: 'Do\'kon'.tr,
+                    isSelected: _getController.index.value == 1,
+                  )
                 ),
-                BottomBarIcons(
-                  icon: 'assets/icon/library.svg',
-                  title: 'Kutubxona'.tr,
+                InkWell(
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(2);
                   },
-                  isSelected: _getController.index.value == 2,
+                  child: BottomBarIcons(
+                    icon: 'assets/icon/library.svg',
+                    title: 'Kutubxona'.tr,
+                    isSelected: _getController.index.value == 2,
+                  ),
                 ),
-                BottomBarIcons(
-                  icon: 'assets/icon/basket.svg',
-                  title: 'Savatcha'.tr,
+                InkWell(
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(3);
                   },
-                  isSelected: _getController.index.value == 3,
+                    child:BottomBarIcons(
+                      icon: 'assets/icon/basket.svg',
+                      title: 'Savatcha'.tr,
+                      isSelected: _getController.index.value == 3,
+                    ),
                 ),
-                BottomBarIcons(
-                  icon: 'assets/icon/account.svg',
-                  title: 'Sahifam'.tr,
+                InkWell(
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(4);
                   },
-                  isSelected: _getController.index.value == 4,
+                    child:BottomBarIcons(
+                      icon: 'assets/icon/account.svg',
+                      title: 'Sahifam'.tr,
+                      isSelected: _getController.index.value == 4,
+                    ),
                 ),
               ],
             ),

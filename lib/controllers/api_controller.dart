@@ -26,6 +26,7 @@ import '../models/product_detail_model.dart';
 import '../models/product_model.dart';
 import '../models/product_rate.dart';
 import '../models/quotos_model.dart';
+import '../models/shop/shop_data_model.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/sample_page.dart';
@@ -315,6 +316,45 @@ class ApiController extends GetxController {
     }
   }
 
+  Future<void> getShopMenu() async {
+    _getController.clearShopDataModel();
+    var response = await get(Uri.parse(_menu),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    if (response.statusCode == 200) {
+      _getController.changeShopDataModel(ShopDataModel.fromJson(jsonDecode(response.body)));
+      for(var i in _getController.shopDataModel.value.data!.result!){
+        try {
+          debugPrint('menu: ${i.slug}');
+          getShopMenuProduct(i.slug,_getController.shopDataModel.value.data!.result!.indexOf(i));
+        } catch (e) {
+          debugPrint('menu: $e');
+          continue;
+        }
+      }
+    } else {
+      _getController.refreshController.refreshCompleted();
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
+  Future<void> getShopMenuProduct(slug,index) async {
+    var lang = Get.locale!.languageCode;
+    var response = await get(Uri.parse('$_product&page=1&parent_slug=$slug&search=${_getController.searchController.text}'),
+      headers: {
+        'Accept-Language': lang,
+      },
+    );
+    if (response.statusCode == 200) {
+      _getController.changeShopDataProductModel(ShopProductModel.fromJson(jsonDecode(response.body)),index);
+    } else {
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
+
   Future<void> getMenuDetail(slug) async {
     debugPrint('=======================================================================================================================)');
     debugPrint('${_menuDetail}$slug');
@@ -494,11 +534,12 @@ class ApiController extends GetxController {
       debugPrint('product1: ${response.body}');
       debugPrint('product: ${response.statusCode}');
       if (response.statusCode == 200 || response.statusCode == 201) {
-        if (jsonDecode(response.body)['data']['result'].isEmpty) {
+        if (jsonDecode(response.body)['data']['result'].isEmpty || jsonDecode(response.body)['data']['result'] == null) {
           debugPrint('menuSlugssss: ${menuSlug[i]}');
           _getController.deleteMenuModel(_getController.itemPage.value);
           continue;
         }
+
         if (add==false) {
           _getController.clearProductModelList();
           _getController.addProductModelList(ProductModel.fromJson(jsonDecode(response.body)));
@@ -513,6 +554,7 @@ class ApiController extends GetxController {
       }
     }
   }
+
 
   Future<void> getProductDetail(id) async {
     var response = await get(Uri.parse('$_productDetail$id'),
