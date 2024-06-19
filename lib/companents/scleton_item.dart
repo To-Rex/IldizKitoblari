@@ -23,7 +23,7 @@ class _ProductItemState extends State<SkeletonItem> {
     return Skeletonizer(
         child: Container(
             width: 190.w,
-            height: 330.h,
+            height: 370.h,
             margin: EdgeInsets.only(right: 12.w,left: 12.w),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: AppColors.grey.withOpacity(0.2)),
             child: Column(
@@ -31,7 +31,7 @@ class _ProductItemState extends State<SkeletonItem> {
               children: [
                 Container(
                     width: 185.w,
-                    height: 190.h,
+                    height: 160.h,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColors.grey.withOpacity(0.2))
                 ),
                 Row(
@@ -57,7 +57,7 @@ class _ProductItemState extends State<SkeletonItem> {
                 SizedBox(height: 5.h),
                 Container(
                     margin: EdgeInsets.only(top: 2.h, left:  2.w, right:  2.w, bottom:  2.h),
-                    height: 10.h,
+                    height: 30.h,
                     width: 180.h,
                     child: ElevatedButton(
                         onPressed: () {},
@@ -73,7 +73,26 @@ class _ProductItemState extends State<SkeletonItem> {
                         )
                     )
                 ),
-              ],
+                SizedBox(height: 5.h),
+                Container(
+                    margin: EdgeInsets.only(top: 2.h, left:  2.w, right:  2.w, bottom:  2.h),
+                    height: 30.h,
+                    width: 180.h,
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            shadowColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+                        child: Text('Savatga qo‘shish'.tr,
+                            style: TextStyle(
+                                fontSize: 16.sp,
+                                color: Theme.of(context).colorScheme.background,
+                                fontWeight: FontWeight.w600)
+                        )
+                    )
+                )
+              ]
             )
         )
     );

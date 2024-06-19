@@ -212,7 +212,9 @@ class CatDetailPage extends StatelessWidget {
                       crossAxisCount: 2,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      childAspectRatio: 0.71,
+                      childAspectRatio: 0.61.h,
+                      padding: EdgeInsets.all(5.sp),
+                      mainAxisSpacing: 15.sp,
                       children: List.generate(8, (index) {
                         return SkeletonItem();
                       })
