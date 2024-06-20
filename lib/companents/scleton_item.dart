@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
 class SkeletonItem extends StatefulWidget {
 
-  SkeletonItem({super.key});
+  const SkeletonItem({super.key});
 
   @override
   State<SkeletonItem> createState() => _ProductItemState();
@@ -30,7 +28,6 @@ class _ProductItemState extends State<SkeletonItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    //width: 185.w,
                     width: Get.width * 0.45,
                     height: Get.height * 0.2,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColors.grey.withOpacity(0.2))
@@ -51,9 +48,7 @@ class _ProductItemState extends State<SkeletonItem> {
                 ),
                 Container(
                   width: _getController.width.value,
-                  //padding: EdgeInsets.only(left: 5.w, right: 5.w),
                   padding: EdgeInsets.only(left: Get.width * 0.01, right:Get.width * 0.01),
-                  //margin: EdgeInsets.only(right: 5.w, left: 5.w, top: 5.h),
                   margin: EdgeInsets.only(right: Get.width * 0.01, left: Get.width * 0.01, top: Get.height * 0.01),
                   child: Text('Xatolik'.tr),
                 ),
@@ -71,13 +66,12 @@ class _ProductItemState extends State<SkeletonItem> {
                         child: Text('Xarid'.tr,
                             style: TextStyle(
                                 fontSize: 16.sp,
-                                color: Theme.of(context).colorScheme.background,
+                                color: Theme.of(context).colorScheme.surface,
                                 fontWeight: FontWeight.w600)
                         )
                     )
                 ),
                 Container(
-                    //margin: EdgeInsets.only(top: 2.h, left:  2.w, right:  2.w, bottom:  2.h),
                     margin: EdgeInsets.only(top: Get.height * 0.01, left:  Get.width * 0.01, right:  Get.width * 0.01),
                     height: Get.height * 0.035,
                     width: Get.width * 0.45,
@@ -90,7 +84,7 @@ class _ProductItemState extends State<SkeletonItem> {
                         child: Text('Savatga qo‘shish'.tr,
                             style: TextStyle(
                                 fontSize: 16.sp,
-                                color: Theme.of(context).colorScheme.background,
+                                color: Theme.of(context).colorScheme.surface,
                                 fontWeight: FontWeight.w600)
                         )
                     )
