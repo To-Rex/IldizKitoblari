@@ -23,11 +23,7 @@ class AuthorCategory extends StatelessWidget {
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   void onChanged(String value) {
-    ApiController().getAuthors(
-        15,
-        _getController.page.value,
-        value,
-        false);
+    ApiController().getAuthors(15, _getController.page.value, value, false);
   }
 
   @override
