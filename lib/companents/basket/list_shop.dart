@@ -107,9 +107,9 @@ class ListShop extends StatelessWidget {
                                                           }},
                                                         icon: Icon(TablerIcons.minus, color: Theme.of(context).colorScheme.onSurface, size: 17.sp)
                                                     ),
-                                                    SizedBox(width: 10.w),
+                                                    SizedBox(width: 5.w),
                                                     Text(_getController.basketModel.value.data!.result![index].cartCount.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.bold)),
-                                                    SizedBox(width: 10.w),
+                                                    SizedBox(width: 5.w),
                                                     IconButton(
                                                         color: Theme.of(context).colorScheme.onSurface,
                                                         onPressed: () {

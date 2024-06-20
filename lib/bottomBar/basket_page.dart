@@ -120,8 +120,8 @@ class BasketPage extends StatelessWidget {
                                               unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                                               indicator: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(9.r), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.surface.withOpacity(0.1), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
                                               tabs: [
-                                                Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Do‘kon'.tr)))),
-                                                Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Kutubxona'.tr))))
+                                                Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Do‘kon'.tr,maxLines: 1,overflow: TextOverflow.ellipsis)))),
+                                                Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Kutubxona'.tr,maxLines: 1,overflow: TextOverflow.ellipsis))))
                                               ]
                                           )
                                       )
