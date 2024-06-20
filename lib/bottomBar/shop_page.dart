@@ -210,7 +210,7 @@ class ShopPage extends StatelessWidget {
                                             ]
                                         )
                                       else
-                                        SizedBox(width: Get.width, height: Get.height * 0.8, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
+                                        SizedBox(width: Get.width, height: Get.height * 0.8, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize:  25.sp, fontWeight: FontWeight.w500))))
                                       ]
                                   )
                               )

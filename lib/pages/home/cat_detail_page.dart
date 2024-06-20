@@ -203,7 +203,7 @@ class CatDetailPage extends StatelessWidget {
             ),
             if (_getController.productModelLength.value == 0)
               if (_getController.onLoading.value == true)
-                Expanded(child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
+                Expanded(child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.w500))))
               else
                 Expanded(
                     child: GridView.count(
