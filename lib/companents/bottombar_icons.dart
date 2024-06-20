@@ -19,7 +19,7 @@ class BottomBarIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: _getController.width * 0.15,
+        width: _getController.width * 0.17,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -34,7 +34,7 @@ class BottomBarIcons extends StatelessWidget {
                   child: TextScroll(
                       title,
                       fadedBorder: false,
-                      velocity: const Velocity(pixelsPerSecond: Offset(20, 0)),
+                      //velocity: const Velocity(pixelsPerSecond: Offset(20, 0)),
                       textDirection: TextDirection.ltr,
                       style: TextStyle(color: isSelected ? AppColors.primaryColor : AppColors.grey, fontSize: 14.sp, fontWeight: FontWeight.w500),
                       mode: TextScrollMode.endless,
