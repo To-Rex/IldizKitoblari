@@ -13,12 +13,12 @@ class LibraryPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
 
   void _getData() {
-    _getController.refreshController.refreshCompleted();
+    _getController.refreshLibController.refreshCompleted();
   }
 
   void _onLoading() async {
-    _getController.refreshController.refreshCompleted();
-    _getController.refreshController.loadComplete();
+    _getController.refreshLibController.refreshCompleted();
+    _getController.refreshLibController.loadComplete();
   }
 
   @override
@@ -43,10 +43,10 @@ class LibraryPage extends StatelessWidget {
                 } else if (mode == LoadStatus.canLoading) {
                   body = const SizedBox();
                 } else if ( mode == LoadStatus.noMore) {
-                  _getController.refreshController.loadComplete();
+                  _getController.refreshLibController.loadComplete();
                   body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
                 } else {
-                  _getController.refreshController.loadComplete();
+                  _getController.refreshLibController.loadComplete();
                   body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
                 }
                 return SizedBox(
@@ -68,10 +68,10 @@ class LibraryPage extends StatelessWidget {
                 } else if (mode == LoadStatus.canLoading) {
                   body = const SizedBox();
                 } else if ( mode == LoadStatus.noMore) {
-                  _getController.refreshController.loadComplete();
+                  _getController.refreshLibController.loadComplete();
                   body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
                 } else {
-                  _getController.refreshController.loadComplete();
+                  _getController.refreshLibController.loadComplete();
                   body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
                 }
                 return SizedBox(
@@ -82,7 +82,7 @@ class LibraryPage extends StatelessWidget {
             ),
             onLoading: _onLoading,
             onRefresh: _getData,
-            controller: _getController.refreshController,
+            controller: _getController.refreshLibController,
             child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Container(

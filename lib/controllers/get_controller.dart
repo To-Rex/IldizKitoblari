@@ -566,6 +566,7 @@ class GetController extends GetxController {
   final List<TextEditingController> textControllers = [];
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);
+  final RefreshController refreshLibController = RefreshController(initialRefresh: false);
   final SwiperController swiperController = SwiperController();
   late TabController tabController;
 
