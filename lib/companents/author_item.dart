@@ -25,7 +25,7 @@ class AuthorItem extends StatelessWidget {
           onTap();
         },
         child: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
             margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.035, vertical: _getController.width.value * 0.02),
             color: Theme.of(context).colorScheme.surface,
             surfaceTintColor: Theme.of(context).colorScheme.onSurface,
@@ -33,14 +33,14 @@ class AuthorItem extends StatelessWidget {
             shadowColor: Theme.of(context).colorScheme.surface,
             child: Container(
                 width: _getController.width.value,
-                padding: EdgeInsets.only(right: Get.width * 0.02),
+                padding: EdgeInsets.only(right: Get.width * 0.02,left: image == '' ? Get.width * 0.02 : 0),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
                 child: Row(
                     children: [
                       if (image != '')
                         Container(width: 90.w, height: 90.h, decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), image: DecorationImage(image: NetworkImage(image), fit: BoxFit.cover)))
                       else
-                        Icon(Icons.person, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), size: 25.sp),
+                        Icon(Icons.person, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), size: 30.sp),
                       SizedBox(width: _getController.width.value * 0.02),
                       Expanded(child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
