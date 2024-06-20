@@ -49,52 +49,38 @@ class ShopPage extends StatelessWidget {
             enablePullUp: true,
             physics: const BouncingScrollPhysics(),
             header: CustomHeader(
-              builder: (context, mode) {
-                Widget body;
-                if (mode == LoadStatus.idle) {
-                  body = const SizedBox();
-                } else if (mode == LoadStatus.loading) {
-                  body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
-                } else if (mode == LoadStatus.failed) {
-                  body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-                } else if (mode == LoadStatus.canLoading) {
-                  body = const SizedBox();
-                } else if ( mode == LoadStatus.noMore) {
-                  _getController.refreshController.loadComplete();
-                  body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
-                } else {
-                  _getController.refreshController.loadComplete();
-                  body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
+                builder: (BuildContext context, RefreshStatus? mode) {
+                  Widget body;
+                  if (mode == RefreshStatus.idle) {
+                    body = const Text("Ma`lumotlarni yangilash uchun tashlang");
+                  } else if (mode == RefreshStatus.refreshing) {
+                    body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                  } else if (mode == RefreshStatus.failed) {
+                    body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
+                  } else if (mode == RefreshStatus.canRefresh) {
+                    body = const Text("Ma`lumotlarni yangilash uchun tashlang");
+                  } else {
+                    body = const Text("Ma`lumotlar yangilandi");
+                  }
+                  return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
                 }
-                return SizedBox(
-                  height: _getController.height.value * 0.1,
-                  child: Center(child: body),
-                );
-              },
             ),
             footer: CustomFooter(
-              builder: (BuildContext context, LoadStatus? mode) {
-                Widget body;
-                if (mode == LoadStatus.idle) {
-                  body = const SizedBox();
-                } else if (mode == LoadStatus.loading) {
-                  body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
-                } else if (mode == LoadStatus.failed) {
-                  body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-                } else if (mode == LoadStatus.canLoading) {
-                  body = const SizedBox();
-                } else if ( mode == LoadStatus.noMore) {
-                  _getController.refreshController.loadComplete();
-                    body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
-                } else {
-                  _getController.refreshController.loadComplete();
-                  body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
+                builder: (BuildContext context, LoadStatus? mode) {
+                  Widget body;
+                  if (mode == LoadStatus.idle) {
+                    body = const SizedBox();
+                  } else if (mode == LoadStatus.loading) {
+                    body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                  } else if (mode == LoadStatus.failed) {
+                    body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
+                  } else if (mode == LoadStatus.canLoading) {
+                    body = const SizedBox();
+                  } else {
+                    body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));
+                  }
+                  return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
                 }
-                return SizedBox(
-                  height: _getController.height.value * 0.1,
-                  child: Center(child: body),
-                );
-              },
             ),
             onLoading: _onLoading,
             onRefresh: _getData,
