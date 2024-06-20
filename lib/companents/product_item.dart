@@ -48,7 +48,7 @@ class _ProductItemState extends State<ProductItem> {
                   margin: EdgeInsets.only(right: 5.sp),
                   child: TextScroll(
                       widget.title!,
-                      style: TextStyle(fontSize: _getController.width.value * 0.045, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w600),
                       mode: TextScrollMode.endless,
                       pauseBetween: const Duration(milliseconds: 10000),
                       selectable: true,
