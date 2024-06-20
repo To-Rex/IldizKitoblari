@@ -295,45 +295,44 @@ class HomePage extends StatelessWidget {
                               SkeletonChildItem(),
                             if (_getController.quotesModel.value.data != null && _getController.quotesModel.value.data!.result!.isNotEmpty)
                               Container(
-                              height: _getController.height.value * 0.23,
-                              margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.02),
-                              width: _getController.width.value,
-                              child: Swiper(
-                                itemCount: _getController.quotesModel.value.data != null ? _getController.quotesModel.value.data!.result!.length : 0,
-                                loop: true,
-                                layout: SwiperLayout.STACK,
-                                itemHeight: _getController.height.value * 0.3,
-                                itemWidth: _getController.width.value * 0.93,
-                                containerHeight: _getController.height.value * 0.3,
-                                containerWidth: _getController.width.value * 0.93,
-                                physics: const BouncingScrollPhysics(),
-                                scrollDirection: Axis.horizontal,
-                                axisDirection: AxisDirection.right,
-                                curve: Curves.decelerate,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: EdgeInsets.only(left: _getController.width.value * 0.01,right: _getController.width.value * 0.01),
-                                    width: _getController.width.value * 0.93,
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.background, border: Border.all(color: AppColors.grey, width: 0.9)),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
-                                          child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].name!.oz! : _getController.quotesModel.value.data!.result![index].name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)),
-                                        ),
-                                        const Expanded(child: SizedBox()),
-                                        if (_getController.quotesModel.value.data!.result![index].product != null && _getController.quotesModel.value.data!.result![index].product!.name != null)
-                                        Padding(
-                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01,bottom: _getController.height.value * 0.01),
-                                          child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.oz! : _getController.quotesModel.value.data!.result![index].product!.name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold)),
-                                        )
-                                      ]
-                                    )
-                                  );
-                                }
-                              )
-                            ),
+                                  height: _getController.height.value * 0.23,
+                                  margin: EdgeInsets.only(top: _getController.height.value * 0.01, bottom: _getController.height.value * 0.02),
+                                  width: _getController.width.value,
+                                  child: Swiper(
+                                      itemCount: _getController.quotesModel.value.data != null ? _getController.quotesModel.value.data!.result!.length : 0,
+                                      loop: true,
+                                      layout: SwiperLayout.STACK,
+                                      itemHeight: _getController.height.value * 0.3,
+                                      itemWidth: _getController.width.value * 0.93,
+                                      containerHeight: _getController.height.value * 0.3,
+                                      containerWidth: _getController.width.value * 0.93,
+                                      physics: const BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      axisDirection: AxisDirection.right,
+                                      curve: Curves.decelerate,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            margin: EdgeInsets.only(left: _getController.width.value * 0.01,right: _getController.width.value * 0.01),
+                                            width: _getController.width.value,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.background, border: Border.all(color: AppColors.grey, width: 0.9)),
+                                            child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01),
+                                                    child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].name!.oz! : _getController.quotesModel.value.data!.result![index].name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w600)),
+                                                  ),
+                                                  const Expanded(child: SizedBox()),
+                                                  if (_getController.quotesModel.value.data!.result![index].product != null && _getController.quotesModel.value.data!.result![index].product!.name != null)
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, top: _getController.height.value * 0.01,bottom: _getController.height.value * 0.01),
+                                                      child: Text('uz_UZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.uz.toString() : 'oz_OZ' == Get.locale.toString() ? _getController.quotesModel.value.data!.result![index].product!.name!.oz! : _getController.quotesModel.value.data!.result![index].product!.name!.ru!, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 15.sp, fontWeight: FontWeight.bold)),
+                                                    )
+                                                ]
+                                            )
+                                        );
+                                      })
+                              ),
                             if (_getController.authorModel.value.data != null && _getController.authorModel.value.data!.result!.isNotEmpty)
                               ChildItem(title: 'Mualliflar'.tr, function: (){
                                 _getController.clearAuthorModel();

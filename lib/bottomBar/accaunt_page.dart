@@ -7,6 +7,7 @@ import 'package:ildiz/resource/colors.dart';
 import 'package:get_storage/get_storage.dart';
 import '../companents/acc_item.dart';
 import '../controllers/get_controller.dart';
+import '../pages/home/author_category.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/profile/edit_user.dart';
 import '../pages/profile/orders_page.dart';
@@ -165,23 +166,21 @@ class AccountPage extends StatelessWidget {
                                   icon: 'assets/icon/copyRight.svg',
                                   subTitle: '',
                                   onTap: () {
-                                    Get.toNamed('/myInfo');
+                                    _getController.clearAuthorModel();
+                                    Get.to(() => AuthorCategory());
                                   }
                               ),
                               AccItem(
                                   title: 'Mening kitoblarim'.tr,
                                   icon: 'assets/icon/diary.svg',
                                   subTitle: '',
-                                  onTap: () {
-                                    Get.toNamed('/myBooks');
-                                  }
+                                  onTap: () {}
                               ),
                               AccItem(
                                   title: 'Buyurtmalar'.tr,
                                   icon: 'assets/icon/shopping-cart.svg',
                                   subTitle: '',
                                   onTap: () {
-                                    //OrdersPage
                                     Get.to(OrdersPage());
                                   }
                               ),
@@ -189,24 +188,19 @@ class AccountPage extends StatelessWidget {
                                   title: 'Chegirmalar'.tr,
                                   icon: 'assets/icon/ticket.svg',
                                   subTitle: '',
-                                  onTap: () {
-                                    Get.toNamed('/myDiscounts');
-                                  }
+                                  onTap: () {}
                               ),
                               AccItem(
                                   title: 'Promokod'.tr,
                                   icon: 'assets/icon/badge.svg',
                                   subTitle: '',
-                                  onTap: () {
-                                    Get.toNamed('/myPromoCode');
-                                  }
+                                  onTap: () {}
                               ),
                               AccItem(
                                   title: 'Tilni o‘zgartirish'.tr,
                                   icon: 'assets/icon/globe.svg',
                                   subTitle: 'uz_UZ' == Get.locale.toString() ? 'O‘zbekcha' : 'oz_OZ' == Get.locale.toString() ? 'Ўзбекча' : 'Русский',
                                   onTap: () {
-                                    //buildLanguageDialog(context);
                                     showLanguageBottomSheet(context);
                                   }
                               ),
@@ -214,8 +208,7 @@ class AccountPage extends StatelessWidget {
                                   title: 'O‘qish turi'.tr,
                                   icon: 'assets/icon/overview.svg',
                                   subTitle: '',
-                                  onTap: () {
-                                  }
+                                  onTap: () {}
                               ),
                               AccItem(
                                   title: 'Tungi rejim'.tr,
@@ -230,17 +223,13 @@ class AccountPage extends StatelessWidget {
                                   title: 'Dastur haqida'.tr,
                                   icon: 'assets/icon/info.svg',
                                   subTitle: '',
-                                  onTap: () {
-                                    Get.toNamed('/aboutApp');
-                                  }
+                                  onTap: () {}
                               ),
                               AccItem(
                                   title: 'Biz bilan bog‘lanish'.tr,
                                   icon: 'assets/icon/contact.svg',
                                   subTitle: '',
-                                  onTap: () {
-                                    Get.toNamed('/contactUs');
-                                  }
+                                  onTap: () {}
                               ),
                               AccItem(
                                   title: 'Ilovadan chiqish'.tr,
