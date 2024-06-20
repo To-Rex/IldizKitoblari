@@ -10,9 +10,9 @@ import '../../controllers/get_controller.dart';
 
 
 class FilterPage1 extends StatelessWidget{
-  int menuIndex;
-  var menuSlug;
-  var parent;
+  final int menuIndex;
+  final String menuSlug;
+  final bool? parent;
   FilterPage1({super.key, required this.menuIndex, required this.menuSlug, this.parent});
 
   final GetController _getController = Get.put(GetController());
@@ -27,13 +27,13 @@ class FilterPage1 extends StatelessWidget{
             centerTitle: false,
             surfaceTintColor: Colors.transparent,
             leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06),
+                icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: 25.sp),
                 onPressed: () {Get.back();}
             ),
             actions: [
               TextButton(
                   onPressed: () {_getController.clearFilters();},
-                  child: Text('Filterlarni o\'chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 18.sp, fontWeight: FontWeight.w500))),
+                  child: Text('Filterlarni o‘chirish'.tr, style: TextStyle(color: AppColors.red, fontSize: 18.sp, fontWeight: FontWeight.w500))),
               SizedBox(width: 10.sp)
             ]
         ),
@@ -95,7 +95,7 @@ class FilterPage1 extends StatelessWidget{
                             select: _getController.genreIndex.value == 0 ? null : _getController.filterGenre[menuIndex],
                             icon: Icons.keyboard_arrow_down_outlined
                         ),
-                      Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
+                      Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2))),
                       Container(width: double.infinity, margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.04, top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.01), child: Text('Narx', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500))),
                       Row(children: [
                         Expanded(
@@ -106,12 +106,12 @@ class FilterPage1 extends StatelessWidget{
                                     decoration: InputDecoration(
                                         fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                         filled: true,
-                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0)),
+                                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0)),
+                                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0)),
                                         contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.height.value * 0.008),
                                         hintText: '0 dan'.tr,
-                                        hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
+                                        hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400)
                                     )
                                 )
                             )
@@ -124,12 +124,12 @@ class FilterPage1 extends StatelessWidget{
                                     decoration: InputDecoration(
                                       fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                       filled: true,
-                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
-                                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0)),
+                                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0)),
+                                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0)),
                                       contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.height.value * 0.008),
                                       hintText: '0 gacha'.tr,
-                                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
+                                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400)
                                     )
                                 )
                             )
@@ -137,7 +137,7 @@ class FilterPage1 extends StatelessWidget{
                       ]),
                       SizedBox(height: _getController.height.value * 0.01),
                       if ( _getController.menuModel.value.data != null && _getController.menuDetailModel.value.data != null)
-                        Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.02,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))),
+                        Container(margin: EdgeInsets.only(top: _getController.width.value * 0.04,bottom: _getController.width.value * 0.02,left: _getController.width.value * 0.04, right: _getController.width.value * 0.04), child: Divider(height: 1, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2))),
                       if (_getController.filtersListSelect.isNotEmpty &&_getController.menuOptionsModelList.isNotEmpty &&_getController.menuDetailModel.value.data!.options != null)
                         for (var index = 0; index < _getController.menuDetailModel.value.data!.options!.length; index++)
                           Column(
@@ -146,7 +146,7 @@ class FilterPage1 extends StatelessWidget{
                                   Container(
                                       width: _getController.width.value,
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
-                                      child: Text('uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.ru! : '' : '', style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20.sp, fontWeight: FontWeight.w500))),
+                                      child: Text('uz_UZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options != null? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.oz! : 'ru_RU' == Get.locale.toString() ? _getController.menuDetailModel.value.data!.options![index].optionId!.name!.ru! : '' : '', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 20.sp, fontWeight: FontWeight.w500))),
                                 if (_getController.menuOptionsModelList.length > index && _getController.menuDetailModel.value.data!.options![index].optionId!.type == 3)
                                   WrapChip(
                                       index: index,
@@ -166,12 +166,12 @@ class FilterPage1 extends StatelessWidget{
                                           decoration: InputDecoration(
                                             fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
                                             filled: true,
-                                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),),
-                                            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),),
-                                            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.background, width: 0)),
+                                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0),),
+                                            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0),),
+                                            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0)),
                                             contentPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.height.value * 0.008),
                                             hintText: 'Kiriting'.tr,
-                                            hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400)
+                                            hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400)
                                           )
                                       )
                                   )
@@ -185,7 +185,7 @@ class FilterPage1 extends StatelessWidget{
                               onPressed: () {
                                 _getController.productModel.value.data!.result!.clear();
                                 _getController.page.value = 0;
-                                if (!parent) {
+                                if (!parent!) {
                                   ApiController().getProduct(_getController.page.value + 1, menuSlug, true,
                                       _getController.filters[2] == true ? 1 : _getController.filters[3] == true ? -1 : null,
                                       _getController.filters[4] == true ? true : null,
@@ -201,7 +201,7 @@ class FilterPage1 extends StatelessWidget{
                                   ).then((value) => _refreshController.loadComplete());}
                                 Get.back();
                               },
-                              child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 20.sp, fontWeight: FontWeight.w500)))
+                              child: Text('Tasdiqlash'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: 20.sp, fontWeight: FontWeight.w500)))
                       )
                     ]
                 ))
