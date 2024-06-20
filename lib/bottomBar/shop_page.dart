@@ -141,7 +141,7 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
-                                    if (_getController.shopDataModel.value.data != null && _getController.onLoading.value)
+                                    if (_getController.shopDataModel.value.data == null && _getController.onLoading.value)
                                       for (var category in _getController.shopDataModel.value.data!.result!)
                                         Column(
                                             children: [
@@ -192,7 +192,7 @@ class ShopPage extends StatelessWidget {
                                             ]
                                         )
                                     else
-                                      if (_getController.onLoading.value == false)
+                                      if (_getController.onLoading.value != false)
                                         Column(
                                             children: [
                                               SizedBox(height: 10.sp),
@@ -203,7 +203,7 @@ class ShopPage extends StatelessWidget {
                                                   crossAxisCount: 2,
                                                   shrinkWrap: true,
                                                   physics: const NeverScrollableScrollPhysics(),
-                                                  childAspectRatio: ScreenUtil().screenWidth / (ScreenUtil().screenHeight * 0.8),
+                                                  childAspectRatio: ScreenUtil().screenWidth / (ScreenUtil().screenHeight * 0.83),
                                                   padding: EdgeInsets.all(5.sp),
                                                   mainAxisSpacing: 15.sp,
                                                   children: List.generate(6, (index) => SkeletonItem()), // Replace SkeletonItem with your actual widget
