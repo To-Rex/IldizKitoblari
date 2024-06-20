@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/shop/filter_page.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -15,10 +14,10 @@ import '../shop/filter_page1.dart';
 import 'detail_page.dart';
 
 class CatDetailPage extends StatelessWidget {
-  var title;
-  var menuSlug;
-  var parent;
-  var menuIndex;
+  final String title;
+  final String menuSlug;
+  final bool parent;
+  final int menuIndex;
 
   CatDetailPage({super.key, required this.title, required this.menuSlug, required this.parent, required this.menuIndex});
 
@@ -29,7 +28,7 @@ class CatDetailPage extends StatelessWidget {
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: false,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return SizedBox(
@@ -45,7 +44,7 @@ class CatDetailPage extends StatelessWidget {
                             height: _getController.width.value * 0.01,
                             width: _getController.width.value,
                             margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.42),
-                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
                           ),
                           SizedBox(height: _getController.width.value * 0.08, width: _getController.width.value),
                           Text('Saralash'.tr, style: TextStyle(fontSize: _getController.width.value * 0.055, fontWeight: FontWeight.w600)),
@@ -87,7 +86,7 @@ class CatDetailPage extends StatelessWidget {
                                               ),
                                             Text(
                                                 i == 0 ? 'Nomi (A - Z)' : i == 1 ? 'Nomi (Z - A)' : i == 2 ? 'Avval arzonlari' : i == 3 ? 'Avval qimmatlari' : i == 4 ? 'Yangisidan boshlab' : 'Top mahsulotdan boshlab',
-                                                style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: _getController.filters[i] ? AppColors.primaryColor : Theme.of(context).colorScheme.onBackground)
+                                                style: TextStyle(fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w500, color: _getController.filters[i] ? AppColors.primaryColor : Theme.of(context).colorScheme.onSurface)
                                             )
                                           ]
                                       )
@@ -113,7 +112,7 @@ class CatDetailPage extends StatelessWidget {
       _getController.clearMenuOptionsModelList();
       _getController.filtersListSelect.clear();
       _getController.clearControllers();
-      ApiController().getMenuDetail('$menuSlug').then((value) => {
+      ApiController().getMenuDetail(menuSlug).then((value) => {
         ApiController().getMenuOption(1, menuIndex, menuSlug, 10, true)
       });
     }
@@ -122,7 +121,7 @@ class CatDetailPage extends StatelessWidget {
   void showBottomSheetFilter(BuildContext context) {
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         isScrollControlled: true,
         enableDrag: true,
         StatefulBuilder(
@@ -137,7 +136,7 @@ class CatDetailPage extends StatelessWidget {
                             height: _getController.width.value * 0.01,
                             width: _getController.width.value,
                             margin: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.42),
-                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
+                            decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
                         ),
                         SizedBox(height: _getController.width.value * 0.03),
                         SizedBox(
@@ -194,14 +193,14 @@ class CatDetailPage extends StatelessWidget {
                           child: Container(
                           width: 20.w,
                           height: 20.h,
-                          decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,),
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.surface),
                           child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn)))),
                       IconButton(
                           onPressed: () {
                             Get.to(() => FilterPage1(menuIndex: menuIndex, menuSlug: menuSlug,parent: parent), fullscreenDialog: true, transition: Transition.cupertino);
                             //showBottomSheetFilter(context);
                           },
-                          icon: Icon(TablerIcons.adjustments_horizontal, size: 25.sp, color: Theme.of(context).colorScheme.onBackground)
+                          icon: Icon(TablerIcons.adjustments_horizontal, size: 25.sp, color: Theme.of(context).colorScheme.onSurface)
                       )
                     ]
                 )
