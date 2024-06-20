@@ -200,7 +200,7 @@ class HomePage extends StatelessWidget {
                                                 labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
                                                 side: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0),
                                                 backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                                labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400),
+                                                labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400)
                                               )
                                           )
                                       ]
