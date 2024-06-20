@@ -99,76 +99,75 @@ class HomePage extends StatelessWidget {
                           children: [
                             if (_getController.bannerModel.value.data != null)
                               Container(
-                                margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
-                                height: _getController.height.value * 0.17,
-                                width: _getController.width.value,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Theme.of(context).colorScheme.surface),
-                                child: CarouselSlider(
-                                  options: CarouselOptions(
-                                    viewportFraction: 1,
-                                    autoPlay: true,
-                                    autoPlayInterval: const Duration(seconds: 5),
-                                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                                    autoPlayCurve: Curves.fastOutSlowIn,
-                                    enlargeCenterPage: true,
-                                    scrollDirection: Axis.horizontal
-                                  ),
-                                  items: [
-                                    for (var i in _getController.bannerModel.value.data!.result!)
-                                      if ('uz_UZ' == Get.locale.toString() && i.imageUz != '')
-                                        Container(
-                                          width: _getController.width.value * 0.93,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(16),
-                                            color: Theme.of(context).colorScheme.onSurface,
-                                            image: DecorationImage(
-                                              image: NetworkImage(i.imageUz!),
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        )
-                                      else if ('oz_OZ' == Get.locale.toString() && i.imageOz != '')
-                                        Container(
-                                          width: _getController.width.value * 0.93,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(16),
-                                            color: Theme.of(context).colorScheme.onSurface,
-                                            image: DecorationImage(
-                                              image: NetworkImage(i.imageOz!),
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        )
-                                      else if ('ru_RU' == Get.locale.toString() && i.imageRu != '')
-                                          Container(
-                                            width: _getController.width.value * 0.93,
+                                  margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
+                                  height: _getController.height.value * 0.17,
+                                  width: _getController.width.value,
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Theme.of(context).colorScheme.surface),
+                                  child: CarouselSlider(
+                                      options: CarouselOptions(
+                                          viewportFraction: 1,
+                                          autoPlay: true,
+                                          autoPlayInterval: const Duration(seconds: 5),
+                                          autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                                          autoPlayCurve: Curves.fastOutSlowIn,
+                                          enlargeCenterPage: true,
+                                          scrollDirection: Axis.horizontal
+                                      ),
+                                      items: [
+                                        for (var i in _getController.bannerModel.value.data!.result!)
+                                          if ('uz_UZ' == Get.locale.toString() && i.imageUz != '')
+                                            Container(width: _getController.width.value * 0.93,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(16),
-                                              color: Theme.of(context).colorScheme.onSurface,
-                                              image: DecorationImage(
-                                                image: NetworkImage(i.imageRu!),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
+                                                borderRadius: BorderRadius.circular(16),
+                                                color: Theme.of(context).colorScheme.onSurface,
+                                                image: DecorationImage(
+                                                    image: NetworkImage(i.imageUz!),
+                                                    fit: BoxFit.fill
+                                                )
+                                            )
                                           )
-                                  ],
-                                )
+                                          else if ('oz_OZ' == Get.locale.toString() && i.imageOz != '')
+                                            Container(
+                                                width: _getController.width.value * 0.93,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(16),
+                                                    color: Theme.of(context).colorScheme.onSurface,
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(i.imageOz!),
+                                                        fit: BoxFit.fill
+                                                    )
+                                                )
+                                            )
+                                          else if ('ru_RU' == Get.locale.toString() && i.imageRu != '')
+                                            Container(
+                                                width: _getController.width.value * 0.93,
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(16),
+                                                    color: Theme.of(context).colorScheme.onSurface,
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(i.imageRu!),
+                                                        fit: BoxFit.fill
+                                                    )
+                                                )
+                                            )
+                                      ]
+                                  )
                               )
                             else
                               Container(
-                                margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
-                                height: _getController.height.value * 0.173,
-                                width: _getController.width.value,
-                                padding: EdgeInsets.all(_getController.width.value * 0.02),
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-                                child: Skeletonizer(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), image: const DecorationImage(image: AssetImage('assets/images/oo1.png'), fit: BoxFit.fill))))
+                                  margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
+                                  height: _getController.height.value * 0.173,
+                                  width: _getController.width.value,
+                                  padding: EdgeInsets.all(_getController.width.value * 0.02),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+                                  child: Skeletonizer(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), image: const DecorationImage(image: AssetImage('assets/images/oo1.png'), fit: BoxFit.fill))))
                               ),
                             if (_getController.menuModel.value.data != null)
                               ChildItem(
-                                title: _getController.fullCheck.value == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
-                                function: (){
-                                  Get.to(() => Category());
-                                })
+                                  title: _getController.fullCheck.value == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
+                                  function: (){
+                                    Get.to(() => Category());
+                                  })
                             else
                               SkeletonChildItem(),
                             if (_getController.menuModel.value.data != null)
@@ -176,35 +175,35 @@ class HomePage extends StatelessWidget {
                                   width: _getController.width.value,
                                   padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.01),
                                   child: Wrap(
-                                    spacing: _getController.width.value * 0.02,
-                                    runSpacing: _getController.height.value * 0.006,
-                                    children: [
-                                      for (var i in _getController.menuModel.value.data!.result!)
-                                        InkWell(
-                                          onTap: () {
-                                            if (i.children == null) {
-                                              Get.to(() => CatDetailPage(
-                                                title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,
-                                                menuSlug: i.slug!,
-                                                parent: false,
-                                                menuIndex: _getController.menuModel.value.data!.result!.indexOf(i),
-                                              ));
-                                            }else {
-                                              Get.to(() => CategoryPage(menuIndex: _getController.menuModel.value.data!.result!.indexOf(i)));
-                                            }
-                                          },
-                                          child: Chip(
-                                            visualDensity: VisualDensity.compact,
-                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-                                            label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
-                                            padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.008),
-                                            labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
-                                            side: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0),
-                                            backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400),
+                                      spacing: _getController.width.value * 0.02,
+                                      runSpacing: _getController.height.value * 0.006,
+                                      children: [
+                                        for (var i in _getController.menuModel.value.data!.result!)
+                                          InkWell(
+                                              onTap: () {
+                                                if (i.children == null) {
+                                                  Get.to(() => CatDetailPage(
+                                                    title: 'uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!,
+                                                    menuSlug: i.slug!,
+                                                    parent: false,
+                                                    menuIndex: _getController.menuModel.value.data!.result!.indexOf(i),
+                                                  ));
+                                                }else {
+                                                  Get.to(() => CategoryPage(menuIndex: _getController.menuModel.value.data!.result!.indexOf(i)));
+                                                }
+                                              },
+                                              child: Chip(
+                                                visualDensity: VisualDensity.compact,
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+                                                label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
+                                                padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.008),
+                                                labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
+                                                side: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0),
+                                                backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
+                                                labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400),
+                                              )
                                           )
-                                        )
-                                    ]
+                                      ]
                                   )
                               ),
                             if (_getController.menuModel.value.data != null)
