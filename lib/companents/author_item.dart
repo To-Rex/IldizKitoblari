@@ -33,7 +33,7 @@ class AuthorItem extends StatelessWidget {
             shadowColor: Theme.of(context).colorScheme.surface,
             child: Container(
                 width: _getController.width.value,
-                padding: EdgeInsets.only(right: Get.width * 0.02,left: image == '' ? Get.width * 0.02 : 0),
+                padding: EdgeInsets.only(right: Get.width * 0.02,left: image == '' ? Get.width * 0.02 : 0,top: image == '' ? Get.width * 0.01:0,bottom: image == '' ? Get.width * 0.01:0),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
                 child: Row(
                     children: [
