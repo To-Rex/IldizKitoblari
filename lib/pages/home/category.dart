@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../companents/category_item.dart';
 import '../../controllers/get_controller.dart';
@@ -16,15 +17,15 @@ class Category extends StatelessWidget {
         appBar: AppBar(
             title: Text('Kategoriya'.tr),
             centerTitle: false,
-            toolbarTextStyle: TextStyle(fontSize: _getController.width.value * 0.048, fontWeight: FontWeight.w600),
+            toolbarTextStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
             surfaceTintColor: Colors.transparent,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06),
+              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: 20.sp),
               onPressed: () {Get.back();}
             )
         ),
         body: Obx(() => _getController.menuModel.value.data == null
-            ? Center(child: Text('Ma\'lumotlar yo\'q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)))
+            ? Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600)))
             : SizedBox(
             width: _getController.width.value,
             height: _getController.height.value,

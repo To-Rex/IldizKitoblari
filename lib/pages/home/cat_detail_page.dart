@@ -173,12 +173,8 @@ class CatDetailPage extends StatelessWidget {
             title: Text(title, style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.w500)),
             centerTitle: false,
             surfaceTintColor: Colors.transparent,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: 25.sp),
-              onPressed: () {
-                Get.back();
-              },
-            )),
+            leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: 25.sp), onPressed: () {Get.back();},)
+        ),
         body: Obx(() => Column(
           children: [
             Padding(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/pages/home/sub_category_page.dart';
 import '../../companents/category_item.dart';
@@ -6,7 +7,7 @@ import '../../controllers/get_controller.dart';
 import 'cat_detail_page.dart';
 
 class CategoryPage extends StatelessWidget {
-  var menuIndex;
+  final int menuIndex;
 
   CategoryPage({super.key, required this.menuIndex});
 
@@ -14,7 +15,6 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('menuIndex: $menuIndex');
     return Scaffold(
       appBar: AppBar(
         title: Text('Kategoriya'.tr),
@@ -24,7 +24,7 @@ class CategoryPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back,
             color: Theme.of(context).colorScheme.onBackground,
-            size: _getController.width.value * 0.06,
+            size: 20.sp,
           ),
           onPressed: () {
             Get.back();
@@ -32,7 +32,7 @@ class CategoryPage extends StatelessWidget {
         )
       ),
       body: Obx(() => _getController.menuModel.value.data!.result![menuIndex].children == null
-          ? Center(child: Text('Ma\'lumotlar yo\'q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)))
+          ? Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w600)))
           : Column(
         children: [
           //MyAppBar(title: 'Kategoriya'),

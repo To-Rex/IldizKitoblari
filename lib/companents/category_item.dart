@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../controllers/get_controller.dart';
@@ -7,16 +8,10 @@ import '../resource/colors.dart';
 class CategoryItem extends StatelessWidget {
   final String id;
   final String title;
-  Function function;
+  final Function function;
   final String count;
-  //String imgUrl;
 
-  CategoryItem(
-      this.id,
-      this.title,
-      this.function,
-      this.count,
-      {super.key});
+  CategoryItem(this.id, this.title, this.function, this.count, {super.key});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -28,55 +23,29 @@ class CategoryItem extends StatelessWidget {
       },
       child: Container(
         width: _getController.width.value,
-        height: _getController.width.value * 0.15,
-        margin: EdgeInsets.symmetric(vertical: _getController.width.value * 0.01, horizontal: _getController.width.value * 0.03),
-        padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.04),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: AppColors.grey.withOpacity(0.2),
-        ),
+        margin: EdgeInsets.only(bottom: _getController.width.value * 0.01, top: _getController.width.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+        padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02, vertical: _getController.width.value * 0.01),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: AppColors.grey.withOpacity(0.2)),
         child: Row(
           children:[
             Container(
-              width: _getController.width.value * 0.1,
-              height: _getController.width.value * 0.1,
+              width: 35.sp,
+              height: 35.sp,
               margin: EdgeInsets.only(right: _getController.width.value * 0.04),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: Theme.of(context).colorScheme.background),
-              child: Center(
-                  child: Icon(Icons.category,
-                      size: _getController.width.value * 0.06,
-                      color: Theme.of(context).colorScheme.onBackground
-                  )
-              ),
-              //child: Image.network(imgUrl, fit: BoxFit.cover),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), color: Theme.of(context).colorScheme.background),
+              child: Center(child: Icon(Icons.category, size: 20.sp, color: Theme.of(context).colorScheme.onSurface))
             ),
             Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
-                    Text(
-                        title,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontSize: _getController.width.value * 0.04,
-                            fontWeight: FontWeight.w400)
-                    ),
-                    Text(
-                        //count, ta kitob
-                      '$count ta kitob',
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontSize: _getController.width.value * 0.03,
-                            fontWeight: FontWeight.w400,
-                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)
-                        )
-                    )
+                    Text(title, maxLines: 2, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400)),
+                    Text('$count ta kitob', maxLines: 1, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6)))
                   ],
                 )
             ),
-            Icon(Icons.arrow_forward, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground),
+            Icon(Icons.arrow_forward, size: 25.sp, color: Theme.of(context).colorScheme.onBackground),
           ],
         ),
       ),
