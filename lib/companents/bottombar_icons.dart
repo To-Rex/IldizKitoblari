@@ -36,7 +36,7 @@ class BottomBarIcons extends StatelessWidget {
                       fadedBorder: false,
                       velocity: const Velocity(pixelsPerSecond: Offset(20, 0)),
                       textDirection: TextDirection.ltr,
-                      style: TextStyle(color: isSelected ? AppColors.primaryColor : AppColors.grey, fontSize: _getController.width * 0.035, fontWeight: FontWeight.w500),
+                      style: TextStyle(color: isSelected ? AppColors.primaryColor : AppColors.grey, fontSize: 14.sp, fontWeight: FontWeight.w500),
                       mode: TextScrollMode.endless,
                       pauseBetween: const Duration(milliseconds: 10000),
                       selectable: true,

@@ -54,7 +54,6 @@ class SamplePage extends StatelessWidget {
                     isSelected: _getController.index.value == 0
                   )
                 ),
-
                 InkWell(
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
                     onTap: () {_onItemTapped(1);},
