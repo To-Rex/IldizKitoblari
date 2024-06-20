@@ -96,7 +96,7 @@ class AccountPage extends StatelessWidget {
                                 Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
                                 Positioned(
                                     height: _getController.height.value * 0.2,
-                                    top: _getController.height.value * 0.062,
+                                    top: 60.h,
                                     left: _getController.width.value * 0.03,
                                     child: Text('Sahifam'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: 27.sp, fontWeight: FontWeight.bold))
                                 )

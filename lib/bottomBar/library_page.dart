@@ -81,61 +81,17 @@ class LibraryPage extends StatelessWidget {
                           constraints: BoxConstraints.expand(height: Get.height * 0.06),
                           margin: EdgeInsets.symmetric(horizontal: Get.width * 0.03),
                           padding: EdgeInsets.all(Get.width * 0.01),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(15)
-                          ),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1), borderRadius: BorderRadius.circular(15)),
                           child: TabBar(
-                            indicatorSize: TabBarIndicatorSize.tab,
-                            dividerColor: Colors.transparent,
-                            controller: _getController.tabController,
-                            labelStyle: TextStyle(
-                              fontSize: Get.width * 0.04,
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context).colorScheme.onSurface
-                            ),
-                            unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                            indicator: BoxDecoration(
-                              color: Theme.of(context).colorScheme.surface,
-                              borderRadius: BorderRadius.circular(11),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
-                                  spreadRadius: 2,
-                                  blurRadius: 2,
-                                  offset: const Offset(0, 2)
-                                )
-                              ]
-                            ),
-                            tabs: [
-                              Tab(
-                                child: SizedBox(
-                                  width: Get.width * 0.6,
-                                  child: Center(
-                                    child: Text(
-                                      'Elektron kitoblar'.tr,
-                                      style: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.w500
-                                      )
-                                    )
-                                  )
-                                )
-                              ),
-                              Tab(
-                                child: SizedBox(
-                                  width: Get.width * 0.6,
-                                  child: Center(
-                                    child: Text(
-                                      'Audio kitoblar'.tr,
-                                      style: TextStyle(
-                                        fontSize: Get.width * 0.04,
-                                        fontWeight: FontWeight.w500
-                                      )
-                                    )
-                                  )
-                                )
-                              )
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              dividerColor: Colors.transparent,
+                              controller: _getController.tabController,
+                              labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 18.sp, fontWeight: FontWeight.w500),
+                              unselectedLabelColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                              indicator: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.circular(11), boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.surface.withOpacity(0.1), spreadRadius: 2, blurRadius: 2, offset: const Offset(0, 2))]),
+                              tabs: [
+                              Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Elektron kitoblar'.tr)))),
+                              Tab(child: SizedBox(width: Get.width * 0.6, child: Center(child: Text('Audio kitoblar'.tr))))
                             ]
                           )
                         )
@@ -146,19 +102,9 @@ class LibraryPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(
-                                'Savat bo‘sh'.tr,
-                                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)
-                              ),
+                              Text('Savat bo‘sh'.tr, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
                               SizedBox(height: _getController.height.value * 0.01),
-                              SizedBox(
-                                width: _getController.width.value * 0.65,
-                                child: Text(
-                                  'Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.'.tr,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400)
-                                )
-                              ),
+                              SizedBox(width: _getController.width.value * 0.65, child: Text('Savatga mahsulotlarni qo‘shish uchun xarid qilishni boshlang.'.tr, textAlign: TextAlign.center, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400))),
                               SizedBox(height: _getController.height.value * 0.01),
                               SizedBox(
                                 width: _getController.width.value * 0.5,
@@ -171,10 +117,7 @@ class LibraryPage extends StatelessWidget {
                                     _getController.index.value = 1;
                                   },
                                   child: Center(
-                                    child: Text(
-                                      'Xaridni boshlash'.tr,
-                                      style: TextStyle(color: Colors.white, fontSize: 16.sp)
-                                    )
+                                    child: Text('Xaridni boshlash'.tr, style: TextStyle(color: Colors.white, fontSize: 16.sp))
                                   )
                                 )
                               )
