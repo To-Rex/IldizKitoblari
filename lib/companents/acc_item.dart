@@ -34,7 +34,7 @@ class _AccItemState extends State<AccItem> {
           Text(widget.title,
               style: TextStyle(
                   color: widget.color ?? Theme.of(context).colorScheme.onSurface,
-                  fontSize: 18.sp,
+                  fontSize: 17.sp,
                   fontWeight: FontWeight.w600
               )
           ),
@@ -42,7 +42,7 @@ class _AccItemState extends State<AccItem> {
           Text(widget.subTitle,
               style: TextStyle(
                   color: widget.color ?? Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                  fontSize: 16.4.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w500
               )
           )
