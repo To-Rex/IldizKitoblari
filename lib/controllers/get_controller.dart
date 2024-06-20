@@ -189,8 +189,6 @@ class GetController extends GetxController {
 
   changeImage(String newImage) {image.value = newImage;}
 
-  var nameController;
-
   //models
   var loginModel = LoginModel().obs;
   var meModel = MeModel().obs;
@@ -220,13 +218,11 @@ class GetController extends GetxController {
   var orderListModel = OrderListModel().obs;
   var orderListDetailModel = OrderListDetail().obs;
 
-  //ShopDataModel
   var shopDataModel = ShopDataModel().obs;
 
   void changeShopDataModel(ShopDataModel newShopDataModel) {shopDataModel.value = newShopDataModel;}
 
   void changeShopDataProductModel(ShopProductModel newShopProductModel, int index) {
-    // Ensure the index is valid
     if (shopDataModel.value.data != null && shopDataModel.value.data!.result != null) {
       shopDataModel.update((model) {
         model?.data?.result?[index].shopProductModel = newShopProductModel;
@@ -271,37 +267,21 @@ class GetController extends GetxController {
     }
   }
 
-  void changeOrderDetailModel(OrderDetailModel orderDetail) {
-    orderDetailModel.value = orderDetail;
-  }
+  void changeOrderDetailModel(OrderDetailModel orderDetail) {orderDetailModel.value = orderDetail;}
 
-  void clearOrderDetailModel() {
-    orderDetailModel.value = OrderDetailModel();
-  }
+  void clearOrderDetailModel() {orderDetailModel.value = OrderDetailModel();}
 
-  void changeOrderCreateModel(OrderCreateModel orderCreate) {
-    orderCreateModel.value = orderCreate;
-  }
+  void changeOrderCreateModel(OrderCreateModel orderCreate) {orderCreateModel.value = orderCreate;}
 
-  void clearOrderCreateModel() {
-    orderCreateModel.value = OrderCreateModel();
-  }
+  void clearOrderCreateModel() {orderCreateModel.value = OrderCreateModel();}
 
-  void changeCountryModel(CountryModel countryModel) {
-    getCountryModel.value = countryModel;
-  }
+  void changeCountryModel(CountryModel countryModel) {getCountryModel.value = countryModel;}
 
-  void changeRegionModel(RegionModel regionModel) {
-    getRegionModel.value = regionModel;
-  }
+  void changeRegionModel(RegionModel regionModel) {getRegionModel.value = regionModel;}
 
-  void clearRegionModel() {
-    getRegionModel.value = RegionModel();
-  }
+  void clearRegionModel() {getRegionModel.value = RegionModel();}
 
-  void changeGetPrice(GetPrice getPrice) {
-    getPriceModel.value = getPrice;
-  }
+  void changeGetPrice(GetPrice getPrice) {getPriceModel.value = getPrice;}
 
   void changeBasketModel(BasketModel basketModel) {
     this.basketModel.value = basketModel;

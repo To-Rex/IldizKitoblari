@@ -41,7 +41,7 @@ class OrdersPage extends StatelessWidget{
                           InkWell(onTap: () {
                             _getController.clearOrderListModel();
                             _getController.onLoad();
-                          }, child: Container(width: 20.sp, height: 20.sp, decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,), child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
+                          }, child: Container(width: 20.sp, height: 20.sp, decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.surface), child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn)))),
                           SizedBox(width: _getController.width.value * 0.03),
                         ]
                     )
@@ -60,18 +60,15 @@ class OrdersPage extends StatelessWidget{
                      itemBuilder: (context, index) {
                        return InkWell(
                          onTap: () {
-                           Get.to(() => OrdersDetailPage(),
-                               transition: Transition.rightToLeft,
-                               arguments: [_getController.orderListModel.value.data!.result![index].sId,_getController.orderListModel.value.data!.result![index].createdAt]
-                           );
+                           Get.to(() => OrdersDetailPage(), transition: Transition.rightToLeft, arguments: [_getController.orderListModel.value.data!.result![index].sId,_getController.orderListModel.value.data!.result![index].createdAt]);
                          },
                          child: Container(
                              width: Get.width * 0.8,
                              padding: EdgeInsets.all(10.sp),
                              decoration: BoxDecoration(
                                  borderRadius: BorderRadius.circular(10),
-                                 color: Theme.of(context).colorScheme.background,
-                                 boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), spreadRadius: 1, blurRadius: 5, offset: const Offset(0, 0))]
+                                 color: Theme.of(context).colorScheme.surface,
+                                 boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1), spreadRadius: 1, blurRadius: 5, offset: const Offset(0, 0))]
                              ),
                              child: Column(
                                  children: [
@@ -111,7 +108,7 @@ class OrdersPage extends StatelessWidget{
                                                color: int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 2
                                                    ? AppColors.element : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 3 || int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 7
                                                    ? AppColors.primaryColor2 : int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 4 || int.parse(_getController.orderListModel.value.data!.result![index].status.toString()) == 9
-                                                   ? AppColors.red : Theme.of(context).colorScheme.onBackground.withOpacity(0.5)
+                                                   ? AppColors.red : Theme.of(context).colorScheme.onSurface.withOpacity(0.5)
                                              )
                                          )
                                        ]

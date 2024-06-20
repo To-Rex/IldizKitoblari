@@ -202,20 +202,23 @@ class CatDetailPage extends StatelessWidget {
                 )
             ),
             if (_getController.productModelLength.value == 0)
-              Expanded(
-                  child: GridView.count(
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      childAspectRatio: 0.61.h,
-                      padding: EdgeInsets.all(5.sp),
-                      mainAxisSpacing: 15.sp,
-                      children: List.generate(8, (index) {
-                        return const SkeletonItem();
-                      })
-                  )
-              ),
-            if (_getController.productModelLength.value != 0)
+              if (_getController.onLoading.value == true)
+                Expanded(child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))))
+              else
+                Expanded(
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        childAspectRatio: 0.61.h,
+                        padding: EdgeInsets.all(5.sp),
+                        mainAxisSpacing: 15.sp,
+                        children: List.generate(8, (index) {
+                          return const SkeletonItem();
+                        })
+                    )
+                ),
+            if (_getController.onLoading.value == true && _getController.productModelLength.value != 0)
               Expanded(
                   child: SmartRefresher(
                       enablePullDown: true,

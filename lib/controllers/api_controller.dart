@@ -440,6 +440,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
+    _getController.offLoad();
     var response = await get(Uri.parse('$_product&page=$page&menu_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFields()}'),
       headers: {'Accept-Language': Get.locale!.languageCode},
     );
@@ -454,12 +455,15 @@ class ApiController extends GetxController {
         _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       }
+      _getController.onLoad();
     } else {
+      _getController.onLoad();
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
 
   Future<void> getSelectProduct(page, menuSlug,bool add, price, newProduct, famous,name) async {
+    _getController.offLoad();
     var response = await get(Uri.parse('$_product&page=$page&parent_slug=$menuSlug${price==null?'':'&price=$price'}${newProduct==null?'':'&new_product=$newProduct'}${famous==null?'':'&famous=$famous'}${name==null?'':'&name=$name'}${_getController.startPriceController.text == '' ? '':'&start_price=${_getController.startPriceController.text}'}${_getController.endPriceController.text == '' ? '':'&end_price=${_getController.endPriceController.text}'}${_getController.getFilterTextSelect()}${_getController.getFilterTextFields()}'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
@@ -474,7 +478,9 @@ class ApiController extends GetxController {
         _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
         _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       }
+      _getController.onLoad();
     } else {
+      _getController.onLoad();
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
