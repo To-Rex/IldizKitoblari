@@ -28,14 +28,14 @@ class _AccItemState extends State<AccItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      minVerticalPadding: _getController.height.value * 0.0182,
-      //minVerticalPadding: 17.h,
+      //minVerticalPadding: _getController.height.value * 0.0182,
+      minVerticalPadding: 17.3.h,
       title: Row(
         children: [
           Text(widget.title,
               style: TextStyle(
                   color: widget.color ?? Theme.of(context).colorScheme.onSurface,
-                  fontSize: _getController.width.value * 0.043,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600
               )
           ),
@@ -43,40 +43,38 @@ class _AccItemState extends State<AccItem> {
           Text(widget.subTitle,
               style: TextStyle(
                   color: widget.color ?? Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                  fontSize: _getController.width.value * 0.04,
+                  fontSize: 16.4.sp,
                   fontWeight: FontWeight.w500
               )
           )
         ]
       ),
       leading: Container(
-        padding: EdgeInsets.all(_getController.width.value * 0.026),
+        padding: EdgeInsets.all(11.sp),
         decoration: BoxDecoration(
           color: AppColors.grey.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(_getController.width.value * 0.03),
+          borderRadius: BorderRadius.circular(13.r),
           border: Border.all(color: AppColors.grey.withOpacity(0.5)),
         ),
         child: SvgPicture.asset(widget.icon,
           colorFilter: ColorFilter.mode(widget.color ?? Theme.of(context).colorScheme.onSurface, BlendMode.srcIn),
-          height: _getController.width.value * 0.05,
+          height: 22.h
         )
       ),
-      trailing: widget.switchValue != null
-          ? CupertinoSwitch(
-        value: Theme.of(context).brightness == Brightness.dark ? widget.switchValue! : !widget.switchValue!,
-        onChanged: (value) {
-          AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
-          setState(() {
-            widget.switchValue = value;
+      trailing: widget.switchValue != null ? CupertinoSwitch(
+          value: Theme.of(context).brightness == Brightness.dark ? widget.switchValue! : !widget.switchValue!,
+          onChanged: (value) {
+            AdaptiveTheme.of(context).brightness == Brightness.light ? AdaptiveTheme.of(context).setDark() : AdaptiveTheme.of(context).setLight();
+            setState(() {
+              widget.switchValue = value;
             });
-        },
-        activeColor: AppColors.green,
-        trackColor: AppColors.grey.withOpacity(0.5),
-        focusColor: AppColors.green,
-        thumbColor: Theme.of(context).colorScheme.surface,
-        applyTheme: true
-      )
-          : Icon(Icons.arrow_forward, color: widget.color ?? Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.055),
+          },
+          activeColor: AppColors.green,
+          trackColor: AppColors.grey.withOpacity(0.5),
+          focusColor: AppColors.green,
+          thumbColor: Theme.of(context).colorScheme.surface,
+          applyTheme: true
+      ) : Icon(Icons.arrow_forward, color: widget.color ?? Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.055),
       onTap: widget.onTap,
     );
   }

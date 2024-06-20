@@ -98,14 +98,14 @@ class AccountPage extends StatelessWidget {
                                     height: _getController.height.value * 0.2,
                                     top: _getController.height.value * 0.062,
                                     left: _getController.width.value * 0.03,
-                                    child: Text('Sahifam'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.061, fontWeight: FontWeight.bold))
+                                    child: Text('Sahifam'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: 27.sp, fontWeight: FontWeight.bold))
                                 )
                               ]
                           )
                       ),
                       Container(
                           width: _getController.width.value,
-                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                           child: Column(
                             children: [
                               Row(
@@ -114,12 +114,12 @@ class AccountPage extends StatelessWidget {
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                       child: _getController.meModel.value.data!.result!.avatar == null
                                           ? CircleAvatar(
-                                          radius: _getController.width.value * 0.08,
+                                          radius: 34.r,
                                           backgroundColor: Theme.of(context).colorScheme.primary,
                                           child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.06))
                                       )
                                           : CircleAvatar(
-                                          radius: _getController.width.value * 0.08,
+                                          radius: 34.r,
                                           backgroundImage: NetworkImage(_getController.meModel.value.data!.result!.avatar.toString())
                                       )
                                   ),
@@ -128,9 +128,9 @@ class AccountPage extends StatelessWidget {
                                       child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text(_getController.meModel.value.data!.result!.fullName.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.045, fontWeight: FontWeight.w600)),
+                                            Text(_getController.meModel.value.data!.result!.fullName.toString(), style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 21.sp, fontWeight: FontWeight.w600)),
                                             SizedBox(height: _getController.height.value * 0.004),
-                                            Text('ID ${_getController.meModel.value.data!.result!.sId.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: _getController.width.value * 0.04))
+                                            Text('ID ${_getController.meModel.value.data!.result!.sId.toString()}', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: 17.sp, fontWeight: FontWeight.w500))
                                           ]
                                       )
                                   )
@@ -153,7 +153,7 @@ class AccountPage extends StatelessWidget {
                                           style: TextStyle(
                                               color: AppColors.white,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: _getController.width.value * 0.045
+                                              fontSize: 21.sp
                                           )
                                       )
                                   )
