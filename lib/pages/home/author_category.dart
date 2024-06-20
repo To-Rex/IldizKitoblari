@@ -59,7 +59,7 @@ class AuthorCategory extends StatelessWidget {
                     IconButton(
                       onPressed: () {
                         _getController.addPage();
-                        },
+                      },
                       icon: Icon(
                         TablerIcons.adjustments_horizontal,
                         size: 25.sp,
@@ -67,7 +67,8 @@ class AuthorCategory extends StatelessWidget {
                       )
                     )
                   ]
-              )),
+              )
+          ),
           SizedBox(height: _getController.height.value * 0.01),
           Container(
               height: _getController.height.value * 0.055,
