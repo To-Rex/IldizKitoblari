@@ -55,7 +55,6 @@ class _ProductItemState extends State<ProductItem> {
                       delayBefore: const Duration(milliseconds: 10000))
               ),
               SizedBox(height: 5.sp),
-              //Expanded(child: Text('${widget.price} ${'uz_UZ' == Get.locale.toString() ? 'so\'m' : 'oz_OZ' == Get.locale.toString() ? 'сўм' : 'ru_RU' == Get.locale.toString() ? 'сум' : 'en_EN' == Get.locale.toString() ? 'sum' : 'so\'m'}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
               Expanded(child: Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
               Row(
                   children: [
@@ -80,7 +79,7 @@ class _ProductItemState extends State<ProductItem> {
                   width: 190.w,
                   child: ElevatedButton(
                       onPressed: () {
-                        ApiController().addToBasket('1', widget.id.toString(),'active').then((value) => widget.function());
+                        ApiController().addToBasket('1', widget.id.toString(),'active').then((value) => _getController.index.value = 3);
                       },
                       style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor2, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
                       child: Text('Xarid'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.background, fontWeight: FontWeight.w600))
@@ -132,7 +131,8 @@ class _ProductItemState extends State<ProductItem> {
                               icon: Icon(TablerIcons.plus, color: AppColors.white, size: Get.height * 0.025)),
                         ]
                     )
-                )
+                ),
+              SizedBox(height: 15.sp),
             ]
         ))
       )

@@ -50,7 +50,6 @@ class ShopPage extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             header: CustomHeader(
               builder: (context, mode) {
-                print(mode);
                 Widget body;
                 if (mode == LoadStatus.idle) {
                   body = const SizedBox();
@@ -75,7 +74,6 @@ class ShopPage extends StatelessWidget {
             ),
             footer: CustomFooter(
               builder: (BuildContext context, LoadStatus? mode) {
-                print(mode);
                 Widget body;
                 if (mode == LoadStatus.idle) {
                   body = const SizedBox();
@@ -118,7 +116,7 @@ class ShopPage extends StatelessWidget {
                                         height: 200.h,
                                         top: 58.w,
                                         left: 15.sp,
-                                        child: Text('Do‘kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.background, fontSize: 27.sp, fontWeight: FontWeight.bold))
+                                        child: Text('Do‘kon'.tr, style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: 27.sp, fontWeight: FontWeight.bold))
                                     ),
                                     Positioned(
                                         top: 61.h, left: 0, right: 0,
@@ -141,7 +139,7 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
-                                    if (_getController.shopDataModel.value.data == null && _getController.onLoading.value)
+                                    if (_getController.shopDataModel.value.data != null && _getController.onLoading.value)
                                       for (var category in _getController.shopDataModel.value.data!.result!)
                                         Column(
                                             children: [
@@ -161,7 +159,7 @@ class ShopPage extends StatelessWidget {
                                                 ),
                                               if (category.children != null && category.productCount! >= 2 && category.shopProductModel != null && category.shopProductModel!.data != null&& category.shopProductModel!.data!.result!.isNotEmpty)
                                                 SizedBox(
-                                                    height: 370.h,
+                                                    height: 385.h,
                                                     width: _getController.width.value,
                                                     child: ListView.builder(
                                                         padding: EdgeInsets.only(left: 16.w),
@@ -192,7 +190,7 @@ class ShopPage extends StatelessWidget {
                                             ]
                                         )
                                     else
-                                      if (_getController.onLoading.value != false)
+                                      if (_getController.onLoading.value == false)
                                         Column(
                                             children: [
                                               SizedBox(height: 10.sp),
@@ -206,7 +204,7 @@ class ShopPage extends StatelessWidget {
                                                   childAspectRatio: ScreenUtil().screenWidth / (ScreenUtil().screenHeight * 0.83),
                                                   padding: EdgeInsets.all(5.sp),
                                                   mainAxisSpacing: 15.sp,
-                                                  children: List.generate(6, (index) => SkeletonItem()), // Replace SkeletonItem with your actual widget
+                                                  children: List.generate(6, (index) => const SkeletonItem()), // Replace SkeletonItem with your actual widget
                                                 ),
                                               )
                                             ]
