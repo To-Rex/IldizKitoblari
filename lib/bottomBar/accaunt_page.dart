@@ -111,7 +111,7 @@ class AccountPage extends StatelessWidget {
                               Row(
                                 children: [
                                   Container(
-                                      padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
+                                      padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                       child: _getController.meModel.value.data!.result!.avatar == null
                                           ? CircleAvatar(
                                           radius: 34.r,
@@ -124,7 +124,7 @@ class AccountPage extends StatelessWidget {
                                       )
                                   ),
                                   Padding(
-                                      padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
+                                      padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
                                       child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
@@ -136,8 +136,9 @@ class AccountPage extends StatelessWidget {
                                   )
                                 ]
                               ),
-                              SizedBox(
-                                  width: _getController.width.value * 0.92,
+                              Container(
+                                  width: _getController.width.value,
+                                  padding: EdgeInsets.only(left: 16.w, right: 16.w),
                                   height: _getController.height.value * 0.06,
                                   child: ElevatedButton(
                                       onPressed: () {

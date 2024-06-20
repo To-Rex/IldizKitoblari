@@ -28,7 +28,6 @@ class _AccItemState extends State<AccItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      //minVerticalPadding: _getController.height.value * 0.0182,
       minVerticalPadding: 17.3.h,
       title: Row(
         children: [
@@ -74,7 +73,10 @@ class _AccItemState extends State<AccItem> {
           focusColor: AppColors.green,
           thumbColor: Theme.of(context).colorScheme.surface,
           applyTheme: true
-      ) : Icon(Icons.arrow_forward, color: widget.color ?? Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.055),
+      ) : Icon(Icons.arrow_forward, color: widget.color ?? Theme.of(context).colorScheme.onSurface,
+          //size: _getController.width.value * 0.055
+          size: 22.sp
+      ),
       onTap: widget.onTap,
     );
   }
