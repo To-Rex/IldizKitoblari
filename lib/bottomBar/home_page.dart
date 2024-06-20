@@ -88,13 +88,13 @@ class HomePage extends StatelessWidget {
                         child: Stack(
                           children: [
                             Positioned(child: SizedBox(width: _getController.width.value, child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
-                            Positioned(top: 18.h, left: 0, right: 0, child: SearchFields(onChanged: (String ) {  },))
+                            Positioned(top: 18.h, left: 0, right: 0, child: SearchFields(onChanged: (String value) {  },))
                           ]
                         )
                       ),
                       Container(
                         width: _getController.width.value,
-                        decoration: BoxDecoration(color: Theme.of(context).colorScheme.background, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
+                        decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                         child:Column(
                           children: [
                             if (_getController.bannerModel.value.data != null)
@@ -102,7 +102,7 @@ class HomePage extends StatelessWidget {
                                 margin: EdgeInsets.only(top: 18.h, bottom: 25.h),
                                 height: _getController.height.value * 0.17,
                                 width: _getController.width.value,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Theme.of(context).colorScheme.background),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r), color: Theme.of(context).colorScheme.surface),
                                 child: CarouselSlider(
                                   options: CarouselOptions(
                                     viewportFraction: 1,
@@ -120,7 +120,7 @@ class HomePage extends StatelessWidget {
                                           width: _getController.width.value * 0.93,
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(16),
-                                            color: Theme.of(context).colorScheme.onBackground,
+                                            color: Theme.of(context).colorScheme.onSurface,
                                             image: DecorationImage(
                                               image: NetworkImage(i.imageUz!),
                                               fit: BoxFit.fill,
@@ -132,7 +132,7 @@ class HomePage extends StatelessWidget {
                                           width: _getController.width.value * 0.93,
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(16),
-                                            color: Theme.of(context).colorScheme.onBackground,
+                                            color: Theme.of(context).colorScheme.onSurface,
                                             image: DecorationImage(
                                               image: NetworkImage(i.imageOz!),
                                               fit: BoxFit.fill,
@@ -144,7 +144,7 @@ class HomePage extends StatelessWidget {
                                             width: _getController.width.value * 0.93,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(16),
-                                              color: Theme.of(context).colorScheme.onBackground,
+                                              color: Theme.of(context).colorScheme.onSurface,
                                               image: DecorationImage(
                                                 image: NetworkImage(i.imageRu!),
                                                 fit: BoxFit.fill,
@@ -165,7 +165,7 @@ class HomePage extends StatelessWidget {
                               ),
                             if (_getController.menuModel.value.data != null)
                               ChildItem(
-                                title: _getController.fullCheck == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
+                                title: _getController.fullCheck.value == true ? _getController.menuModel.value.data!.result![_getController.fullIndex.value].title!.uz! : 'Kategoriya'.tr,
                                 function: (){
                                   Get.to(() => Category());
                                 })
@@ -199,9 +199,9 @@ class HomePage extends StatelessWidget {
                                             label: Text('uz_UZ' == Get.locale.toString() ? i.title!.uz! : 'oz_OZ' == Get.locale.toString() ? i.title!.oz! : i.title!.ru!),
                                             padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.01, vertical: _getController.height.value * 0.008),
                                             labelPadding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.02),
-                                            side: BorderSide(color: Theme.of(context).colorScheme.background, width: 0),
+                                            side: BorderSide(color: Theme.of(context).colorScheme.surface, width: 0),
                                             backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.grey.withOpacity(0.5) : AppColors.grey.withOpacity(0.2),
-                                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 17.sp, fontWeight: FontWeight.w400),
+                                            labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 17.sp, fontWeight: FontWeight.w400),
                                           )
                                         )
                                     ]
@@ -314,7 +314,7 @@ class HomePage extends StatelessWidget {
                                         return Container(
                                             margin: EdgeInsets.only(left: _getController.width.value * 0.01,right: _getController.width.value * 0.01),
                                             width: _getController.width.value,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.background, border: Border.all(color: AppColors.grey, width: 0.9)),
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.surface, border: Border.all(color: AppColors.grey, width: 0.9)),
                                             child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
@@ -391,7 +391,7 @@ class HomePage extends StatelessWidget {
                                     margin: EdgeInsets.only(top: 8.h, bottom: 15.h, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                     height: _getController.height.value * 0.158,
                                     width: _getController.width.value,
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.onBackground),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.onSurface),
                                     child: Stack(
                                         children: [
                                           Positioned(
@@ -457,7 +457,7 @@ class HomePage extends StatelessWidget {
                                           left: _getController.width.value * 0.03,
                                           right: _getController.width.value * 0.03,
                                           bottom: _getController.height.value * 0.015),
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.background, boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1), offset: const Offset(1, 2), blurRadius: 3, spreadRadius: 1)]),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), color: Theme.of(context).colorScheme.surface, boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1), offset: const Offset(1, 2), blurRadius: 3, spreadRadius: 1)]),
                                       child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -509,7 +509,7 @@ class HomePage extends StatelessWidget {
                                           Expanded(
                                             child: Text(
                                                 i.name.toString(),
-                                                style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground)),
+                                                style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
                                           )
                                         ],
                                       )
