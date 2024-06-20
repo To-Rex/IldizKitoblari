@@ -574,7 +574,7 @@ class GetController extends GetxController {
   double calculateTotalHeight() {
     if (basketModel.value.data != null && basketModel.value.data!.result != null && basketModel.value.data!.result!.isNotEmpty) {
       //return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.15;
-      return basketModel.value.data!.result!.length * (131.h + 12.h);
+      return (basketModel.value.data!.result!.length +1) * (131.h + 12.h);
     } else {
       return Get.height * 0.7;
     }

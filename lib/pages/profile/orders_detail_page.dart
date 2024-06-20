@@ -10,6 +10,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../companents/user/scleton_orders.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
+import '../home/detail_page.dart';
 
 class OrdersDetailPage extends StatelessWidget{
   OrdersDetailPage({super.key});
@@ -95,53 +96,56 @@ class OrdersDetailPage extends StatelessWidget{
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: _getController.orderListDetailModel.value.data!.orderProducts!.length,
                     itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          Container(
-                              margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.015),
-                              //width: _getController.width.value * 0.25,
-                              width: 100.w,
-                              child: ClipRRect(borderRadius: BorderRadius.circular(4), child: Image.network('https://ildizkitoblari.uz/_ipx/w_300,f_webp/default.png',
-                                  fit: BoxFit.cover, loadingBuilder: (context, child, loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return SizedBox(
-                                    width: _getController.width.value * 0.44,
-                                    height: _getController.height.value * 0.205,
-                                    child: Skeletonizer(
-                                        child: Container(
+                      return InkWell(
+                        onTap: () {},
+                        child: Row(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03,bottom: _getController.height.value * 0.015),
+                                  //width: _getController.width.value * 0.25,
+                                  width: 100.w,
+                                  child: ClipRRect(borderRadius: BorderRadius.circular(4), child: Image.network('https://ildizkitoblari.uz/_ipx/w_300,f_webp/default.png',
+                                      fit: BoxFit.cover, loadingBuilder: (context, child, loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return SizedBox(
                                             width: _getController.width.value * 0.44,
                                             height: _getController.height.value * 0.205,
-                                            color: AppColors.grey)
-                                    )
-                                );
-                                },
-                                  errorBuilder: (context, error, stackTrace) {return Text(error.toString());}))
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(width: _getController.width.value * 0.67, child: Text(_getController.orderListDetailModel.value.data!.orderProducts![index].product!.name!.uz.toString(),maxLines: 1, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500))),
-                              SizedBox(height: _getController.height.value * 0.01),
-                              Row(
-                                children: [
-                                  Text('${_getController.orderListDetailModel.value.data!.orderProducts![index].orderCount} ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))),
-                                  Text('dona'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))),
-                                  Container(
-                                      width: 6.sp,
-                                      height: 6.sp,
-                                      margin: EdgeInsets.symmetric(horizontal: 5.sp),
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
-                                  ),
-                                  Text('${int.parse(_getController.orderListDetailModel.value.data!.orderProducts![index].orderPrice.toString())*int.parse(_getController.orderListDetailModel.value.data!.orderProducts![index].orderCount.toString())} ${'so‘m'.tr}', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
-                                ]
+                                            child: Skeletonizer(
+                                                child: Container(
+                                                    width: _getController.width.value * 0.44,
+                                                    height: _getController.height.value * 0.205,
+                                                    color: AppColors.grey)
+                                            )
+                                        );
+                                      },
+                                      errorBuilder: (context, error, stackTrace) {return Text(error.toString());}))
                               ),
-                              SizedBox(height: _getController.height.value * 0.01),
-                              SizedBox(width: _getController.width.value * 0.67, child: Text('${_getController.orderListDetailModel.value.data!.orderProducts![index].orderPrice.toString()} ${'so‘m'.tr}', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold,color: AppColors.primaryColor2))),
-                              SizedBox(height: _getController.height.value * 0.01),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(width: _getController.width.value * 0.67, child: Text(_getController.orderListDetailModel.value.data!.orderProducts![index].product!.name!.uz.toString(),maxLines: 1, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500))),
+                                    SizedBox(height: _getController.height.value * 0.01),
+                                    Row(
+                                        children: [
+                                          Text('${_getController.orderListDetailModel.value.data!.orderProducts![index].orderCount} ', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))),
+                                          Text('dona'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))),
+                                          Container(
+                                              width: 6.sp,
+                                              height: 6.sp,
+                                              margin: EdgeInsets.symmetric(horizontal: 5.sp),
+                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5))
+                                          ),
+                                          Text('${int.parse(_getController.orderListDetailModel.value.data!.orderProducts![index].orderPrice.toString())*int.parse(_getController.orderListDetailModel.value.data!.orderProducts![index].orderCount.toString())} ${'so‘m'.tr}', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
+                                        ]
+                                    ),
+                                    SizedBox(height: _getController.height.value * 0.01),
+                                    SizedBox(width: _getController.width.value * 0.67, child: Text('${_getController.orderListDetailModel.value.data!.orderProducts![index].orderPrice.toString()} ${'so‘m'.tr}', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold,color: AppColors.primaryColor2))),
+                                    SizedBox(height: _getController.height.value * 0.01),
+                                  ]
+                              )
                             ]
-                          )
-                        ]
+                        )
                       );
                     }
                   ) : const SizedBox.shrink(),
