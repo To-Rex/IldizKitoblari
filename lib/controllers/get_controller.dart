@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -572,7 +573,8 @@ class GetController extends GetxController {
 
   double calculateTotalHeight() {
     if (basketModel.value.data != null && basketModel.value.data!.result != null && basketModel.value.data!.result!.isNotEmpty) {
-      return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.15;
+      //return basketModel.value.data!.result!.length * Get.height * 0.165 + Get.height * 0.15;
+      return basketModel.value.data!.result!.length * (131.h + 12.h);
     } else {
       return Get.height * 0.7;
     }
