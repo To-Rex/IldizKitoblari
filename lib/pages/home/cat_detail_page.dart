@@ -171,11 +171,11 @@ class CatDetailPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-            title: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500)),
+            title: Text(title, style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.w500)),
             centerTitle: false,
             surfaceTintColor: Colors.transparent,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06),
+              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: 25.sp),
               onPressed: () {
                 Get.back();
               },
@@ -186,22 +186,22 @@ class CatDetailPage extends StatelessWidget {
                 padding: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
                 child: Row(
                     children: [
-                      Expanded(child: Text(title, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w500))),
+                      Expanded(child: Text(title, style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.w500))),
                       InkWell(
                           onTap: () {
                             showBottomSheet(context);
                           },
                           child: Container(
-                          width: _getController.width.value * 0.05,
-                          height: _getController.width.value * 0.05,
+                          width: 20.w,
+                          height: 20.h,
                           decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).colorScheme.background,),
-                          child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onBackground, BlendMode.srcIn)))),
+                          child: SvgPicture.asset('assets/icon/sort.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn)))),
                       IconButton(
                           onPressed: () {
                             Get.to(() => FilterPage1(menuIndex: menuIndex, menuSlug: menuSlug,parent: parent), fullscreenDialog: true, transition: Transition.cupertino);
                             //showBottomSheetFilter(context);
                           },
-                          icon: Icon(TablerIcons.adjustments_horizontal, size: _getController.width.value * 0.06, color: Theme.of(context).colorScheme.onBackground)
+                          icon: Icon(TablerIcons.adjustments_horizontal, size: 25.sp, color: Theme.of(context).colorScheme.onBackground)
                       )
                     ]
                 )
@@ -216,7 +216,7 @@ class CatDetailPage extends StatelessWidget {
                       padding: EdgeInsets.all(5.sp),
                       mainAxisSpacing: 15.sp,
                       children: List.generate(8, (index) {
-                        return SkeletonItem();
+                        return const SkeletonItem();
                       })
                   )
               ),
@@ -280,9 +280,10 @@ class CatDetailPage extends StatelessWidget {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
+                              //crossAxisCount: 2, if ipad or bigger then 3 or 4
+                              crossAxisCount: Get.width < 600 ? 2 : Get.width < 900 ? 3 : 4,
                               childAspectRatio: 0.07,
-                              mainAxisExtent: 370.h,
+                              mainAxisExtent: 385.h,
                               mainAxisSpacing: _getController.height.value * 0.018,
                               crossAxisSpacing: _getController.width.value * 0.03,
                             ),

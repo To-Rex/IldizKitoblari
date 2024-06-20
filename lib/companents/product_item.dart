@@ -55,7 +55,7 @@ class _ProductItemState extends State<ProductItem> {
                       delayBefore: const Duration(milliseconds: 10000))
               ),
               SizedBox(height: 5.sp),
-              Expanded(child: Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w600))),
+              Expanded(child: Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w600))),
               Row(
                   children: [
                     InkWell(
@@ -109,7 +109,7 @@ class _ProductItemState extends State<ProductItem> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           IconButton(
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                               onPressed: () {
                                 if (int.parse(_getController.checkCardIdCount(widget.id.toString())) > 1) {
                                   ApiController().addToBasket('${int.parse(_getController.checkCardIdCount(widget.id.toString())) - 1}', widget.id.toString(), 'active');
@@ -117,18 +117,18 @@ class _ProductItemState extends State<ProductItem> {
                                   ApiController().addToBasket('0', widget.id.toString(), 'deleted');
                                 }
                               },
-                              icon: Icon(TablerIcons.minus, color: AppColors.white, size: Get.height * 0.025)),
+                              icon: Icon(TablerIcons.minus, color: AppColors.white, size: 20.sp)),
                           Text(
                               _getController.listCartCreate[_getController.checkCardIdIndex(widget.id.toString())].count.toString(),
                               style: TextStyle(fontSize: 16.sp, color: AppColors.white, fontWeight: FontWeight.w600)),
                           IconButton(
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                               onPressed: () {
                                 if (_getController.basketModel.value.data!.result![_getController.checkCardIdIndex(widget.id.toString())].count! >= _getController.basketModel.value.data!.result![_getController.checkCardIdIndex(widget.id.toString())].cartCount!) {
                                   ApiController().addToBasket('${int.parse(_getController.checkCardIdCount(widget.id.toString())) + 1}', widget.id.toString(), 'active');
                                 }
                               },
-                              icon: Icon(TablerIcons.plus, color: AppColors.white, size: Get.height * 0.025)),
+                              icon: Icon(TablerIcons.plus, color: AppColors.white, size: 20.sp)),
                         ]
                     )
                 ),
