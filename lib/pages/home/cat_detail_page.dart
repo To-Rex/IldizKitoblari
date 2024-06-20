@@ -275,7 +275,6 @@ class CatDetailPage extends StatelessWidget {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              //crossAxisCount: 2, if ipad or bigger then 3 or 4
                               crossAxisCount: Get.width < 600 ? 2 : Get.width < 900 ? 3 : 4,
                               childAspectRatio: 0.07,
                               mainAxisExtent: 385.h,
