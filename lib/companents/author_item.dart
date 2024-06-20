@@ -33,25 +33,20 @@ class AuthorItem extends StatelessWidget {
             shadowColor: Theme.of(context).colorScheme.surface,
             child: Container(
                 width: _getController.width.value,
-                padding: EdgeInsets.symmetric(horizontal: _getController.width.value * 0.025, vertical: _getController.width.value * 0.02),
+                padding: EdgeInsets.only(right: Get.width * 0.02),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).colorScheme.surface),
                 child: Row(
                     children: [
                       if (image != '')
-                        Container(
-                            width: 25.w,
-                            height: 25.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                image: DecorationImage(image: NetworkImage(image), fit: BoxFit.cover)))
+                        Container(width: 90.w, height: 90.h, decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), image: DecorationImage(image: NetworkImage(image), fit: BoxFit.cover)))
                       else
                         Icon(Icons.person, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), size: 25.sp),
                       SizedBox(width: _getController.width.value * 0.02),
                       Expanded(child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(title, style: TextStyle(fontSize: 20.sp, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w600)),
-                            Text('$subTitle ${'ta kitob'.tr}', style: TextStyle(fontSize: 18.sp, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontWeight: FontWeight.w500))
+                            Text(title, style: TextStyle(fontSize: 18.sp, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w600)),
+                            Text('$subTitle ${'ta kitob'.tr}', style: TextStyle(fontSize: 16.sp, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontWeight: FontWeight.w500))
                           ]
                       )),
                       Icon(TablerIcons.arrow_right, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5), size: 25.sp)

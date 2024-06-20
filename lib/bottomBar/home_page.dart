@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
     //ApiController().getProduct(1, 'badiiy-kitoblar',false);
     ApiController().getQuotation(1);
     ApiController().getTopProduct(1,false);
-    ApiController().getAuthors(30,1,'Shayx Muhammad S',false);
+    ApiController().getAuthors(30,1,'Shayx muhammad sodiq',false);
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
