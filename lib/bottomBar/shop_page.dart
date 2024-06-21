@@ -43,6 +43,7 @@ class ShopPage extends StatelessWidget {
     _getController.changeItemPage(0);
     _getController.clearBannerModel();
     _getData();
+    print('========= ${Get.height} - ${Get.width} ==========');
     return Scaffold(
         body: SmartRefresher(
             enablePullDown: true,
@@ -125,7 +126,7 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
-                                    if (_getController.shopDataModel.value.data != null && _getController.onLoading.value)
+                                    if (_getController.shopDataModel.value.data == null && _getController.onLoading.value)
                                       for (var category in _getController.shopDataModel.value.data!.result!)
                                         Column(
                                             children: [
@@ -176,27 +177,25 @@ class ShopPage extends StatelessWidget {
                                             ]
                                         )
                                     else
-                                      if (_getController.onLoading.value == false)
-                                        Column(
-                                            children: [
-                                              SizedBox(height: 10.sp),
-                                              SizedBox(
-                                                height: ScreenUtil().screenHeight * 1.1,
-                                                width: ScreenUtil().screenWidth,
-                                                child: GridView.count(
-                                                  crossAxisCount: 2,
-                                                  shrinkWrap: true,
-                                                  physics: const NeverScrollableScrollPhysics(),
-                                                  childAspectRatio: ScreenUtil().screenWidth / (ScreenUtil().screenHeight * 0.83),
-                                                  padding: EdgeInsets.all(5.sp),
-                                                  mainAxisSpacing: 15.sp,
-                                                  children: List.generate(6, (index) => const SkeletonItem()), // Replace SkeletonItem with your actual widget
-                                                ),
-                                              )
-                                            ]
+                                      if (_getController.onLoading.value != false)
+                                        SizedBox(
+                                          height: ScreenUtil().screenHeight * 1.1,
+                                          width: ScreenUtil().screenWidth,
+                                          child: GridView.count(
+                                            //iphone se = 667.0 - 375.0 crossAxisCount 2 iphone 15 pro max 932.0 - 430.0 crossAxisCount 2, ipad 1366.0 - 1024.0 crossAxisCount 4, ipad mini 1133.0 - 744.0 crossAxisCount 3, ipad 1180.0 - 820.0 crossAxisCount 3,
+                                            crossAxisCount: Get.height < 668 ? 2 : Get.height < 933 ? 2 : Get.height < 1025 ? 3 : 4,
+                                            shrinkWrap: true,
+                                            physics: const NeverScrollableScrollPhysics(),
+                                            padding: EdgeInsets.symmetric(horizontal: 16.w),
+                                            //iphone se = 667.0 - 375.0 iphone 15 pro max 932.0 - 430.0 ipad 1366.0 - 1024.0 ipad mini 1133.0 - 744.0
+                                            childAspectRatio: Get.height < 668 ? 0.46 : Get.height < 933 ? 0.52 : Get.height < 1025 ? 0.55 : 0.6,
+                                            crossAxisSpacing: 10.w,
+                                            mainAxisSpacing: 10.h,
+                                            children: List.generate(15, (index) => const SkeletonItem()), // Replace SkeletonItem with your actual widget
+                                          ),
                                         )
                                       else
-                                        SizedBox(width: Get.width, height: Get.height * 0.8, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize:  25.sp, fontWeight: FontWeight.w500))))
+                                        SizedBox(width: Get.width, height: Get.height * 0.8, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize:  20.sp, fontWeight: FontWeight.w500))))
                                       ]
                                   )
                               )
