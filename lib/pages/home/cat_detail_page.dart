@@ -207,16 +207,15 @@ class CatDetailPage extends StatelessWidget {
               else
                 Expanded(
                     child: GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        childAspectRatio: 0.61.h,
-                        padding: EdgeInsets.all(5.sp),
-                        mainAxisSpacing: 15.sp,
-                        children: List.generate(8, (index) {
-                          return const SkeletonItem();
-                        })
-                    )
+                      crossAxisCount: Get.height < 668 ? 2 : Get.height < 933 ? 2 : Get.height < 1025 || Get.height < 1181 ? 3 : 4,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      childAspectRatio: Get.height < 668 ? 0.46 : Get.height < 933 ? 0.52 : Get.height < 1025 ? 0.55 : 0.6,
+                      crossAxisSpacing: 10.w,
+                      mainAxisSpacing: 10.h,
+                      children: List.generate(15, (index) => const SkeletonItem()), // Replace SkeletonItem with your actual widget
+                    ),
                 ),
             if (_getController.onLoading.value == true && _getController.productModelLength.value != 0)
               Expanded(
@@ -278,8 +277,8 @@ class CatDetailPage extends StatelessWidget {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: Get.width < 600 ? 2 : Get.width < 900 ? 3 : 4,
-                              childAspectRatio: 0.07,
+                              crossAxisCount: Get.height < 668 ? 2 : Get.height < 933 ? 2 : Get.height < 1025 || Get.height < 1181 ? 3 : 4,
+                              childAspectRatio: Get.height < 668 ? 0.46 : Get.height < 933 ? 0.52 : Get.height < 1025 ? 0.55 : 0.6,
                               mainAxisExtent: 385.h,
                               mainAxisSpacing: _getController.height.value * 0.018,
                               crossAxisSpacing: _getController.width.value * 0.03,

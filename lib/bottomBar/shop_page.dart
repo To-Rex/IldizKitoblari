@@ -126,7 +126,7 @@ class ShopPage extends StatelessWidget {
                               decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                               child: Column(
                                   children: [
-                                    if (_getController.shopDataModel.value.data == null && _getController.onLoading.value)
+                                    if (_getController.shopDataModel.value.data != null && _getController.onLoading.value)
                                       for (var category in _getController.shopDataModel.value.data!.result!)
                                         Column(
                                             children: [
@@ -177,12 +177,12 @@ class ShopPage extends StatelessWidget {
                                             ]
                                         )
                                     else
-                                      if (_getController.onLoading.value != false)
+                                      if (_getController.onLoading.value == false)
                                         SizedBox(
                                           height: ScreenUtil().screenHeight * 1.1,
                                           width: ScreenUtil().screenWidth,
                                           child: GridView.count(
-                                            crossAxisCount: Get.height < 668 ? 2 : Get.height < 933 ? 2 : Get.height < 1025 ? 3 : 4,
+                                            crossAxisCount: Get.height < 668 ? 2 : Get.height < 933 ? 2 : Get.height < 1025 || Get.height < 1181 ? 3 : 4,
                                             shrinkWrap: true,
                                             physics: const NeverScrollableScrollPhysics(),
                                             padding: EdgeInsets.symmetric(horizontal: 16.w),
