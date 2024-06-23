@@ -142,6 +142,7 @@ class LocaleString extends Translations{
       'To‘lov qilishdagi xatolik':'Произошла ошибка при оплате',
       'Qaytarildi':'Возвращено',
       'Bekor qilindi':'Отменено',
+      'Bog‘lanish':'контакт',
 
     },
     'uz_UZ':{
@@ -284,6 +285,7 @@ class LocaleString extends Translations{
       'To‘lov qilishdagi xatolik':'To‘lov qilishdagi xatolik',
       'Qaytarildi':'Qaytarildi',
       'Bekor qilindi':'Bekor qilindi',
+      'Bog‘lanish':'bog‘lanish',
 
     },
     'oz_OZ':{
@@ -425,7 +427,7 @@ class LocaleString extends Translations{
       'To‘lov qilishdagi xatolik':'Тўлов қилишдаги хатолик',
       'Qaytarildi':'Қайтарилди',
       'Bekor qilindi':'Бекор қилинди',
-
+      'Bog‘lanish':'Боғланиш',
     }
   };
 

@@ -28,6 +28,7 @@ import '../models/product_rate.dart';
 import '../models/quotos_model.dart';
 import '../models/shop/shop_data_model.dart';
 import '../models/user/about_model.dart';
+import '../models/user/contact_us_model.dart';
 import '../pages/auth/verify_page.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/sample_page.dart';
@@ -71,6 +72,7 @@ class ApiController extends GetxController {
   static const String _orderList = '$_baseUrl/order/list';
   static const String _priceAddDistrict = '$_baseUrl/check/delivery/price';
   static const String _about = '$_baseUrl/menu/biz-haqimizda';
+  static const String _contactUs = '$_baseUrl/contact';
 
 
   //show toast message
@@ -903,5 +905,20 @@ class ApiController extends GetxController {
     }
   }
 
-
+  Future<void> getContactUs() async {
+    _getController.onLoad();
+    _getController.clearContactUsModel();
+    var response = await get(Uri.parse(_contactUs),
+      headers: {'Accept-Language': Get.locale!.languageCode}
+    );
+    debugPrint('getContactUs: ${response.body}');
+    debugPrint('getContactUs: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.changeContactUsModel(ContactUsModel.fromJson(jsonDecode(response.body)));
+      _getController.offLoad();
+    } else {
+      _getController.offLoad();
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
 }

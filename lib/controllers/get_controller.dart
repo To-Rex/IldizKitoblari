@@ -34,6 +34,7 @@ import '../models/product_model.dart';
 import '../models/product_rate.dart';
 import '../models/shop/shop_data_model.dart';
 import '../models/user/about_model.dart';
+import '../models/user/contact_us_model.dart';
 import 'api_controller.dart';
 
 class GetController extends GetxController {
@@ -218,8 +219,12 @@ class GetController extends GetxController {
   var orderListModel = OrderListModel().obs;
   var orderListDetailModel = OrderListDetail().obs;
   var shopDataModel = ShopDataModel().obs;
-  //AboutModel
   var aboutModel = AboutModel().obs;
+  var contactUsModel = ContactUsModel().obs;
+
+  void changeContactUsModel(ContactUsModel newContactUsModel) {contactUsModel.value = newContactUsModel;}
+
+  void clearContactUsModel() {contactUsModel.value = ContactUsModel();}
 
   void changeAboutModel(AboutModel newAboutModel) {aboutModel.value = newAboutModel;}
 

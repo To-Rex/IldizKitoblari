@@ -10,6 +10,7 @@ import '../controllers/get_controller.dart';
 import '../pages/home/author_category.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/profile/about_program.dart';
+import '../pages/profile/contact_us.dart';
 import '../pages/profile/edit_user.dart';
 import '../pages/profile/orders_page.dart';
 
@@ -222,7 +223,9 @@ class AccountPage extends StatelessWidget {
                                   title: 'Biz bilan bog‘lanish'.tr,
                                   icon: 'assets/icon/contact.svg',
                                   subTitle: '',
-                                  onTap: () {}
+                                  onTap: () {
+                                    Get.to(() => ContactUs());
+                                  }
                               ),
                               AccItem(
                                   title: 'Ilovadan chiqish'.tr,
