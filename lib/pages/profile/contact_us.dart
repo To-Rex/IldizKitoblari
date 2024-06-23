@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/resource/colors.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../controllers/api_controller.dart';
 import '../../controllers/get_controller.dart';
@@ -29,18 +30,147 @@ class ContactUs extends StatelessWidget{
           )
       ),
       body: SingleChildScrollView(
-          child: Column(
-              children: [
+          child: Obx(() => _getController.contactUsModel.value.data == null
+              ? !_getController.onLoading.value
+              ? SizedBox(height: Get.height * 0.8, width: Get.width, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface))))
+              : Skeletonizer(child: Container(
+                  margin: EdgeInsets.only(top: _getController.width.value * 0.04, left: _getController.width.value * 0.03,right: _getController.width.value * 0.03),
+                  child: Column(
+                      children: [
+                        Container(
+                            width: Get.width,
+                            padding: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w, bottom: 10.h),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                                border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)
+                            ),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Bog‘lanish'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500)),
+                                  SizedBox(height: 10.h),
+                                  Row(
+                                      children: [
+                                        Icon(Icons.phone, color: AppColors.backgroundApp, size: 20.sp),
+                                        SizedBox(width: 10.w),
+                                        Text('Bog‘lanish uchun:'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                      ]
+                                  ),
+                                  SizedBox(height: 10.h),
+                                  Text('+998 (99) 534 03 13', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                  SizedBox(height: 10.h),
+                                  Row(
+                                      children: [
+                                        Icon(Icons.phone, color: AppColors.backgroundApp, size: 20.sp),
+                                        SizedBox(width: 10.w),
+                                        Text('Hamkorlar uchun bog‘lanish:'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                      ]
+                                  ),
+                                  SizedBox(height: 10.w),
+                                  Text('+998 (99) 534 03 13', style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                  SizedBox(height: 10.w),
+                                  Row(
+                                      children: [
+                                        Icon(TablerIcons.world, color: AppColors.backgroundApp, size: 20.sp),
+                                        SizedBox(width: 10.w),
+                                        Text('Ijtimoiy tarmoqlar:'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                      ]
+                                  ),
+                                  SizedBox(height: 15.h),
+                                  Row(
+                                      children: [
+                                        Container(
+                                            height: 35.h,
+                                            width: 35.w,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(500.r), color: AppColors.grey.withOpacity(0.2)),
+                                            child: IconButton(onPressed: () {},
+                                                icon: Icon(
+                                                    TablerIcons.brand_youtube,
+                                                    color: AppColors.backgroundApp, size: 20.sp
+                                                )
+                                            )
+                                        ),
+                                        SizedBox(width: 15.w),
+                                        Container(
+                                            height: 35.h,
+                                            width: 35.w,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(500.r), color: AppColors.grey.withOpacity(0.2)),
+                                            child: IconButton(onPressed: () {},
+                                                icon: Icon(
+                                                    TablerIcons.brand_instagram,
+                                                    color: AppColors.backgroundApp, size: 20.sp
+                                                )
+                                            )
+                                        ),
+                                        SizedBox(width: 15.w),
+                                        Container(
+                                            height: 35.h,
+                                            width: 35.w,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(500.r), color: AppColors.grey.withOpacity(0.2)),
+                                            child: IconButton(onPressed: () {},
+                                              icon: Icon(
+                                                  TablerIcons.brand_telegram,
+                                                  color: AppColors.backgroundApp,
+                                                  size: 20.sp
+                                              ),
+                                            )
+                                        ),
+                                        SizedBox(width: 15.w),
+                                        Container(
+                                            height: 35.h,
+                                            width: 35.w,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(500.r), color: AppColors.grey.withOpacity(0.2)),
+                                            child: IconButton(onPressed: () {},
+                                                icon: Icon(
+                                                    TablerIcons.brand_facebook,
+                                                    color: AppColors.backgroundApp,
+                                                    size: 20.sp
+                                                )
+                                            )
+                                        )
+                                      ]
+                                  )
+                                ]
+                            )
+                        ),
+                        SizedBox(height: 20.h),
+                        Container(
+                            width: Get.width,
+                            padding: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w, bottom: 10.h),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                                border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)
+                            ),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Ildiz kitoblari Xadra filiali'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500)),
+                                  SizedBox(height: 10.h),
+                                  Row(
+                                      children: [
+                                        Icon(TablerIcons.world, color: AppColors.backgroundApp, size: 20.sp),
+                                        SizedBox(width: 10.w),
+                                        Text('Manzil'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                      ]
+                                  ),
+                                  SizedBox(height: 10.h),
+                                  Text('Farg‘ona viloyati O‘zbekiston tumani'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                ]
+                            )
+                        )
+                      ]
+                  )
+              ))
+              : Column(children: [
                 Container(
-                  width: Get.width,
-                  margin: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
-                  padding: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w, bottom: 10.h),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)
-                  ),
-                  child: Obx(() =>
-                      Column(
+                    width: Get.width,
+                    margin: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w, bottom: 10.h),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)
+                    ),
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Bog‘lanish'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500)),
@@ -76,17 +206,17 @@ class ContactUs extends StatelessWidget{
                           Row(
                               children: [
                                 Container(
-                                  height: 35.h,
-                                  width: 35.w,
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(500.r), color: AppColors.grey.withOpacity(0.2)),
-                                  child: IconButton(onPressed: () {
-                                    launchUrl(Uri.parse(_getController.contactUsModel.value.data!.result!.socials!.youtube.toString()), mode: LaunchMode.externalApplication);
-                                  },
-                                    icon: Icon(
-                                        TablerIcons.brand_youtube,
-                                        color: AppColors.backgroundApp, size: 20.sp
+                                    height: 35.h,
+                                    width: 35.w,
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(500.r), color: AppColors.grey.withOpacity(0.2)),
+                                    child: IconButton(onPressed: () {
+                                      launchUrl(Uri.parse(_getController.contactUsModel.value.data!.result!.socials!.youtube.toString()), mode: LaunchMode.externalApplication);
+                                    },
+                                        icon: Icon(
+                                            TablerIcons.brand_youtube,
+                                            color: AppColors.backgroundApp, size: 20.sp
+                                        )
                                     )
-                                  )
                                 ),
                                 SizedBox(width: 15.w),
                                 Container(
@@ -96,10 +226,10 @@ class ContactUs extends StatelessWidget{
                                     child: IconButton(onPressed: () {
                                       launchUrl(Uri.parse(_getController.contactUsModel.value.data!.result!.socials!.instagram.toString()), mode: LaunchMode.externalApplication);
                                     },
-                                      icon: Icon(
-                                          TablerIcons.brand_instagram,
-                                          color: AppColors.backgroundApp, size: 20.sp
-                                      )
+                                        icon: Icon(
+                                            TablerIcons.brand_instagram,
+                                            color: AppColors.backgroundApp, size: 20.sp
+                                        )
                                     )
                                 ),
                                 SizedBox(width: 15.w),
@@ -135,19 +265,17 @@ class ContactUs extends StatelessWidget{
                               ]
                           )
                         ]
-                      )
-                  )
+                    )
                 ),
                 Container(
-                  width: Get.width,
-                  margin: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
-                  padding: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w, bottom: 10.h),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)
-                  ),
-                  child: Obx(() =>
-                      Column(
+                    width: Get.width,
+                    margin: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
+                    padding: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w, bottom: 10.h),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)
+                    ),
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Ildiz kitoblari Xadra filiali'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500)),
@@ -165,10 +293,9 @@ class ContactUs extends StatelessWidget{
                               data: _getController.contactUsModel.value.data!.result!.address!.uz.toString()
                           )
                         ]
-                      )
-                  )
+                    )
                 )
-              ]
+              ])
           )
       )
     );
