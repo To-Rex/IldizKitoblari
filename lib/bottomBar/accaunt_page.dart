@@ -9,6 +9,7 @@ import '../companents/acc_item.dart';
 import '../controllers/get_controller.dart';
 import '../pages/home/author_category.dart';
 import '../pages/onboarding_page.dart';
+import '../pages/profile/about_program.dart';
 import '../pages/profile/edit_user.dart';
 import '../pages/profile/orders_page.dart';
 
@@ -29,14 +30,14 @@ class AccountPage extends StatelessWidget {
     Get.bottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10.0),left: Radius.circular(10.0))),
         enableDrag: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               return Container(
                   width: _getController.width.value,
                   height: _getController.height.value * 0.45,
                   decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                       borderRadius: BorderRadius.horizontal(right: Radius.circular(10.r),left: Radius.circular(10.r))
                   ),
                   child: Column(
@@ -46,7 +47,7 @@ class AccountPage extends StatelessWidget {
                           height: _getController.width.value * 0.01,
                           width: _getController.width.value * 0.1,
                           margin: EdgeInsets.only(top: _getController.width.value * 0.01, bottom: _getController.width.value * 0.06),
-                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), borderRadius: BorderRadius.circular(100))
                       ),
                       ListView.builder(
                           itemCount: locale.length,
@@ -60,13 +61,13 @@ class AccountPage extends StatelessWidget {
                                     padding: EdgeInsets.only(left: _getController.width.value * 0.05, top: _getController.width.value * 0.04),
                                     child: InkWell(
                                         onTap: (){updateLanguage(locale[index]['locale']);},
-                                        child: Text(locale[index]['name'], style: TextStyle(color: locale[index]['locale'] == Get.locale ? AppColors.primaryColor : Theme.of(context).colorScheme.onBackground, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))
+                                        child: Text(locale[index]['name'], style: TextStyle(color: locale[index]['locale'] == Get.locale ? AppColors.primaryColor : Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500))
                                     )
                                 ),
                                 if (index != locale.length - 1)
                                   Padding(
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.05, right: _getController.width.value * 0.05),
-                                      child: Divider(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2))
+                                      child: Divider(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2))
                                   )
                               ]
                             );
@@ -145,19 +146,8 @@ class AccountPage extends StatelessWidget {
                                       onPressed: () {
                                         Get.to(() => EditUser());
                                       },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.primaryColor3,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.r)
-                                        )
-                                      ),
-                                      child: Text('Profilni tahrirlash'.tr,
-                                          style: TextStyle(
-                                              color: AppColors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 21.sp
-                                          )
-                                      )
+                                      style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
+                                      child: Text('Profilni tahrirlash'.tr, style: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold, fontSize: 21.sp))
                                   )
                               ),
                               SizedBox(height: 9.h),
@@ -223,7 +213,10 @@ class AccountPage extends StatelessWidget {
                                   title: 'Dastur haqida'.tr,
                                   icon: 'assets/icon/info.svg',
                                   subTitle: '',
-                                  onTap: () {}
+                                  onTap: () {
+                                    //AboutProgram
+                                    Get.to(() => AboutProgram());
+                                  }
                               ),
                               AccItem(
                                   title: 'Biz bilan bog‘lanish'.tr,
@@ -240,11 +233,11 @@ class AccountPage extends StatelessWidget {
                                     showDialog(context: context,
                                         builder: (context) => AlertDialog(
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-                                          backgroundColor: Theme.of(context).colorScheme.background,
+                                          backgroundColor: Theme.of(context).colorScheme.surface,
                                           title: Text('Dasturdan chiqmoqchimisiz?'.tr),
-                                          titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500, fontSize: 19.sp),
+                                          titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500, fontSize: 19.sp),
                                           content: Text('Dasturdan chiqqaningdan so‘ng login va parolingiz orqali qayta kirishingiz mumkin.'.tr),
-                                          contentTextStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7), fontWeight: FontWeight.w400, fontSize: 16.sp),
+                                          contentTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontWeight: FontWeight.w400, fontSize: 16.sp),
                                           actions: [
                                             SizedBox(
                                               child: Row(
@@ -263,7 +256,7 @@ class AccountPage extends StatelessWidget {
                                                           onPressed: () {
                                                             Get.back();
                                                           },
-                                                          child: Text('Orqaga'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w500, fontSize: 16.sp))
+                                                          child: Text('Orqaga'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500, fontSize: 16.sp))
                                                       )
                                                   ),
                                                   SizedBox(width: Get.width * 0.03),

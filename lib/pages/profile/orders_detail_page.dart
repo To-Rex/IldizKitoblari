@@ -1,16 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/controllers/api_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
-import '../../companents/user/scleton_orders.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
-import '../home/detail_page.dart';
 
 class OrdersDetailPage extends StatelessWidget{
   OrdersDetailPage({super.key});
@@ -45,7 +40,7 @@ class OrdersDetailPage extends StatelessWidget{
                       width: Get.width,
                       padding: EdgeInsets.all(10.sp),
                       margin: EdgeInsets.only(left: Get.width * 0.03, right: Get.width * 0.03),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.background, boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1), spreadRadius: 1, blurRadius: 5, offset: const Offset(0, 0))]),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).colorScheme.surface, boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1), spreadRadius: 1, blurRadius: 5, offset: const Offset(0, 0))]),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

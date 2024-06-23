@@ -15,7 +15,6 @@ import '../../companents/product_item.dart';
 import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import '../shop/book_page.dart';
 
 class DetailPage extends StatelessWidget {
@@ -206,9 +205,7 @@ class DetailPage extends StatelessWidget {
                                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                           decoration: BoxDecoration(
                                               color: _getController.paymentTypeIndex.value == 1 ?AppColors.primaryColor3.withOpacity(0.15): AppColors.grey.withOpacity(0.2),
-                                              border: Border.all(
-                                                  color: _getController.paymentTypeIndex.value == 1 ? AppColors.primaryColor3 : AppColors.grey,
-                                                  width: 1),
+                                              border: Border.all(color: _getController.paymentTypeIndex.value == 1 ? AppColors.primaryColor3 : AppColors.grey, width: 1),
                                               borderRadius: const BorderRadius.all(Radius.circular(8))
                                           ),
                                           child: Row(
@@ -231,9 +228,8 @@ class DetailPage extends StatelessWidget {
                                   InkWell(
                                     onTap: () {
                                       Get.to(() => BookPage(
-                                          url: _getController.productDetailList[pageIndex].data!.pdf!,
-                                         //title: _getController.productDetailList[pageIndex].data!.name!,
-                                          title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!,
+                                        url: _getController.productDetailList[pageIndex].data!.pdf!,
+                                        title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!,
                                       ));
                                     },
                                       child: Container(
@@ -265,12 +261,8 @@ class DetailPage extends StatelessWidget {
                                           width: _getController.width.value * 0.45,
                                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
                                           decoration: BoxDecoration(
-                                            //color: AppColors.grey.withOpacity(0.2), || AppColors.primaryColor3.withOpacity(0.15),
                                               color: _getController.paymentTypeIndex.value == 2 ?AppColors.primaryColor3.withOpacity(0.15): AppColors.grey.withOpacity(0.2),
-                                              border: Border.all(
-                                                //color: AppColors.grey,
-                                                  color: _getController.paymentTypeIndex.value == 2 ? AppColors.primaryColor3 : AppColors.grey,
-                                                  width: 1),
+                                              border: Border.all(color: _getController.paymentTypeIndex.value == 2 ? AppColors.primaryColor3 : AppColors.grey, width: 1),
                                               borderRadius: const BorderRadius.all(Radius.circular(8))
                                           ),
                                           child: Row(
