@@ -885,7 +885,7 @@ class ApiController extends GetxController {
   }
 
   Future<void> getAbout() async {
-    _getController.offLoad();
+    _getController.onLoad();
     _getController.clearAboutModel();
     var response = await get(Uri.parse(_about),
       headers: {

@@ -16,37 +16,34 @@ class SkeletonChildItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Skeletonizer(
         child: Container(
-        width: _getController.width.value,
-        margin: EdgeInsets.only(
-            left: _getController.width.value * 0.04,
-            right: _getController.width.value * 0.01),
-        child:InkWell(
-            onTap: () {
-              _getController.fullCheck.value = false;
-            },
-            child:Row(
-              children: [
-                if (_getController.fullCheck.value == true)
-                  Icon(TablerIcons.arrow_left,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    size: _getController.width.value * 0.06,
-                  ),
-                if (_getController.fullCheck.value == true)
-                  SizedBox(width: _getController.width.value * 0.02),
-                Text('Xatolik'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w600,)),
-                const Expanded(child: SizedBox()),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Barchasi'.tr,
-                    style: TextStyle(
-                      fontSize: _getController.width.value * 0.04,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ),
-              ],
-            ))
+            width: _getController.width.value,
+            margin: EdgeInsets.only(left: _getController.width.value * 0.04, right: _getController.width.value * 0.01),
+            child:InkWell(
+                onTap: () {_getController.fullCheck.value = false;},
+                child:Row(
+                  children: [
+                    if (_getController.fullCheck.value == true)
+                      Icon(TablerIcons.arrow_left,
+                        color: Theme.of(context).colorScheme.onSurface,
+                        size: _getController.width.value * 0.06
+                      ),
+                    if (_getController.fullCheck.value == true)
+                      SizedBox(width: _getController.width.value * 0.02),
+                    Text('Xatolik'.tr, style: TextStyle(fontSize: _getController.width.value * 0.05, fontWeight: FontWeight.w600,)),
+                    const Expanded(child: SizedBox()),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Barchasi'.tr,
+                        style: TextStyle(
+                          fontSize: _getController.width.value * 0.04,
+                          color: AppColors.primaryColor
+                        )
+                      )
+                    )
+                  ]
+                )
+            )
         )
     );
   }
