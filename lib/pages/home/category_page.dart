@@ -64,11 +64,12 @@ class CategoryPage extends StatelessWidget {
                         }
                       },
                     _getController.menuModel.value.data!.result![menuIndex].children![index].productCount == null ? '0' : _getController.menuModel.value.data!.result![menuIndex].children![index].productCount.toString()
-                      );
+                  );
                 }
             )
           )
-        ]))
+        ])
+      )
     );
   }
 }
