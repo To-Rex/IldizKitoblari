@@ -74,7 +74,7 @@ class ApiController extends GetxController {
   static const String _about = '$_baseUrl/menu/biz-haqimizda';
   static const String _contactUs = '$_baseUrl/contact';
   //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&type=sale
-  static const String _onlySale = '$_baseUrl/product/list?limit=12';
+  static const String _onlySale = '$_baseUrl/product/list';
 
 
   //show toast message
@@ -924,10 +924,10 @@ class ApiController extends GetxController {
     }
   }
 
-  Future<void> getOnlySaleProducts() async {
+  Future<void> getOnlySaleProducts(page,limit,add) async {
     _getController.onLoad();
     _getController.clearProductModel();
-    var response = await get(Uri.parse(_onlySale),
+    var response = await get(Uri.parse('$_onlySale?limit=$limit&page=$page&type=sale'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,
       },
@@ -935,9 +935,15 @@ class ApiController extends GetxController {
     debugPrint('getOnlySale: ${response.body}');
     debugPrint('getOnlySale: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
-      _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
-      _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
-      _getController.offLoad();
+      if (add==false) {
+        _getController.clearProductModel();
+        _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
+      }else{
+        _getController.addProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+        _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
+      }
+      _getController.onLoad();
     } else {
       _getController.offLoad();
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
