@@ -65,8 +65,8 @@ class _ProductItemState extends State<ProductItem> {
                   if (widget.sale != 0)
                     Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.error, fontWeight: FontWeight.w600, decoration: TextDecoration.lineThrough)),
                   if (widget.sale != 0)
-                  SizedBox(width: 10.sp),
-                ],
+                  SizedBox(width: 10.sp)
+                ]
               ),
               Row(
                   children: [
