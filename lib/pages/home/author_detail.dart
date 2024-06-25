@@ -169,7 +169,8 @@ class AuthorDetail extends StatelessWidget {
                                     },
                                     id: _getController.authorDetailProductModelList[0].data!.result![index].sId.toString(),
                                     deck: _getController.authorDetailProductModelList[0].data!.result![index].name.toString(),
-                                    count: _getController.authorDetailProductModelList[0].data!.count
+                                    count: _getController.authorDetailProductModelList[0].data!.count,
+                                    sale: _getController.authorDetailProductModelList[0].data!.result![index].sale ?? 0
                                 );
                               })),
                     if (_getController.authorDetailModelList[index].data!.similarAuthors != null && _getController.authorDetailModelList[index].data!.similarAuthors!.isNotEmpty)

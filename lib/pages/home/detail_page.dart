@@ -355,6 +355,7 @@ class DetailPage extends StatelessWidget {
                               _getController.removeProductDetailModel(pageIndex+1);
                               Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(slug: _getController.productDetailList[pageIndex].data?.simularProducts![index].slug ?? '', pageIndex: pageIndex+1)));
                             }, count: _getController.productDetailList[pageIndex].data?.simularProducts![index].count ?? 0,
+                            sale: _getController.productDetailList[pageIndex].data?.simularProducts![index].sale ?? 0
                           );
                         },
                       ),

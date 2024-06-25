@@ -68,7 +68,7 @@ class OnlySaleProductPage extends StatelessWidget{
               children: [
                 if (_getController.productModelLength.value == 0)
                   if (_getController.onLoading.value == false)
-                    Expanded(child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.w500))))
+                    Expanded(child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500))))
                   else
                     Expanded(
                       child: GridView.count(
@@ -108,6 +108,7 @@ class OnlySaleProductPage extends StatelessWidget{
                                 _getController.clearProductDetailModel();
                                 _getController.clearProductDetailList();
                                 Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));},
+                                sale: _getController.productModel.value.data!.result![index].sale ?? 0
                             );
                           })
                   )

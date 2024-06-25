@@ -296,6 +296,7 @@ class CatDetailPage extends StatelessWidget {
                                   _getController.clearProductDetailModel();
                                   _getController.clearProductDetailList();
                                   Get.to(() => DetailPage(slug: _getController.productModel.value.data!.result![index].slug!, pageIndex: 0));},
+                                  sale: _getController.productModel.value.data!.result![index].sale ?? 0
                               );
                             })
                       )

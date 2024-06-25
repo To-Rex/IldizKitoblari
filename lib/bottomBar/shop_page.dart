@@ -170,7 +170,8 @@ class ShopPage extends StatelessWidget {
                                                               },
                                                               id: category.shopProductModel!.data!.result![index].sId,
                                                               deck: category.shopProductModel!.data!.result![index].name,
-                                                              count: category.shopProductModel!.data!.result![index].count
+                                                              count: category.shopProductModel!.data!.result![index].count,
+                                                              sale: category.shopProductModel!.data!.result![index].sale ?? 0
                                                           );
                                                         })
                                                 )

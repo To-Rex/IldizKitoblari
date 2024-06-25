@@ -244,7 +244,8 @@ class HomePage extends StatelessWidget {
                                           },
                                           id: _getController.productModel.value.data!.result![index].sId,
                                           deck: _getController.productModel.value.data!.result![index].name,
-                                          count: _getController.productModel.value.data!.result![index].count
+                                          count: _getController.productModel.value.data!.result![index].count,
+                                          sale: _getController.productModel.value.data!.result![index].sale ?? 0,
                                       );
                                     })),
                             if (_getController.menuModel.value.data != null)
@@ -283,7 +284,8 @@ class HomePage extends StatelessWidget {
                                             },
                                             id: _getController.productModel.value.data!.result![index].sId,
                                             deck: _getController.productModel.value.data!.result![index].name,
-                                            count: _getController.productModel.value.data!.result![index].count
+                                            count: _getController.productModel.value.data!.result![index].count,
+                                             sale: _getController.productModel.value.data!.result![index].sale ?? 0,
                                         );
                                       })),
                             if (_getController.menuModel.value.data != null)
@@ -551,7 +553,8 @@ class HomePage extends StatelessWidget {
                                               },
                                             id: _getController.productModel.value.data!.result![index].sId,
                                             deck: _getController.productModel.value.data!.result![index].name,
-                                            count: _getController.productModel.value.data!.result![index].count
+                                            count: _getController.productModel.value.data!.result![index].count,
+                                            sale: _getController.productModel.value.data!.result![index].sale
                                         );
                                       })
                               )

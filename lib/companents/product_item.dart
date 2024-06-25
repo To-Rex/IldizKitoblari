@@ -16,9 +16,10 @@ class ProductItem extends StatefulWidget {
    String? price;
    String? imageUrl;
    int? count;
+   int? sale;
    Function function;
 
-  ProductItem({super.key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl, required this.count, required this.function});
+  ProductItem({super.key,required this.id, required this.title, required this.deck, required this.price, required this.imageUrl, required this.count, required this.sale, required this.function});
 
   @override
   State<ProductItem> createState() => _ProductItemState();
@@ -55,7 +56,18 @@ class _ProductItemState extends State<ProductItem> {
                       delayBefore: const Duration(milliseconds: 10000))
               ),
               SizedBox(height: 5.sp),
-              Expanded(child: Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w600))),
+              Row(
+                children: [
+                  if (widget.sale == 0)
+                    Expanded(child: Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold))),
+                  if (widget.sale != 0)
+                    Expanded(child: Text('${int.parse(widget.price.toString()) - int.parse(widget.price.toString()) * widget.sale! / 100} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold))),
+                  if (widget.sale != 0)
+                    Text('${widget.price} ${'so‘m'.tr}', style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.error, fontWeight: FontWeight.w600, decoration: TextDecoration.lineThrough)),
+                  if (widget.sale != 0)
+                  SizedBox(width: 10.sp),
+                ],
+              ),
               Row(
                   children: [
                     InkWell(
