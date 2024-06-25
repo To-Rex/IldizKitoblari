@@ -225,7 +225,8 @@ class DetailPage extends StatelessWidget {
                                           )
                                       )
                                     ),
-                                  InkWell(
+                                  if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
+                                    InkWell(
                                     onTap: () {
                                       Get.to(() => BookPage(
                                         url: _getController.productDetailList[pageIndex].data!.pdf!,
@@ -280,7 +281,6 @@ class DetailPage extends StatelessWidget {
                                           )
                                       )
                                   ),
-                                  if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
                                     Container(
                                         height: _getController.height.value * 0.08,
                                         width: _getController.width.value * 0.45,

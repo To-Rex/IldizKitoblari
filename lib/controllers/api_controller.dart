@@ -73,6 +73,8 @@ class ApiController extends GetxController {
   static const String _priceAddDistrict = '$_baseUrl/check/delivery/price';
   static const String _about = '$_baseUrl/menu/biz-haqimizda';
   static const String _contactUs = '$_baseUrl/contact';
+  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&type=sale
+  static const String _onlySale = '$_baseUrl/product/list?limit=12';
 
 
   //show toast message
@@ -915,6 +917,26 @@ class ApiController extends GetxController {
     debugPrint('getContactUs: ${response.statusCode}');
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getController.changeContactUsModel(ContactUsModel.fromJson(jsonDecode(response.body)));
+      _getController.offLoad();
+    } else {
+      _getController.offLoad();
+      showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
+    }
+  }
+
+  Future<void> getOnlySaleProducts() async {
+    _getController.onLoad();
+    _getController.clearProductModel();
+    var response = await get(Uri.parse(_onlySale),
+      headers: {
+        'Accept-Language': Get.locale!.languageCode,
+      },
+    );
+    debugPrint('getOnlySale: ${response.body}');
+    debugPrint('getOnlySale: ${response.statusCode}');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _getController.changeProductModel(ProductModel.fromJson(jsonDecode(response.body)));
+      _getController.changeProductModelLength(_getController.productModel.value.data!.result!.length);
       _getController.offLoad();
     } else {
       _getController.offLoad();

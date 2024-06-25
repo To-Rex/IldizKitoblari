@@ -12,6 +12,7 @@ import '../pages/onboarding_page.dart';
 import '../pages/profile/about_program.dart';
 import '../pages/profile/contact_us.dart';
 import '../pages/profile/edit_user.dart';
+import '../pages/profile/only_sale_product_page.dart';
 import '../pages/profile/orders_page.dart';
 
 class AccountPage extends StatelessWidget {
@@ -179,7 +180,9 @@ class AccountPage extends StatelessWidget {
                                   title: 'Chegirmalar'.tr,
                                   icon: 'assets/icon/ticket.svg',
                                   subTitle: '',
-                                  onTap: () {}
+                                  onTap: () {
+                                    Get.to(() => OnlySaleProductPage(), transition: Transition.rightToLeft);
+                                  }
                               ),
                               AccItem(
                                   title: 'Promokod'.tr,
@@ -216,7 +219,7 @@ class AccountPage extends StatelessWidget {
                                   subTitle: '',
                                   onTap: () {
                                     //AboutProgram
-                                    Get.to(() => AboutProgram());
+                                    Get.to(() => AboutProgram(), transition: Transition.rightToLeft);
                                   }
                               ),
                               AccItem(
@@ -224,7 +227,7 @@ class AccountPage extends StatelessWidget {
                                   icon: 'assets/icon/contact.svg',
                                   subTitle: '',
                                   onTap: () {
-                                    Get.to(() => ContactUs());
+                                    Get.to(() => ContactUs(), transition: Transition.rightToLeft);
                                   }
                               ),
                               AccItem(
