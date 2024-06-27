@@ -14,6 +14,7 @@ import 'package:ildiz/models/basket/get_price.dart';
 import 'package:ildiz/models/me_models.dart';
 import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
@@ -69,6 +70,8 @@ class GetController extends GetxController {
   List dropDownOrders = <int>[].obs;
   var paymentTypeIndex = 0.obs;
   var deliveryPrice = ''.obs;
+  //get kGooglePlex => null;
+
 
 
   void changeCheckBoxCardList(int i) {
@@ -560,6 +563,7 @@ class GetController extends GetxController {
   final RefreshController refreshLibController = RefreshController(initialRefresh: false);
   final SwiperController swiperController = SwiperController();
   late TabController tabController;
+  late final WebViewController controller;
 
   double calculateTotalHeight() {
     if (basketModel.value.data != null && basketModel.value.data!.result != null && basketModel.value.data!.result!.isNotEmpty) {

@@ -221,7 +221,7 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               SizedBox(
-                                  height: 370.h,
+                                  height: 375.h,
                                   width: _getController.width.value,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.04),
@@ -261,7 +261,7 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               SizedBox(
-                                  height: 370.h,
+                                  height: 375.h,
                                   width: _getController.width.value,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.04),
@@ -530,7 +530,7 @@ class HomePage extends StatelessWidget {
                               }),
                             if (_getController.productModel.value.data != null && _getController.productModel.value.data!.result!.isNotEmpty)
                               SizedBox(
-                                  height: 370.h,
+                                  height: 375.h,
                                   width: _getController.width.value,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(left: _getController.width.value * 0.04),
