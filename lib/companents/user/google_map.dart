@@ -26,17 +26,16 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
       markers: {
         const Marker(
           markerId: MarkerId('picked-location'),
-          position: _initialPosition,
-        ),
+          position: _initialPosition
+        )
       },
       onTap: (LatLng position) {
         setState(() {
           _mapController.animateCamera(
-            CameraUpdate.newLatLng(position),
+            CameraUpdate.newLatLng(position)
           );
         });
-      },
-    ),
+      }
+    )
   );
-
 }
