@@ -22,6 +22,8 @@
 	<string>APPL</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>We need your location to show it on the map.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need access to your location even when the app is in the background for XYZ purpose.</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
