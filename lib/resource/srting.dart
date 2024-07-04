@@ -56,6 +56,9 @@ class LocaleString extends Translations{
       'Davlatni tanlang!' : 'Выберите страну!',
       'Viloyatni tanlang!':'Выберите регион!',
       'Manzilni kiriting!':'Введите адрес!',
+      'Ma’lumotlarni yangilash uchun tashlang':'Перетащите, чтобы обновить данные',
+      'Ex nimadir xato ketdi':'Экс что-то пошло не так',
+      'Ma’lumotlar yangilandi':'Информация обновлена',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -199,6 +202,9 @@ class LocaleString extends Translations{
       'Davlatni tanlang!': 'Davlatni tanlang!',
       'Viloyatni tanlang!':'Viloyatni tanlang!',
       'Manzilni kiriting!':'Manzilni kiriting!',
+      'Ma’lumotlarni yangilash uchun tashlang':'Ma’lumotlarni yangilash uchun tashlang',
+      'Ex nimadir xato ketdi':'Ex nimadir xato ketdi',
+      'Ma’lumotlar yangilandi':'Ma’lumotlar yangilandi',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
@@ -341,6 +347,9 @@ class LocaleString extends Translations{
       'Davlatni tanlang!':'Давлатни танланг!',
       'Viloyatni tanlang!':'Вилоятни танланг!',
       'Manzilni kiriting!':'Манзилни киритинг!',
+      'Ma’lumotlarni yangilash uchun tashlang':'Маълумотларни янгилаш учун ташланг',
+      'Ex nimadir xato ketdi':'Ex нимадир хато кетди',
+      'Ma’lumotlar yangilandi':'Маълумотлар янгиланди',
 
       //Sample page
       'Kitoblarni izlash':'Китобларни излаш',
