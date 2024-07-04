@@ -54,7 +54,7 @@ class _ProductItemState extends State<SkeletonItem> {
                 SizedBox(height: 5.h),
                 Container(
                     margin: EdgeInsets.only(top: Get.height * 0.01, left:  Get.width * 0.01, right:  Get.width * 0.01),
-                    height: 35.sp,
+                    height: 30.sp,
                     width: Get.width,
                     child: ElevatedButton(
                         onPressed: () {},
@@ -72,7 +72,7 @@ class _ProductItemState extends State<SkeletonItem> {
                 ),
                 Container(
                     margin: EdgeInsets.only(top: Get.height * 0.01, left:  Get.width * 0.01, right:  Get.width * 0.01,bottom: Get.height * 0.01),
-                    height: 35.sp,
+                    height: 30.sp,
                     width: Get.width,
                     child: ElevatedButton(
                         onPressed: () {},
