@@ -55,7 +55,10 @@ class ShopPage extends StatelessWidget {
                   if (mode == RefreshStatus.idle) {
                     body = const Text("Ma`lumotlarni yangilash uchun tashlang");
                   } else if (mode == RefreshStatus.refreshing) {
-                    body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                    body = Container(
+                      margin: EdgeInsets.only(top: 20.sp),
+                      child: const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2),
+                    );
                   } else if (mode == RefreshStatus.failed) {
                     body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
                   } else if (mode == RefreshStatus.canRefresh) {
