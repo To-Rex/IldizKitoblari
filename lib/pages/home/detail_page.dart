@@ -32,174 +32,188 @@ class DetailPage extends StatelessWidget {
     _getController.fullIndex.value = 0;
     return Scaffold(
         body: SmartRefresher(
-          enablePullDown: true,
-          enablePullUp: true,
-          header: const ClassicHeader(),
-          footer: CustomFooter(
-            builder: (BuildContext context, LoadStatus? mode) {
-              Widget body;
-              if (mode == LoadStatus.idle) {
-                body = const SizedBox();
-              } else if (mode == LoadStatus.loading) {
-                body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
-              } else if (mode == LoadStatus.failed) {
-                body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-              } else if (mode == LoadStatus.canLoading) {
-                body = const SizedBox();
-              } else {
-                body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.black));
-              }
-              return SizedBox(
-                height: _getController.height.value * 0.1,
-                child: Center(child: body),
-              );
-            },
-          ),
-          onLoading: () async {
-            _refreshController.loadComplete();
-          },
-          onRefresh: () async {
-            _getController.fullIndex.value = 0;
-            _getController.productDetailList.clear();
-            _getController.productRateList.clear();
-            ApiController().getProductDetail(slug).then((value) => _refreshController.refreshCompleted());
-          },
-          controller: _refreshController,
-          child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Obx(() => _getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex
-                  ? Column(
-                  children: [
-                    AppBar(
-                      surfaceTintColor: Colors.transparent,
-                      leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {Navigator.pop(context);}),
-                      actions: [
-                        IconButton(icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {}),
-                        IconButton(icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {})],
-                    ),
-                    if (_getController.productDetailList[pageIndex].data?.images != null)
-                      Container(
-                          height: _getController.height.value * 0.427,
-                          width: _getController.width.value,
-                          margin: EdgeInsets.only(top: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                          child: Swiper(
-                              onIndexChanged: (index) {_getController.fullIndex.value = index;},
-                              onTap: (index) {
-                                Get.to(() => Container(
-                                    color: Theme.of(context).colorScheme.surface,
-                                    width: _getController.width.value,
-                                    height: _getController.height.value,
-                                    child: PhotoViewGallery(
-                                      pageOptions: List.generate(_getController.productDetailList[pageIndex].data!.images!.isEmpty ? 1 : _getController.productDetailList[pageIndex].data!.images!.length, (index) {
-                                        return PhotoViewGalleryPageOptions(
-                                          imageProvider: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''),
-                                          initialScale: PhotoViewComputedScale.contained,
-                                          heroAttributes: PhotoViewHeroAttributes(tag: index),
-                                        );
-                                      }),
-                                      backgroundDecoration: const BoxDecoration(color: Colors.transparent),
-                                      pageController: PageController(initialPage: _getController.fullIndex.value),
-                                    )
-                                ));
-                              },
-                              controller: _getController.swiperController,
-                              itemCount: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? 1 : _getController.productDetailList[pageIndex].data!.images!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                        image: DecorationImage(image: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''), fit: BoxFit.cover)
-                                    )
-                                );
-                              }
-                          )
+            enablePullDown: true,
+            enablePullUp: true,
+            header: CustomHeader(
+                builder: (BuildContext context, RefreshStatus? mode) {
+                  Widget body;
+                  if (mode == RefreshStatus.idle) {
+                    body = Text('Ma’lumotlarni yangilash uchun tashlang'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
+                  } else if (mode == RefreshStatus.refreshing) {
+                    body = Container(
+                      margin: EdgeInsets.only(top: 20.sp),
+                      child: const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2),
+                    );
+                  } else if (mode == RefreshStatus.failed) {
+                    body = Text('Ex nimadir xato ketdi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.error));
+                  } else if (mode == RefreshStatus.canRefresh) {
+                    body = Text('Ma’lumotlarni yangilash uchun tashlang'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
+                  } else {
+                    body = Text('Ma’lumotlar yangilandi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
+                  }
+                  return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
+                }
+            ),
+            footer: CustomFooter(
+                builder: (BuildContext context, LoadStatus? mode) {
+                  Widget body;
+                  if (mode == LoadStatus.idle) {
+                    body = const SizedBox();
+                  } else if (mode == LoadStatus.loading) {
+                    body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
+                  } else if (mode == LoadStatus.failed) {
+                    body = Text('Ex nimadir xato ketdi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.error));
+                  } else if (mode == LoadStatus.canLoading) {
+                    body = const SizedBox();
+                  } else {
+                    body = Text('Ma’lumotlar yangilandi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
+                  }
+                  return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
+                }
+            ),
+            onLoading: () async {
+              _refreshController.loadComplete();
+              },
+            onRefresh: () async {
+              _getController.fullIndex.value = 0;
+              _getController.productDetailList.clear();
+              _getController.productRateList.clear();
+              ApiController().getProductDetail(slug).then((value) => _refreshController.refreshCompleted());
+              },
+            controller: _refreshController,
+            child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Obx(() => _getController.productDetailList.length > pageIndex && _getController.productRateList.length > pageIndex
+                    ? Column(
+                    children: [
+                      AppBar(
+                        surfaceTintColor: Colors.transparent,
+                        leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {Navigator.pop(context);}),
+                        actions: [
+                          IconButton(icon: Icon(TablerIcons.share, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {}),
+                          IconButton(icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onSurface, size: _getController.width.value * 0.065), onPressed: () {})],
                       ),
-                    Container(
-                        height: _getController.height.value * 0.061,
-                        width: _getController.width.value,
-                        margin: EdgeInsets.only(top: _getController.height.value * 0.007),
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: _getController.productDetailList[pageIndex].data?.images!.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
-                                  onTap: () {
-                                    _getController.fullIndex.value = index;
-                                    _getController.swiperController.move(index);
+                      if (_getController.productDetailList[pageIndex].data?.images != null)
+                        Container(
+                            height: _getController.height.value * 0.427,
+                            width: _getController.width.value,
+                            margin: EdgeInsets.only(top: _getController.height.value * 0.01, left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                            child: Swiper(
+                                onIndexChanged: (index) {_getController.fullIndex.value = index;},
+                                onTap: (index) {
+                                  Get.to(() => Container(
+                                      color: Theme.of(context).colorScheme.surface,
+                                      width: _getController.width.value,
+                                      height: _getController.height.value,
+                                      child: PhotoViewGallery(
+                                        pageOptions: List.generate(_getController.productDetailList[pageIndex].data!.images!.isEmpty ? 1 : _getController.productDetailList[pageIndex].data!.images!.length, (index) {
+                                          return PhotoViewGalleryPageOptions(
+                                            imageProvider: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''),
+                                            initialScale: PhotoViewComputedScale.contained,
+                                            heroAttributes: PhotoViewHeroAttributes(tag: index),
+                                          );
+                                        }),
+                                        backgroundDecoration: const BoxDecoration(color: Colors.transparent),
+                                        pageController: PageController(initialPage: _getController.fullIndex.value),
+                                      )
+                                  ));
                                   },
-                                  child: Obx(() => Container(
-                                      margin: EdgeInsets.only(left: _getController.width.value * 0.03),
-                                      width: _getController.width.value * 0.14,
-                                      height: _getController.height.value * 0.06,
+                                controller: _getController.swiperController,
+                                itemCount: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? 1 : _getController.productDetailList[pageIndex].data!.images!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
                                       decoration: BoxDecoration(
                                           borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                          border: _getController.fullIndex.value == index ? Border.all(color: AppColors.primaryColor3, width: 1) : null,
-                                          image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover)
+                                          image: DecorationImage(image: _getController.productDetailList[pageIndex].data!.images!.isEmpty ? const NetworkImage('https://auctionresource.azureedge.net/blob/images/auction-images%2F2023-08-10%2Facf6f333-1745-4756-89b9-4e0f7974b166.jpg?preset=740x740') : NetworkImage(_getController.productDetailList[pageIndex].data!.images![index].file ?? ''), fit: BoxFit.cover)
                                       )
-                                  ))
-                              );
-                            }
-                        )
-                    ),
-                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.015, bottom: _getController.height.value * 0.03),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.06, fontWeight: FontWeight.bold)),
-                              SizedBox(height: _getController.height.value * 0.013),
-                              if (_getController.productDetailList[pageIndex].data != null)
-                                Row(
-                                    children: [
-                                      if (_getController.productRateList.length > pageIndex)
-                                        DetailElement(title: _getController.productRateList[pageIndex].data!.result!.average == null
-                                            ? '0.0'
-                                            : _getController.productRateList[pageIndex].data!.result!.average.toString().length > 3
-                                            ? _getController.productRateList[pageIndex].data!.result!.average.toString().substring(0, 3)
-                                            : _getController.productRateList[pageIndex].data!.result!.average.toString(),
-                                            subTitle: '', icon: Icons.star),
-                                      if (_getController.productRateList.length > pageIndex)
-                                        DetailElement(title: _getController.productRateList[pageIndex].data!.result!.total.toString(), subTitle: 'ta izoh'.tr, icon: TablerIcons.message_circle),
-                                      DetailElement(title: _getController.productDetailList[pageIndex].data?.views.toString() ?? '', subTitle: 'ta ko‘rilgan'.tr, icon: TablerIcons.eye)
-                                    ]
+                                  );
+                                })
+                        ),
+                      Container(
+                          height: _getController.height.value * 0.061,
+                          width: _getController.width.value,
+                          margin: EdgeInsets.only(top: _getController.height.value * 0.007),
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _getController.productDetailList[pageIndex].data?.images!.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                    overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                    onTap: () {
+                                      _getController.fullIndex.value = index;
+                                      _getController.swiperController.move(index);
+                                      },
+                                    child: Obx(() => Container(
+                                        margin: EdgeInsets.only(left: _getController.width.value * 0.03),
+                                        width: _getController.width.value * 0.14,
+                                        height: _getController.height.value * 0.06,
+                                        decoration: BoxDecoration(
+                                            borderRadius: const BorderRadius.all(Radius.circular(4)),
+                                            border: _getController.fullIndex.value == index ? Border.all(color: AppColors.primaryColor3, width: 1) : null,
+                                            image: DecorationImage(image: NetworkImage(_getController.productDetailList[pageIndex].data?.images![index].file ?? ''), fit: BoxFit.cover)
+                                        )
+                                    ))
+                                );
+                              })
+                      ),
+                      Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, top: _getController.height.value * 0.015, bottom: _getController.height.value * 0.03),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.06, fontWeight: FontWeight.bold)),
+                                SizedBox(height: _getController.height.value * 0.013),
+                                if (_getController.productDetailList[pageIndex].data != null)
+                                  Row(
+                                      children: [
+                                        if (_getController.productRateList.length > pageIndex)
+                                          DetailElement(title: _getController.productRateList[pageIndex].data!.result!.average == null
+                                              ? '0.0'
+                                              : _getController.productRateList[pageIndex].data!.result!.average.toString().length > 3
+                                              ? _getController.productRateList[pageIndex].data!.result!.average.toString().substring(0, 3)
+                                              : _getController.productRateList[pageIndex].data!.result!.average.toString(),
+                                              subTitle: '', icon: Icons.star),
+                                        if (_getController.productRateList.length > pageIndex)
+                                          DetailElement(title: _getController.productRateList[pageIndex].data!.result!.total.toString(), subTitle: 'ta izoh'.tr, icon: TablerIcons.message_circle),
+                                        DetailElement(title: _getController.productDetailList[pageIndex].data?.views.toString() ?? '', subTitle: 'ta ko‘rilgan'.tr, icon: TablerIcons.eye)
+                                      ]
+                                  ),
+                                InkWell(
+                                    onTap: () {_getController.paymentTypeIndex.value = 0;},
+                                    child: Container(
+                                      height: _getController.height.value * 0.08,
+                                      width: _getController.width.value,
+                                      margin: EdgeInsets.only(top: _getController.height.value * 0.025, bottom: _getController.height.value * 0.013),
+                                      padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                      decoration: BoxDecoration(
+                                          color: _getController.paymentTypeIndex.value == 0 ?AppColors.primaryColor3.withOpacity(0.15): AppColors.grey.withOpacity(0.2),
+                                          border: Border.all(color: _getController.paymentTypeIndex.value == 0 ? AppColors.primaryColor3 : AppColors.grey, width: 1),
+                                          borderRadius: const BorderRadius.all(Radius.circular(8))
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Expanded(child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text('Qog‘ozli kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onSurface)),
+                                                Text('${_getController.productDetailList[pageIndex].data?.price} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
+                                              ]
+                                          )),
+                                          Icon(TablerIcons.book_2, color: AppColors.primaryColor3, size: _getController.width.value * 0.1),
+                                        ]
+                                      )
+                                    )
                                 ),
-                              InkWell(
-                                onTap: () {_getController.paymentTypeIndex.value = 0;},
-                                child: Container(
-                                  height: _getController.height.value * 0.08,
-                                  width: _getController.width.value,
-                                  margin: EdgeInsets.only(top: _getController.height.value * 0.025, bottom: _getController.height.value * 0.013),
-                                  padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                  decoration: BoxDecoration(
-                                      color: _getController.paymentTypeIndex.value == 0 ?AppColors.primaryColor3.withOpacity(0.15): AppColors.grey.withOpacity(0.2),
-                                      border: Border.all(color: _getController.paymentTypeIndex.value == 0 ? AppColors.primaryColor3 : AppColors.grey, width: 1),
-                                      borderRadius: const BorderRadius.all(Radius.circular(8))
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Expanded(child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text('Qog‘ozli kitob'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onSurface)),
-                                            Text('${_getController.productDetailList[pageIndex].data?.price} ${'so‘m'.tr}', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))
-                                          ]
-                                      )),
-                                      Icon(TablerIcons.book_2, color: AppColors.primaryColor3, size: _getController.width.value * 0.1),
-                                    ],
-                                  ),
-                                )
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
-                                    InkWell(
-                                      onTap: () {
+                                      if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
+                                        InkWell(
+                                            onTap: () {
                                         _getController.paymentTypeIndex.value = 1;
                                       },
-                                      child: Container(
+                                            child: Container(
                                           height: _getController.height.value * 0.08,
                                           width: _getController.width.value * 0.45,
                                           padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
@@ -224,9 +238,9 @@ class DetailPage extends StatelessWidget {
                                               ]
                                           )
                                       )
-                                    ),
-                                  if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
-                                    InkWell(
+                                        ),
+                                      if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
+                                        InkWell(
                                     onTap: () {
                                       Get.to(() => BookPage(
                                         url: _getController.productDetailList[pageIndex].data!.pdf!,
@@ -247,13 +261,13 @@ class DetailPage extends StatelessWidget {
                                           ))
                                       )
                                   )
-                                ]
-                              ),
-                              SizedBox(height: 10.h),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InkWell(
+                                    ]
+                                ),
+                                SizedBox(height: 10.h),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
                                       onTap: () {
                                         _getController.paymentTypeIndex.value = 2;
                                       },
@@ -281,51 +295,50 @@ class DetailPage extends StatelessWidget {
                                           )
                                       )
                                   ),
-                                    Container(
-                                        height: _getController.height.value * 0.08,
-                                        width: _getController.width.value * 0.45,
-                                        padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
-                                        decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
-                                        child: Expanded(child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Text('Fragmentni Eshitish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
-                                            ]
-                                        ))
-                                    )
-                                ]
-                              )
-                            ]
-                        )
-                    ),
-                    DetailChildItem(title: 'Tafsilotlar'.tr, function: (){}, check: false),
-                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.005),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: _getController.height.value * 0.02),
-                              if (_getController.productDetailList[pageIndex].data?.options != null)
-                                for (int i = 0; i < _getController.productDetailList[pageIndex].data!.options!.length; i++)
-                                  Container(
-                                      width: _getController.width.value,
-                                      margin: EdgeInsets.only(bottom: _getController.height.value * 0.011),
-                                      child: Row(
-                                          children: [
-                                            LimitedBox(maxWidth: _getController.width.value * 0.25, child: Text(maxLines: 1, textAlign: TextAlign.start, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6)),),),
-                                            Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))),
-                                            LimitedBox(maxWidth: _getController.width.value * 0.7, child: Text(maxLines: 1, textAlign: TextAlign.end, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.uz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.ru ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.oz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),)
-                                          ]
+                                      Container(
+                                          height: _getController.height.value * 0.08,
+                                          width: _getController.width.value * 0.45,
+                                          padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03),
+                                          decoration: BoxDecoration(color: AppColors.grey.withOpacity(0.2), border: Border.all(color: AppColors.grey, width: 1), borderRadius: const BorderRadius.all(Radius.circular(8))),
+                                          child: Expanded(child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Text('Fragmentni Eshitish'.tr, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),
+                                              ]
+                                          ))
                                       )
-                                  ),
-                              SizedBox(height: _getController.height.value * 0.02),
-                            ]
-                        )
-                    ),
-                    if ('uz_UZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.oz != '')
-                      DetailChildItem(title: 'Tavsif'.tr, function: (){}, check: false),
-                    Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
-                        child: Column(
+                                    ]
+                                )
+                              ]
+                          )
+                      ),
+                      DetailChildItem(title: 'Tafsilotlar'.tr, function: (){}, check: false),
+                      Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.03, right: _getController.width.value * 0.03, bottom: _getController.height.value * 0.005),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: _getController.height.value * 0.02),
+                                if (_getController.productDetailList[pageIndex].data?.options != null)
+                                  for (int i = 0; i < _getController.productDetailList[pageIndex].data!.options!.length; i++)
+                                    Container(
+                                        width: _getController.width.value, margin: EdgeInsets.only(bottom: _getController.height.value * 0.011),
+                                        child: Row(
+                                            children: [
+                                              LimitedBox(maxWidth: _getController.width.value * 0.25, child: Text(maxLines: 1, textAlign: TextAlign.start, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.uz ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.ru ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].optionId?.name?.oz ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6)),),),
+                                              Expanded(child: Text('  ---------------------------------------------------------  ', maxLines: 1, style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)))),
+                                              LimitedBox(maxWidth: _getController.width.value * 0.7, child: Text(maxLines: 1, textAlign: TextAlign.end, 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.uz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'ru_RU' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.ru ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data?.options![i].valueId?.name?.oz ?? _getController.productDetailList[pageIndex].data?.options![i].value ?? '' : '', style: TextStyle(fontSize: _getController.width.value * 0.04, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface)),)
+                                            ]
+                                        )
+                                    ),
+                                SizedBox(height: _getController.height.value * 0.02),
+                              ]
+                          )
+                      ),
+                      if ('uz_UZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.oz != '')
+                        DetailChildItem(title: 'Tavsif'.tr, function: (){}, check: false),
+                      Padding(padding: EdgeInsets.only(left: _getController.width.value * 0.02, right: _getController.width.value * 0.02),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if ('uz_UZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.uz != '' || 'ru_RU' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.ru != '' || 'oz_OZ' == Get.locale.toString() && _getController.productDetailList[pageIndex].data?.content?.oz != '')
@@ -335,7 +348,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     DetailChildItem(title: 'Tavsiya etiladi'.tr, function: (){}, check: false),
                     Container(
-                      height: 370.h,
+                      height: 375.h,
                       width: _getController.width.value,
                       margin: EdgeInsets.only(top: _getController.height.value * 0.02),
                       child: ListView.builder(

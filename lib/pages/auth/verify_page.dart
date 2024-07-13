@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -6,14 +5,13 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/auth/login_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import '../../companents/appbar_sheets.dart';
-import '../../companents/text_fild_auth.dart';
 import '../../companents/text_fild_auth_phone.dart';
 import '../../companents/text_fild_hints.dart';
 import '../../controllers/get_controller.dart';
 
 class VerifyPage extends StatelessWidget {
 
-  VerifyPage({Key? key}) : super(key: key);
+  VerifyPage({super.key});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -54,7 +52,7 @@ class VerifyPage extends StatelessWidget {
             child:  Container(
                 width: _getController.width.value,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16),
@@ -137,12 +135,12 @@ class VerifyPage extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: _getController.width.value * 0.04,
                                 fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                              )
+                            )
+                          )
                         ),
-                        const Spacer(),
-                      ],
+                        const Spacer()
+                      ]
                     ),
                     SizedBox(height: _getController.height.value * 0.02),
                     if (_getController.countdownDuration.value.inSeconds == 0)

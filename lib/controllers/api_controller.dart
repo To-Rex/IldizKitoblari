@@ -73,7 +73,6 @@ class ApiController extends GetxController {
   static const String _priceAddDistrict = '$_baseUrl/check/delivery/price';
   static const String _about = '$_baseUrl/menu/biz-haqimizda';
   static const String _contactUs = '$_baseUrl/contact';
-  //https://ildizkitoblari.uz/api/v1/product/list?limit=12&page=1&type=sale
   static const String _onlySale = '$_baseUrl/product/list';
 
 
@@ -82,7 +81,7 @@ class ApiController extends GetxController {
     Get.snackbar(
       title.tr,
       message.tr,
-      backgroundColor: error ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onBackground,
+      backgroundColor: error ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onSurface,
       colorText: error ? Theme.of(context).colorScheme.onError : Theme.of(context).colorScheme.surface,
       snackPosition: SnackPosition.BOTTOM,
       margin: EdgeInsets.only(
@@ -156,6 +155,7 @@ class ApiController extends GetxController {
       'phone': _getController.phoneController.text.toString(),
       'type': type.toString(),
     });
+    debugPrint(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       debugPrint('check: ${_getController.phoneController.text}');
       if (jsonDecode(response.body)['status'] == true) {
@@ -376,7 +376,6 @@ class ApiController extends GetxController {
 
   Future<void> getMenuDetail(slug) async {
     debugPrint('=======================================================================================================================)');
-    debugPrint('${_menuDetail}$slug');
     var response = await get(Uri.parse('$_menuDetail$slug'),
       headers: {
         'Accept-Language': Get.locale!.languageCode,

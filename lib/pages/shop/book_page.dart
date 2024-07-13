@@ -48,7 +48,7 @@ class BookPage extends StatefulWidget {
   final String url;
   final String title;
 
-  BookPage({super.key, required this.url, required this.title});
+  const BookPage({super.key, required this.url, required this.title});
 
   @override
   _BookPageState createState() => _BookPageState();
@@ -84,8 +84,17 @@ class _BookPageState extends State<BookPage> {
         title: Text("Book Page"),
       ),
       body: _filePath != null
-          ? PDFView(filePath: _filePath!)
-          : const Center(
+          ? PDFView(filePath: _filePath!
+          ,nightMode: true,
+          fitEachPage: true,
+        swipeHorizontal: true,
+        pageSnap: true,
+        pageFling: true,
+        autoSpacing: true,
+        onRender: (pages) {},
+        onError: (error) {},
+        onPageError: (page, error) {},
+      ) : const Center(
         child: CircularProgressIndicator(),
       ),
     );
