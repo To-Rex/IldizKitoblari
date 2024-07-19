@@ -122,30 +122,35 @@ class ApiController extends GetxController {
   //auth
   //------------------------------------------------------------------------------------------------
   Future<void> login() async {
-    var response = await post(Uri.parse(_login), body: {
-      'phone': _getController.phoneController.text.toString(),
-      'password': _getController.passwordController.text.toString(),
-      'remember': 'false',
-    });
-    if (response.statusCode == 200) {
-      if (jsonDecode(response.body)['status'] == true) {
-        _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
-        _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
-        debugPrint('token: ${_getController.loginModel.value.data!.token}');
-        GetStorage().write('token', _getController.loginModel.value.data!.token);
-        if (GetStorage().read('token') != null) {
-          _getController.phoneController.clear();
-          _getController.passwordController.clear();
-          Get.offAll(SamplePage());
+    try{
+      var response = await post(Uri.parse(_login), body: {
+        'phone': _getController.phoneController.text.toString(),
+        'password': _getController.passwordController.text.toString(),
+        'remember': 'false',
+      });
+      if (response.statusCode == 200) {
+        if (jsonDecode(response.body)['status'] == true) {
+          _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
+          _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
+          debugPrint('token: ${_getController.loginModel.value.data!.token}');
+          GetStorage().write('token', _getController.loginModel.value.data!.token);
+          if (GetStorage().read('token') != null) {
+            _getController.phoneController.clear();
+            _getController.passwordController.clear();
+            Get.offAll(SamplePage());
+          }
+        } else {
+          if (jsonDecode(response.body)['data']['message'] == 'User not found!') {
+            showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud emas!', true, 3);
+          }else{
+            showToast(Get.context, 'Xatolik', 'Noto\'g\'ri parol kiritdingiz!', true, 3);
+          }
         }
       } else {
-        if (jsonDecode(response.body)['data']['message'] == 'User not found!') {
-          showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud emas!', true, 3);
-        }else{
-          showToast(Get.context, 'Xatolik', 'Noto\'g\'ri parol kiritdingiz!', true, 3);
-        }
+        showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
       }
-    } else {
+    } catch(e){
+      debugPrint('loginda xato');
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }

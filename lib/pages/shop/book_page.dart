@@ -1,43 +1,4 @@
-/*import 'package:flutter/material.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
-import 'package:get/get.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import '../../controllers/get_controller.dart';
-
-class BookPage extends StatelessWidget {
-  final String url;
-  final String title;
-  BookPage({super.key, required this.url, required this.title});
-
-  final GetController _getController = Get.put(GetController());
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        centerTitle: false,
-        toolbarTextStyle: TextStyle(fontSize: _getController.width.value * 0.048, fontWeight: FontWeight.w600),
-        surfaceTintColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06),
-          onPressed: () {Get.back();}
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(TablerIcons.bookmark, color: Theme.of(context).colorScheme.onBackground, size: _getController.width.value * 0.06),
-            onPressed: () {},
-          ),
-        ],
-      ),
-        body: SfPdfViewer.network(
-          url, key: UniqueKey(),initialZoomLevel: 0.5,enableTextSelection: false,
-    ),
-    );
-  }
-}*/
-
-
+/*
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -85,8 +46,8 @@ class _BookPageState extends State<BookPage> {
       ),
       body: _filePath != null
           ? PDFView(filePath: _filePath!
-          ,nightMode: true,
-          fitEachPage: true,
+        ,nightMode: true,
+        fitEachPage: true,
         swipeHorizontal: true,
         pageSnap: true,
         pageFling: true,
@@ -95,6 +56,275 @@ class _BookPageState extends State<BookPage> {
         onError: (error) {},
         onPageError: (page, error) {},
       ) : const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+}*/
+
+/*
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:flip_widget/flip_widget.dart';
+import 'dart:math' as math;
+
+class BookPage extends StatefulWidget {
+  final String url;
+  final String title;
+
+  const BookPage({super.key, required this.url, required this.title});
+
+  @override
+  _BookPageState createState() => _BookPageState();
+}
+
+class _BookPageState extends State<BookPage> {
+  String? _filePath;
+  GlobalKey<FlipWidgetState> _flipKey = GlobalKey();
+  late PDFViewController _pdfViewController;
+  int _currentPage = 0;
+  int? _totalPages;
+
+  @override
+  void initState() {
+    super.initState();
+    _downloadPDF();
+  }
+
+  Future<void> _downloadPDF() async {
+    try {
+      var response = await http.get(Uri.parse(widget.url));
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/book.pdf");
+      _filePath = file.path;
+      file = await file.writeAsBytes(response.bodyBytes);
+      setState(() {});
+    } catch (e) {
+      print("Error downloading PDF: $e");
+    }
+  }
+
+  void _goToNextPage() {
+    if (_pdfViewController != null && _currentPage < (_totalPages ?? 0) - 1) {
+      _pdfViewController.setPage(_currentPage + 1);
+    }
+  }
+
+  void _goToPreviousPage() {
+    if (_pdfViewController != null && _currentPage > 0) {
+      _pdfViewController.setPage(_currentPage - 1);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: _filePath != null
+          ? GestureDetector(
+        onHorizontalDragStart: (details) {
+          _flipKey.currentState?.startFlip();
+        },
+        onHorizontalDragUpdate: (details) {
+          Offset off = details.delta;
+          double tilt = 1 / _clampMin((-off.dy + 20) / 100);
+          double percent = math.max(0, -details.delta.dx / size.width * 1.4);
+          percent = percent - percent / 2 * (1 - 1 / tilt);
+          _flipKey.currentState?.flip(percent, tilt);
+        },
+        onHorizontalDragEnd: (details) {
+          _flipKey.currentState?.stopFlip();
+          if (details.primaryVelocity != null && details.primaryVelocity! < 0) {
+            _goToNextPage();
+          } else if (details.primaryVelocity != null && details.primaryVelocity! > 0) {
+            _goToPreviousPage();
+          }
+        },
+        onHorizontalDragCancel: () {
+          _flipKey.currentState?.stopFlip();
+        },
+        child: FlipWidget(
+          key: _flipKey,
+          textureSize: size * 2,
+          child: PDFView(
+            filePath: _filePath!,
+            enableSwipe: false,
+            swipeHorizontal: false,
+            autoSpacing: true,
+            pageFling: true,
+            onRender: (pages) {
+              setState(() {
+                _totalPages = pages;
+              });
+            },
+            onViewCreated: (PDFViewController vc) {
+              _pdfViewController = vc;
+            },
+
+            onError: (error) {
+              print(error.toString());
+            },
+            onPageError: (page, error) {
+              print('$page: ${error.toString()}');
+            },
+          ),
+        ),
+      )
+          : const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
+  double _clampMin(double v) {
+    const double _minNumber = 0.008;
+    if (v < _minNumber && v > -_minNumber) {
+      if (v >= 0) {
+        v = _minNumber;
+      } else {
+        v = -_minNumber;
+      }
+    }
+    return v;
+  }
+}
+*/
+
+
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:flip_widget/flip_widget.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:math' as math;
+
+class BookPage extends StatefulWidget {
+  final String url;
+  final String title;
+
+  const BookPage({super.key, required this.url, required this.title});
+
+  @override
+  _BookPageState createState() => _BookPageState();
+}
+
+const double _MinNumber = 0.008;
+double _clampMin(double v) {
+  if (v < _MinNumber && v > -_MinNumber) {
+    if (v >= 0) {
+      v = _MinNumber;
+    } else {
+      v = -_MinNumber;
+    }
+  }
+  return v;
+}
+
+class _BookPageState extends State<BookPage> {
+  String? _filePath;
+  PDFViewController? _pdfViewController;
+  int _currentPage = 0;
+  int? _totalPages;
+  GlobalKey<FlipWidgetState> _flipKey = GlobalKey();
+  Offset _oldPosition = Offset.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    _downloadPDF();
+  }
+
+  Future<void> _downloadPDF() async {
+    try {
+      var response = await http.get(Uri.parse(widget.url));
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/book.pdf");
+      _filePath = file.path;
+      file = await file.writeAsBytes(response.bodyBytes);
+      setState(() {});
+    } catch (e) {
+      print("Error downloading PDF: $e");
+    }
+  }
+
+  void _goToNextPage() {
+    if (_pdfViewController != null && _currentPage < (_totalPages ?? 0) - 1) {
+      _pdfViewController?.setPage(_currentPage + 1);
+    }
+  }
+
+  void _goToPreviousPage() {
+    if (_pdfViewController != null && _currentPage > 0) {
+      _pdfViewController?.setPage(_currentPage - 1);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: _filePath != null
+          ? GestureDetector(
+        onHorizontalDragStart: (details) {
+          _oldPosition = details.globalPosition;
+          _flipKey.currentState?.startFlip();
+        },
+        onHorizontalDragUpdate: (details) {
+          Offset off = details.globalPosition - _oldPosition;
+          double tilt = 1 / _clampMin((-off.dy + 20) / 100);
+          double percent = math.max(0, -off.dx / size.width * 1.4);
+          percent = percent - percent / 2 * (1 - 1 / tilt);
+          _flipKey.currentState?.flip(percent, tilt);
+        },
+        onHorizontalDragEnd: (details) {
+          _flipKey.currentState?.stopFlip();
+          if (details.primaryVelocity != null && details.primaryVelocity! < 0) {
+            _goToNextPage();
+          } else if (details.primaryVelocity != null && details.primaryVelocity! > 0) {
+            _goToPreviousPage();
+          }
+        },
+        onHorizontalDragCancel: () {
+          _flipKey.currentState?.stopFlip();
+        },
+        child: FlipWidget(
+          key: _flipKey,
+          textureSize: size * 2,
+          child: PDFView(
+            filePath: _filePath!,
+            enableSwipe: false,
+            swipeHorizontal: false,
+            autoSpacing: true,
+            pageFling: true,
+            onRender: (pages) {
+              setState(() {
+                _totalPages = pages;
+              });
+            },
+            onViewCreated: (PDFViewController vc) {
+              _pdfViewController = vc;
+            },
+
+            onError: (error) {
+              print(error.toString());
+            },
+            onPageError: (page, error) {
+              print('$page: ${error.toString()}');
+            },
+          ),
+        ),
+      )
+          : const Center(
         child: CircularProgressIndicator(),
       ),
     );
