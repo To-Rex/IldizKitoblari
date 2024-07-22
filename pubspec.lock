@@ -141,10 +141,10 @@ packages:
     dependency: transitive
     description:
       name: file
-      sha256: "5fc22d7c25582e38ad9a8515372cd9a93834027aacf1801cf01164dac0ffa08c"
+      sha256: "1b92bec4fc2a72f59a8e15af5f52cd441e4a7860b49499d69dfa817af20e925d"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.0"
+    version: "6.1.4"
   file_selector_linux:
     dependency: transitive
     description:
@@ -217,14 +217,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.2"
-  flip_widget:
+  flip_widget_flutter:
     dependency: "direct main"
     description:
-      name: flip_widget
-      sha256: "8c31077b9f9e2d44563305d910363ddd957904633d7c1abba28a82027aeb90fc"
+      name: flip_widget_flutter
+      sha256: "8d52f1959fe78412a12779bcca09f02e34cbd52a4563b1eb243a2a6d7727d63c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.11"
+    version: "1.0.4-pre"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -917,6 +917,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  turn_page_transition:
+    dependency: "direct main"
+    description:
+      name: turn_page_transition
+      sha256: "2d0a3c1aa592996d46fc15a0fd6203d9a53e016f3e598ea83034e56870615a7c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:

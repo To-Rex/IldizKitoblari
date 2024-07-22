@@ -33,7 +33,7 @@ class SearchFields extends StatelessWidget {
                     fillColor: Theme.of(context).colorScheme.surface,
                     hintText: 'Kitoblarni izlash'.tr,
                     hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), fontSize: 18.sp),
-                    prefixIcon: Padding(padding: EdgeInsets.all(12.sp), child: SvgPicture.asset('assets/icon/search.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface.withOpacity(0.6), BlendMode.srcIn))),
+                    prefixIcon: Container(padding: EdgeInsets.all(12.sp), child: SvgPicture.asset('assets/icon/search.svg', colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface.withOpacity(0.6), BlendMode.srcIn))),
                     suffixIcon: _getController.searchController.text.isNotEmpty ? IconButton(
                       onPressed: () {
                         _getController.searchController.clear();

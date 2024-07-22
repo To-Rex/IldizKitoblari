@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flip_widget_flutter/flip_widget_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
@@ -666,4 +668,32 @@ class GetController extends GetxController {
     return '';
   }
 
+
+  var filePath = ''.obs;
+  var currentPage = 0.obs;
+  var totalPages = 0.obs;
+  late PDFViewController pdfController;
+  var flipKey = GlobalKey<FlipWidgetState>().obs;
+
+  void goToNextPage() {
+    if (currentPage.value < totalPages.value - 1) {
+      currentPage.value++;
+      pdfController.setPage(currentPage.value);
+      //flipKey.value.startFlip();
+      Future.delayed(Duration(milliseconds: 300), () {
+       // flipKey.value.stopFlip();
+      });
+    }
+  }
+
+  void goToPreviousPage() {
+    if (currentPage.value > 0) {
+      currentPage.value--;
+      pdfController.setPage(currentPage.value);
+      //flipKey.value.startFlip();
+      Future.delayed(Duration(milliseconds: 300), () {
+       // flipKey.value.stopFlip();
+      });
+    }
+  }
 }
