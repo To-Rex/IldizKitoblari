@@ -679,10 +679,10 @@ class GetController extends GetxController {
     if (currentPage.value < totalPages.value - 1) {
       currentPage.value++;
       pdfController.setPage(currentPage.value);
-      //flipKey.value.startFlip();
-      Future.delayed(Duration(milliseconds: 300), () {
-       // flipKey.value.stopFlip();
-      });
+      flipKey.value.currentState!.stopFlip();
+      /*Future.delayed(Duration(milliseconds: 300), () {
+        flipKey.value.currentState!.stopFlip();
+      });*/
     }
   }
 
@@ -690,10 +690,10 @@ class GetController extends GetxController {
     if (currentPage.value > 0) {
       currentPage.value--;
       pdfController.setPage(currentPage.value);
-      //flipKey.value.startFlip();
-      Future.delayed(Duration(milliseconds: 300), () {
-       // flipKey.value.stopFlip();
-      });
+      flipKey.value.currentState!.stopFlip();
+      /*Future.delayed(Duration(milliseconds: 300), () {
+       flipKey.value.currentState!.stopFlip();
+      });*/
     }
   }
 }
