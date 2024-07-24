@@ -671,29 +671,40 @@ class GetController extends GetxController {
 
   var filePath = ''.obs;
   var currentPage = 0.obs;
+  var currentPageBack = 1.obs;
   var totalPages = 0.obs;
   late PDFViewController pdfController;
+  late PDFViewController pdfBackController;
   var flipKey = GlobalKey<FlipWidgetState>().obs;
+
+  void setBackController() {
+    currentPageBack.value = 1;
+    pdfBackController.setPage(currentPageBack.value);
+  }
 
   void goToNextPage() {
     if (currentPage.value < totalPages.value - 1) {
       currentPage.value++;
+      currentPageBack.value++;
       pdfController.setPage(currentPage.value);
-      flipKey.value.currentState!.stopFlip();
-      /*Future.delayed(Duration(milliseconds: 300), () {
+      pdfBackController.setPage(currentPageBack.value);
+      //flipKey.value.currentState!.stopFlip();
+      Future.delayed(const Duration(milliseconds: 600), () {
         flipKey.value.currentState!.stopFlip();
-      });*/
+      });
     }
   }
 
   void goToPreviousPage() {
     if (currentPage.value > 0) {
       currentPage.value--;
+      currentPageBack.value--;
       pdfController.setPage(currentPage.value);
-      flipKey.value.currentState!.stopFlip();
-      /*Future.delayed(Duration(milliseconds: 300), () {
-       flipKey.value.currentState!.stopFlip();
-      });*/
+      pdfBackController.setPage(currentPageBack.value);
+      //flipKey.value.currentState!.stopFlip();
+      Future.delayed(const Duration(milliseconds: 600), () {
+        flipKey.value.currentState!.stopFlip();
+      });
     }
   }
 }

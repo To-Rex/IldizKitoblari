@@ -38,22 +38,57 @@ class _BookPageState extends State<BookPage> {
   }
 
   Future<void> _downloadPDF() async {
+    _getController.currentPageBack.value = 1;
+    _getController.currentPage.value = 0;
+    _getController.totalPages.value = 0;
     try {
       var response = await http.get(Uri.parse(widget.url));
       var dir = await getApplicationDocumentsDirectory();
       File file = File("${dir.path}/book.pdf");
       _getController.filePath.value = file.path;
       await file.writeAsBytes(response.bodyBytes);
+      _getController.setBackController();
+      _renderPDF();
     } catch (e) {
       print("Error downloading PDF: $e");
+    }
+  }
+
+  Future<void> _renderPDF() async {
+    try {
+      if (_getController.filePath.value.isNotEmpty) {
+        final pdf = PDFView(
+          filePath: _getController.filePath.value,
+          enableSwipe: false,
+          swipeHorizontal: false,
+          autoSpacing: true,
+          pageFling: true,
+          onRender: (pages) {
+            _getController.totalPages.value = pages!;
+          },
+          onViewCreated: (PDFViewController vc) {
+            _getController.pdfController = vc;
+          },
+          onPageChanged: (page, total) {
+            _getController.currentPage.value = page!;
+          },
+          onError: (error) {
+            print(error.toString());
+          },
+          onPageError: (page, error) {
+            print('$page: ${error.toString()}');
+          },
+        );
+        pdf.onRender;
+      }
+    } catch (e) {
+      print("Error rendering PDF: $e");
     }
   }
 
   @override
   Widget build(BuildContext context) {
     _downloadPDF();
-    _getController.currentPage.value = 0;
-    _getController.totalPages.value = 0;
     return Scaffold(
       appBar: AppBar(
           title: Text(widget.title),
@@ -92,10 +127,10 @@ class _BookPageState extends State<BookPage> {
                       _getController.totalPages.value = pages!;
                     },
                     onViewCreated: (PDFViewController vc) {
-                      _getController.pdfController = vc;
+                      _getController.pdfBackController = vc;
                     },
                     onPageChanged: (page, total) {
-                      _getController.currentPage.value = page!;
+                      _getController.currentPageBack.value = page!;
                     },
                     onError: (error) {
                       print(error.toString());
