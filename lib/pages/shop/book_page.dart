@@ -24,14 +24,14 @@ class _BookPageState extends State<BookPage> {
 
   Offset _oldPosition = Offset.zero;
 
-  final double _MinNumber = 0.008;
+  final double minNumber = 0.008;
 
   double _clampMin(double v) {
-    if (v < _MinNumber && v > -_MinNumber) {
+    if (v < minNumber && v > -minNumber) {
       if (v >= 0) {
-        v = _MinNumber;
+        v = minNumber;
       } else {
-        v = -_MinNumber;
+        v = -minNumber;
       }
     }
     return v;
@@ -50,7 +50,7 @@ class _BookPageState extends State<BookPage> {
       _getController.setBackController();
       _renderPDF();
     } catch (e) {
-      print("Error downloading PDF: $e");
+      debugPrint("Error downloading PDF: $e");
     }
   }
 
@@ -73,16 +73,16 @@ class _BookPageState extends State<BookPage> {
             _getController.currentPage.value = page!;
           },
           onError: (error) {
-            print(error.toString());
+            debugPrint(error.toString());
           },
           onPageError: (page, error) {
-            print('$page: ${error.toString()}');
+            debugPrint('$page: ${error.toString()}');
           },
         );
         pdf.onRender;
       }
     } catch (e) {
-      print("Error rendering PDF: $e");
+      debugPrint("Error rendering PDF: $e");
     }
   }
 
@@ -94,14 +94,14 @@ class _BookPageState extends State<BookPage> {
           title: Text(widget.title),
           actions: [
             IconButton(
-              icon: Icon(Icons.arrow_back_ios),
+              icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
               onPressed: () {
                 _getController.goToPreviousPage();
               }
             ),
             Obx(() => Text('${_getController.currentPage.value + 1}/${_getController.totalPages.value}')),
             IconButton(
-              icon: Icon(Icons.arrow_forward_ios),
+              icon: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
               onPressed: () {
                 _getController.goToNextPage();
               },
@@ -112,10 +112,8 @@ class _BookPageState extends State<BookPage> {
         if (_getController.filePath.value.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         }
-
         return Stack(
           children: [
-            // PDFView widget for current page
             Positioned.fill(
                 child: PDFView(
                     filePath: _getController.filePath.value,
@@ -133,10 +131,10 @@ class _BookPageState extends State<BookPage> {
                       _getController.currentPageBack.value = page!;
                     },
                     onError: (error) {
-                      print(error.toString());
+                      debugPrint(error.toString());
                     },
                     onPageError: (page, error) {
-                      print('$page: ${error.toString()}');
+                      debugPrint('$page: ${error.toString()}');
                     }
                 )
             ),
@@ -168,8 +166,8 @@ class _BookPageState extends State<BookPage> {
                 child: FlipWidget(
                   key: _getController.flipKey.value,
                   textureSize: Size(
-                    _getController.width.value * 2,
-                    _getController.height.value * 2,
+                    _getController.width.value * 6,
+                    _getController.height.value * 6
                   ),
                   child: PDFView(
                     filePath: _getController.filePath.value,
@@ -187,18 +185,18 @@ class _BookPageState extends State<BookPage> {
                       _getController.currentPage.value = page!;
                     },
                     onError: (error) {
-                      print(error.toString());
+                      debugPrint(error.toString());
                     },
                     onPageError: (page, error) {
-                      print('$page: ${error.toString()}');
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ],
+                      debugPrint('$page: ${error.toString()}');
+                    }
+                  )
+                )
+              )
+            )
+          ]
         );
-      }),
+      })
     );
   }
 }
