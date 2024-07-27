@@ -698,5 +698,4 @@ class GetController extends GetxController {
       });
     }
   }
-
 }
