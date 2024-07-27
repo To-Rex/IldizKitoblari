@@ -109,9 +109,7 @@ class GetController extends GetxController {
     }
   }
 
-  void addFilterListSelect(value){
-    filtersListSelect.add(null);
-  }
+  void addFilterListSelect(value) => filtersListSelect.add(null);
 
   void changeFilterListSelect(int index,int value){
     if (filtersListSelect[index] == null) {
@@ -366,13 +364,9 @@ class GetController extends GetxController {
     }
   }
 
-  void addMenuOptionsModelListDetail(index, MenuOptionsModel menuOptionsModel) {
-    menuOptionsModelList[index].data!.result!.addAll(menuOptionsModel.data!.result!);
-  }
+  void addMenuOptionsModelListDetail(index, MenuOptionsModel menuOptionsModel) => menuOptionsModelList[index].data!.result!.addAll(menuOptionsModel.data!.result!);
 
-  void changeFiltersPage(int index) {
-    filtersPage[index] = filtersPage[index] + 1;
-  }
+  void changeFiltersPage(int index) => filtersPage[index] = filtersPage[index] + 1;
 
   void clearMenuOptionsModelList() {
     if (menuOptionsModelList.isNotEmpty) {
@@ -609,9 +603,7 @@ class GetController extends GetxController {
     }
   }
 
-  void addTextControllers() {
-    textControllers.add(TextEditingController());
-  }
+  void addTextControllers() => textControllers.add(TextEditingController());
 
   void clearControllers() {
     if (textControllers.isNotEmpty) {
@@ -621,7 +613,6 @@ class GetController extends GetxController {
 
   String getFilterTextFields() {
     String params = '';
-    print('${textControllers.length}');
     for (int index = 0; textControllers.length > index; index++) {
       if (textControllers[index].text != '') {
         params = '$params&value[]=${textControllers[index].text}';
@@ -707,4 +698,5 @@ class GetController extends GetxController {
       });
     }
   }
+
 }
