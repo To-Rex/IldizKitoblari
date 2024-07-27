@@ -667,6 +667,7 @@ class GetController extends GetxController {
   late PDFViewController pdfController;
   late PDFViewController pdfBackController;
   var flipKey = GlobalKey<FlipWidgetState>().obs;
+  var isFullScreen = false.obs;
 
   void setBackController() {
     currentPageBack.value = 1;
@@ -697,5 +698,9 @@ class GetController extends GetxController {
         flipKey.value.currentState!.stopFlip();
       });
     }
+  }
+
+  void toggleFullScreen() {
+    isFullScreen.value = !isFullScreen.value;
   }
 }
