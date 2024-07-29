@@ -49,6 +49,7 @@ class _BookPageState extends State<BookPage> {
       await file.writeAsBytes(response.bodyBytes);
       _getController.setBackController();
       _renderPDF();
+      _getController.setBackController();
     } catch (e) {
       debugPrint("Error downloading PDF: $e");
     }
@@ -89,114 +90,122 @@ class _BookPageState extends State<BookPage> {
   @override
   Widget build(BuildContext context) {
     _downloadPDF();
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(widget.title),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
-              onPressed: () {
-                _getController.goToPreviousPage();
-              }
-            ),
-            Obx(() => Text('${_getController.currentPage.value + 1}/${_getController.totalPages.value}')),
-            IconButton(
-              icon: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
-              onPressed: () {
-                _getController.goToNextPage();
-              },
-            )
-          ]
-      ),
-      body: Obx(() {
-        if (_getController.filePath.value.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        return Stack(
-          children: [
-            Positioned.fill(
-                child: PDFView(
-                    filePath: _getController.filePath.value,
-                    enableSwipe: false,
-                    swipeHorizontal: false,
-                    autoSpacing: true,
-                    pageFling: true,
-                    onRender: (pages) {
-                      _getController.totalPages.value = pages!;
-                    },
-                    onViewCreated: (PDFViewController vc) {
-                      _getController.pdfBackController = vc;
-                    },
-                    onPageChanged: (page, total) {
-                      _getController.currentPageBack.value = page!;
-                    },
-                    onError: (error) {
-                      debugPrint(error.toString());
-                    },
-                    onPageError: (page, error) {
-                      debugPrint('$page: ${error.toString()}');
-                    }
-                )
-            ),
-            // FlipWidget for page flipping animation
-            Positioned.fill(
-              child: GestureDetector(
-                onHorizontalDragStart: (details) {
-                  _oldPosition = details.globalPosition;
-                  _getController.flipKey.value.currentState?.startFlip();
-                },
-                onHorizontalDragUpdate: (details) {
-                  Offset off = details.globalPosition - _oldPosition;
-                  double tilt = 1 / _clampMin((-off.dy + 20) / 100);
-                  double percent = math.max(0, -off.dx / _getController.width.value * 1.4);
-                  percent = percent - percent / 2 * (1 - 1 / tilt);
-                  _getController.flipKey.value.currentState?.flip(percent, tilt);
-                },
-                onHorizontalDragEnd: (details) {
-                  _getController.flipKey.value.currentState?.stopFlip();
-                  if (details.primaryVelocity != null && details.primaryVelocity! < 0) {
-                    _getController.goToNextPage();
-                  } else if (details.primaryVelocity != null && details.primaryVelocity! > 0) {
+    return Obx(() => Scaffold(
+        appBar: _getController.isFullScreen.isTrue
+        ? AppBar(
+            title: Text(widget.title),
+            actions: [
+              IconButton(
+                  icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
+                  onPressed: () {
                     _getController.goToPreviousPage();
                   }
+              ),
+              //Obx(() => Text('${_getController.currentPage.value + 1}/${_getController.totalPages.value}')),
+              Text('${_getController.currentPage.value + 1}/${_getController.totalPages.value}'),
+              IconButton(
+                icon: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
+                onPressed: () {
+                  _getController.goToNextPage();
                 },
-                onHorizontalDragCancel: () {
-                  _getController.flipKey.value.currentState?.stopFlip();
+              ),
+              IconButton(
+                icon: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
+                onPressed: () {
+                  _getController.toggleFullScreen();
                 },
-                child: FlipWidget(
-                  key: _getController.flipKey.value,
-                  textureSize: Size(
-                    _getController.width.value * 6,
-                    _getController.height.value * 6
-                  ),
-                  child: PDFView(
-                    filePath: _getController.filePath.value,
-                    enableSwipe: false,
-                    swipeHorizontal: false,
-                    autoSpacing: true,
-                    pageFling: true,
-                    onRender: (pages) {
-                      _getController.totalPages.value = pages!;
-                    },
-                    onViewCreated: (PDFViewController vc) {
-                      _getController.pdfController = vc;
-                    },
-                    onPageChanged: (page, total) {
-                      _getController.currentPage.value = page!;
-                    },
-                    onError: (error) {
-                      debugPrint(error.toString());
-                    },
-                    onPageError: (page, error) {
-                      debugPrint('$page: ${error.toString()}');
-                    }
-                  )
-                )
+              ),
+
+            ]
+        )
+        : null,
+        body: _getController.filePath.value.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : Stack(
+        children: [
+          Positioned.fill(
+              child: PDFView(
+                  filePath: _getController.filePath.value,
+                  enableSwipe: false,
+                  swipeHorizontal: false,
+                  autoSpacing: true,
+                  pageFling: true,
+                  onRender: (pages) {
+                    _getController.totalPages.value = pages!;
+                  },
+                  onViewCreated: (PDFViewController vc) {
+                    _getController.pdfBackController = vc;
+                  },
+                  onPageChanged: (page, total) {
+                    _getController.currentPageBack.value = page!;
+                  },
+                  onError: (error) {
+                    debugPrint(error.toString());
+                  },
+                  onPageError: (page, error) {
+                    debugPrint('$page: ${error.toString()}');
+                  }
               )
-            )
-          ]
-        );
-      })
-    );
+          ),
+          // FlipWidget for page flipping animation
+          Positioned.fill(
+              child: GestureDetector(
+
+                  onHorizontalDragStart: (details) {
+                    _oldPosition = details.globalPosition;
+                    _getController.flipKey.value.currentState?.startFlip();
+                  },
+                  onHorizontalDragUpdate: (details) {
+                    Offset off = details.globalPosition - _oldPosition;
+                    double tilt = 1 / _clampMin((-off.dy + 20) / 100);
+                    double percent = math.max(0, -off.dx / _getController.width.value * 1.4);
+                    percent = percent - percent / 2 * (1 - 1 / tilt);
+                    _getController.flipKey.value.currentState?.flip(percent, tilt);
+                  },
+                  onHorizontalDragEnd: (details) {
+                    _getController.flipKey.value.currentState?.stopFlip();
+                    if (details.primaryVelocity != null && details.primaryVelocity! < 0) {
+                      _getController.goToNextPage();
+                    } else if (details.primaryVelocity != null && details.primaryVelocity! > 0) {
+                      _getController.goToPreviousPage();
+                    }
+                  },
+                  onHorizontalDragCancel: () {
+                    _getController.flipKey.value.currentState?.stopFlip();
+                  },
+                  child: FlipWidget(
+                      key: _getController.flipKey.value,
+                      textureSize: Size(
+                          _getController.width.value * 6,
+                          _getController.height.value * 6
+                      ),
+                      child: PDFView(
+                          filePath: _getController.filePath.value,
+                          enableSwipe: false,
+                          swipeHorizontal: false,
+                          autoSpacing: true,
+                          pageFling: true,
+                          onRender: (pages) {
+                            _getController.totalPages.value = pages!;
+                          },
+                          onViewCreated: (PDFViewController vc) {
+                            _getController.pdfController = vc;
+                          },
+                          onPageChanged: (page, total) {
+                            _getController.currentPage.value = page!;
+                          },
+                          onError: (error) {
+                            debugPrint(error.toString());
+                          },
+                          onPageError: (page, error) {
+                            debugPrint('$page: ${error.toString()}');
+                          }
+                      )
+                  )
+              )
+          )
+        ]
+    )
+    ));
   }
 }

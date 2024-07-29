@@ -299,11 +299,11 @@ class ContactUs extends StatelessWidget{
                               data: _getController.contactUsModel.value.data!.result!.address!.uz.toString()
                           ),
                           SizedBox(height: 10.h),
-                          SizedBox(
+                          /*SizedBox(
                             width: Get.width,
                             height: Get.height * 0.3,
                             child: GoogleMapPage(),
-                          ),
+                          ),*/
                         ]
                     )
                 )
