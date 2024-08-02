@@ -116,7 +116,7 @@ class LoginPage extends StatelessWidget {
                                 InkWell(onTap: () {Get.off(RegisterPage());}, child: const TextSmall(text: 'Ro‘yxatdan o‘tish', color: AppColors.primaryColor, fontWeight: FontWeight.bold))
                               ]
                             ),
-                            SizedBox(height: _getController.height.value * 0.075)
+                            SizedBox(height: _getController.height.value * 0.08)
                           ]
                         )
                     )
