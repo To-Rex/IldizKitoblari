@@ -46,17 +46,17 @@ class RegisterPage extends StatelessWidget {
                         child: Column(
                             children: [
                               AppBarSheets(title: 'Ro‘yxatdan o‘tish'.tr),
-                              TextFildHints(hintText: 'f.i.sh'.tr),
-                              TextFildsAuth(nameController: _getController.fullNameController, next: TextInputAction.next, inputType: TextInputType.name),
+                              TextFieldHints(hintText: 'f.i.sh'.tr),
+                              TextFieldsAuth(nameController: _getController.fullNameController, next: TextInputAction.next, inputType: TextInputType.name),
                               SizedBox(height: _getController.height.value * 0.02),
-                              TextFildHints(hintText: '${'Telefon raqam'.tr}:'),
+                              TextFieldHints(hintText: '${'Telefon raqam'.tr}:'),
                               TextFieldPhoneAuth(nameController: _getController.phoneController, next: TextInputAction.next),
                               SizedBox(height: _getController.height.value * 0.02),
-                              TextFildHints(hintText: '${'Parolni kiriting'.tr}:'),
-                              TextFildsAuth(nameController: _getController.passwordController, next: TextInputAction.next, inputType: TextInputType.visiblePassword),
+                              TextFieldHints(hintText: '${'Parolni kiriting'.tr}:'),
+                              TextFieldsAuth(nameController: _getController.passwordController, next: TextInputAction.next, inputType: TextInputType.visiblePassword),
                               SizedBox(height: _getController.height.value * 0.02),
-                              TextFildHints(hintText: '${'Parolni takrorlang'.tr}:'),
-                              TextFildsAuth(nameController: _getController.repeatPasswordController, next: TextInputAction.done, inputType: TextInputType.visiblePassword),
+                              TextFieldHints(hintText: '${'Parolni takrorlang'.tr}:'),
+                              TextFieldsAuth(nameController: _getController.repeatPasswordController, next: TextInputAction.done, inputType: TextInputType.visiblePassword),
                               SizedBox(height: _getController.height.value * 0.005),
                               Row(
                                   children: [
@@ -125,7 +125,8 @@ class RegisterPage extends StatelessWidget {
                               Row(
                                   children: [
                                     const Spacer(),
-                                    Text('Ro‘yxatdan o‘tganmisiz?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                    //Text('Ro‘yxatdan o‘tganmisiz?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: _getController.width.value * 0.04)),
+                                    Text('Ro‘yxatdan o‘tganmisiz?'.tr, style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: Theme.of(context).textTheme.labelMedium!.fontSize)),
                                     SizedBox(width: _getController.height.value * 0.01),
                                     InkWell(
                                         onTap: () {Get.off(LoginPage());},

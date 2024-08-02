@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_large.dart';
 import '../controllers/get_controller.dart';
 
 class AppBarSheets extends StatelessWidget {
-  var title;
-  AppBarSheets({Key? key, required this.title}) : super(key: key);
+  final String title;
+  AppBarSheets({super.key, required this.title});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -17,25 +18,13 @@ class AppBarSheets extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: Icon(TablerIcons.arrow_left,
-              color: Theme.of(context).colorScheme.onSurface,
-              size: _getController.width.value * 0.06,
-            ),
+            onTap: () {Get.back();},
+            child: Icon(TablerIcons.arrow_left, color: Theme.of(context).colorScheme.onSurface, size: Theme.of(context).iconTheme.fill)
           ),
           SizedBox(width: _getController.width.value * 0.02),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: _getController.width.value * 0.05,
-              color: Theme.of(context).colorScheme.onSurface,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
+          TextLarge(text: title, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500)
+        ]
+      )
     );
   }
 }

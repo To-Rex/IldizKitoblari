@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_large.dart';
+import 'package:ildiz/companents/filds/text_small.dart';
 import '../controllers/get_controller.dart';
 
-class TextFildHints extends StatelessWidget {
-  var hintText;
-  TextFildHints({Key? key, required this.hintText}) : super(key: key);
+class TextFieldHints extends StatelessWidget {
+  final String hintText;
+  TextFieldHints({super.key, required this.hintText});
   final GetController _getController = Get.put(GetController());
 
   @override
@@ -16,13 +18,7 @@ class TextFildHints extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(width: _getController.width.value * 0.04),
-          Text(hintText,
-            style: TextStyle(
-              fontSize: _getController.width.value * 0.04,
-              color: Theme.of(context).colorScheme.onSurface,
-              fontWeight: FontWeight.w600
-            ),
-          ),
+          TextSmall(text: hintText, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w600),
         ],
       ),
     );

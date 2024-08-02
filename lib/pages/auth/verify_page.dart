@@ -63,7 +63,7 @@ class VerifyPage extends StatelessWidget {
                     AppBarSheets(
                       title: 'Ro\'yxatdan o\'tish'.tr,
                     ),
-                    TextFildHints(
+                    TextFieldHints(
                       hintText: '${'Telefon raqam'.tr}:',
                     ),
                     TextFieldPhoneAuth(
@@ -73,7 +73,7 @@ class VerifyPage extends StatelessWidget {
                     ),
                     SizedBox(height: _getController.height.value * 0.02),
                     //SMS kod
-                    TextFildHints(
+                    TextFieldHints(
                       hintText: 'SMS kod'.tr,
                     ),
                     Row(

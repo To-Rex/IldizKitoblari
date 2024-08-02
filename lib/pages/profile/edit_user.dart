@@ -163,7 +163,7 @@ class EditUser extends StatelessWidget {
             )
             else
               Center(
-                child: TextFildsAuth(
+                child: TextFieldsAuth(
                   nameController: _getController.fullNameController,
                   next: TextInputAction.next,
                   inputType: TextInputType.name
