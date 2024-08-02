@@ -18,7 +18,7 @@ class TextFieldsAuth extends StatelessWidget {
     return Container(
       width: _getController.width.value * 0.92,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3))),
-      child: Obx(() => TextField(
+      child: TextField(
         controller: nameController,
         keyboardType: inputType,
         textInputAction: next,
@@ -35,13 +35,13 @@ class TextFieldsAuth extends StatelessWidget {
           border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(12.r)),
           suffixIcon: inputType == TextInputType.visiblePassword ? Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
-            child: GestureDetector(
-              onTap: () {_getController.obscureText.value = !_getController.obscureText.value;},
-              child: Icon(_getController.obscureText.value ? Icons.visibility_off : Icons.visibility, size: Theme.of(context).iconTheme.fill)
-            )
+            child: Obx(() =>GestureDetector(
+                onTap: () {_getController.obscureText.value = !_getController.obscureText.value;},
+                child: Icon(_getController.obscureText.value ? Icons.visibility_off : Icons.visibility, size: Theme.of(context).iconTheme.fill)
+            ))
           ) : null
         )
-      ))
+      )
     );
   }
 }

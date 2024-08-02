@@ -33,14 +33,17 @@ class LoginPage extends StatelessWidget {
               fit: StackFit.loose,
               children: [
                 Positioned(
-                    height: _getController.height.value * 0.2, top: 0, left: 0, right: 0,
-                    child: SizedBox(child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
+                    height: _getController.height.value * 0.15,
+                    top: 0, left: 0, right: 0,
+                    child:  SizedBox(child: SvgPicture.asset('assets/svgImages/shap.svg', fit: BoxFit.fitWidth, height: Theme.of(context).iconTheme.fill))
+                ),
                 Positioned(
-                    height: _getController.height.value * 0.06,
+                    height: _getController.height.value * 0.1,
                     width: _getController.width.value * 0.45,
-                    top: _getController.height.value * 0.07,
+                    top: _getController.height.value * 0.038,
                     left: _getController.width.value * 0.03,
-                    child: SizedBox(child: SvgPicture.asset('assets/svgImages/keps.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))),
+                    child:  SizedBox(child: SvgPicture.asset('assets/svgImages/keps.svg', fit: BoxFit.fitWidth, height: Theme.of(context).iconTheme.fill))
+                ),
                 Positioned(
                     width: _getController.width.value,
                     top: _getController.height.value * 0.136,
