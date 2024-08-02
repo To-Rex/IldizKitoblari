@@ -143,7 +143,7 @@ class ApiController extends GetxController {
           if (jsonDecode(response.body)['data']['message'] == 'User not found!') {
             showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud emas!', true, 3);
           }else{
-            showToast(Get.context, 'Xatolik', 'Noto\'g\'ri parol kiritdingiz!', true, 3);
+            showToast(Get.context, 'Xatolik', 'Noto‘g‘ri parol kiritdingiz!', true, 3);
           }
         }
       } else {

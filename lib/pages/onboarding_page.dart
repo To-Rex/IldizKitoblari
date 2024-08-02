@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_large.dart';
+import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/pages/auth/login_page.dart';
 import 'package:ildiz/pages/auth/register_page.dart';
 import '../controllers/get_controller.dart';
@@ -123,55 +126,28 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               right: w * 0.3,
               left: w * 0.3,
               child: Center(
-                child: Text('Sizni yuzlab jozibador hikoyalar kutmoqda'.tr,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: _getController.width.value * 0.07,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.white,
-                    )
-                ),
+                child: TextLarge(text: 'Sizni yuzlab jozibador hikoyalar kutmoqda', color: AppColors.white,textAlign: TextAlign.center,maxLines: 3,fontSize: _getController.width.value * 0.07,fontWeight: FontWeight.bold),
               )
           ),
           Positioned(
             bottom: h * 0.255,
             right: w * 0.3,
             left: w * 0.3,
-            child: Text('Sevimli janrlaringizni o‘rganing'.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: _getController.width.value * 0.045,
-                  color: AppColors.white.withOpacity(0.7),
-                )
-            ),
+            child: TextSmall(text: 'Sevimli janrlaringizni o‘rganing'.tr, color: AppColors.white.withOpacity(0.7), textAlign: TextAlign.center, fontSize: _getController.width.value * 0.045),
           ),
           Positioned(
             bottom: h * 0.22,
             right: w * 0.3,
             left: w * 0.3,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Spacer(),
-                Container(
-                  height: 10,
-                  width: 10,
-                  decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.7),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
+                Container(height: 10, width: 10, decoration: BoxDecoration(color: AppColors.white.withOpacity(0.7), borderRadius: BorderRadius.circular(12.r))),
                 SizedBox(width: _getController.width.value * 0.01),
-                Container(
-                  height: 10,
-                  width: 10,
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                const Spacer(),
-              ],
-            ),
+                Container(height: 10, width: 10, decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(12.r)))
+              ]
+            )
           ),
           //button
           Positioned(
@@ -180,22 +156,9 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               right: w * 0.15,
               left: w * 0.15,
               child: ElevatedButton(
-                onPressed: () {
-                  Get.to(RegisterPage());
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  )
-                ),
-                child: Text('Ro‘yxatdan o‘tish'.tr,
-                    style: TextStyle(
-                      fontSize: _getController.width.value * 0.04,
-                      color: AppColors.white,
-                      fontWeight: FontWeight.bold,
-                    )
-                )
+                onPressed: () {Get.to(RegisterPage());},
+                style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
+                child: TextSmall(text: 'Ro‘yxatdan o‘tish'.tr, color: AppColors.white, fontWeight: FontWeight.bold)
               )
           ),
           //row in Ro‘yxatdan o‘tganmisiz? Kirish
@@ -206,30 +169,19 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Ro‘yxatdan o‘tganmisiz?'.tr,
-                      style: TextStyle(
-                        fontSize: w * 0.17,
-                        color: AppColors.white,
-                      )
-                  ),
+                  //Text('Ro‘yxatdan o‘tganmisiz?'.tr, style: TextStyle(fontSize: w * 0.17, color: AppColors.white)),
+                  TextSmall(text: 'Ro‘yxatdan o‘tganmisiz?'.tr, color: AppColors.white,),
                   TextButton(
-                    onPressed: () {
-                      //Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => RegisterPage()),);
-                      Get.to(LoginPage());
-                    },
-                    child: Text('Kirish'.tr,
-                        style: TextStyle(
-                          fontSize: w * 0.17,
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.bold,
-                        )
-                    ),
-                  ),
-                ],
+                    onPressed: () {Get.to(LoginPage());},
+                    //child: Text('Kirish'.tr, style: TextStyle(fontSize: w * 0.17, color: AppColors.primaryColor, fontWeight: FontWeight.bold)
+                    child: TextSmall(text: 'Kirish'.tr, color: AppColors.primaryColor, fontWeight: FontWeight.bold
+                    )
+                  )
+                ]
               )
-          ),
-        ],
-      ),
+          )
+        ]
+      )
     );
   }
 
