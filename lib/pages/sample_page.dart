@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
 import '../companents/bottombar_icons.dart';
 import '../controllers/api_controller.dart';
@@ -32,19 +31,18 @@ class SamplePage extends StatelessWidget {
     return Scaffold(
         body: Obx(() => _getController.widgetOptions.elementAt(_getController.index.value)),
         bottomNavigationBar: BottomAppBar(
-          //height: _getController.height.value * 0.09,
           height: 85.sp,
-          surfaceTintColor: Theme.of(context).colorScheme.background,
+          surfaceTintColor: Theme.of(context).colorScheme.surface,
           elevation: 20,
-          shadowColor: Theme.of(context).colorScheme.onBackground,
-          color: Theme.of(context).colorScheme.background,
+          shadowColor: Theme.of(context).colorScheme.onSurface,
+          color: Theme.of(context).colorScheme.surface,
           child: Obx(() => Container(
             margin: EdgeInsets.only(left: 5.sp, right: 5.sp),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(0);
                   },
@@ -55,7 +53,7 @@ class SamplePage extends StatelessWidget {
                   )
                 ),
                 InkWell(
-                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                    overlayColor: WidgetStateProperty.all(Colors.transparent),
                     onTap: () {_onItemTapped(1);},
                   child: BottomBarIcons(
                     icon: 'assets/icon/shop.svg',
@@ -64,7 +62,7 @@ class SamplePage extends StatelessWidget {
                   )
                 ),
                 InkWell(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(2);
                   },
@@ -75,7 +73,7 @@ class SamplePage extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(3);
                   },
@@ -86,7 +84,7 @@ class SamplePage extends StatelessWidget {
                     ),
                 ),
                 InkWell(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   onTap: () {
                     _onItemTapped(4);
                   },
@@ -118,7 +116,6 @@ class MyConnectivity {
     ConnectivityResult result = await _connectivity.checkConnectivity();
     _checkStatus(result);
     _connectivity.onConnectivityChanged.listen((result) {
-      print('Connectivity changed: $result');
       _checkStatus(result);
     });
   }
@@ -132,7 +129,6 @@ class MyConnectivity {
       isOnline = false;
       ApiController().showDialogConnectivity(Get.context);
     }
-    print(isOnline);
     _controller.sink.add({result: isOnline});
   }
 

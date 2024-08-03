@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/resource/colors.dart';
 import 'package:get_storage/get_storage.dart';
 import '../companents/acc_item.dart';
@@ -20,7 +21,6 @@ class AccountPage extends StatelessWidget {
   final GetController _getController = Get.put(GetController());
 
   final List locale =[
-    //{'name':'English','locale':const Locale('en','US')},
     {'name':'Russian','locale':const Locale('ru','RU')},
     {'name':'Uzbek','locale':const Locale('uz','UZ')},
     {'name':'Ўзбекча','locale':const Locale('oz','OZ')},
@@ -115,7 +115,7 @@ class AccountPage extends StatelessWidget {
                               Row(
                                 children: [
                                   Container(
-                                      padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
+                                      padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.045, bottom: _getController.width.value * 0.04),
                                       child: _getController.meModel.value.data!.result!.avatar == null
                                           ? CircleAvatar(
                                           radius: 34.r,
@@ -128,7 +128,7 @@ class AccountPage extends StatelessWidget {
                                       )
                                   ),
                                   Padding(
-                                      padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.04, bottom: _getController.width.value * 0.04),
+                                      padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.045, bottom: _getController.width.value * 0.04),
                                       child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
@@ -149,7 +149,8 @@ class AccountPage extends StatelessWidget {
                                         Get.to(() => EditUser());
                                       },
                                       style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
-                                      child: Text('Profilni tahrirlash'.tr, style: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold, fontSize: 21.sp))
+                                      //child: Text('Profilni tahrirlash'.tr, style: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold, fontSize: 21.sp))
+                                      child: const TextSmall(text: 'Profilni tahrirlash', color: AppColors.white, fontWeight: FontWeight.bold)
                                   )
                               ),
                               SizedBox(height: 9.h),
@@ -157,7 +158,7 @@ class AccountPage extends StatelessWidget {
                                   title: 'Mualliflar'.tr,
                                   icon: 'assets/icon/copyRight.svg',
                                   subTitle: '',
-                                  onTap: () {
+                                  onTaps: () {
                                     _getController.clearAuthorModel();
                                     Get.to(() => AuthorCategory());
                                   }
@@ -166,13 +167,13 @@ class AccountPage extends StatelessWidget {
                                   title: 'Mening kitoblarim'.tr,
                                   icon: 'assets/icon/diary.svg',
                                   subTitle: '',
-                                  onTap: () {}
+                                  onTaps: () {}
                               ),
                               AccItem(
                                   title: 'Buyurtmalar'.tr,
                                   icon: 'assets/icon/shopping-cart.svg',
                                   subTitle: '',
-                                  onTap: () {
+                                  onTaps: () {
                                     Get.to(OrdersPage());
                                   }
                               ),
@@ -180,7 +181,7 @@ class AccountPage extends StatelessWidget {
                                   title: 'Chegirmalar'.tr,
                                   icon: 'assets/icon/ticket.svg',
                                   subTitle: '',
-                                  onTap: () {
+                                  onTaps: () {
                                     Get.to(() => OnlySaleProductPage(), transition: Transition.rightToLeft);
                                   }
                               ),
@@ -188,13 +189,13 @@ class AccountPage extends StatelessWidget {
                                   title: 'Promokod'.tr,
                                   icon: 'assets/icon/badge.svg',
                                   subTitle: '',
-                                  onTap: () {}
+                                  onTaps: () {}
                               ),
                               AccItem(
                                   title: 'Tilni o‘zgartirish'.tr,
                                   icon: 'assets/icon/globe.svg',
                                   subTitle: 'uz_UZ' == Get.locale.toString() ? 'O‘zbekcha' : 'oz_OZ' == Get.locale.toString() ? 'Ўзбекча' : 'Русский',
-                                  onTap: () {
+                                  onTaps: () {
                                     showLanguageBottomSheet(context);
                                   }
                               ),
@@ -202,14 +203,14 @@ class AccountPage extends StatelessWidget {
                                   title: 'O‘qish turi'.tr,
                                   icon: 'assets/icon/overview.svg',
                                   subTitle: '',
-                                  onTap: () {}
+                                  onTaps: () {}
                               ),
                               AccItem(
                                   title: 'Tungi rejim'.tr,
                                   icon: 'assets/icon/night.svg',
                                   subTitle: '',
                                   switchValue: true,
-                                  onTap: () {
+                                  onTaps: () {
                                     AdaptiveTheme.of(context).toggleThemeMode();
                                   }
                               ),
@@ -217,8 +218,7 @@ class AccountPage extends StatelessWidget {
                                   title: 'Dastur haqida'.tr,
                                   icon: 'assets/icon/info.svg',
                                   subTitle: '',
-                                  onTap: () {
-                                    //AboutProgram
+                                  onTaps: () {
                                     Get.to(() => AboutProgram(), transition: Transition.rightToLeft);
                                   }
                               ),
@@ -226,7 +226,7 @@ class AccountPage extends StatelessWidget {
                                   title: 'Biz bilan bog‘lanish'.tr,
                                   icon: 'assets/icon/contact.svg',
                                   subTitle: '',
-                                  onTap: () {
+                                  onTaps: () {
                                     Get.to(() => ContactUs(), transition: Transition.rightToLeft);
                                   }
                               ),
@@ -235,7 +235,7 @@ class AccountPage extends StatelessWidget {
                                   icon: 'assets/icon/exit.svg',
                                   subTitle: '',
                                   color: AppColors.red,
-                                  onTap: () {
+                                  onTaps: () {
                                     showDialog(context: context,
                                         builder: (context) => AlertDialog(
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),

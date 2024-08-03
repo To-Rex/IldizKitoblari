@@ -3,27 +3,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/resource/colors.dart';
-import '../controllers/get_controller.dart';
 
 class AccItem extends StatefulWidget {
   final String title;
   final String subTitle;
   final String icon;
-  var onTap;
-  bool? switchValue;
-  //color
-  Color? color;
+  var onTaps;
+  var switchValue;
+  final Color? color;
 
-  AccItem({super.key, required this.title, required this.subTitle, required this.icon, required this.onTap, this.switchValue, this.color});
+  AccItem({super.key, required this.title, required this.subTitle, required this.icon, required this.onTaps, this.switchValue, this.color});
 
   @override
   State<AccItem> createState() => _AccItemState();
 }
 
 class _AccItemState extends State<AccItem> {
-  final GetController _getController = Get.put(GetController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +28,9 @@ class _AccItemState extends State<AccItem> {
       minVerticalPadding: 17.3.h,
       title: Row(
         children: [
-          Text(widget.title,
-              style: TextStyle(
-                  color: widget.color ?? Theme.of(context).colorScheme.onSurface,
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.w600
-              )
-          ),
+          TextSmall(text: widget.title, color: widget.color ?? Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w600,fontSize: 18.sp),
           const Spacer(),
-          Text(widget.subTitle,
-              style: TextStyle(
-                  color: widget.color ?? Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500
-              )
-          )
+          TextSmall(text: widget.subTitle, color: widget.color ?? Theme.of(context).colorScheme.onSurface.withOpacity(0.5), fontWeight: FontWeight.w500,fontSize: 16.sp)
         ]
       ),
       leading: Container(
@@ -74,10 +59,9 @@ class _AccItemState extends State<AccItem> {
           thumbColor: Theme.of(context).colorScheme.surface,
           applyTheme: true
       ) : Icon(Icons.arrow_forward, color: widget.color ?? Theme.of(context).colorScheme.onSurface,
-          //size: _getController.width.value * 0.055
           size: 22.sp
       ),
-      onTap: widget.onTap,
+      onTap: widget.onTaps,
     );
   }
 }
