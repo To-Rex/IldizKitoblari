@@ -149,7 +149,6 @@ class AccountPage extends StatelessWidget {
                                         Get.to(() => EditUser());
                                       },
                                       style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
-                                      //child: Text('Profilni tahrirlash'.tr, style: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold, fontSize: 21.sp))
                                       child: const TextSmall(text: 'Profilni tahrirlash', color: AppColors.white, fontWeight: FontWeight.bold)
                                   )
                               ),

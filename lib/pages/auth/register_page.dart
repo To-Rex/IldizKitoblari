@@ -36,7 +36,7 @@ class RegisterPage extends StatelessWidget {
                 width: _getController.width.value * 0.45,
                 top: _getController.height.value * 0.038,
                 left: _getController.width.value * 0.03,
-                child: SizedBox(child: SvgPicture.asset('assets/svgImages/keps.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2),)
+                child: SizedBox(child: SvgPicture.asset('assets/svgImages/keps.svg', fit: BoxFit.fitWidth, height: _getController.height.value * 0.2))
               ),
               Positioned(
                 width: _getController.width.value,
@@ -116,7 +116,7 @@ class RegisterPage extends StatelessWidget {
                                 }
                                 ApiController().check(1, false);
                               },
-                              style: ElevatedButton.styleFrom(padding: EdgeInsets.symmetric(vertical: _getController.height.value * 0.018), backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                              style: ElevatedButton.styleFrom(padding: EdgeInsets.symmetric(vertical: _getController.height.value * 0.018), backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
                               child: const TextSmall(text: 'Ro‘yxatdan o‘tish', color: AppColors.white, fontWeight: FontWeight.bold)
                           )
                       ),
