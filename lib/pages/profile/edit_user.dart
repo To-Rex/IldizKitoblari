@@ -109,7 +109,7 @@ class EditUser extends StatelessWidget {
                               iconSize: _getController.width.value * 0.06
                             )
                           )
-                        )
+                      )
                     ]
                   )
                 ),

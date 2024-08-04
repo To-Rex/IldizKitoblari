@@ -3,10 +3,12 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_large.dart';
+import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/resource/colors.dart';
+import 'package:ildiz/resource/component_size.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../companents/user/google_map.dart';
 import '../../controllers/api_controller.dart';
 import '../../controllers/get_controller.dart';
 
@@ -22,14 +24,13 @@ class ContactUs extends StatelessWidget{
 
     ApiController().getContactUs();
 
-
     return Scaffold(
       appBar: AppBar(
-          title: Text('Dastur haqida'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500)),
+          title: TextLarge(text: 'Biz bilan bog‘lanish', color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500),
           centerTitle: false,
           surfaceTintColor: Colors.transparent,
           leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: 20.sp),
+              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: ComponentSize.backIcons(context)),
               onPressed: () {
                 Get.back();
               }
@@ -38,7 +39,7 @@ class ContactUs extends StatelessWidget{
       body: SingleChildScrollView(
           child: Obx(() => _getController.contactUsModel.value.data == null
               ? !_getController.onLoading.value
-              ? SizedBox(height: Get.height * 0.8, width: Get.width, child: Center(child: Text('Ma‘lumotlar yo‘q!'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface))))
+              ? SizedBox(height: Get.height * 0.8, width: Get.width, child: Center(child: TextLarge(text: 'Ma‘lumotlar yo‘q!', color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w400)))
               : Skeletonizer(child: Container(
                   margin: EdgeInsets.only(top: _getController.width.value * 0.04, left: _getController.width.value * 0.03,right: _getController.width.value * 0.03),
                   child: Column(
@@ -180,12 +181,13 @@ class ContactUs extends StatelessWidget{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Bog‘lanish'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500)),
+                          TextLarge(text: 'Bog‘lanish', fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface),
                           SizedBox(height: 10.h),
                           Row(
                               children: [
                                 Icon(Icons.phone, color: AppColors.backgroundApp, size: 20.sp),
                                 SizedBox(width: 10.w),
-                                Text('Bog‘lanish uchun:'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                TextSmall(text: 'Bog‘lanish uchun'.tr, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w400),
                               ]
                           ),
                           SizedBox(height: 10.h),
@@ -195,7 +197,7 @@ class ContactUs extends StatelessWidget{
                               children: [
                                 Icon(Icons.phone, color: AppColors.backgroundApp, size: 20.sp),
                                 SizedBox(width: 10.w),
-                                Text('Hamkorlar uchun bog‘lanish:'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                TextSmall(text: 'Hamkorlar uchun bog‘lanish:'.tr, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w400),
                               ]
                           ),
                           SizedBox(height: 10.w),
@@ -205,7 +207,7 @@ class ContactUs extends StatelessWidget{
                               children: [
                                 Icon(TablerIcons.world, color: AppColors.backgroundApp, size: 20.sp),
                                 SizedBox(width: 10.w),
-                                Text('Ijtimoiy tarmoqlar:'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                TextSmall(text: 'Ijtimoiy tarmoqlar:'.tr, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w400),
                               ]
                           ),
                           SizedBox(height: 15.h),
@@ -284,20 +286,17 @@ class ContactUs extends StatelessWidget{
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Ildiz kitoblari Xadra filiali'.tr, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500)),
+                          TextLarge(text: 'Ildiz kitoblari Xadra filiali', fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface),
                           SizedBox(height: 10.h),
                           Row(
                               children: [
                                 Icon(TablerIcons.world, color: AppColors.backgroundApp, size: 20.sp),
                                 SizedBox(width: 10.w),
-                                Text('Manzil'.tr, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                TextSmall(text: 'Manzil'.tr, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w400),
                               ]
                           ),
                           SizedBox(height: 10.h),
-                          Html(
-                              style: {'p': Style(textAlign: TextAlign.justify, fontSize: FontSize(16.sp), fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface)},
-                              data: _getController.contactUsModel.value.data!.result!.address!.uz.toString()
-                          ),
+                          Html(style: {'p': Style(textAlign: TextAlign.justify, fontSize: FontSize(ComponentSize.textSmall(context)!), fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface)}, data: _getController.contactUsModel.value.data!.result!.address!.uz.toString()),
                           SizedBox(height: 10.h),
                           /*SizedBox(
                             width: Get.width,
