@@ -29,12 +29,7 @@ class ContactUs extends StatelessWidget{
           title: TextLarge(text: 'Biz bilan bog‘lanish', color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.w500),
           centerTitle: false,
           surfaceTintColor: Colors.transparent,
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: ComponentSize.backIcons(context)),
-              onPressed: () {
-                Get.back();
-              }
-          )
+          leading: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onSurface, size: ComponentSize.backIcons(context)), onPressed: () {Get.back();})
       ),
       body: SingleChildScrollView(
           child: Obx(() => _getController.contactUsModel.value.data == null
@@ -173,10 +168,7 @@ class ContactUs extends StatelessWidget{
                     width: Get.width,
                     margin: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
                     padding: EdgeInsets.only(top: 10.h, left: 10.w, right: 10.w, bottom: 10.h),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)
-                    ),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3), width: 1)),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
