@@ -273,7 +273,6 @@ class GetController extends GetxController {
           return 'Xatolikkkkk';
         }
       }
-      print(totalWeight);
       return totalWeight.toString();
     } else {
       return '0';
