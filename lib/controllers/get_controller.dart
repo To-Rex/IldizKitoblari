@@ -2,10 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flip_widget_flutter/flip_widget_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ildiz/bottomBar/accaunt_page.dart';
 import 'package:ildiz/bottomBar/basket_page.dart';
@@ -17,11 +20,13 @@ import 'package:ildiz/models/me_models.dart';
 import 'package:ildiz/models/quotos_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '../book_custom_lib/src/utils/text.dart';
 import '../models/author_detail_model.dart';
 import '../models/author_model.dart';
 import '../models/banner_model.dart';
 import '../models/basket/cart_create.dart';
 import '../models/basket/basket_model.dart';
+import '../models/books/task_request.dart';
 import '../models/login_model.dart';
 import '../models/menu_detail.dart';
 import '../models/menu_model.dart';
@@ -702,5 +707,65 @@ class GetController extends GetxController {
   void toggleFullScreen() {
     debugPrint('toggleFullScreen');
     isFullScreen.value = !isFullScreen.value;
+    if (isFullScreen.value) {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    } else {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: []);
+    }
   }
+
+
+  //=========================================================================================================================================================
+  RxBool whileApi = true.obs;
+  RxList allPages = <int>[].obs;
+  RxBool isOver = false.obs;
+  RxInt currentIndex = 0.obs;
+  var backgroundColor = Colors.white.obs;
+
+  void startLoadingPages(String data, double fontSize, double fontHeight, double maxWidth, EdgeInsetsGeometry padding, double maxTextHeight) {
+    allPages.clear();
+    whileApi.value = true;
+
+    var request = TaskRequest(data, fontSize, fontHeight, maxWidth, padding, maxTextHeight);
+
+    List<int> pages = [];
+    int index = 0;
+    pages.add(index);
+    int left = index;
+    int right = 1000;
+
+    while (whileApi.value) {
+      if (right >= request.data.length - 1) {
+        right = request.data.length - 1;
+      }
+      int i = TextUtil.calculateTextMaxTextPos(
+        request.data.substring(left, right),
+        request.fontSize,
+        fontHeight: request.fontHeight,
+        maxWidth: request.maxWidth,
+        maxLines: (maxTextHeight / TextUtil.calculateTextHeight('La-la-la...', fontSize, fontHeight: fontHeight, maxWidth: maxWidth, padding: padding)).toInt(),
+        padding: request.padding,
+      );
+      index = index + (i == 0 ? right - left : i);
+      left = index;
+      pages.add(index);
+      if (right == request.data.length - 1 && index >= request.data.length - 1) {
+        allPages.addAll(pages);
+        isOver.value = true;
+        return;
+      }
+      right = index + 1000;
+
+      if (index >= request.data.length - 1) break;
+    }
+  }
+
+  void setCurrentIndex(int index) {
+    currentIndex.value = index;
+  }
+
+  void setBackgroundColor(Color color) {
+    backgroundColor.value = color;
+  }
+  
 }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../companents/appbar/custom_header.dart';
 import '../companents/search_fild.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
@@ -30,56 +31,8 @@ class LibraryPage extends StatelessWidget {
             enablePullDown: true,
             enablePullUp: true,
             physics: const BouncingScrollPhysics(),
-            header: CustomHeader(
-              builder: (context, mode) {
-                print(mode);
-                Widget body;
-                if (mode == LoadStatus.idle) {
-                  body = const SizedBox();
-                } else if (mode == LoadStatus.loading) {
-                  body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
-                } else if (mode == LoadStatus.failed) {
-                  body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-                } else if (mode == LoadStatus.canLoading) {
-                  body = const SizedBox();
-                } else if ( mode == LoadStatus.noMore) {
-                  _getController.refreshLibController.loadComplete();
-                  body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
-                } else {
-                  _getController.refreshLibController.loadComplete();
-                  body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
-                }
-                return SizedBox(
-                  height: _getController.height.value * 0.1,
-                  child: Center(child: body),
-                );
-              },
-            ),
-            footer: CustomFooter(
-              builder: (BuildContext context, LoadStatus? mode) {
-                print(mode);
-                Widget body;
-                if (mode == LoadStatus.idle) {
-                  body = const SizedBox();
-                } else if (mode == LoadStatus.loading) {
-                  body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
-                } else if (mode == LoadStatus.failed) {
-                  body = const Text("Ex nimadir xato ketdi", style: TextStyle(fontSize: 14, color: Colors.red));
-                } else if (mode == LoadStatus.canLoading) {
-                  body = const SizedBox();
-                } else if ( mode == LoadStatus.noMore) {
-                  _getController.refreshLibController.loadComplete();
-                  body = const Text("Ma`lumotlar tugadi", style: TextStyle(fontSize: 14, color: Colors.white));
-                } else {
-                  _getController.refreshLibController.loadComplete();
-                  body = const Text("Ma`lumotlar yangilandi", style: TextStyle(fontSize: 14, color: Colors.white));
-                }
-                return SizedBox(
-                  height: _getController.height.value * 0.1,
-                  child: Center(child: body),
-                );
-              },
-            ),
+            header: const CustomRefreshHeader(),
+            footer: const CustomRefreshFooter(),
             onLoading: _onLoading,
             onRefresh: _getData,
             controller: _getController.refreshLibController,

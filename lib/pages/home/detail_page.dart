@@ -19,6 +19,7 @@ import '../../controllers/get_controller.dart';
 import '../../resource/colors.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../shop/book_page.dart';
+import '../shop/books.dart';
 
 class DetailPage extends StatelessWidget {
   final String slug;
@@ -228,7 +229,11 @@ class DetailPage extends StatelessWidget {
                                         ),
                                       if (_getController.productDetailList[pageIndex].data?.pdf?.toString() != '')
                                         InkWell(
-                                            onTap: () {Get.to(() => BookPage(url: _getController.productDetailList[pageIndex].data!.pdf!, title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!));},
+                                            //onTap: () {Get.to(() => BookPage(url: _getController.productDetailList[pageIndex].data!.pdf!, title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!));},
+                                            onTap: () {
+                                              _getController.whileApi.value = false;
+                                              Get.to(() => BookPages(url: _getController.productDetailList[pageIndex].data!.pdf!, title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!));},
+                                            //onTap: () {Get.to(() => BookPages());},
                                             child: Container(
                                                 height: _getController.height.value * 0.08,
                                                 width: _getController.width.value * 0.45,

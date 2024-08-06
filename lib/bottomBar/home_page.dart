@@ -7,6 +7,7 @@ import 'package:ildiz/controllers/api_controller.dart';
 import 'package:ildiz/pages/home/category_page.dart';
 import 'package:ildiz/resource/colors.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../companents/appbar/custom_header.dart';
 import '../companents/author_item.dart';
 import '../companents/child_item.dart';
 import '../companents/product_item.dart';
@@ -39,43 +40,8 @@ class HomePage extends StatelessWidget {
         body: SmartRefresher(
             enablePullDown: true,
             enablePullUp: true,
-            header: CustomHeader(
-                builder: (BuildContext context, RefreshStatus? mode) {
-                  Widget body;
-                  if (mode == RefreshStatus.idle) {
-                    body = Text('Ma’lumotlarni yangilash uchun tashlang'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
-                  } else if (mode == RefreshStatus.refreshing) {
-                    body = Container(
-                      margin: EdgeInsets.only(top: 20.sp),
-                      child: const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2),
-                    );
-                  } else if (mode == RefreshStatus.failed) {
-                    body = Text('Ex nimadir xato ketdi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.error));
-                  } else if (mode == RefreshStatus.canRefresh) {
-                    body = Text('Ma’lumotlarni yangilash uchun tashlang'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
-                  } else {
-                    body = Text('Ma’lumotlar yangilandi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
-                  }
-                  return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
-                }
-            ),
-            footer: CustomFooter(
-                builder: (BuildContext context, LoadStatus? mode) {
-                  Widget body;
-                  if (mode == LoadStatus.idle) {
-                    body = const SizedBox();
-                  } else if (mode == LoadStatus.loading) {
-                    body = const CircularProgressIndicator(color: Colors.blue, backgroundColor: Colors.white, strokeWidth: 2);
-                  } else if (mode == LoadStatus.failed) {
-                    body = Text('Ex nimadir xato ketdi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.error));
-                  } else if (mode == LoadStatus.canLoading) {
-                    body = const SizedBox();
-                  } else {
-                    body = Text('Ma’lumotlar yangilandi'.tr, style: TextStyle(fontSize: 14.sp, color: Theme.of(context).colorScheme.onSurface));
-                  }
-                  return SizedBox(height: _getController.height.value * 0.1, child: Center(child: body));
-                }
-            ),
+            header: const CustomRefreshHeader(),
+            footer: const CustomRefreshFooter(),
             onLoading: () async {_refreshController.loadComplete();},
             onRefresh: () async {_refreshController.refreshCompleted();},
             controller: _refreshController,
