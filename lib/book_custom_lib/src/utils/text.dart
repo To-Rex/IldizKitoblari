@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextUtil {
-  /// 获取文字高度
+  /// Matn balandligini oling
   static double calculateTextHeight(String value, double fontSize,
       {required double fontHeight, required double maxWidth, required EdgeInsetsGeometry padding}) {
     TextPainter painter = TextPainter(
@@ -21,7 +21,7 @@ class TextUtil {
     return painter.size.height;
   }
 
-  /// 获取最大行文字字数
+  /// Bir qatordagi belgilarning maksimal sonini oling
   static int calculateTextMaxTextPos(
     String value,
     double fontSize, {
@@ -50,13 +50,13 @@ class TextUtil {
     );
     painter.layout(maxWidth: maxWidth - padding.horizontal);
     final didExceedMaxLines = painter.didExceedMaxLines;
-    // print('是否超出最大行$didExceedMaxLines');
+    // print('$didExceedMaxLines maksimal satrdan oshib ketganmi');
     if (didExceedMaxLines) {
       final position = painter.getPositionForOffset(Offset(
         painter.width,
         painter.height,
       ));
-      /// 如果下一页开始处于段落开始，+2避免首行换行空行展示
+      /// Agar keyingi sahifa paragraf boshidan boshlansa, birinchi qator uzilishi va boʻsh qator koʻrsatilishiga yoʻl qoʻymaslik uchun +2.
       if (value.substring(position.offset).startsWith('\n')) {
         return position.offset + 2;
       }

@@ -6,17 +6,17 @@ Line calculateLineEquation(Point<double> p1, Point<double> p2) {
   double intercept = 0;
   if (p1.x == p2.x) {
     if (p1.y == p2.y) {
-      // 两点重合, 无法求出直线方程
+      // Ikki nuqta mos keladi va to'g'ri chiziq tenglamasini olish mumkin emas
       slope = double.nan;
     } else {
-      // 垂直线, 斜率为正无穷或负无穷
+      //Nishabli vertikal chiziq ortiqcha cheksizlik yoki minus cheksizlik
       slope = p1.y > p2.y ? double.infinity : double.negativeInfinity;
     }
   } else {
     slope = (p1.y - p2.y) / (p1.x - p2.x);
   }
   if (slope.isNaN || slope.isInfinite) {
-    // 无法求截距
+    // Kelishuv topilmadi
     intercept = double.nan;
   } else {
     intercept = p1.y - slope * p1.x;
@@ -24,7 +24,7 @@ Line calculateLineEquation(Point<double> p1, Point<double> p2) {
   return Line(p1, p2, slope, intercept);
 }
 
-/// 求两直线相交点
+/// Ikki to‘g‘ri chiziqning kesishish nuqtasini toping
 Point<double> calculateIntersectionOfTwoLines(
   Point<double> a,
   Point<double> b,
@@ -43,7 +43,7 @@ Point<double> calculateIntersectionOfTwoLines(
   );
 }
 
-/// 求点到直线的投影坐标
+/// Nuqtaning to‘g‘ri chiziqqa proyeksiyalangan koordinatalarini toping
 Point<double> projectPointToLine(Line line, double distance) {
   double x = 0.0;
   double y = 0.0;
