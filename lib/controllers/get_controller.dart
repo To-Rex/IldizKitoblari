@@ -720,7 +720,11 @@ class GetController extends GetxController {
   RxList allPages = <int>[].obs;
   RxBool isOver = false.obs;
   RxInt currentIndex = 0.obs;
-  var backgroundColor = Colors.white.obs;
+  Rx<Color> backgroundColor = Colors.white.obs;
+  Rx<Color> textColor = Colors.black.obs;
+  RxDouble fontSize = 18.0.obs;
+  //isVertical
+  RxBool isVertical = false.obs;
 
   void startLoadingPages(String data, double fontSize, double fontHeight, double maxWidth, EdgeInsetsGeometry padding, double maxTextHeight) {
     allPages.clear();
@@ -767,5 +771,5 @@ class GetController extends GetxController {
   void setBackgroundColor(Color color) {
     backgroundColor.value = color;
   }
-  
+
 }

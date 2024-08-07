@@ -102,7 +102,7 @@ class _EBookState extends State<EBook> {
                 data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
                 maxLines: maxLines,
                 strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
-                style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: Theme.of(context).colorScheme.onSurface),
+                style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value),
               ),
             );
           },
@@ -117,7 +117,7 @@ class _EBookState extends State<EBook> {
                 data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
                 maxLines: maxLines,
                 strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
-                style: TextStyle(fontSize: widget.fontSize, height: widget.fontHeight, color: Theme.of(context).colorScheme.onSurface),
+                style: TextStyle(fontSize: widget.fontSize, height: widget.fontHeight, color: _getController.textColor.value),
               ),
             )
                 : const CupertinoActivityIndicator();
