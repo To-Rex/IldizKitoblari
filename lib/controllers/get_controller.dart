@@ -723,8 +723,9 @@ class GetController extends GetxController {
   Rx<Color> backgroundColor = Colors.white.obs;
   Rx<Color> textColor = Colors.black.obs;
   RxDouble fontSize = 18.0.obs;
-  //isVertical
   RxBool isVertical = false.obs;
+  // scrollController book page turn effect for vertical
+  final ScrollController scrollController = ScrollController();
 
   void startLoadingPages(String data, double fontSize, double fontHeight, double maxWidth, EdgeInsetsGeometry padding, double maxTextHeight) {
     allPages.clear();

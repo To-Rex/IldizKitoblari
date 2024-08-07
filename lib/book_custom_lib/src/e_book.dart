@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/companents/filds/text_small.dart';
+import 'package:ildiz/resource/colors.dart';
 import '../../controllers/get_controller.dart';
 import 'book_controller.dart';
 import 'book_fx.dart';
@@ -19,18 +19,7 @@ class EBook extends StatefulWidget {
   final BookController bookController;
   final Duration? duration;
 
-  const EBook({
-    super.key,
-    required this.maxWidth,
-    required this.data,
-    required this.maxHeight,
-    this.fontSize = 16.0,
-    this.padding = const EdgeInsetsDirectional.all(20),
-    this.eBookController,
-    required this.bookController,
-    this.fontHeight = 1.4,
-    this.duration,
-  });
+  const EBook({super.key, required this.maxWidth, required this.data, required this.maxHeight, this.fontSize = 16.0, this.padding = const EdgeInsetsDirectional.all(20), this.eBookController, required this.bookController, this.fontHeight = 1.4, this.duration});
 
   @override
   State<EBook> createState() => _EBookState();
@@ -46,7 +35,6 @@ class _EBookState extends State<EBook> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       data = widget.data.replaceAll('\r\n', '\n');
       textHeight = TextUtil.calculateTextHeight(
@@ -54,9 +42,8 @@ class _EBookState extends State<EBook> {
         widget.fontSize,
         fontHeight: widget.fontHeight,
         maxWidth: widget.maxWidth,
-        padding: widget.padding,
+        padding: widget.padding
       );
-
       maxTextHeight = (widget.maxHeight - widget.padding.vertical) ~/ textHeight * textHeight;
       _getController.startLoadingPages(data, widget.fontSize, widget.fontHeight, widget.maxWidth, widget.padding, maxTextHeight);
     });
@@ -75,11 +62,11 @@ class _EBookState extends State<EBook> {
         if (!_getController.isOver.value) {
           return const CupertinoActivityIndicator();
         }
-
         //final maxLines = (maxTextHeight ~/ textHeight).clamp(1, double.infinity).toInt();
         final maxLines = (maxTextHeight ~/ textHeight).clamp(1, Get.height).toInt();
-
-        return BookFx(
+        if (!_getController.isVertical.value) {
+          //animation book page turn effect for horizontal
+          return BookFx(
           size: Size(MediaQuery.of(context).size.width, widget.maxHeight),
           pageCount: _getController.allPages.length - 1,
           currentBgColor: _getController.backgroundColor.value,
@@ -95,30 +82,29 @@ class _EBookState extends State<EBook> {
           nextPage: (index) {
             return index >= _getController.allPages.length - 1 && maxTextHeight == 0 && textHeight == 0
                 ? const SizedBox()
-            : Stack(
-              children: [
-                Container(
-                  width: Get.width,
-                  height: Get.height,
-                  margin: const EdgeInsets.only(bottom: 5),
-                  padding: widget.padding,
-                  color: _getController.backgroundColor.value,
-                  child: Text(
-                    data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
-                    maxLines: maxLines,
-                    strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
-                    style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value),
-                  ),
-                ),
-                Positioned(
+                : Stack(
+                children: [
+                  Container(
                     width: Get.width,
-                    bottom: 5,
-                    child: SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
-                )
-              ]
-            );
-          },
-          currentPage: (int index) {
+                    height: Get.height,
+                    margin: const EdgeInsets.only(bottom: 5),
+                    padding: widget.padding,
+                    color: _getController.backgroundColor.value,
+                    child: Text(
+                      data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
+                      maxLines: maxLines,
+                      strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
+                      style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
+                    )
+                  ),
+                  Positioned(
+                      width: Get.width,
+                      bottom: 5,
+                      child: SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
+                  )
+                ]);
+            },
+            currentPage: (int index) {
             return _getController.whileApi.value && maxTextHeight != 0 && textHeight != 0
                 ? Stack(children: [
                   Container(
@@ -144,9 +130,45 @@ class _EBookState extends State<EBook> {
                   )
             ]) : const CupertinoActivityIndicator();
           },
-          controller: widget.bookController,
+          controller: widget.bookController
         );
-      }),
+        } else {
+          //animation book page turn effect for vertical
+          return SizedBox(
+              width: Get.width,
+              height: Get.height * 0.9,
+              child: SingleChildScrollView(
+                controller: _getController.scrollController,
+                  child: Column(
+                      children: List.generate(_getController.allPages.length - 1, (index) {
+                        return Stack(
+                            children: [
+                              Container(
+                                  width: Get.width,
+                                  height: Get.height,
+                                  margin: const EdgeInsets.only(bottom: 5),
+                                  padding: widget.padding,
+                                  decoration: BoxDecoration(border: Border.all(color: AppColors.grey), color: _getController.backgroundColor.value),
+                                  child: Text(
+                                      data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
+                                      maxLines: maxLines,
+                                      strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
+                                      style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
+                                  )
+                              ),
+                              Positioned(
+                                  width: Get.width,
+                                  bottom: 5,
+                                  child: SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
+                              )
+                            ]
+                        );
+                      })
+                  )
+              )
+          );
+        }
+      })
     );
   }
 }
