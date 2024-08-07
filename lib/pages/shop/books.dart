@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ildiz/companents/filds/text_large.dart';
 import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/controllers/get_controller.dart';
@@ -65,8 +64,8 @@ class _BookState extends State<BookPages> {
               title: Obx(() => TextLarge(text: widget.title, color: _getController.textColor.value, fontWeight: FontWeight.w400)),
               leading: IconButton(icon: Icon(Icons.arrow_back,color: _getController.textColor.value), onPressed: () => Get.back()),
               actions: [
-                    Column(
-                      children: [
+                Column(
+                    children: [
                         /*IconButton(
                           icon: const Icon(Icons.arrow_back_ios),
                           onPressed: () {
@@ -77,47 +76,43 @@ class _BookState extends State<BookPages> {
                         IconButton(icon: const Icon(Icons.arrow_forward_ios), onPressed: () {
                           bookController.next();
                         }),*/
-                        PopupMenuButton<String>(
-                        icon: Icon(TablerIcons.settings, size: Theme.of(context).iconTheme.fill, color: _getController.textColor.value),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13.0)),
-                        color: _getController.backgroundColor.value,
-                        surfaceTintColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        elevation: 4,
-                        itemBuilder: (BuildContext context) {
-                          return [
-                            PopupMenuItem(
-                                height: Get.height * 0.03,
-                                value: 'fontSize',
-                                child: Obx(() => Row(
-                                  children: [
-                                    Icon(
-                                      Icons.format_size,
-                                      color: _getController.textColor.value,
-                                    ),
-                                    Text(' ${_getController.fontSize.value.toString().split('.').first} px', style: TextStyle(color: _getController.textColor.value)),
-                                    Slider(
-                                      value: _getController.fontSize.value,
-                                      onChanged: (value) {
-                                        eBookController.changFontSize(value);
-                                        _getController.fontSize.value = value;
-                                      },
-                                      min: 10,
-                                      max: 30
-                                    )
-                                  ]
-                                ))
-                            ),
-                            const PopupMenuItem(
-                              height: 0,
-                              padding: EdgeInsets.all(0),
-                              value: 'watcher',
-                              child: Divider()
-                            ),
-                            PopupMenuItem(
-                                height: Get.height * 0.03,
-                                value: 'backgroundColor',
-                                child:Row(
+                      PopupMenuButton<String>(
+                          icon: Icon(TablerIcons.settings, size: Theme.of(context).iconTheme.fill, color: _getController.textColor.value),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13.0)),
+                          color: _getController.backgroundColor.value,
+                          surfaceTintColor: Colors.transparent,
+                          shadowColor: Colors.transparent,
+                          elevation: 4,
+                          itemBuilder: (BuildContext context) {
+                            return [
+                              PopupMenuItem(
+                                  height: Get.height * 0.03,
+                                  value: 'fontSize',
+                                  child: Obx(() => Row(
+                                      children: [
+                                        Icon(Icons.format_size, color: _getController.textColor.value),
+                                        Text(' ${_getController.fontSize.value.toString().split('.').first} px', style: TextStyle(color: _getController.textColor.value)),
+                                        Slider(
+                                            value: _getController.fontSize.value,
+                                            onChanged: (value) {
+                                              eBookController.changFontSize(value);
+                                              _getController.fontSize.value = value;
+                                              },
+                                            min: 10, max: 30
+                                        )
+                                      ]
+                                  ))
+                              ),
+                              const PopupMenuItem(
+                                  height: 0,
+                                  padding: EdgeInsets.all(0),
+                                  value: 'watcher',
+                                  child: Divider()
+                              ),
+                              PopupMenuItem(
+                                  height: Get.height * 0.03,
+                                  value: 'backgroundColor',
+                                  child:Row(
                                   children: [
                                     ElevatedButton(
                                       onPressed: () {
@@ -134,121 +129,143 @@ class _BookState extends State<BookPages> {
                                             width: 1,
                                           ),
                                         ),
-                                        padding: EdgeInsets.all(20),
-                                      ),
-                                      child: const Text('', style: TextStyle(color: AppColors.black)),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        _getController.backgroundColor.value = AppColors.trueToneColor;
-                                        _getController.textColor.value = AppColors.black;
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.trueToneColor,
-                                        minimumSize: const Size(40, 40),
-                                        maximumSize: const Size(40, 40),
-                                        shape: const CircleBorder(
-                                          side: BorderSide(
-                                            color: AppColors.grey,
-                                            width: 1,
-                                          ),
-                                        ),
-                                        padding: EdgeInsets.all(20),
-                                      ),
-                                      child: Text('', style: TextStyle(color: AppColors.black)),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        _getController.backgroundColor.value = AppColors.grey;
-                                        _getController.textColor.value = AppColors.black;
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.grey,
-                                        minimumSize: const Size(40, 40),
-                                        maximumSize: const Size(40, 40),
-                                        shape: const CircleBorder(
-                                          side: BorderSide(
-                                            color: AppColors.grey,
-                                            width: 1,
-                                          ),
-                                        ),
-                                        padding: EdgeInsets.all(20),
-                                      ),
-                                      child: Text('', style: TextStyle(color: AppColors.black)),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        _getController.backgroundColor.value = AppColors.midnightBlack;
-                                        _getController.textColor.value = AppColors.grey;
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.midnightBlack,
-                                        minimumSize: const Size(40, 40),
-                                        maximumSize: const Size(40, 40),
-                                        shape: const CircleBorder(
-                                          side: BorderSide(
-                                            color: AppColors.grey,
-                                            width: 1,
-                                          ),
-                                        ),
-                                        padding: EdgeInsets.all(20),
-                                      ),
-                                      child: Text('', style: TextStyle(color: AppColors.black)),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        _getController.backgroundColor.value = AppColors.black;
-                                        _getController.textColor.value = AppColors.grey;
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColors.black,
-                                        minimumSize: const Size(40, 40),
-                                        maximumSize: const Size(40, 40),
-                                        shape: const CircleBorder(
-                                          side: BorderSide(
-                                            color: AppColors.grey,
-                                            width: 1,
-                                          ),
-                                        ),
                                         padding: const EdgeInsets.all(20),
                                       ),
                                       child: const Text('', style: TextStyle(color: AppColors.black)),
-                                    )
-                                  ]
-                                )
-                            ),
-                            const PopupMenuItem(
+                                    ),
+                                    ElevatedButton(
+                                    onPressed: () {
+                                      _getController.backgroundColor.value =
+                                          AppColors.trueToneColor;
+                                      _getController.textColor.value =
+                                          AppColors.black;
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.trueToneColor,
+                                      minimumSize: const Size(40, 40),
+                                      maximumSize: const Size(40, 40),
+                                      shape: const CircleBorder(
+                                        side: BorderSide(
+                                          color: AppColors.grey,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.all(20),
+                                    ),
+                                    child: const Text('',
+                                        style:
+                                            TextStyle(color: AppColors.black)),
+                                  ),
+                                    ElevatedButton(
+                                    onPressed: () {
+                                      _getController.backgroundColor.value =
+                                          AppColors.grey;
+                                      _getController.textColor.value =
+                                          AppColors.black;
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.grey,
+                                      minimumSize: const Size(40, 40),
+                                      maximumSize: const Size(40, 40),
+                                      shape: const CircleBorder(
+                                        side: BorderSide(
+                                          color: AppColors.grey,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.all(20),
+                                    ),
+                                    child: const Text('',
+                                        style:
+                                            TextStyle(color: AppColors.black)),
+                                  ),
+                                    ElevatedButton(
+                                    onPressed: () {
+                                      _getController.backgroundColor.value =
+                                          AppColors.midnightBlack;
+                                      _getController.textColor.value =
+                                          AppColors.grey;
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.midnightBlack,
+                                      minimumSize: const Size(40, 40),
+                                      maximumSize: const Size(40, 40),
+                                      shape: const CircleBorder(
+                                        side: BorderSide(
+                                          color: AppColors.grey,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.all(20),
+                                    ),
+                                    child: const Text('',
+                                        style:
+                                            TextStyle(color: AppColors.black)),
+                                  ),
+                                    ElevatedButton(
+                                    onPressed: () {
+                                      _getController.backgroundColor.value =
+                                          AppColors.black;
+                                      _getController.textColor.value =
+                                          AppColors.grey;
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.black,
+                                      minimumSize: const Size(40, 40),
+                                      maximumSize: const Size(40, 40),
+                                      shape: const CircleBorder(
+                                        side: BorderSide(
+                                          color: AppColors.grey,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.all(20),
+                                    ),
+                                    child: const Text('',
+                                        style:
+                                            TextStyle(color: AppColors.black)),
+                                  )
+                                  ])
+                              ),
+                              const PopupMenuItem(
                                 height: 0,
                                 padding: EdgeInsets.all(0),
                                 value: 'watcher',
-                                child: Divider()
-                            ),
-                            PopupMenuItem(
+                                child: Divider()),
+                              PopupMenuItem(
                                 height: 0,
                                 padding: const EdgeInsets.all(0),
                                 value: 'switch',
                                 child: Obx(() => Padding(
-                                    padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                                    padding: EdgeInsets.only(
+                                        left: 20.w, right: 20.w),
                                     child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          TextSmall(text: 'Vertical', color: _getController.textColor.value, fontWeight: FontWeight.w400),
+                                          TextSmall(
+                                              text: 'Vertical',
+                                              color: _getController
+                                                  .textColor.value,
+                                              fontWeight: FontWeight.w400),
                                           CupertinoSwitch(
-                                            value: _getController.isVertical.value,
+                                            value:
+                                                _getController.isVertical.value,
                                             onChanged: (value) {
-                                              _getController.isVertical.value = value;
+                                              _getController.isVertical.value =
+                                                  value;
                                             },
-                                            activeColor: Theme.of(context).colorScheme.primary,
+                                            activeColor: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                           ),
-                                        ]
-                                    )
-                                ))
-                            )
-                          ];
-                        })
-                      ]
-                    )
+                                        ]))))
+                            ];
+                          })
+                    ]
+                )
               ]
           )
         ),
