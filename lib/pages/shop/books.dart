@@ -80,7 +80,7 @@ class _BookState extends State<BookPages> {
                         PopupMenuButton<String>(
                         icon: Icon(TablerIcons.settings, size: Theme.of(context).iconTheme.fill, color: _getController.textColor.value),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13.0)),
-                        color: Theme.of(context).colorScheme.surface,
+                        color: _getController.backgroundColor.value,
                         surfaceTintColor: Colors.transparent,
                         shadowColor: Colors.transparent,
                         elevation: 4,
@@ -93,9 +93,9 @@ class _BookState extends State<BookPages> {
                                   children: [
                                     Icon(
                                       Icons.format_size,
-                                      color: Theme.of(context).colorScheme.onSurface,
+                                      color: _getController.textColor.value,
                                     ),
-                                    Text(' ${_getController.fontSize.value.toString().split('.').first} px', style: TextStyle(color: Theme.of(context).colorScheme.onSurface)),
+                                    Text(' ${_getController.fontSize.value.toString().split('.').first} px', style: TextStyle(color: _getController.textColor.value)),
                                     Slider(
                                       value: _getController.fontSize.value,
                                       onChanged: (value) {
