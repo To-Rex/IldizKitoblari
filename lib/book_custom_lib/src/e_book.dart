@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_small.dart';
 import '../../controllers/get_controller.dart';
 import 'book_controller.dart';
 import 'book_fx.dart';
@@ -75,7 +76,8 @@ class _EBookState extends State<EBook> {
           return const CupertinoActivityIndicator();
         }
 
-        final maxLines = (maxTextHeight ~/ textHeight).clamp(1, double.infinity).toInt();
+        //final maxLines = (maxTextHeight ~/ textHeight).clamp(1, double.infinity).toInt();
+        final maxLines = (maxTextHeight ~/ textHeight).clamp(1, Get.height).toInt();
 
         return BookFx(
           size: Size(MediaQuery.of(context).size.width, widget.maxHeight),
@@ -93,34 +95,54 @@ class _EBookState extends State<EBook> {
           nextPage: (index) {
             return index >= _getController.allPages.length - 1 && maxTextHeight == 0 && textHeight == 0
                 ? const SizedBox()
-                : Container(
-              width: double.infinity,
-              height: double.infinity,
-              padding: widget.padding,
-              color: _getController.backgroundColor.value,
-              child: Text(
-                data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
-                maxLines: maxLines,
-                strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
-                style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value),
-              ),
+            : Stack(
+              children: [
+                Container(
+                  width: Get.width,
+                  height: Get.height,
+                  margin: const EdgeInsets.only(bottom: 5),
+                  padding: widget.padding,
+                  color: _getController.backgroundColor.value,
+                  child: Text(
+                    data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
+                    maxLines: maxLines,
+                    strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
+                    style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value),
+                  ),
+                ),
+                Positioned(
+                    width: Get.width,
+                    bottom: 5,
+                    child: SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
+                )
+              ]
             );
           },
           currentPage: (int index) {
             return _getController.whileApi.value && maxTextHeight != 0 && textHeight != 0
-                ? Container(
-              padding: widget.padding,
-              width: double.infinity,
-              height: double.infinity,
-              color: _getController.backgroundColor.value,
-              child: Text(
-                data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
-                maxLines: maxLines,
-                strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
-                style: TextStyle(fontSize: widget.fontSize, height: widget.fontHeight, color: _getController.textColor.value),
-              ),
-            )
-                : const CupertinoActivityIndicator();
+                ? Stack(children: [
+                  Container(
+                      width: Get.width,
+                      height: Get.height,
+                      margin: const EdgeInsets.only(bottom: 5),
+                      padding: widget.padding,
+                      color: _getController.backgroundColor.value,
+                      child: Text(
+                          data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
+                          maxLines: maxLines,
+                          strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
+                          style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
+                      )
+                  ),
+                  Positioned(
+                      width: Get.width,
+                      bottom: 5,
+                      child: SizedBox(
+                          width: Get.width,
+                          child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value))
+                      )
+                  )
+            ]) : const CupertinoActivityIndicator();
           },
           controller: widget.bookController,
         );
