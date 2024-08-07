@@ -271,20 +271,16 @@ class _BookState extends State<BookPages> {
         ),
         body: data.isEmpty
             ? const Center(child: CircularProgressIndicator())
-            : Column(
-            children: [
-              EBook(
-                  maxWidth: MediaQuery.of(context).size.width,
-                  eBookController: eBookController,
-                  bookController: bookController,
-                  duration: const Duration(milliseconds: 400),
-                  fontHeight: 1.6,
-                  data: data,
-                  fontSize: eBookController.fontSize,
-                  padding: const EdgeInsetsDirectional.all(15),
-                  maxHeight: MediaQuery.of(context).size.height - kToolbarHeight - MediaQueryData.fromView(window).padding.top -40)
-            ]
-        )
+            : EBook(
+            maxWidth: MediaQuery.of(context).size.width,
+            eBookController: eBookController,
+            bookController: bookController,
+            duration: const Duration(milliseconds: 400),
+            fontHeight: 1.6,
+            data: data,
+            fontSize: eBookController.fontSize,
+            padding: const EdgeInsetsDirectional.all(15),
+            maxHeight: MediaQuery.of(context).size.height - kToolbarHeight - MediaQueryData.fromView(window).padding.top - 5)
     );
   }
 }

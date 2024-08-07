@@ -119,19 +119,11 @@ class _BookFxState extends State<BookFx> with SingleTickerProviderStateMixin {
         ),
         onPanDown: (d) {downPos = d.localPosition;},
         onPanUpdate: (d) {
-          if (isAnimation) {
-            return;
-          }
-          if (widget.controller.currentIndex == widget.pageCount - 1) {
-            return;
-          }
+          if (isAnimation) return;
+          if (widget.controller.currentIndex == widget.pageCount - 1) return;
           var move = d.localPosition;
-          if (move.dx >= size.width || move.dx < 0 || move.dy >= size.height || move.dy < 0) {
-            return;
-          }
-          if (downPos.dx < size.width / 2) {
-            return;
-          }
+          if (move.dx >= size.width || move.dx < 0 || move.dy >= size.height || move.dy < 0) return;
+          if (downPos.dx < size.width / 2) return;
           if (isAlPath == true) {
             setState(() {
               isAlPath = false;
@@ -152,9 +144,7 @@ class _BookFxState extends State<BookFx> with SingleTickerProviderStateMixin {
           }
         },
         onPanEnd: (d) {
-          if (isAnimation) {
-            return;
-          }
+          if (isAnimation) return;
           if (downPos.dx < size.width / 2) {
             if (widget.controller.currentIndex == 0) {
               widget.lastCallBack?.call(widget.controller.currentIndex);
