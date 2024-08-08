@@ -262,7 +262,7 @@ class _BookState extends State<BookPages> {
         body: data.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : Container(
-          margin: const EdgeInsets.only(bottom: 0),
+          margin: const EdgeInsets.only(bottom: 0, top: 0),
           child: EBook(
             //maxWidth: MediaQuery.of(context).size.width,
               maxWidth: Get.width,

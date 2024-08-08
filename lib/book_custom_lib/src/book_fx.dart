@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'book_controller.dart';
 import 'book_painter.dart';
 import 'current_paper.dart';
@@ -101,8 +102,8 @@ class _BookFxState extends State<BookFx> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: size.width,
-      height: size.height,
+      width: Get.width,
+      height: Get.height,
       child: GestureDetector(
         child: Stack(
           children: [
