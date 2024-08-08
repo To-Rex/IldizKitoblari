@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/resource/colors.dart';
+import 'package:text_scroll/text_scroll.dart';
 import '../../controllers/get_controller.dart';
 import 'book_controller.dart';
 import 'book_fx.dart';
@@ -65,7 +68,6 @@ class _EBookState extends State<EBook> {
         //final maxLines = (maxTextHeight ~/ textHeight).clamp(1, double.infinity).toInt();
         final maxLines = (maxTextHeight ~/ textHeight).clamp(1, Get.height).toInt();
         if (!_getController.isVertical.value) {
-          //animation book page turn effect for horizontal
           return BookFx(
           size: Size(MediaQuery.of(context).size.width, widget.maxHeight),
           pageCount: _getController.allPages.length - 1,
@@ -133,35 +135,57 @@ class _EBookState extends State<EBook> {
           controller: widget.bookController
         );
         } else {
-          //animation book page turn effect for vertical
+          return SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              controller: _getController.scrollController,
+              child: Column(
+                  children: [
+                    for (int index = 0; index < _getController.allPages.length - 1; index++)
+                      Container(
+                          width: Get.width,
+                          //margin: const EdgeInsets.only(bottom: 5),
+                          padding: widget.padding,
+                          decoration: BoxDecoration(border: Border.all(color: AppColors.grey), color: _getController.backgroundColor.value),
+                          child: Column(
+                              children: [
+                                Text(
+                                    data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
+                                    //data,
+                                    //maxLines: maxLines,
+                                    strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
+                                    style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
+                                ),
+                                SizedBox(height: 5.h),
+                                SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
+                              ]
+                          )
+                      )
+                  ]
+              )
+          );
           return SizedBox(
               width: Get.width,
-              height: Get.height * 0.9,
               child: SingleChildScrollView(
+                  physics: ClampingScrollPhysics(),
                 controller: _getController.scrollController,
                   child: Column(
                       children: List.generate(_getController.allPages.length - 1, (index) {
-                        return Stack(
-                            children: [
-                              Container(
-                                  width: Get.width,
-                                  height: Get.height,
-                                  margin: const EdgeInsets.only(bottom: 5),
-                                  padding: widget.padding,
-                                  decoration: BoxDecoration(border: Border.all(color: AppColors.grey), color: _getController.backgroundColor.value),
-                                  child: Text(
+                        return Container(
+                            width: Get.width,
+                            margin: const EdgeInsets.only(bottom: 5),
+                            padding: widget.padding,
+                            decoration: BoxDecoration(border: Border.all(color: AppColors.grey), color: _getController.backgroundColor.value),
+                            child: Column(
+                                children: [
+                                  Text(
                                       data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
                                       maxLines: maxLines,
                                       strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
                                       style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
-                                  )
-                              ),
-                              Positioned(
-                                  width: Get.width,
-                                  bottom: 5,
-                                  child: SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
-                              )
-                            ]
+                                  ),
+                                  SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
+                                ]
+                            )
                         );
                       })
                   )
