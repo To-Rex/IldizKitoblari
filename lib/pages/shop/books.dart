@@ -62,6 +62,7 @@ class _BookState extends State<BookPages> {
               backgroundColor: AppColors.blackTransparent,
               surfaceTintColor: AppColors.blackTransparent,
               title: Obx(() => TextLarge(text: widget.title, color: _getController.textColor.value, fontWeight: FontWeight.w400)),
+              centerTitle: false,
               leading: IconButton(icon: Icon(Icons.arrow_back,color: _getController.textColor.value), onPressed: () => Get.back()),
               actions: [
                 Column(
