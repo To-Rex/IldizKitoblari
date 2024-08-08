@@ -110,7 +110,7 @@ class _BookPageState extends State<BookPage> {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
+                icon: Icon(Icons.fullscreen, color: Theme.of(context).colorScheme.onSurface,size: Get.width * 0.05),
                 onPressed: () {
                   _getController.toggleFullScreen();
                 },
