@@ -69,45 +69,37 @@ class _EBookState extends State<EBook> {
         final maxLines = (maxTextHeight ~/ textHeight).clamp(1, Get.height).toInt();
         if (!_getController.isVertical.value) {
           return BookFx(
-          size: Size(MediaQuery.of(context).size.width, widget.maxHeight),
-          pageCount: _getController.allPages.length - 1,
-          currentBgColor: _getController.backgroundColor.value,
-          nextCallBack: (index) {
-            _getController.setCurrentIndex(index);
-            debugPrint('Next $index');
-          },
-          lastCallBack: (index) {
-            _getController.setCurrentIndex(index);
-            debugPrint('Previous $index');
-          },
-          duration: widget.duration,
-          nextPage: (index) {
-            return index >= _getController.allPages.length - 1 && maxTextHeight == 0 && textHeight == 0
-                ? const SizedBox()
-                : Stack(
-                children: [
-                  Container(
-                    width: Get.width,
-                    height: Get.height,
-                    margin: const EdgeInsets.only(bottom: 5),
-                    padding: widget.padding,
-                    color: _getController.backgroundColor.value,
-                    child: Text(
-                      data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
-                      maxLines: maxLines,
-                      strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
-                      style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
+              size: Size(MediaQuery.of(context).size.width, widget.maxHeight),
+              //size: Size(Get.width, Get.height),
+              pageCount: _getController.allPages.length - 1,
+              currentBgColor: _getController.backgroundColor.value,
+              nextCallBack: (index) => _getController.setCurrentIndex(index),
+              lastCallBack: (index) => _getController.setCurrentIndex(index),
+              duration: widget.duration,
+              nextPage: (index) =>index >= _getController.allPages.length - 1 && maxTextHeight == 0 && textHeight == 0
+                  ? const SizedBox()
+                  : Stack(children: [
+                    Container(
+                        width: Get.width,
+                        height: Get.height,
+                        margin: const EdgeInsets.only(bottom: 5),
+                        padding: widget.padding,
+                        color: _getController.backgroundColor.value,
+                        child: Text(
+                            data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
+                            maxLines: maxLines,
+                            strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
+                            style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
+                        )
+                    ),
+                    Positioned(
+                        width: Get.width,
+                        bottom: 0,
+                        child: SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
                     )
-                  ),
-                  Positioned(
-                      width: Get.width,
-                      bottom: 5,
-                      child: SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
-                  )
-                ]);
-            },
-            currentPage: (int index) {
-            return _getController.whileApi.value && maxTextHeight != 0 && textHeight != 0
+                  ]
+              ),
+              currentPage: (int index) => _getController.whileApi.value && maxTextHeight != 0 && textHeight != 0
                 ? Stack(children: [
                   Container(
                       width: Get.width,
@@ -124,16 +116,15 @@ class _EBookState extends State<EBook> {
                   ),
                   Positioned(
                       width: Get.width,
-                      bottom: 5,
+                      bottom: 0,
                       child: SizedBox(
                           width: Get.width,
                           child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value))
                       )
-                  )
-            ]) : const CupertinoActivityIndicator();
-          },
-          controller: widget.bookController
-        );
+                  )])
+                  : const CupertinoActivityIndicator(),
+                controller: widget.bookController
+          );
         } else {
           return SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
