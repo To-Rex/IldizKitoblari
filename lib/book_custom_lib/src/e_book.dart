@@ -143,15 +143,12 @@ class _EBookState extends State<EBook> {
                     for (int index = 0; index < _getController.allPages.length - 1; index++)
                       Container(
                           width: Get.width,
-                          //margin: const EdgeInsets.only(bottom: 5),
                           padding: widget.padding,
                           decoration: BoxDecoration(border: Border.all(color: AppColors.grey), color: _getController.backgroundColor.value),
                           child: Column(
                               children: [
                                 Text(
                                     data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
-                                    //data,
-                                    //maxLines: maxLines,
                                     strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
                                     style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
                                 ),
@@ -161,34 +158,6 @@ class _EBookState extends State<EBook> {
                           )
                       )
                   ]
-              )
-          );
-          return SizedBox(
-              width: Get.width,
-              child: SingleChildScrollView(
-                  physics: ClampingScrollPhysics(),
-                controller: _getController.scrollController,
-                  child: Column(
-                      children: List.generate(_getController.allPages.length - 1, (index) {
-                        return Container(
-                            width: Get.width,
-                            margin: const EdgeInsets.only(bottom: 5),
-                            padding: widget.padding,
-                            decoration: BoxDecoration(border: Border.all(color: AppColors.grey), color: _getController.backgroundColor.value),
-                            child: Column(
-                                children: [
-                                  Text(
-                                      data.isNotEmpty ? data.substring(_getController.allPages[index], _getController.allPages[index + 1]) : "",
-                                      maxLines: maxLines,
-                                      strutStyle: StrutStyle(forceStrutHeight: true, height: widget.fontHeight, fontSize: widget.fontSize),
-                                      style: TextStyle(height: widget.fontHeight, fontSize: widget.fontSize, color: _getController.textColor.value)
-                                  ),
-                                  SizedBox(width: Get.width, child: Center(child: TextSmall(text: "${index + 1}",color: _getController.textColor.value, textAlign: TextAlign.center, fontSize: _getController.fontSize.value)))
-                                ]
-                            )
-                        );
-                      })
-                  )
               )
           );
         }
