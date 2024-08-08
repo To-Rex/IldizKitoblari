@@ -93,14 +93,14 @@ class _BookState extends State<BookPages> {
                                       children: [
                                         Icon(Icons.format_size, color: _getController.textColor.value),
                                         Text(' ${_getController.fontSize.value.toString().split('.').first} px', style: TextStyle(color: _getController.textColor.value)),
-                                        Slider(
+                                        Expanded(child: Slider(
                                             value: _getController.fontSize.value,
                                             onChanged: (value) {
                                               eBookController.changFontSize(value);
                                               _getController.fontSize.value = value;
-                                              },
+                                            },
                                             min: 10, max: 30
-                                        )
+                                        ))
                                       ]
                                   ))
                               ),
