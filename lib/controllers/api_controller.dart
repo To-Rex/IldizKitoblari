@@ -160,8 +160,6 @@ class ApiController extends GetxController {
       'phone': _getController.phoneController.text.toString(),
       'type': type.toString(),
     });
-    debugPrint('suuu'+response.statusCode.toString());
-    debugPrint('suuu'+response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       debugPrint('check: ${_getController.phoneController.text}');
       if (jsonDecode(response.body)['status'] == true) {
