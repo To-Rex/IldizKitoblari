@@ -121,8 +121,8 @@ class AccountPage extends StatelessWidget {
                                       child: _getController.meModel.value.data!.result!.avatar == null
                                           ? CircleAvatar(
                                           radius: 34.r,
-                                          backgroundColor: Theme.of(context).colorScheme.primary,
-                                          child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: _getController.width.value * 0.06))
+                                          backgroundColor: AppColors.grey,
+                                          child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.06))
                                       )
                                           : CircleAvatar(
                                           radius: 34.r,
