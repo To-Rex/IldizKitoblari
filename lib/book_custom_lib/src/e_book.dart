@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/resource/colors.dart';
-import 'package:text_scroll/text_scroll.dart';
 import '../../controllers/get_controller.dart';
 import 'book_controller.dart';
 import 'book_fx.dart';
