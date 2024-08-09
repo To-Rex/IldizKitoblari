@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ildiz/companents/filds/text_large.dart';
 import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/resource/colors.dart';
 import 'package:get_storage/get_storage.dart';
@@ -118,11 +119,13 @@ class AccountPage extends StatelessWidget {
                                     children: [
                                   Container(
                                       padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.045, bottom: _getController.width.value * 0.04),
-                                      child: _getController.meModel.value.data!.result!.avatar == null
+                                      child: _getController.meModel.value.data!.result!.avatar == null || _getController.meModel.value.data!.result!.avatar == ''
                                           ? CircleAvatar(
                                           radius: 34.r,
                                           backgroundColor: AppColors.grey,
-                                          child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.06))
+                                          //child: Text(_getController.meModel.value.data!.result!.fullName.toString().substring(0,1), style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.06))
+                                          child: TextLarge(text: _getController.meModel.value.data!.result!.fullName.toString().contains(' ') ? _getController.meModel.value.data!.result!.fullName.toString().split(' ')[0].substring(0,1) + _getController.meModel.value.data!.result!.fullName.toString().split(' ')[1].substring(0,1) : _getController.meModel.value.data!.result!.fullName.toString().substring(0,1),
+                                              color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.06, fontWeight: FontWeight.bold )
                                       )
                                           : CircleAvatar(
                                           radius: 34.r,
