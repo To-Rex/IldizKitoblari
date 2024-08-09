@@ -59,6 +59,7 @@ class LocaleString extends Translations{
       'Ma’lumotlarni yangilash uchun tashlang':'Перетащите, чтобы обновить данные',
       'Ex nimadir xato ketdi':'Экс что-то пошло не так',
       'Ma’lumotlar yangilandi':'Информация обновлена',
+      'Kod noto‘g‘ri!':'Неверный код!',
 
       //Sample page
       'Kitoblarni izlash':'Поиск книг',
@@ -205,6 +206,7 @@ class LocaleString extends Translations{
       'Ma’lumotlarni yangilash uchun tashlang':'Ma’lumotlarni yangilash uchun tashlang',
       'Ex nimadir xato ketdi':'Ex nimadir xato ketdi',
       'Ma’lumotlar yangilandi':'Ma’lumotlar yangilandi',
+      'Kod noto‘g‘ri!':'Kod noto‘g‘ri!',
 
       //Sample page
       'Kitoblarni izlash':'Kitoblarni izlash',
@@ -350,6 +352,7 @@ class LocaleString extends Translations{
       'Ma’lumotlarni yangilash uchun tashlang':'Маълумотларни янгилаш учун ташланг',
       'Ex nimadir xato ketdi':'Ex нимадир хато кетди',
       'Ma’lumotlar yangilandi':'Маълумотлар янгиланди',
+      'Kod noto‘g‘ri!':'Код нотўғри!',
 
       //Sample page
       'Kitoblarni izlash':'Китобларни излаш',

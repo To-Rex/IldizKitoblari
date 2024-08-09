@@ -160,7 +160,8 @@ class ApiController extends GetxController {
       'phone': _getController.phoneController.text.toString(),
       'type': type.toString(),
     });
-    debugPrint(response.body);
+    debugPrint('suuu'+response.statusCode.toString());
+    debugPrint('suuu'+response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       debugPrint('check: ${_getController.phoneController.text}');
       if (jsonDecode(response.body)['status'] == true) {
@@ -174,6 +175,7 @@ class ApiController extends GetxController {
         }
       }
     } else {
+      otp(_getController.phoneController.text, type, resend);
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
   }
@@ -183,8 +185,8 @@ class ApiController extends GetxController {
       'phone': phone,
       'type': type.toString(),
     });
+    debugPrint('otp: ${response.body}');
     if (response.statusCode == 200) {
-      debugPrint('otp: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         _getController.resetTimer();
         if (!resend) {
@@ -212,8 +214,8 @@ class ApiController extends GetxController {
           'phone': phone,
         }
     );
+    debugPrint('create: ${response.body}');
     if (response.statusCode == 200|| response.statusCode == 201) {
-      debugPrint('create: ${response.body}');
       if (jsonDecode(response.body)['status'] == true) {
         _getController.changeLoginModel(LoginModel.fromJson(jsonDecode(response.body)));
         _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
@@ -221,8 +223,10 @@ class ApiController extends GetxController {
         Get.offAll(SamplePage());
         debugPrint('token: ${_getController.loginModel.value.data!.token}');
       }else{
-        if (jsonDecode(response.body)['data']['message'] == 'OTP is wrong!') {
-          showToast(Get.context, 'Xatolik', 'Kod noto\'g\'ri!', true, 3);
+        if (jsonDecode(response.body)['data']['message'] == 'User already exists') {
+          showToast(Get.context, 'Xatolik', 'Bunday foydalanuvchi mavjud!', true, 3);
+        }else if (jsonDecode(response.body)['data']['message'] == 'OTP is wrong!') {
+          showToast(Get.context, 'Xatolik', 'Kod noto‘g‘ri!', true, 3);
         }else{
           showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
         }

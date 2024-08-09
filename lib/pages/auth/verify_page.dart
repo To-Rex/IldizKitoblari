@@ -212,7 +212,7 @@ class VerifyPage extends StatelessWidget {
                       children: [
                         const Spacer(),
                         Text(
-                          'Ro\'yxatdan o\'tganmisiz?'.tr,
+                          'Ro‘yxatdan o‘tganmisiz?'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,
                             fontSize: _getController.width.value * 0.04,
