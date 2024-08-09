@@ -232,7 +232,8 @@ class DetailPage extends StatelessWidget {
                                             //onTap: () {Get.to(() => BookPage(url: _getController.productDetailList[pageIndex].data!.pdf!, title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!));},
                                             onTap: () {
                                               _getController.whileApi.value = false;
-                                              _getController.fontSize.value = Get.height * 0.021;
+                                              //_getController.fontSize.value = Get.height * 0.021;
+                                              _getController.fontSize.value = Get.height * 0.018;
                                               Get.to(() => BookPages(url: _getController.productDetailList[pageIndex].data!.pdf!, title: 'uz_UZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.uz! : 'oz_OZ' == Get.locale.toString() ? _getController.productDetailList[pageIndex].data!.name!.oz! : _getController.productDetailList[pageIndex].data!.name!.ru!));},
                                             //onTap: () {Get.to(() => BookPages());},
                                             child: Container(

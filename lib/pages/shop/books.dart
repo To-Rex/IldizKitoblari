@@ -54,6 +54,7 @@ class _BookState extends State<BookPages> {
         data = value;
       });
     });
+
     return Scaffold(
       backgroundColor: _getController.backgroundColor.value,
         resizeToAvoidBottomInset: false,
