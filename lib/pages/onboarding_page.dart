@@ -5,6 +5,7 @@ import 'package:ildiz/companents/filds/text_large.dart';
 import 'package:ildiz/companents/filds/text_small.dart';
 import 'package:ildiz/pages/auth/login_page.dart';
 import 'package:ildiz/pages/auth/register_page.dart';
+import 'package:ildiz/pages/sample_page.dart';
 import '../controllers/get_controller.dart';
 import '../resource/colors.dart';
 
@@ -150,7 +151,7 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
             )
           ),
           //button
-          Positioned(
+          /*Positioned(
               bottom: _getController.height.value * 0.125,
               height: _getController.height.value * 0.06,
               right: w * 0.15,
@@ -159,6 +160,17 @@ class _OnboardingPageState extends State<OnboardingPage> with SingleTickerProvid
                 onPressed: () {Get.to(RegisterPage());},
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
                 child: TextSmall(text: 'Ro‘yxatdan o‘tish'.tr, color: AppColors.white, fontWeight: FontWeight.bold)
+              )
+          ),*/
+          Positioned(
+              bottom: _getController.height.value * 0.125,
+              height: _getController.height.value * 0.06,
+              right: w * 0.15,
+              left: w * 0.15,
+              child: ElevatedButton(
+                onPressed: () {Get.to(SamplePage());},
+                style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
+                child: TextSmall(text: 'Davom etish'.tr, color: AppColors.white, fontWeight: FontWeight.bold)
               )
           ),
           //row in Ro‘yxatdan o‘tganmisiz? Kirish

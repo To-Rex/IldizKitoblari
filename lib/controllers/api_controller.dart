@@ -233,18 +233,20 @@ class ApiController extends GetxController {
   }
 
   Future<void> me() async {
-    debugPrint('token: ${GetStorage().read('token')}');
-    var response = await get(Uri.parse(_me), headers: {
-      'Authorization': 'Bearer ${GetStorage().read('token')}',
-    });
-    debugPrint('me: ${response.body}');
-    if (response.statusCode == 200) {
-      _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
-    } else if (response.statusCode == 401) {
-      Get.offAll(const OnboardingPage());
-    } else {
+    try {
+      if (GetStorage().read('token') == null) return;
+      debugPrint('token: ${GetStorage().read('token')}');
+      var response = await get(Uri.parse(_me), headers: {
+        'Authorization': 'Bearer ${GetStorage().read('token')}',
+      });
+      debugPrint('me: ${response.body}');
+      if (response.statusCode == 200) {
+        _getController.changeMeModel(MeModel.fromJson(jsonDecode(response.body)));
+      }
+    } catch (e) {
       showToast(Get.context, 'Xatolik', 'Server bilan bog‘lanishda xatolik!', true, 3);
     }
+
   }
 
   //edit user
@@ -552,11 +554,8 @@ class ApiController extends GetxController {
 
   Future<void> getQuotation(page) async {
     var response = await get(Uri.parse('$_quotation?limit=5&page=$page'),
-      headers: {
-        'Accept-Language': Get.locale!.languageCode,
-      },
+      headers: {'Accept-Language': Get.locale!.languageCode},
     );
-    //debugPrint('quotation: ${response.body}');
     if (response.statusCode == 200) {
       _getController.changeQuotesModel(QuotesModel.fromJson(jsonDecode(response.body)));
     } else {
@@ -642,6 +641,7 @@ class ApiController extends GetxController {
   //------------------------------------------------------------------------------------------------
 
   Future<void> getBasket() async {
+    if (GetStorage().read('token') == null) return;
     var response = await post(Uri.parse(_getCart),
       headers: {
         'Accept-Language': Get.locale!.languageCode,

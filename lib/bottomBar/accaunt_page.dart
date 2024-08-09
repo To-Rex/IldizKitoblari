@@ -8,6 +8,7 @@ import 'package:ildiz/resource/colors.dart';
 import 'package:get_storage/get_storage.dart';
 import '../companents/acc_item.dart';
 import '../controllers/get_controller.dart';
+import '../pages/auth/login_page.dart';
 import '../pages/home/author_category.dart';
 import '../pages/onboarding_page.dart';
 import '../pages/profile/about_program.dart';
@@ -112,8 +113,9 @@ class AccountPage extends StatelessWidget {
                           decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.only(topLeft: Radius.circular(18.r), topRight: Radius.circular(18.r))),
                           child: Column(
                             children: [
-                              Row(
-                                children: [
+                              if (_getController.meModel.value.data != null)
+                                Row(
+                                    children: [
                                   Container(
                                       padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.045, bottom: _getController.width.value * 0.04),
                                       child: _getController.meModel.value.data!.result!.avatar == null
@@ -139,19 +141,56 @@ class AccountPage extends StatelessWidget {
                                       )
                                   )
                                 ]
-                              ),
-                              Container(
-                                  width: _getController.width.value,
-                                  padding: EdgeInsets.only(left: 16.w, right: 16.w),
-                                  height: _getController.height.value * 0.06,
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        Get.to(() => EditUser());
-                                      },
-                                      style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
-                                      child: const TextSmall(text: 'Profilni tahrirlash', color: AppColors.white, fontWeight: FontWeight.bold)
-                                  )
-                              ),
+                                )
+                              else
+                                Row(
+                                    children: [
+                                      Container(
+                                          padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.045, bottom: _getController.width.value * 0.04),
+                                          child: CircleAvatar(
+                                              radius: 34.r,
+                                              backgroundColor: AppColors.grey,
+                                              child: Text('SF', style: TextStyle(color: Theme.of(context).colorScheme.surface, fontSize: _getController.width.value * 0.06))
+                                          )
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(left: 16.w, top: _getController.width.value * 0.045, bottom: _getController.width.value * 0.04),
+                                          child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text('Salom, Foydalanuvchi', style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 21.sp, fontWeight: FontWeight.w600)),
+                                                SizedBox(height: _getController.height.value * 0.004),
+                                                Text('Hush kelibsiz', style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7), fontSize: 17.sp, fontWeight: FontWeight.w500))
+                                              ]
+                                          )
+                                      )
+                                    ]
+                                ),
+                              if (_getController.meModel.value.data != null)
+                                Container(
+                                    width: _getController.width.value,
+                                    padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                                    height: _getController.height.value * 0.06,
+                                    child: ElevatedButton(
+                                        onPressed: () {
+                                          Get.to(() => EditUser());
+                                        },
+                                        style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor3, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
+                                        child: const TextSmall(text: 'Profilni tahrirlash', color: AppColors.white, fontWeight: FontWeight.bold)
+                                    )
+                                )
+                              else
+                                Container(
+                                    width: _getController.width.value,
+                                    margin: EdgeInsets.only(top: 16.h),
+                                    padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                                    height: _getController.height.value * 0.06,
+                                    child: ElevatedButton(
+                                        onPressed: () {Get.to(LoginPage());},
+                                        style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r))),
+                                        child: const TextSmall(text: 'Ro‘yxatdan o‘tganmisiz?', color: AppColors.white, fontWeight: FontWeight.bold)
+                                    )
+                                ),
                               SizedBox(height: 9.h),
                               AccItem(
                                   title: 'Mualliflar'.tr,
@@ -162,12 +201,14 @@ class AccountPage extends StatelessWidget {
                                     Get.to(() => AuthorCategory());
                                   }
                               ),
+                              if (_getController.meModel.value.data != null)
                               AccItem(
                                   title: 'Mening kitoblarim'.tr,
                                   icon: 'assets/icon/diary.svg',
                                   subTitle: '',
                                   onTaps: () {}
                               ),
+                              if (_getController.meModel.value.data != null)
                               AccItem(
                                   title: 'Buyurtmalar'.tr,
                                   icon: 'assets/icon/shopping-cart.svg',
@@ -229,6 +270,7 @@ class AccountPage extends StatelessWidget {
                                     Get.to(() => ContactUs(), transition: Transition.rightToLeft);
                                   }
                               ),
+                              if (_getController.meModel.value.data != null)
                               AccItem(
                                   title: 'Ilovadan chiqish'.tr,
                                   icon: 'assets/icon/exit.svg',
